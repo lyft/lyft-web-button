@@ -3,8 +3,47 @@
   <head>
   </head>
   <body>
-    <div>
-      Hello, World!
+    <div id="lyft-web-library-root">
+      <script type="text/javascript">
+      (function(
+        window,
+        document,
+        lyftWebButtonSrc,
+        objectName,
+        rootElementId,
+        clientToken,
+        latitude,
+        longitude,
+        theme,
+        rootElement,
+        scriptElement
+      ){
+        rootElement = document.getElementById(rootElementId);
+        scriptElement = document.createElement('script');
+        scriptElement.async = true;
+        scriptElement.onload = function(){
+          window[objectName].initialize(
+            clientToken,
+            latitude,
+            longitude,
+            rootElement,
+            theme
+          );
+        };
+        scriptElement.src = lyftWebButtonSrc;
+        rootElement.insertBefore(scriptElement, rootElement.childNodes[0]);
+      })(
+        window,
+        document,
+        '/js/lyftWebButton.js',
+        'lyftWebButton',
+        'lyft-web-library-root',
+        'CLIENT_TOKEN_GOES_HERE',
+        '37.776252',
+        '-122.3913909',
+        'multicolor'
+      );
+      </script>
     </div>
   </body>
 </html>
