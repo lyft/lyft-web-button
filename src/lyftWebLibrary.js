@@ -1,17 +1,7 @@
 /**
- * Lyft Web Library (UMD)
+ * lyftWebLibrary
  */
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['exports'], function(exports) {
-      factory((root.lyftWebLibrary = exports));
-    });
-  } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
-    factory(exports);
-  } else {
-    factory((root.lyftWebLibrary = {}));
-  }
-} (this, function(exports) {
+var lyftWebLibrary = (function() {
 
   /* ========== */
   /* Properties */
@@ -186,10 +176,14 @@
   /* Publicly-Exposed Properties & Methods */
   /* ===================================== */
 
-  exports.getCosts = getCosts;
-  exports.getDrivers = getDrivers;
-  exports.getEtas = getEtas;
-  exports.getRideTypes = getRideTypes;
-  exports.setClientToken = setClientToken;
+  return {
+    getCosts: getCosts,
+    getDrivers: getDrivers,
+    getEtas: getEtas,
+    getRideTypes: getRideTypes,
+    setClientToken: setClientToken
+  };
 
-}));
+})();
+
+module.exports = window.lyftWebLibrary = lyftWebLibrary;

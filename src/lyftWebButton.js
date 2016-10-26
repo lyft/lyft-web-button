@@ -1,17 +1,9 @@
+var lyftWebLibrary = require('./lyftWebLibrary.js');
+
 /**
- * Lyft Web Button (UMD)
+ * lyftWebButton
  */
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['exports', 'lyftWebLibrary'], function(exports, lyftWebLibrary) {
-      factory((root.lyftWebButton = exports), lyftWebLibrary);
-    });
-  } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
-    factory(exports, require('lyftWebLibrary'));
-  } else {
-    factory((root.lyftWebButton = {}), root.lyftWebLibrary);
-  }
-} (this, function(exports, lyftWebLibrary) {
+var lyftWebButton = (function(lyftWebLibrary) {
 
   /* ========== */
   /* Properties */
@@ -211,8 +203,12 @@
   /* Publicly-Exposed Properties & Methods */
   /* ===================================== */
 
-  exports.initialize = initialize;
-  exports.onReceiveCosts = onReceiveCosts;
-  exports.onReceiveEtas = onReceiveEtas;
+  return {
+    initialize: initialize,
+    onReceiveCosts: onReceiveCosts,
+    onReceiveEtas: onReceiveEtas
+  };
 
-}));
+})(lyftWebLibrary);
+
+module.exports = window.lyftWebButton = lyftWebButton;
