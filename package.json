@@ -8,16 +8,17 @@
     "type": "git",
     "url": "https://github.com/lyft/lyft-web-library.git"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "css-loader": "^0.25.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
     "build": "webpack --progress --colors",
     "build:dev": "NODE_ENV=development webpack --progress --colors",
-    "build:dist": "NODE_ENV=production webpack --progress --colors"
+    "build:dist": "NODE_ENV=production webpack --progress --colors",
+    "start": "webpack-dev-server --content-base dist/"
   }
 }
