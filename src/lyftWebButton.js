@@ -1,3 +1,4 @@
+var lyftWebButtonCss = require('./lyftWebButton.css');
 var lyftWebLibrary = require('./lyftWebLibrary.js');
 
 /**
@@ -111,25 +112,6 @@ var lyftWebButton = (function(lyftWebLibrary) {
     return modalContainerElement;
   }
 
-  function createStyle(textColor, backgroundColor) {
-    var style = document.createElement('style');
-    style.type = 'text/css';
-    style.textContent = [
-      '.lyft-web-button {padding:18px 20px;color:'+textColor+';font-family:sans-serif;background-color:'+backgroundColor+';border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;}',
-      '.lyft-web-button > .logo {display:inline-block;width:55px;height:auto;vertical-align:middle;}',
-      '.lyft-web-button > .cta-eta {display:inline-block;margin-left:20px;text-align:left;vertical-align:middle;}',
-      '.lyft-web-button > .cta-eta > .cta {display:block;font-size:30px;font-weight:300;}',
-      '.lyft-web-button > .cta-eta > .eta {display:block;font-size:20px;font-weight:300;}',
-      '.lyft-web-button > .arrow {display:inline-block;width:18px;height:auto;margin-left:20px;vertical-align:middle;}',
-      '.lyft-web-button > .price-range {display:inline-block;margin-left:4px;vertical-align:middle;font-size:20px;font-weight:300;}',
-      '.lyft-web-modal {position:fixed;top:0;left:0;z-index:1;display:block;visibility:hidden;opacity:0;padding-top:100px;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);-webkit-transition:visibility 0.4s, opacity 0.4s;-moz-transition:visibility 0.4s, opacity 0.4s;-o-transition:visibility 0.4s, opacity 0.4s;transition:visibility 0.4s, opacity 0.4s;}',
-      '.lyft-web-modal.on {visibility:visible;opacity:1;}',
-      '.lyft-web-modal > .content {position:relative;top:-300px;opacity:0;width:80%;margin:auto;padding:0;background-color:#FFFFFF;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-box-shadow:0 0 5px rgba(0,0,0,0.3);-moz-box-shadow:0 0 5px rgba(0,0,0,0.3);box-shadow:0 0 5px rgba(0,0,0,0.3);-webkit-transition:top 0.4s, opacity 0.4s;-moz-transition:top 0.4s, opacity 0.4s;-o-transition:top 0.4s, opacity 0.4s;transition:top 0.4s, opacity 0.4s;}',
-      '.lyft-web-modal.on > .content {top:0;opacity:1;}'
-    ].join('\n');
-    return style;
-  }
-
   /* ================ */
   /* Workflow Methods */
   /* ================ */
@@ -178,8 +160,6 @@ var lyftWebButton = (function(lyftWebLibrary) {
     element.insertBefore(createModal(), element.childNodes[0]);
     /* insert button */
     element.insertBefore(createButton(logoColor, arrowColor), element.childNodes[0]);
-    /* insert style */
-    element.insertBefore(createStyle(textColor, backgroundColor), element.childNodes[0]);
     /* get device location */
     if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
       navigator.geolocation.getCurrentPosition(function(position) {
