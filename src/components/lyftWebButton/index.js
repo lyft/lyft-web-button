@@ -13,8 +13,8 @@ var lyftWebButton = (function(lyftWebApi) {
   /* Properties */
   /* ========== */
 
-  var etaElement;
-  var priceRangeElement;
+  var buttonElement;
+  var modalElement;
   var modalContainerElement;
   var modalContentElement;
 
@@ -22,78 +22,40 @@ var lyftWebButton = (function(lyftWebApi) {
   /* Convenience Methods */
   /* =================== */
 
-  function addClass(e, c) {
-      var classList = e.className.split(' ');
-      if (classList.indexOf(c) === -1) {classList.push(c);}
-      e.className = classList.join(' ');
+  function addClass(element, className) {
+      var classList = element.className.split(' ');
+      if (classList.indexOf(className) === -1) {classList.push(className);}
+      element.className = classList.join(' ');
   }
 
-  function removeClass(e, c) {
-      var classList = e.className.split(' ');
-      var classIndex = classList.indexOf(c);
+  function getChildElementByClassName(parentElement, childClassName) {
+    var childNodes = parentElement.childNodes || [];
+    for (var i = 0, l = childNodes.length; i < l; i++) {
+      if (childNodes[i].className === childClassName) {
+        return childNodes[i];
+      }
+    }
+  }
+
+  function removeClass(element, className) {
+      var classList = element.className.split(' ');
+      var classIndex = classList.indexOf(className);
       if (classIndex !== -1) {classList.splice(classIndex, 1);}
-      e.className = classList.join(' ');
-  }
-
-  function createSvg(descriptions, fill, width, height) {
-    var NS = 'http://www.w3.org/2000/svg';
-    /* path */
-    var path = document.createElementNS(NS, 'path');
-    path.setAttribute('d', descriptions);
-    path.setAttribute('fill', fill);
-    path.setAttribute('fill-rule', 'evenodd');
-    /* svg */
-    var svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('version', '1.1');
-    svg.setAttribute('width', '100%');
-    svg.setAttribute('height', '100%');
-    svg.setAttribute('viewBox', '0 0 '+width+' '+height);
-    /* tree */
-    svg.insertBefore(path, svg.childNodes[0]);
-    return svg;
+      element.className = classList.join(' ');
   }
 
   /* ======================== */
   /* DOM Manipulation Methods */
   /* ======================== */
 
-  function createButton() {
-    /* priceRange (cached element reference) */
-    priceRangeElement = document.createElement('span');
-    addClass(priceRangeElement, 'price-range');
-    priceRangeElement.textContent = '';
-    /* arrow */
-    var arrowSpan = document.createElement('span');
-    addClass(arrowSpan, 'arrow');
-    arrowSpan.innerHTML = require('html!./images/arrowIcon.svg');
-    /* eta (cached element reference) */
-    etaElement = document.createElement('span');
-    addClass(etaElement, 'eta');
-    etaElement.textContent = '';
-    /* cta */
-    var cta = document.createElement('span');
-    addClass(cta, 'cta');
-    cta.textContent = 'Get a ride';
-    /* ctaEta */
-    var ctaEta = document.createElement('div');
-    addClass(ctaEta, 'cta-eta');
-    /* logo */
-    var logoSpan = document.createElement('span');
-    addClass(logoSpan, 'logo');
-    logoSpan.innerHTML = require('html!./images/lyftLogo.svg');
-    /* button */
-    var button = document.createElement('button');
-    button.type = 'button';
-    addClass(button, 'lyft-web-button');
-    button.onclick = function(){addClass(modalContainerElement, 'on'); return false;};
-    /* tree */
-    button.insertBefore(priceRangeElement, button.childNodes[0]);
-    button.insertBefore(arrowSpan, button.childNodes[0]);
-    ctaEta.insertBefore(etaElement, ctaEta.childNodes[0]);
-    ctaEta.insertBefore(cta, ctaEta.childNodes[0]);
-    button.insertBefore(ctaEta, button.childNodes[0]);
-    button.insertBefore(logoSpan, button.childNodes[0]);
-    return button;
+  function createButton(theme) {
+    var template = document.createElement('div');
+    template.innerHTML = require('html!./index.html');
+    var element = template.childNodes[0];
+    element.type = 'button';
+    element.onclick = function(){addClass(modalContainerElement, 'on'); return false;};
+    addClass(element, theme);
+    return element;
   }
 
   function createModal() {
@@ -125,7 +87,8 @@ var lyftWebButton = (function(lyftWebApi) {
           var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
           if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
               !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-            priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+            var element = getChildElementByClassName(buttonElement, 'price-range');
+            if (element) {element.textContent = '$'+min+((min !== max) ? ('-'+max) : '');}
           }
         }
       }
@@ -138,21 +101,23 @@ var lyftWebButton = (function(lyftWebApi) {
         if (data.eta_estimates[i].ride_type === 'lyft') {
           var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
           if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-            etaElement.textContent = 'Lyft in '+eta+' min';
+            var element = getChildElementByClassName(getChildElementByClassName(buttonElement, 'cta-eta'), 'eta');
+            if (element) {element.textContent = 'Lyft in '+eta+' min';}
           }
         }
       }
     }
   }
 
-  function initialize(clientToken, latitude, longitude, element, theme) {
+  function initialize(clientToken, latitude, longitude, rootElement, theme) {
     /* parse arguments */
     lyftWebApi.setClientToken(clientToken);
     /* insert modal */
-    element.insertBefore(createModal(), element.childNodes[0]);
+    modalElement = createModal();
+    rootElement.insertBefore(modalElement, rootElement.childNodes[0]);
     /* insert button */
-    var button = element.insertBefore(createButton(), element.childNodes[0]);
-    addClass(button, theme);
+    buttonElement = createButton(theme);
+    rootElement.insertBefore(buttonElement, rootElement.childNodes[0]);
     /* get device location */
     if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
       navigator.geolocation.getCurrentPosition(function(position) {
