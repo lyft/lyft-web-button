@@ -29,6 +29,7 @@
   width: 80%;
   margin: auto;
   padding: 0;
+  text-align: center;
   background-color: #FFFFFF;
   border: none;
   -webkit-border-radius: 8px;
@@ -45,6 +46,12 @@
 .lyft-web-modal.on > .content {
   top: 0;
   opacity: 1;
+}
+.lyft-web-modal > .content > div > .lyft-logo-tile {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  vertical-align: middle;
 }
 .lyft-web-modal > .footer {
   text-align: center;
