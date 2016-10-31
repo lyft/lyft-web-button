@@ -1,7 +1,7 @@
 /**
- * lyftWebLibrary
+ * lyftWebApi
  */
-var lyftWebLibrary = (function() {
+var lyftWebApi = (function() {
 
   /* ========== */
   /* Properties */
@@ -186,4 +186,4 @@ var lyftWebLibrary = (function() {
 
 })();
 
-module.exports = window.lyftWebLibrary = lyftWebLibrary;
+module.exports = window.lyftWebApi = lyftWebApi;

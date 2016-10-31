@@ -1,10 +1,10 @@
-/* dependencies */
+// dependencies
 var webpack = require('webpack');
 
-/* webpack configuration */
+// webpack configuration
 var webpackConfig = {
   entry: {
-    lyftWebButton: './src/lyftWebButton.js'
+    lyftWebButton: './src/components/LyftWebButton/index.js'
   },
   output: {
     path: './dist',
@@ -20,11 +20,11 @@ var webpackConfig = {
   plugins: []
 };
 
-/* production */
+// production
 if (process.env.NODE_ENV === 'production') {
-  /* filename */
+  // filename
   webpackConfig.output.filename = '[name].min.js';
-  /* uglifyJsPlugin */
+  // uglifyJsPlugin
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {

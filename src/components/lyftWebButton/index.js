@@ -1,10 +1,13 @@
-var lyftWebLibrary = require('./lyftWebLibrary.js');
-require('./lyftWebButton.css');  /* auto-injected by webpack loader */
+// dependencies
+var lyftWebApi = require('../lyftWebApi/index.js');
+
+// styles
+require('./index.css');
 
 /**
  * lyftWebButton
  */
-var lyftWebButton = (function(lyftWebLibrary) {
+var lyftWebButton = (function(lyftWebApi) {
 
   /* ========== */
   /* Properties */
@@ -144,7 +147,7 @@ var lyftWebButton = (function(lyftWebLibrary) {
 
   function initialize(clientToken, latitude, longitude, element, theme) {
     /* parse arguments */
-    lyftWebLibrary.setClientToken(clientToken);
+    lyftWebApi.setClientToken(clientToken);
     /* determine theme */
     var textColor, backgroundColor, logoColor, arrowColor;
     switch (theme) {
@@ -162,14 +165,14 @@ var lyftWebButton = (function(lyftWebLibrary) {
     if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
       navigator.geolocation.getCurrentPosition(function(position) {
         /* request costs */
-        lyftWebLibrary.getCosts({
+        lyftWebApi.getCosts({
           start_lat: position.coords.latitude,
           start_lng: position.coords.longitude,
           end_lat: latitude,
           end_lng: longitude
         }, 'lyftWebButton.onReceiveCosts');
         /* request etas */
-        lyftWebLibrary.getEtas({
+        lyftWebApi.getEtas({
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }, 'lyftWebButton.onReceiveEtas');
@@ -187,6 +190,6 @@ var lyftWebButton = (function(lyftWebLibrary) {
     onReceiveEtas: onReceiveEtas
   };
 
-})(lyftWebLibrary);
+})(lyftWebApi);
 
 module.exports = window.lyftWebButton = lyftWebButton;

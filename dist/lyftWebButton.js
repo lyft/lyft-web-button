@@ -44,13 +44,16 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var lyftWebLibrary = __webpack_require__(1);
-	__webpack_require__(2);  /* auto-injected by webpack loader */
+	// dependencies
+	var lyftWebApi = __webpack_require__(1);
+
+	// styles
+	__webpack_require__(2);
 
 	/**
 	 * lyftWebButton
 	 */
-	var lyftWebButton = (function(lyftWebLibrary) {
+	var lyftWebButton = (function(lyftWebApi) {
 
 	  /* ========== */
 	  /* Properties */
@@ -190,7 +193,7 @@
 
 	  function initialize(clientToken, latitude, longitude, element, theme) {
 	    /* parse arguments */
-	    lyftWebLibrary.setClientToken(clientToken);
+	    lyftWebApi.setClientToken(clientToken);
 	    /* determine theme */
 	    var textColor, backgroundColor, logoColor, arrowColor;
 	    switch (theme) {
@@ -208,14 +211,14 @@
 	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
 	      navigator.geolocation.getCurrentPosition(function(position) {
 	        /* request costs */
-	        lyftWebLibrary.getCosts({
+	        lyftWebApi.getCosts({
 	          start_lat: position.coords.latitude,
 	          start_lng: position.coords.longitude,
 	          end_lat: latitude,
 	          end_lng: longitude
 	        }, 'lyftWebButton.onReceiveCosts');
 	        /* request etas */
-	        lyftWebLibrary.getEtas({
+	        lyftWebApi.getEtas({
 	          lat: position.coords.latitude,
 	          lng: position.coords.longitude
 	        }, 'lyftWebButton.onReceiveEtas');
@@ -233,7 +236,7 @@
 	    onReceiveEtas: onReceiveEtas
 	  };
 
-	})(lyftWebLibrary);
+	})(lyftWebApi);
 
 	module.exports = window.lyftWebButton = lyftWebButton;
 
@@ -243,9 +246,9 @@
 /***/ function(module, exports) {
 
 	/**
-	 * lyftWebLibrary
+	 * lyftWebApi
 	 */
-	var lyftWebLibrary = (function() {
+	var lyftWebApi = (function() {
 
 	  /* ========== */
 	  /* Properties */
@@ -430,7 +433,7 @@
 
 	})();
 
-	module.exports = window.lyftWebLibrary = lyftWebLibrary;
+	module.exports = window.lyftWebApi = lyftWebApi;
 
 
 /***/ },
@@ -449,8 +452,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./lyftWebButton.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./lyftWebButton.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
