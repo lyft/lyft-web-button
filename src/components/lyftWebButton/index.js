@@ -57,7 +57,7 @@ var lyftWebButton = (function(lyftWebApi) {
   /* DOM Manipulation Methods */
   /* ======================== */
 
-  function createButton(logoColor, arrowColor) {
+  function createButton() {
     /* priceRange (cached element reference) */
     priceRangeElement = document.createElement('span');
     addClass(priceRangeElement, 'price-range');
@@ -148,19 +148,11 @@ var lyftWebButton = (function(lyftWebApi) {
   function initialize(clientToken, latitude, longitude, element, theme) {
     /* parse arguments */
     lyftWebApi.setClientToken(clientToken);
-    /* determine theme */
-    var textColor, backgroundColor, logoColor, arrowColor;
-    switch (theme) {
-      case 'hot-pink':       textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#FF00BF'; break;
-      case 'mulberry-dark':  textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#352384'; break;
-      case 'mulberry-light': textColor = logoColor = arrowColor = '#352384'; backgroundColor = '#FFFFFF'; break;
-      case 'multicolor':     textColor = arrowColor = '#000000'; backgroundColor = '#FFFFFF'; logoColor = '#FF00BF'; break;
-      default:               textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#000000'; break;
-    }
     /* insert modal */
     element.insertBefore(createModal(), element.childNodes[0]);
     /* insert button */
-    element.insertBefore(createButton(logoColor, arrowColor), element.childNodes[0]);
+    var button = element.insertBefore(createButton(), element.childNodes[0]);
+    addClass(button, theme);
     /* get device location */
     if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
       navigator.geolocation.getCurrentPosition(function(position) {

@@ -1,3 +1,4 @@
+/* common styles */
 .lyft-web-button {
   padding: 18px 20px;
   color: #000000;
@@ -90,4 +91,52 @@
 .lyft-web-modal.on > .content {
   top: 0;
   opacity: 1;
+}
+
+/* hot-pink */
+.lyft-web-button.hot-pink {
+  color: #FFFFFF;
+  background-color: #FF00BF;
+}
+.lyft-web-button.hot-pink > .logo > svg > path {
+  fill: #FFFFFF;
+}
+.lyft-web-button.hot-pink > .arrow > svg > path {
+  fill: #FFFFFF;
+}
+
+/* mulberry-dark */
+.lyft-web-button.mulberry-dark {
+  color: #FFFFFF;
+  background-color: #352384;
+}
+.lyft-web-button.mulberry-dark > .logo > svg > path {
+  fill: #FFFFFF;
+}
+.lyft-web-button.mulberry-dark > .arrow > svg > path {
+  fill: #FFFFFF;
+}
+
+/* mulberry-light */
+.lyft-web-button.mulberry-light {
+  color: #352384;
+  background-color: #FFFFFF;
+}
+.lyft-web-button.mulberry-light > .logo > svg > path {
+  fill: #352384;
+}
+.lyft-web-button.mulberry-light > .arrow > svg > path {
+  fill: #352384;
+}
+
+/* multicolor */
+.lyft-web-button.multicolor {
+  color: #000000;
+  background-color: #FFFFFF;
+}
+.lyft-web-button.multicolor > .logo > svg > path {
+  fill: #FF00BF;
+}
+.lyft-web-button.multicolor > .arrow > svg > path {
+  fill: #000000;
 }

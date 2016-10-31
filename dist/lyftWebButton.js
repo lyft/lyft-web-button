@@ -103,7 +103,7 @@
 	  /* DOM Manipulation Methods */
 	  /* ======================== */
 
-	  function createButton(logoColor, arrowColor) {
+	  function createButton() {
 	    /* priceRange (cached element reference) */
 	    priceRangeElement = document.createElement('span');
 	    addClass(priceRangeElement, 'price-range');
@@ -194,19 +194,11 @@
 	  function initialize(clientToken, latitude, longitude, element, theme) {
 	    /* parse arguments */
 	    lyftWebApi.setClientToken(clientToken);
-	    /* determine theme */
-	    var textColor, backgroundColor, logoColor, arrowColor;
-	    switch (theme) {
-	      case 'hot-pink':       textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#FF00BF'; break;
-	      case 'mulberry-dark':  textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#352384'; break;
-	      case 'mulberry-light': textColor = logoColor = arrowColor = '#352384'; backgroundColor = '#FFFFFF'; break;
-	      case 'multicolor':     textColor = arrowColor = '#000000'; backgroundColor = '#FFFFFF'; logoColor = '#FF00BF'; break;
-	      default:               textColor = logoColor = arrowColor = '#FFFFFF'; backgroundColor = '#000000'; break;
-	    }
 	    /* insert modal */
 	    element.insertBefore(createModal(), element.childNodes[0]);
 	    /* insert button */
-	    element.insertBefore(createButton(logoColor, arrowColor), element.childNodes[0]);
+	    var button = element.insertBefore(createButton(), element.childNodes[0]);
+	    addClass(button, theme);
 	    /* get device location */
 	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
 	      navigator.geolocation.getCurrentPosition(function(position) {
@@ -471,7 +463,7 @@
 
 
 	// module
-	exports.push([module.id, ".lyft-web-button {\n  padding: 18px 20px;\n  color: #000000;\n  font-family: sans-serif;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button > .logo {\n  display: inline-block;\n  width: 55px;\n  height: auto;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 20px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 30px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 20px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  padding-top: 100px;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 80%;\n  margin: auto;\n  padding: 0;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n", ""]);
+	exports.push([module.id, "/* common styles */\n.lyft-web-button {\n  padding: 18px 20px;\n  color: #000000;\n  font-family: sans-serif;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button > .logo {\n  display: inline-block;\n  width: 55px;\n  height: auto;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 20px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 30px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 20px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  padding-top: 100px;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 80%;\n  margin: auto;\n  padding: 0;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF;\n  background-color: #FF00BF;\n}\n.lyft-web-button.hot-pink > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.hot-pink > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF;\n  background-color: #352384;\n}\n.lyft-web-button.mulberry-dark > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.mulberry-dark > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.mulberry-light > .logo > svg > path {\n  fill: #352384;\n}\n.lyft-web-button.mulberry-light > .arrow > svg > path {\n  fill: #352384;\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.multicolor > .logo > svg > path {\n  fill: #FF00BF;\n}\n.lyft-web-button.multicolor > .arrow > svg > path {\n  fill: #000000;\n}\n", ""]);
 
 	// exports
 
