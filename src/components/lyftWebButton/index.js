@@ -15,8 +15,6 @@ var lyftWebButton = (function(lyftWebApi) {
 
   var buttonElement;
   var modalElement;
-  var modalContainerElement;
-  var modalContentElement;
 
   /* =================== */
   /* Convenience Methods */
@@ -53,26 +51,18 @@ var lyftWebButton = (function(lyftWebApi) {
     template.innerHTML = require('html!./index.html');
     var element = template.childNodes[0];
     element.type = 'button';
-    element.onclick = function(){addClass(modalContainerElement, 'on'); return false;};
+    element.onclick = function(){addClass(modalElement, 'on'); return false;};
     addClass(element, theme);
     return element;
   }
 
   function createModal() {
-    /* button */
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.onclick = function(){removeClass(modalContainerElement, 'on'); return false;};
-    /* content */
-    modalContentElement = document.createElement('div');
-    addClass(modalContentElement, 'content');
-    /* modal */
-    modalContainerElement = document.createElement('div');
-    addClass(modalContainerElement, 'lyft-web-modal');
-    /* tree */
-    modalContentElement.insertBefore(button, modalContentElement.childNodes[0]);
-    modalContainerElement.insertBefore(modalContentElement, modalContainerElement.childNodes[0]);
-    return modalContainerElement;
+    var template = document.createElement('div');
+    template.innerHTML = require('html!../lyftWebModal/index.html');
+    var element = template.childNodes[0];
+    var closeButton = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'close');
+    if (closeButton) {closeButton.onclick = function(){removeClass(element, 'on'); return false;};}
+    return element;
   }
 
   /* ================ */
