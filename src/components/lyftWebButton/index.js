@@ -2,6 +2,7 @@
 var lyftWebApi = require('../lyftWebApi/index.js');
 
 // styles
+require('../lyftWebModal/index.css');
 require('./index.css');
 
 /**
@@ -60,8 +61,8 @@ var lyftWebButton = (function(lyftWebApi) {
     var template = document.createElement('div');
     template.innerHTML = require('html!../lyftWebModal/index.html');
     var element = template.childNodes[0];
-    var closeButton = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'close');
-    if (closeButton) {closeButton.onclick = function(){removeClass(element, 'on'); return false;};}
+    var closeElement = getChildElementByClassName(getChildElementByClassName(element, 'footer'), 'close');
+    if (closeElement) {closeElement.onclick = function(){removeClass(element, 'on'); return false;};}
     return element;
   }
 

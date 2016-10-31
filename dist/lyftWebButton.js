@@ -49,6 +49,7 @@
 
 	// styles
 	__webpack_require__(2);
+	__webpack_require__(6);
 
 	/**
 	 * lyftWebButton
@@ -94,7 +95,7 @@
 
 	  function createButton(theme) {
 	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(6);
+	    template.innerHTML = __webpack_require__(8);
 	    var element = template.childNodes[0];
 	    element.type = 'button';
 	    element.onclick = function(){addClass(modalElement, 'on'); return false;};
@@ -104,10 +105,10 @@
 
 	  function createModal() {
 	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(7);
+	    template.innerHTML = __webpack_require__(9);
 	    var element = template.childNodes[0];
-	    var closeButton = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'close');
-	    if (closeButton) {closeButton.onclick = function(){removeClass(element, 'on'); return false;};}
+	    var closeElement = getChildElementByClassName(getChildElementByClassName(element, 'footer'), 'close');
+	    if (closeElement) {closeElement.onclick = function(){removeClass(element, 'on'); return false;};}
 	    return element;
 	  }
 
@@ -418,7 +419,7 @@
 
 
 	// module
-	exports.push([module.id, "/* common styles */\n.lyft-web-button {\n  padding: 18px 20px;\n  color: #000000;\n  font-family: sans-serif;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button > .logo {\n  display: inline-block;\n  width: 55px;\n  height: auto;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 20px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 30px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 20px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  padding-top: 100px;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 80%;\n  margin: auto;\n  padding: 0;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF;\n  background-color: #FF00BF;\n}\n.lyft-web-button.hot-pink > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.hot-pink > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF;\n  background-color: #352384;\n}\n.lyft-web-button.mulberry-dark > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.mulberry-dark > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.mulberry-light > .logo > svg > path {\n  fill: #352384;\n}\n.lyft-web-button.mulberry-light > .arrow > svg > path {\n  fill: #352384;\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.multicolor > .logo > svg > path {\n  fill: #FF00BF;\n}\n.lyft-web-button.multicolor > .arrow > svg > path {\n  fill: #000000;\n}\n", ""]);
+	exports.push([module.id, "/* common styles */\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  padding-top: 100px;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 80%;\n  margin: auto;\n  padding: 0;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n.lyft-web-modal > .footer {\n  text-align: center;\n}\n.lyft-web-modal > .footer > .close {\n  color: #FFFFFF;\n  font-family: Arial, sans-serif;\n  font-size: 60px;\n  text-decoration: none;\n}\n", ""]);
 
 	// exports
 
@@ -733,15 +734,55 @@
 
 /***/ },
 /* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(7);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/* common styles */\n.lyft-web-button {\n  padding: 18px 20px;\n  color: #000000;\n  font-family: sans-serif;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button > .logo {\n  display: inline-block;\n  width: 55px;\n  height: auto;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 20px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 30px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 20px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 20px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 20px;\n  font-weight: 300;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF;\n  background-color: #FF00BF;\n}\n.lyft-web-button.hot-pink > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.hot-pink > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF;\n  background-color: #352384;\n}\n.lyft-web-button.mulberry-dark > .logo > svg > path {\n  fill: #FFFFFF;\n}\n.lyft-web-button.mulberry-dark > .arrow > svg > path {\n  fill: #FFFFFF;\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.mulberry-light > .logo > svg > path {\n  fill: #352384;\n}\n.lyft-web-button.mulberry-light > .arrow > svg > path {\n  fill: #352384;\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000;\n  background-color: #FFFFFF;\n}\n.lyft-web-button.multicolor > .logo > svg > path {\n  fill: #FF00BF;\n}\n.lyft-web-button.multicolor > .arrow > svg > path {\n  fill: #000000;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = "<button type=\"button\" class=\"lyft-web-button\">\n  <span class=\"logo\">\n    <svg version=\"1.1\" width=\"100%\" height=\"100%\" viewBox=\"0 0 62 45\">\n      <path d=\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\" fill=\"#FF00BF\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <div class=\"cta-eta\">\n    <span class=\"cta\">Get a ride</span>\n    <span class=\"eta\"></span>\n  </div>\n  <span class=\"arrow\">\n    <svg version=\"1.1\" width=\"100%\" height=\"100%\" viewBox=\"0 0 20 20\">\n      <path d=\"M14,13.7506336 L14,6 L6.24936644,6 L8.93723605,8.68786953 L3,17 L11.3121305,11.062764 L14,13.7506336 Z M0,10 C0,15.5228475 4.4771525,20 10,20 C15.5228475,20 20,15.5228475 20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,1.70234197e-14 1.48029737e-14,4.4771525 0,10 L0,10 Z\" fill=\"#000000\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <span class=\"price-range\"></span>\n</button>\n";
 
 /***/ },
-/* 7 */
+/* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"lyft-web-modal\">\n  <div class=\"content\">\n    <button type=\"button\" class=\"close\"></button>\n  </div>\n</div>\n";
+	module.exports = "<div class=\"lyft-web-modal\">\n  <div class=\"content\">\n    Content Goes Here\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"Close Lyft Modal Window\">&#215;</a>\n  <div>\n</div>\n";
 
 /***/ }
 /******/ ]);
