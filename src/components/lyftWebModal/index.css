@@ -85,7 +85,7 @@
 .lyft-web-modal > .content > .form-container > .lyft-style-input {
   -webkit-appearance: none;
   height: 36px;
-  color: #585551;
+  color: #333447;
   font-size: 16px;
   font-weight: lighter;
   text-align: center;
@@ -118,9 +118,12 @@
   text-transform: none;
   line-height: 1.428571429;
   vertical-align: middle;
-  background-color: #EA0B8C;
-  background-image: none;
-  border: 1px solid #EA0B8C;
+  background-color: #FF00BF;
+  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);
+  border: none;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
