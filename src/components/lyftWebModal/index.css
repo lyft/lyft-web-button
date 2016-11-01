@@ -61,6 +61,30 @@
      -moz-border-radius: 8px 8px 0 0;
           border-radius: 8px 8px 0 0;
 }
+.lyft-web-modal > .content > .map-container > .map-label {
+  display: inline-block;
+  max-width: 300px;
+  margin: 20px auto 0 auto;
+  padding: 10px;
+  background-color: #FFFFFF;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+          box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.lyft-web-modal > .content > .map-container > .map-label > .map-label-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+}
+.lyft-web-modal > .content > .map-container > .map-label > .map-label-description {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 300;
+}
 .lyft-web-modal > .content > .lyft-logo-tile-container > .lyft-logo-tile {
   display: inline-block;
   width: 64px;
