@@ -113,6 +113,8 @@
 	    if (mapElement && typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
 	      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
 	                   '?center=' + latitude + ',' + longitude +
+	                   '&maptype=roadmap' +
+	                   '&markers=color:red%7C' + latitude + ',' + longitude +
 	                   '&size=640x200' +
 	                   '&zoom=14';
 	      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
