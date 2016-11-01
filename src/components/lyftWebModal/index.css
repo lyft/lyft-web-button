@@ -29,6 +29,8 @@
   width: 80%;
   margin: auto;
   padding: 0;
+  color: #000000;
+  font-family: sans-serif;
   text-align: center;
   background-color: #FFFFFF;
   border: none;
@@ -51,7 +53,70 @@
   display: inline-block;
   width: 64px;
   height: 64px;
+  margin: 20px 0 0 0;
   vertical-align: middle;
+}
+.lyft-web-modal > .content > div > h1 {
+  margin: 20px 0 10px 0;
+  color: #352384;
+  font-size: 24px;
+  font-weight: 500;
+}
+.lyft-web-modal > .content > div > p {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 300;
+}
+.lyft-web-modal > .content > div > .lyft-style-input {
+  -webkit-appearance: none;
+  height: 36px;
+  color: #585551;
+  font-size: 16px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: none;
+  line-height: 1.428571429;
+  vertical-align: middle;
+  background-color: #FFFFFF;
+  background-image: none;
+  border: 1px solid #CCCCCC;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+.lyft-web-modal > .content > div > input[type="text"] {
+  width: 100%;
+  max-width: 320px;
+  margin: 20px 0 0 0;
+}
+.lyft-web-modal > .content > div > .lyft-style-button {
+  -webkit-appearance: button;
+  cursor: pointer;
+  height: 40px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  text-transform: none;
+  line-height: 1.428571429;
+  vertical-align: middle;
+  background-color: #EA0B8C;
+  background-image: none;
+  border: 1px solid #EA0B8C;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+.lyft-web-modal > .content > div > button[type="button"] {
+  width: 100%;
+  max-width: 320px;
+  margin: 10px 0 20px 0;
 }
 .lyft-web-modal > .footer {
   text-align: center;
