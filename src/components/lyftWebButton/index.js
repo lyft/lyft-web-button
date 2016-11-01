@@ -60,15 +60,36 @@ var lyftWebButton = (function(lyftWebApi) {
   function createModal(latitude, longitude) {
     var template = document.createElement('div');
     template.innerHTML = require('html!../lyftWebModal/index.html');
+    // get modal root element
     var element = template.childNodes[0];
+    // bind close-window event
+    if (element) {
+      element.onclick = function (event) {
+        if (event && event.target === element) {
+          removeClass(element, 'on');
+        }
+        return false;
+      };
+    }
+    // get close-window element
     var closeElement = getChildElementByClassName(getChildElementByClassName(element, 'footer'), 'close');
-    if (closeElement) {closeElement.onclick = function(){removeClass(element, 'on'); return false;};}
+    // bind close-window event
+    if (closeElement) {
+      closeElement.onclick = function (event) {
+        if (event && event.target === closeElement) {
+          removeClass(element, 'on');
+        }
+        return false;
+      };
+    }
+    // get map-container element
     var mapElement = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'map-container');
+    // set map background-image
     if (mapElement && typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
       var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
                    '?center=' + latitude + ',' + longitude +
                    '&maptype=roadmap' +
-                   '&markers=color:red%7C' + latitude + ',' + longitude +
+                   '&markers=color:0xff00bf%7C' + latitude + ',' + longitude +
                    '&size=640x300' +
                    '&zoom=15';
       mapElement.style = 'background-image:url(\''+mapSrc+'\');';
