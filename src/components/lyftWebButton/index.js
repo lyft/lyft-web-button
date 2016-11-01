@@ -57,12 +57,20 @@ var lyftWebButton = (function(lyftWebApi) {
     return element;
   }
 
-  function createModal() {
+  function createModal(latitude, longitude) {
     var template = document.createElement('div');
     template.innerHTML = require('html!../lyftWebModal/index.html');
     var element = template.childNodes[0];
     var closeElement = getChildElementByClassName(getChildElementByClassName(element, 'footer'), 'close');
     if (closeElement) {closeElement.onclick = function(){removeClass(element, 'on'); return false;};}
+    var mapElement = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'map-container');
+    if (mapElement && typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
+                   '?center=' + latitude + ',' + longitude +
+                   '&size=640x200' +
+                   '&zoom=14';
+      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+    }
     return element;
   }
 
@@ -104,7 +112,7 @@ var lyftWebButton = (function(lyftWebApi) {
     /* parse arguments */
     lyftWebApi.setClientToken(clientToken);
     /* insert modal */
-    modalElement = createModal();
+    modalElement = createModal(latitude, longitude);
     rootElement.insertBefore(modalElement, rootElement.childNodes[0]);
     /* insert button */
     buttonElement = createButton(theme);
