@@ -69,8 +69,8 @@ var lyftWebButton = (function(lyftWebApi) {
                    '?center=' + latitude + ',' + longitude +
                    '&maptype=roadmap' +
                    '&markers=color:red%7C' + latitude + ',' + longitude +
-                   '&size=640x200' +
-                   '&zoom=14';
+                   '&size=640x300' +
+                   '&zoom=15';
       mapElement.style = 'background-image:url(\''+mapSrc+'\');';
     }
     return element;
