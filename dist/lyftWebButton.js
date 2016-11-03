@@ -103,7 +103,7 @@
 	    return element;
 	  }
 
-	  function createModal(latitude, longitude) {
+	  function createModal(location) {
 	    var template = document.createElement('div');
 	    template.innerHTML = __webpack_require__(9);
 	    // get modal root element
@@ -131,14 +131,26 @@
 	    // get map-container element
 	    var mapElement = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'map-container');
 	    // set map background-image
-	    if (mapElement && typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+	    if (mapElement && typeof location !== 'undefined') {
 	      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
-	                   '?center=' + latitude + ',' + longitude +
+	                   '?center=' + location.latitude + ',' + location.longitude +
 	                   '&maptype=roadmap' +
-	                   '&markers=color:0xff00bf%7C' + latitude + ',' + longitude +
+	                   '&markers=color:0xff00bf%7C' + location.latitude + ',' + location.longitude +
 	                   '&size=640x300' +
 	                   '&zoom=15';
 	      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+	    }
+	    // get map-label-name
+	    var mapLabelNameElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-name');
+	    // set map-label-name text
+	    if (mapLabelNameElement) {
+	      mapLabelNameElement.textContent = location.name;
+	    }
+	    // get map-label-description
+	    var mapLabelDescriptionElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-description');
+	    // set map-label-description text
+	    if (mapLabelDescriptionElement) {
+	      mapLabelDescriptionElement.textContent = location.address;
 	    }
 	    return element;
 	  }
@@ -181,8 +193,11 @@
 	   * Initialize.
 	   * @param {Object} options
 	   * @param {string} options.clientToken
-	   * @param {string} options.latitude
-	   * @param {string} options.longitude
+	   * @param {Object} options.location
+	   * @param {string} options.location.address
+	   * @param {string} options.location.latitude
+	   * @param {string} options.location.longitude
+	   * @param {string} options.location.name
 	   * @param {Object} options.rootElement
 	   * @param {string} options.theme
 	   */
@@ -190,7 +205,7 @@
 	    /* parse arguments */
 	    lyftWebApi.setClientToken(options.clientToken);
 	    /* insert modal */
-	    modalElement = createModal(options.latitude, options.longitude);
+	    modalElement = createModal(options.location);
 	    options.rootElement.insertBefore(modalElement, options.rootElement.childNodes[0]);
 	    /* insert button */
 	    buttonElement = createButton(options.theme);
@@ -202,8 +217,8 @@
 	        lyftWebApi.getCosts({
 	          start_lat: position.coords.latitude,
 	          start_lng: position.coords.longitude,
-	          end_lat: options.latitude,
-	          end_lng: options.longitude
+	          end_lat: options.location.latitude,
+	          end_lng: options.location.longitude
 	        }, 'lyftWebButton.onReceiveCosts');
 	        /* request etas */
 	        lyftWebApi.getEtas({
@@ -822,7 +837,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"lyft-web-modal\" title=\"Lyft web modal\">\n  <div class=\"content\">\n    <div class=\"map-container\" title=\"map\">\n      <div class=\"map-label\" title=\"label\">\n        <span class=\"map-label-name\" title=\"location name\">name</span>\n        <span class=\"map-label-description\" title=\"location description\">description</span>\n      </div>\n    </div>\n    <div class=\"lyft-logo-tile-container\">\n      <span class=\"lyft-logo-tile\" title=\"Lyft logo tile\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\">\n          <defs>\n            <linearGradient x1=\"50%\" y1=\"1.17229889%\" x2=\"50%\" y2=\"99.482476%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n            <linearGradient x1=\"50%\" y1=\"-50.0248301%\" x2=\"50%\" y2=\"145.665234%\" id=\"linearGradient-2\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n            <rect fill=\"url(#linearGradient-1)\" x=\"0\" y=\"0\" width=\"64\" height=\"64\" rx=\"14\"></rect>\n            <path d=\"M15.6681127,17.1010796 L15.6681127,35.8341526 C15.6681127,38.7987402 17.3849122,40.564675 18.4549305,41.32167 C17.3221198,42.3308419 13.8604322,43.2139254 11.2799224,41.0692609 C9.75854079,39.8051257 9.13939394,37.726408 9.13939394,35.7709923 L9.13939394,17.1010796 L15.6681127,17.1010796 L15.6681127,17.1010796 Z M52.5956515,30.8390071 L54.8653867,30.8390071 L54.8653867,23.7142904 L52.3871161,23.7142904 C51.4915724,19.5677688 48.0260922,16.5333333 43.6206659,16.5333333 C38.5456093,16.5333333 34.5043965,20.656402 34.5043965,25.7422012 L34.5043965,41.8710719 C35.950242,42.0747175 37.3818353,41.8457614 38.8473758,40.6278353 C40.3685257,39.3634678 41.0603998,37.2849824 41.0603998,35.3295666 L41.0603998,34.5171669 L44.6844566,34.5171669 L44.6844566,27.3924503 L41.0603998,27.3924503 L41.0603998,25.7422012 C41.0687412,24.4506655 42.3316854,23.4036438 43.6206659,23.4036438 C44.9094147,23.4036438 46.1038023,24.4506655 46.1038023,25.7422012 L46.1038023,32.6622041 C46.1038023,37.7480032 49.7857812,41.8710719 54.8606061,41.8710719 L54.8606061,35.0007614 C53.5718573,35.0007614 52.5956515,33.9537398 52.5956515,32.6622041 L52.5956515,30.8390071 L52.5956515,30.8390071 Z M26.5800228,33.9230884 C26.5800228,34.4984975 25.7399989,34.9650015 25.1521608,34.9650015 C24.5643227,34.9650015 23.6515715,34.4984975 23.6515715,33.9230884 L23.6515715,23.7142904 L17.1960718,23.7142904 L17.1960718,35.7080642 C17.1960718,37.8524964 17.921775,40.564675 21.2242806,41.4477585 C24.5302619,42.3317708 26.4480925,40.5017469 26.4480925,40.5017469 C26.2733861,41.707366 25.1403438,42.5904494 23.3151956,42.7796982 C21.9342278,42.9227378 20.2408919,42.464361 19.3599457,42.0858635 L19.3599457,48.4016635 C21.6047135,49.0650791 23.9062776,49.2794062 26.2298254,48.8275313 C30.446643,48.0076081 33.0352908,44.4755064 33.0352908,39.776332 L33.0352908,23.7142904 L26.5800228,23.7142904 L26.5800228,33.9230884 L26.5800228,33.9230884 Z\" stroke=\"url(#linearGradient-2)\" stroke-width=\"0.545454545\" fill=\"#FFFFFF\"></path>\n          </g>\n        </svg>\n      </span>\n    </div>\n    <div class=\"text-container\">\n      <h1>Ride with the Lyft mobile app.</h1>\n      <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\n    </div>\n    <div class=\"form-container\">\n      <input type=\"text\" class=\"lyft-style-input phone-number-input\" name=\"phoneNumber\" placeholder=\"Phone number\" title=\"phone number\" />\n      <button type=\"button\" class=\"lyft-style-button phone-number-button\" title=\"text me a link\">Text me a link</button>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"close Lyft web modal\">&#215;</a>\n  </div>\n</div>\n";
+	module.exports = "<div class=\"lyft-web-modal\" title=\"Lyft web modal\">\n  <div class=\"content\">\n    <div class=\"map-container\" title=\"map\">\n      <div class=\"map-label\" title=\"label\">\n        <span class=\"map-label-name\" title=\"location name\"></span>\n        <span class=\"map-label-description\" title=\"location description\"></span>\n      </div>\n    </div>\n    <div class=\"lyft-logo-tile-container\">\n      <span class=\"lyft-logo-tile\" title=\"Lyft logo tile\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\">\n          <defs>\n            <linearGradient x1=\"50%\" y1=\"1.17229889%\" x2=\"50%\" y2=\"99.482476%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n            <linearGradient x1=\"50%\" y1=\"-50.0248301%\" x2=\"50%\" y2=\"145.665234%\" id=\"linearGradient-2\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n            <rect fill=\"url(#linearGradient-1)\" x=\"0\" y=\"0\" width=\"64\" height=\"64\" rx=\"14\"></rect>\n            <path d=\"M15.6681127,17.1010796 L15.6681127,35.8341526 C15.6681127,38.7987402 17.3849122,40.564675 18.4549305,41.32167 C17.3221198,42.3308419 13.8604322,43.2139254 11.2799224,41.0692609 C9.75854079,39.8051257 9.13939394,37.726408 9.13939394,35.7709923 L9.13939394,17.1010796 L15.6681127,17.1010796 L15.6681127,17.1010796 Z M52.5956515,30.8390071 L54.8653867,30.8390071 L54.8653867,23.7142904 L52.3871161,23.7142904 C51.4915724,19.5677688 48.0260922,16.5333333 43.6206659,16.5333333 C38.5456093,16.5333333 34.5043965,20.656402 34.5043965,25.7422012 L34.5043965,41.8710719 C35.950242,42.0747175 37.3818353,41.8457614 38.8473758,40.6278353 C40.3685257,39.3634678 41.0603998,37.2849824 41.0603998,35.3295666 L41.0603998,34.5171669 L44.6844566,34.5171669 L44.6844566,27.3924503 L41.0603998,27.3924503 L41.0603998,25.7422012 C41.0687412,24.4506655 42.3316854,23.4036438 43.6206659,23.4036438 C44.9094147,23.4036438 46.1038023,24.4506655 46.1038023,25.7422012 L46.1038023,32.6622041 C46.1038023,37.7480032 49.7857812,41.8710719 54.8606061,41.8710719 L54.8606061,35.0007614 C53.5718573,35.0007614 52.5956515,33.9537398 52.5956515,32.6622041 L52.5956515,30.8390071 L52.5956515,30.8390071 Z M26.5800228,33.9230884 C26.5800228,34.4984975 25.7399989,34.9650015 25.1521608,34.9650015 C24.5643227,34.9650015 23.6515715,34.4984975 23.6515715,33.9230884 L23.6515715,23.7142904 L17.1960718,23.7142904 L17.1960718,35.7080642 C17.1960718,37.8524964 17.921775,40.564675 21.2242806,41.4477585 C24.5302619,42.3317708 26.4480925,40.5017469 26.4480925,40.5017469 C26.2733861,41.707366 25.1403438,42.5904494 23.3151956,42.7796982 C21.9342278,42.9227378 20.2408919,42.464361 19.3599457,42.0858635 L19.3599457,48.4016635 C21.6047135,49.0650791 23.9062776,49.2794062 26.2298254,48.8275313 C30.446643,48.0076081 33.0352908,44.4755064 33.0352908,39.776332 L33.0352908,23.7142904 L26.5800228,23.7142904 L26.5800228,33.9230884 L26.5800228,33.9230884 Z\" stroke=\"url(#linearGradient-2)\" stroke-width=\"0.545454545\" fill=\"#FFFFFF\"></path>\n          </g>\n        </svg>\n      </span>\n    </div>\n    <div class=\"text-container\">\n      <h1>Ride with the Lyft mobile app.</h1>\n      <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\n    </div>\n    <div class=\"form-container\">\n      <input type=\"text\" class=\"lyft-style-input phone-number-input\" name=\"phoneNumber\" placeholder=\"Phone number\" title=\"phone number\" />\n      <button type=\"button\" class=\"lyft-style-button phone-number-button\" title=\"text me a link\">Text me a link</button>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"close Lyft web modal\">&#215;</a>\n  </div>\n</div>\n";
 
 /***/ }
 /******/ ]);

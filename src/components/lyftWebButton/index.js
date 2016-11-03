@@ -57,7 +57,7 @@ var lyftWebButton = (function(lyftWebApi) {
     return element;
   }
 
-  function createModal(latitude, longitude) {
+  function createModal(location) {
     var template = document.createElement('div');
     template.innerHTML = require('html!../lyftWebModal/index.html');
     // get modal root element
@@ -85,14 +85,26 @@ var lyftWebButton = (function(lyftWebApi) {
     // get map-container element
     var mapElement = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'map-container');
     // set map background-image
-    if (mapElement && typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+    if (mapElement && typeof location !== 'undefined') {
       var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
-                   '?center=' + latitude + ',' + longitude +
+                   '?center=' + location.latitude + ',' + location.longitude +
                    '&maptype=roadmap' +
-                   '&markers=color:0xff00bf%7C' + latitude + ',' + longitude +
+                   '&markers=color:0xff00bf%7C' + location.latitude + ',' + location.longitude +
                    '&size=640x300' +
                    '&zoom=15';
       mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+    }
+    // get map-label-name
+    var mapLabelNameElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-name');
+    // set map-label-name text
+    if (mapLabelNameElement) {
+      mapLabelNameElement.textContent = location.name;
+    }
+    // get map-label-description
+    var mapLabelDescriptionElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-description');
+    // set map-label-description text
+    if (mapLabelDescriptionElement) {
+      mapLabelDescriptionElement.textContent = location.address;
     }
     return element;
   }
@@ -135,8 +147,11 @@ var lyftWebButton = (function(lyftWebApi) {
    * Initialize.
    * @param {Object} options
    * @param {string} options.clientToken
-   * @param {string} options.latitude
-   * @param {string} options.longitude
+   * @param {Object} options.location
+   * @param {string} options.location.address
+   * @param {string} options.location.latitude
+   * @param {string} options.location.longitude
+   * @param {string} options.location.name
    * @param {Object} options.rootElement
    * @param {string} options.theme
    */
@@ -144,7 +159,7 @@ var lyftWebButton = (function(lyftWebApi) {
     /* parse arguments */
     lyftWebApi.setClientToken(options.clientToken);
     /* insert modal */
-    modalElement = createModal(options.latitude, options.longitude);
+    modalElement = createModal(options.location);
     options.rootElement.insertBefore(modalElement, options.rootElement.childNodes[0]);
     /* insert button */
     buttonElement = createButton(options.theme);
@@ -156,8 +171,8 @@ var lyftWebButton = (function(lyftWebApi) {
         lyftWebApi.getCosts({
           start_lat: position.coords.latitude,
           start_lng: position.coords.longitude,
-          end_lat: options.latitude,
-          end_lng: options.longitude
+          end_lat: options.location.latitude,
+          end_lng: options.location.longitude
         }, 'lyftWebButton.onReceiveCosts');
         /* request etas */
         lyftWebApi.getEtas({
