@@ -94,7 +94,6 @@ var lyftWebButton = (function(lyftWebApi) {
       var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
                    '?center=' + location.latitude + ',' + location.longitude +
                    '&maptype=roadmap' +
-                   '&markers=color:0xff00bf%7C' + location.latitude + ',' + location.longitude +
                    '&size=640x300' +
                    '&zoom=15';
       mapElement.style = 'background-image:url(\''+mapSrc+'\');';

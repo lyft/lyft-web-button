@@ -85,6 +85,12 @@
   font-size: 12px;
   font-weight: 300;
 }
+.lyft-web-modal > .content > .map-container > .map-marker {
+  margin-top: 13px;
+}
+.lyft-web-modal > .content > .map-container > .map-marker > svg {
+  display: inline-block;
+}
 .lyft-web-modal > .content > .lyft-logo-tile-container > .lyft-logo-tile {
   display: inline-block;
   width: 64px;

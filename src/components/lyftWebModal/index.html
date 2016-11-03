@@ -5,6 +5,51 @@
         <span class="map-label-name" title="location name"></span>
         <span class="map-label-description" title="location description"></span>
       </div>
+      <div class="map-marker" title="map marker">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40px" height="64px" viewBox="0 0 76 121">
+          <defs>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+              <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+              <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+              <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+              <feGaussianBlur stdDeviation="3" in="SourceGraphic"></feGaussianBlur>
+            </filter>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
+              <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+              <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+            <linearGradient x1="50%" y1="0%" x2="50%" y2="97.7032156%" id="linearGradient-1">
+              <stop stop-color="#000000" stop-opacity="0" offset="0%"></stop>
+              <stop stop-color="#000000" stop-opacity="0.68115942" offset="100%"></stop>
+            </linearGradient>
+            <mask id="mask-1" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="70" height="70" fill="#FFFFFF">
+              <rect x="0" y="0" width="70" height="70" rx="35"></rect>
+            </mask>
+          </defs>
+          <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1" transform="translate(3.000000, 3.000000)">
+            <rect x="0" y="0" width="70" height="70" rx="35" fill="#000000" fill-opacity="1" filter="url(#filter-1)"></rect>
+            <rect x="0" y="0" width="70" height="70" rx="35" fill="#FF00BF" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="8" mask="url(#mask-1)"></rect>
+            <g stroke-width="1" fill-rule="evenodd" transform="translate(27.000000, 65.000000)">
+              <polyline fill="url(#linearGradient-1)" opacity="0.6" filter="url(#filter-2)" transform="translate(23.618189, 29.706625) rotate(49.000000) translate(-23.618189, -29.706625) " points="21.6181893 4.70662517 21.6181893 54.7066252 25.6181893 54.7066252 25.6181893 4.70662517 21.6181893 4.70662517"></polyline>
+              <circle fill="#000000" cx="8" cy="43" r="5"></circle>
+              <g transform="translate(0.000000, 0.500000)">
+                <mask id="mask-7" fill="#FFFFFF">
+                  <rect x="0" y="0.5" width="16" height="47"></rect>
+                </mask>
+                <g mask="url(#mask-7)">
+                  <path d="M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z" fill="#000000" fill-opacity="1" filter="url(#filter-3)"></path>
+                  <path d="M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z" fill="#FFFFFF" fill-rule="evenodd"></path>
+                </g>
+              </g>
+            </g>
+            <rect fill="#FFFFFF" fill-rule="evenodd" x="27" y="27" width="16" height="16" rx="8"></rect>
+          </g>
+        </svg>
+      </div>
     </div>
     <div class="lyft-logo-tile-container">
       <span class="lyft-logo-tile" title="Lyft logo tile">
@@ -32,7 +77,7 @@
     </div>
     <div class="form-container">
       <form name="lyftWebForm" method="get" action="/" onsubmit="console.log(event);return false;">
-        <input type="text" class="lyft-style-input phone-number-input" name="phoneNumber" placeholder="Phone number" title="phone number" />
+        <input type="text" class="lyft-style-input phone-number-input" name="phoneNumber" placeholder="Phone number" required title="phone number" />
         <input type="submit" class="lyft-style-button phone-number-button" name="submitButton" title="text me a link" value="Text me a link" />
       </form>
     </div>
