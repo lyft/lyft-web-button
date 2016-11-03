@@ -106,7 +106,7 @@
   font-size: 16px;
   font-weight: 300;
 }
-.lyft-web-modal > .content > .form-container > .lyft-style-input {
+.lyft-web-modal > .content > .form-container > form > .lyft-style-input {
   -webkit-appearance: none;
   height: 36px;
   color: #333447;
@@ -126,12 +126,12 @@
      -moz-box-shadow: none;
           box-shadow: none;
 }
-.lyft-web-modal > .content > .form-container > .phone-number-input {
+.lyft-web-modal > .content > .form-container > form > .phone-number-input {
   width: 100%;
   max-width: 320px;
   margin: 20px 0 0 0;
 }
-.lyft-web-modal > .content > .form-container > .lyft-style-button {
+.lyft-web-modal > .content > .form-container > form > .lyft-style-button {
   -webkit-appearance: button;
   cursor: pointer;
   height: 40px;
@@ -152,7 +152,7 @@
      -moz-border-radius: 5px;
           border-radius: 5px;
 }
-.lyft-web-modal > .content > .form-container > .phone-number-button {
+.lyft-web-modal > .content > .form-container > form > .phone-number-button {
   width: 100%;
   max-width: 320px;
   margin: 10px 0 20px 0;

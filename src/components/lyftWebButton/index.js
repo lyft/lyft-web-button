@@ -52,7 +52,10 @@ var lyftWebButton = (function(lyftWebApi) {
     template.innerHTML = require('html!./index.html');
     var element = template.childNodes[0];
     element.type = 'button';
-    element.onclick = function(){addClass(modalElement, 'on'); return false;};
+    element.onclick = function () {
+      addClass(modalElement, 'on');
+      return false;
+    };
     addClass(element, theme);
     return element;
   }
@@ -67,8 +70,9 @@ var lyftWebButton = (function(lyftWebApi) {
       element.onclick = function (event) {
         if (event && event.target === element) {
           removeClass(element, 'on');
+          return false;
         }
-        return false;
+        return true;
       };
     }
     // get close-window element
@@ -78,8 +82,9 @@ var lyftWebButton = (function(lyftWebApi) {
       closeElement.onclick = function (event) {
         if (event && event.target === closeElement) {
           removeClass(element, 'on');
+          return false;
         }
-        return false;
+        return true;
       };
     }
     // get map-container element

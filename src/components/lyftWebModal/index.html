@@ -31,8 +31,10 @@
       <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>
     </div>
     <div class="form-container">
-      <input type="text" class="lyft-style-input phone-number-input" name="phoneNumber" placeholder="Phone number" title="phone number" />
-      <button type="button" class="lyft-style-button phone-number-button" title="text me a link">Text me a link</button>
+      <form name="lyftWebForm" method="get" action="/" onsubmit="console.log(event);return false;">
+        <input type="text" class="lyft-style-input phone-number-input" name="phoneNumber" placeholder="Phone number" title="phone number" />
+        <input type="submit" class="lyft-style-button phone-number-button" name="submitButton" title="text me a link" value="Text me a link" />
+      </form>
     </div>
   </div>
   <div class="footer">
