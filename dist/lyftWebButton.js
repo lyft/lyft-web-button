@@ -177,15 +177,24 @@
 	    }
 	  }
 
-	  function initialize(clientToken, latitude, longitude, rootElement, theme) {
+	  /**
+	   * Initialize.
+	   * @param {Object} options
+	   * @param {string} options.clientToken
+	   * @param {string} options.latitude
+	   * @param {string} options.longitude
+	   * @param {Object} options.rootElement
+	   * @param {string} options.theme
+	   */
+	  function initialize(options) {
 	    /* parse arguments */
-	    lyftWebApi.setClientToken(clientToken);
+	    lyftWebApi.setClientToken(options.clientToken);
 	    /* insert modal */
-	    modalElement = createModal(latitude, longitude);
-	    rootElement.insertBefore(modalElement, rootElement.childNodes[0]);
+	    modalElement = createModal(options.latitude, options.longitude);
+	    options.rootElement.insertBefore(modalElement, options.rootElement.childNodes[0]);
 	    /* insert button */
-	    buttonElement = createButton(theme);
-	    rootElement.insertBefore(buttonElement, rootElement.childNodes[0]);
+	    buttonElement = createButton(options.theme);
+	    options.rootElement.insertBefore(buttonElement, options.rootElement.childNodes[0]);
 	    /* get device location */
 	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
 	      navigator.geolocation.getCurrentPosition(function(position) {
@@ -193,8 +202,8 @@
 	        lyftWebApi.getCosts({
 	          start_lat: position.coords.latitude,
 	          start_lng: position.coords.longitude,
-	          end_lat: latitude,
-	          end_lng: longitude
+	          end_lat: options.latitude,
+	          end_lng: options.longitude
 	        }, 'lyftWebButton.onReceiveCosts');
 	        /* request etas */
 	        lyftWebApi.getEtas({

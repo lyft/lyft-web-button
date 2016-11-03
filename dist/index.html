@@ -13,13 +13,9 @@
     (function(
       window,
       document,
-      lyftWebButtonSrc,
+      scriptSrc,
       objectName,
       rootElementId,
-      clientToken,
-      latitude,
-      longitude,
-      theme,
       rootElement,
       scriptElement
     ){
@@ -27,26 +23,22 @@
       scriptElement = document.createElement('script');
       scriptElement.async = true;
       scriptElement.onload = function(){
-        window[objectName].initialize(
-          clientToken,
-          latitude,
-          longitude,
-          rootElement,
-          theme
-        );
+        window[objectName].initialize({
+          clientToken: 'CLIENT_TOKEN_GOES_HERE',
+          latitude: '37.776252',
+          longitude: '-122.3913909',
+          rootElement: rootElement,
+          theme: 'multicolor'
+        });
       };
-      scriptElement.src = lyftWebButtonSrc;
+      scriptElement.src = scriptSrc;
       rootElement.insertBefore(scriptElement, rootElement.childNodes[0]);
     })(
       window,
       document,
       'lyftWebButton.js',
       'lyftWebButton',
-      'lyft-web-library-root',
-      'CLIENT_TOKEN_GOES_HERE',
-      '37.776252',
-      '-122.3913909',
-      'multicolor'
+      'lyft-web-library-root'
     );
     </script>
   </body>
