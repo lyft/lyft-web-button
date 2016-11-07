@@ -261,7 +261,11 @@
 	  /* Properties */
 	  /* ========== */
 
-	  var SERVER_URL = 'http://www.lyft.com/api/jsonp';
+	  var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
+	  var GET_COSTS_URL      = SERVER_URL + '/get_costs';
+	  var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
+	  var GET_ETAS_URL       = SERVER_URL + '/get_etas';
+	  var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
 
 	  var client_token;
 	  function setClientToken(value) {client_token = value;}
@@ -363,15 +367,15 @@
 	   * Requests JSONP with injected `client_token`.
 	   * @param {Object} data Required.
 	   * @param {function} callback Optional.
-	   * @param {string} path Required.
+	   * @param {string} url Required.
 	   */
-	  function requestJsonpWithClientToken(data, callback, path) {
+	  function requestJsonpWithClientToken(data, callback, url) {
 	    /* build data payload */
 	    data = data || {};
 	    data.client_token = client_token;
 	    /* perform request */
 	    return requestJsonp({
-	      url: SERVER_URL + path,
+	      url: url,
 	      data: data,
 	      callback: callback
 	    });
@@ -388,7 +392,7 @@
 	   * @param {function} callback Optional.
 	   */
 	  function getCosts(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, '/costs');
+	    return requestJsonpWithClientToken(data, callback, GET_COSTS_URL);
 	  }
 
 	  /**
@@ -399,7 +403,7 @@
 	   * @param {function} callback Optional.
 	   */
 	  function getDrivers(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, '/drivers');
+	    return requestJsonpWithClientToken(data, callback, GET_DRIVERS_URL);
 	  }
 
 	  /**
@@ -411,7 +415,7 @@
 	   * @param {function} callback Optional.
 	   */
 	  function getEtas(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, '/etas');
+	    return requestJsonpWithClientToken(data, callback, GET_ETAS_URL);
 	  }
 
 	  /**
@@ -423,7 +427,7 @@
 	   * @param {function} callback Optional.
 	   */
 	  function getRideTypes(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, '/ride_types');
+	    return requestJsonpWithClientToken(data, callback, GET_RIDE_TYPES_URL);
 	  }
 
 	  /* ===================================== */
