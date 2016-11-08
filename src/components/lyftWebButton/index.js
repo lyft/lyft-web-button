@@ -27,13 +27,23 @@ var lyftWebButton = (function(lyftWebApi) {
       element.className = classList.join(' ');
   }
 
-  function getChildElementByClassName(parentElement, childClassName) {
-    var childNodes = parentElement.childNodes || [];
+  function getChildElementByAttribute(element, attributeName, attributeValue) {
+    var childNodes = element.childNodes || [];
     for (var i = 0, l = childNodes.length; i < l; i++) {
-      if (childNodes[i].className === childClassName) {
+      if (childNodes[i][attributeName] === attributeValue) {
         return childNodes[i];
       }
     }
+  }
+  function selectChildElement(element, attributes) {
+    var currentElement = element;
+    for (var i = 0, l = attributes.length; i < l; i++) {
+      if (!currentElement || !attributes[i].length) {return;}  /* short-circuit on failure */
+      var attributeName = (attributes[i][0] === '.') ? 'className' : 'id';
+      var attributeValue = attributes[i].slice(1);
+      currentElement = getChildElementByAttribute(currentElement, attributeName, attributeValue);
+    }
+    return currentElement;
   }
 
   function removeClass(element, className) {
@@ -63,9 +73,8 @@ var lyftWebButton = (function(lyftWebApi) {
   function createModal(location) {
     var template = document.createElement('div');
     template.innerHTML = require('html!../lyftWebModal/index.html');
-    // get modal root element
+    // modal root (bind event)
     var element = template.childNodes[0];
-    // bind close-window event
     if (element) {
       element.onclick = function (event) {
         if (event && event.target === element) {
@@ -75,9 +84,8 @@ var lyftWebButton = (function(lyftWebApi) {
         return true;
       };
     }
-    // get close-window element
-    var closeElement = getChildElementByClassName(getChildElementByClassName(element, 'footer'), 'close');
-    // bind close-window event
+    // close-window (bind event)
+    var closeElement = selectChildElement(element, ['.footer', '.close']);
     if (closeElement) {
       closeElement.onclick = function (event) {
         if (event && event.target === closeElement) {
@@ -87,9 +95,8 @@ var lyftWebButton = (function(lyftWebApi) {
         return true;
       };
     }
-    // get map-container element
-    var mapElement = getChildElementByClassName(getChildElementByClassName(element, 'content'), 'map-container');
-    // set map background-image
+    // map-container (set background-image)
+    var mapElement = selectChildElement(element, ['.content', '.map-container']);
     if (mapElement && typeof location !== 'undefined') {
       var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
                    '?center=' + location.latitude + ',' + location.longitude +
@@ -98,17 +105,19 @@ var lyftWebButton = (function(lyftWebApi) {
                    '&zoom=15';
       mapElement.style = 'background-image:url(\''+mapSrc+'\');';
     }
-    // get map-label-name
-    var mapLabelNameElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-name');
-    // set map-label-name text
-    if (mapLabelNameElement) {
-      mapLabelNameElement.textContent = location.name;
-    }
-    // get map-label-description
-    var mapLabelDescriptionElement = getChildElementByClassName(getChildElementByClassName(mapElement, 'map-label'), 'map-label-description');
-    // set map-label-description text
-    if (mapLabelDescriptionElement) {
-      mapLabelDescriptionElement.textContent = location.address;
+    // map-label-name (set text)
+    var mapLabelNameElement = selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+    if (mapLabelNameElement) {mapLabelNameElement.textContent = location.name;}
+    // map-label-description (set text)
+    var mapLabelDescriptionElement = selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+    if (mapLabelDescriptionElement) {mapLabelDescriptionElement.textContent = location.address;}
+    // lyft-app-cta (set href)
+    var lyftAppCtaElement = selectChildElement(element, ['.content', '.lyft-app-container', '.lyft-app-cta']);
+    if (lyftAppCtaElement) {
+      lyftAppCtaElement.href = 'lyft://ridetype' +
+                               '?id=lyft' +
+                               '&destination%5Blatitude%5D=' + location.latitude +
+                               '&destination%5Blongitude%5D=' + location.longitude;
     }
     return element;
   }
@@ -125,7 +134,7 @@ var lyftWebButton = (function(lyftWebApi) {
           var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
           if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
               !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-            var element = getChildElementByClassName(buttonElement, 'price-range');
+            var element = selectChildElement(buttonElement, ['.price-range']);
             if (element) {element.textContent = '$'+min+((min !== max) ? ('-'+max) : '');}
           }
         }
@@ -139,7 +148,7 @@ var lyftWebButton = (function(lyftWebApi) {
         if (data.eta_estimates[i].ride_type === 'lyft') {
           var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
           if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-            var element = getChildElementByClassName(getChildElementByClassName(buttonElement, 'cta-eta'), 'eta');
+            var element = selectChildElement(buttonElement, ['.cta-eta', '.eta']);
             if (element) {element.textContent = 'Lyft in '+eta+' min';}
           }
         }

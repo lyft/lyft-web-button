@@ -163,6 +163,18 @@
   max-width: 320px;
   margin: 10px 0 20px 0;
 }
+.lyft-web-modal > .content > .lyft-app-container {
+  padding-bottom: 20px;
+}
+.lyft-web-modal > .content > .lyft-app-container > .lyft-app-separator {
+  display: block;
+  margin: 0 0 20px 0;
+  color: #000000;
+}
+.lyft-web-modal > .content > .lyft-app-container > .lyft-app-cta {
+  color: #FF00BF;
+  text-decoration: none;
+}
 .lyft-web-modal > .footer {
   text-align: center;
 }
