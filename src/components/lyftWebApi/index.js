@@ -12,7 +12,7 @@ var lyftWebApi = (function() {
   var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
   var GET_ETAS_URL       = SERVER_URL + '/get_etas';
   var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
-  var SEND_SMS_URL       = SERVER_URL + '/users/send_sms';
+  var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
 
   var client_token;
   function setClientToken(value) {client_token = value;}
@@ -178,7 +178,7 @@ var lyftWebApi = (function() {
   }
 
   /**
-   * Sends an SMS.
+   * POSTs `messages`.
    * @param {Object} data Required.
    * @param {string} data.phone_number Required.
    * @param {string} data.client_id Optional.
@@ -186,8 +186,8 @@ var lyftWebApi = (function() {
    * @param {string} data.destination_longitude Optional.
    * @param {function} callback Optional.
    */
-  function sendSms(data, callback) {
-    return requestJsonpWithClientToken(data, callback, SEND_SMS_URL);
+  function postMessages(data, callback) {
+    return requestJsonpWithClientToken(data, callback, POST_MESSAGES_URL);
   }
 
   /* ===================================== */
@@ -199,7 +199,7 @@ var lyftWebApi = (function() {
     getDrivers: getDrivers,
     getEtas: getEtas,
     getRideTypes: getRideTypes,
-    sendSms: sendSms,
+    postMessages: postMessages,
     setClientToken: setClientToken
   };
 

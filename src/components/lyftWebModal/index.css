@@ -112,7 +112,7 @@
   font-size: 16px;
   font-weight: 300;
 }
-.lyft-web-modal > .content > .sms-form-container > form > .sms-form-input {
+.lyft-web-modal > .content > .message-form-container > form > .message-form-input {
   /* lyft style attributes */
   -webkit-appearance: none;
   height: 36px;
@@ -137,7 +137,7 @@
   max-width: 320px;
   margin: 20px 0 0 0;
 }
-.lyft-web-modal > .content > .sms-form-container > form > .sms-form-button {
+.lyft-web-modal > .content > .message-form-container > form > .message-form-button {
   /* lyft style attributes */
   -webkit-appearance: button;
   cursor: pointer;

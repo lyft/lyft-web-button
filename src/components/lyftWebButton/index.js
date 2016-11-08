@@ -112,17 +112,16 @@ var lyftWebButton = (function(lyftWebApi) {
     // map-label-description (set text)
     var mapLabelDescriptionElement = selectChildElement(mapElement, ['.map-label', '.map-label-description']);
     if (mapLabelDescriptionElement) {mapLabelDescriptionElement.textContent = location.address;}
-    // sms-form (bind event)
-    var smsFormElement = selectChildElement(element, ['.content', '.sms-form-container', '.sms-form']);
-    var smsFormInput = selectChildElement(smsFormElement, ['.sms-form-input']);
-    smsFormElement.onsubmit = function (event) {
-      /* send SMS */
-      lyftWebApi.sendSms({
-        phone_number: smsFormInput.value,
-        // client_id: 'todo',
+    // message-form (bind event)
+    var messageFormElement = selectChildElement(element, ['.content', '.message-form-container', '.message-form']);
+    var messageFormInput = selectChildElement(messageFormElement, ['.message-form-input']);
+    messageFormElement.onsubmit = function (event) {
+      lyftWebApi.postMessages({
+        phone_number: messageFormInput.value,
+        // client_id: 'TODO',
         destination_latitude: location.latitude,
         destination_longitude: location.longitude
-      }, 'lyftWebButton.onSendSmsSuccess');
+      }, 'lyftWebButton.onPostMessagesSuccess');
       return false;
     };
     // open-app-cta (set href)
@@ -170,9 +169,11 @@ var lyftWebButton = (function(lyftWebApi) {
     }
   }
 
-  function onSendSmsSuccess(data) {
-    // window.open('http://www.lyft.com/signup/SDKSIGNUP', '_blank');
-    console.log(data);
+  function onPostMessagesSuccess(data) {
+    if (data.messages) {
+      var element = selectChildElement(modalElement, ['.content', '.message-form-container', '.message-form']);
+      element.style = 'display:none;';
+    }
   }
 
   /**
@@ -223,7 +224,7 @@ var lyftWebButton = (function(lyftWebApi) {
     initialize: initialize,
     onGetCostsSuccess: onGetCostsSuccess,
     onGetEtasSuccess: onGetEtasSuccess,
-    onSendSmsSuccess: onSendSmsSuccess
+    onPostMessagesSuccess: onPostMessagesSuccess
   };
 
 })(lyftWebApi);
