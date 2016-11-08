@@ -75,15 +75,15 @@
       <h1>Ride with the Lyft mobile app.</h1>
       <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>
     </div>
-    <div class="form-container">
-      <form name="lyftWebForm" method="get" action="#" onsubmit="window.open('http://www.example.com?phoneNumber='+event.target.phoneNumber.value,'_blank');return false;">
-        <input type="text" class="lyft-style-input phone-number-input" name="phoneNumber" placeholder="Phone number" required title="phone number" />
-        <input type="submit" class="lyft-style-button phone-number-button" name="submitButton" title="text me a link" value="Text me a link" />
+    <div class="sms-form-container">
+      <form name="lyftSmsForm" method="get" action="#" class="sms-form" onsubmit="window.open('http://www.lyft.com/signup/SDKSIGNUP','_blank');return false;">
+        <input type="text" class="sms-form-input" name="phoneNumber" placeholder="Phone number" required title="phone number" />
+        <input type="submit" class="sms-form-button" name="submitButton" title="text me a link" value="Text me a link" />
       </form>
     </div>
-    <div class="lyft-app-container">
-      <p class="lyft-app-separator">—&nbsp;or&nbsp;—</p>
-      <a href="#" class="lyft-app-cta" title="Open in Lyft app">Open in Lyft app</a>
+    <div class="open-app-container">
+      <p class="open-app-separator">—&nbsp;or&nbsp;—</p>
+      <a href="#" class="open-app-cta" title="Open in Lyft app">Open in Lyft app</a>
     </div>
   </div>
   <div class="footer">

@@ -112,10 +112,16 @@ var lyftWebButton = (function(lyftWebApi) {
     // map-label-description (set text)
     var mapLabelDescriptionElement = selectChildElement(mapElement, ['.map-label', '.map-label-description']);
     if (mapLabelDescriptionElement) {mapLabelDescriptionElement.textContent = location.address;}
-    // lyft-app-cta (set href)
-    var lyftAppCtaElement = selectChildElement(element, ['.content', '.lyft-app-container', '.lyft-app-cta']);
-    if (lyftAppCtaElement) {
-      lyftAppCtaElement.href = 'lyft://ridetype' +
+    // sms-form (bind event)
+    var smsFormElement = selectChildElement(element, ['.content', '.sms-form-container', '.sms-form']);
+    smsFormElement.onsubmit = function (event) {
+      window.open('http://www.lyft.com/signup/SDKSIGNUP', '_blank');
+      return false;
+    };
+    // open-app-cta (set href)
+    var openAppCtaElement = selectChildElement(element, ['.content', '.open-app-container', '.open-app-cta']);
+    if (openAppCtaElement) {
+      openAppCtaElement.href = 'lyft://ridetype' +
                                '?id=lyft' +
                                '&destination%5Blatitude%5D=' + location.latitude +
                                '&destination%5Blongitude%5D=' + location.longitude;

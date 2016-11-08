@@ -112,7 +112,8 @@
   font-size: 16px;
   font-weight: 300;
 }
-.lyft-web-modal > .content > .form-container > form > .lyft-style-input {
+.lyft-web-modal > .content > .sms-form-container > form > .sms-form-input {
+  /* lyft style attributes */
   -webkit-appearance: none;
   height: 36px;
   color: #333447;
@@ -131,13 +132,13 @@
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
-}
-.lyft-web-modal > .content > .form-container > form > .phone-number-input {
+  /* element-specific attributes */
   width: 100%;
   max-width: 320px;
   margin: 20px 0 0 0;
 }
-.lyft-web-modal > .content > .form-container > form > .lyft-style-button {
+.lyft-web-modal > .content > .sms-form-container > form > .sms-form-button {
+  /* lyft style attributes */
   -webkit-appearance: button;
   cursor: pointer;
   height: 40px;
@@ -157,21 +158,20 @@
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
-}
-.lyft-web-modal > .content > .form-container > form > .phone-number-button {
+  /* element-specific attributes */
   width: 100%;
   max-width: 320px;
   margin: 10px 0 20px 0;
 }
-.lyft-web-modal > .content > .lyft-app-container {
+.lyft-web-modal > .content > .open-app-container {
   padding-bottom: 20px;
 }
-.lyft-web-modal > .content > .lyft-app-container > .lyft-app-separator {
+.lyft-web-modal > .content > .open-app-container > .open-app-separator {
   display: block;
   margin: 0 0 20px 0;
   color: #000000;
 }
-.lyft-web-modal > .content > .lyft-app-container > .lyft-app-cta {
+.lyft-web-modal > .content > .open-app-container > .open-app-cta {
   color: #FF00BF;
   text-decoration: none;
 }
