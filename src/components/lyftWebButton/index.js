@@ -114,8 +114,15 @@ var lyftWebButton = (function(lyftWebApi) {
     if (mapLabelDescriptionElement) {mapLabelDescriptionElement.textContent = location.address;}
     // sms-form (bind event)
     var smsFormElement = selectChildElement(element, ['.content', '.sms-form-container', '.sms-form']);
+    var smsFormInput = selectChildElement(smsFormElement, ['.sms-form-input']);
     smsFormElement.onsubmit = function (event) {
-      window.open('http://www.lyft.com/signup/SDKSIGNUP', '_blank');
+      /* send SMS */
+      lyftWebApi.sendSms({
+        phone_number: smsFormInput.value,
+        // client_id: 'todo',
+        destination_latitude: location.latitude,
+        destination_longitude: location.longitude
+      }, 'lyftWebButton.onSendSmsSuccess');
       return false;
     };
     // open-app-cta (set href)
@@ -133,7 +140,7 @@ var lyftWebButton = (function(lyftWebApi) {
   /* Workflow Methods */
   /* ================ */
 
-  function onReceiveCosts(data) {
+  function onGetCostsSuccess(data) {
     if (data.cost_estimates && data.cost_estimates.length) {
       for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
         if (data.cost_estimates[i].ride_type === 'lyft') {
@@ -149,7 +156,7 @@ var lyftWebButton = (function(lyftWebApi) {
     }
   }
 
-  function onReceiveEtas(data) {
+  function onGetEtasSuccess(data) {
     if (data.eta_estimates && data.eta_estimates.length) {
       for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
         if (data.eta_estimates[i].ride_type === 'lyft') {
@@ -161,6 +168,11 @@ var lyftWebButton = (function(lyftWebApi) {
         }
       }
     }
+  }
+
+  function onSendSmsSuccess(data) {
+    // window.open('http://www.lyft.com/signup/SDKSIGNUP', '_blank');
+    console.log(data);
   }
 
   /**
@@ -193,12 +205,12 @@ var lyftWebButton = (function(lyftWebApi) {
           start_lng: position.coords.longitude,
           end_lat: options.location.latitude,
           end_lng: options.location.longitude
-        }, 'lyftWebButton.onReceiveCosts');
+        }, 'lyftWebButton.onGetCostsSuccess');
         /* request etas */
         lyftWebApi.getEtas({
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }, 'lyftWebButton.onReceiveEtas');
+        }, 'lyftWebButton.onGetEtasSuccess');
       });
     }
   }
@@ -209,8 +221,9 @@ var lyftWebButton = (function(lyftWebApi) {
 
   return {
     initialize: initialize,
-    onReceiveCosts: onReceiveCosts,
-    onReceiveEtas: onReceiveEtas
+    onGetCostsSuccess: onGetCostsSuccess,
+    onGetEtasSuccess: onGetEtasSuccess,
+    onSendSmsSuccess: onSendSmsSuccess
   };
 
 })(lyftWebApi);

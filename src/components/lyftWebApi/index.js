@@ -12,6 +12,7 @@ var lyftWebApi = (function() {
   var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
   var GET_ETAS_URL       = SERVER_URL + '/get_etas';
   var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
+  var SEND_SMS_URL       = SERVER_URL + '/users/send_sms';
 
   var client_token;
   function setClientToken(value) {client_token = value;}
@@ -128,7 +129,7 @@ var lyftWebApi = (function() {
   }
 
   /**
-   * GETs `costs`.
+   * Gets `costs`.
    * @param {Object} data Required.
    * @param {string} data.start_lat Required.
    * @param {string} data.start_lng Required.
@@ -142,7 +143,7 @@ var lyftWebApi = (function() {
   }
 
   /**
-   * GETs `drivers`.
+   * Gets `drivers`.
    * @param {Object} data Required.
    * @param {string} data.lat Required.
    * @param {string} data.lng Required.
@@ -153,7 +154,7 @@ var lyftWebApi = (function() {
   }
 
   /**
-   * GETs `etas`.
+   * Gets `etas`.
    * @param {Object} data Required.
    * @param {string} data.lat Required.
    * @param {string} data.lng Required.
@@ -165,7 +166,7 @@ var lyftWebApi = (function() {
   }
 
   /**
-   * GETs `ride_types`.
+   * Gets `ride_types`.
    * @param {Object} data Required.
    * @param {string} data.lat Required.
    * @param {string} data.lng Required.
@@ -174,6 +175,19 @@ var lyftWebApi = (function() {
    */
   function getRideTypes(data, callback) {
     return requestJsonpWithClientToken(data, callback, GET_RIDE_TYPES_URL);
+  }
+
+  /**
+   * Sends an SMS.
+   * @param {Object} data Required.
+   * @param {string} data.phone_number Required.
+   * @param {string} data.client_id Optional.
+   * @param {string} data.destination_latitude Optional.
+   * @param {string} data.destination_longitude Optional.
+   * @param {function} callback Optional.
+   */
+  function sendSms(data, callback) {
+    return requestJsonpWithClientToken(data, callback, SEND_SMS_URL);
   }
 
   /* ===================================== */
@@ -185,6 +199,7 @@ var lyftWebApi = (function() {
     getDrivers: getDrivers,
     getEtas: getEtas,
     getRideTypes: getRideTypes,
+    sendSms: sendSms,
     setClientToken: setClientToken
   };
 
