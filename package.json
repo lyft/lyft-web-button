@@ -23,6 +23,6 @@
     "build:dev": "NODE_ENV=development webpack --progress --colors",
     "build:dist": "NODE_ENV=production webpack --progress --colors",
     "start": "webpack-dev-server --content-base dist/",
-    "test": "./node_modules/mocha/bin/mocha './test/**/*.spec.@(js|jsx)'"
+    "test": "mocha './test/**/*.spec.@(js|jsx)'"
   }
 }

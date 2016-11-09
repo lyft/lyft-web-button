@@ -1,7 +1,7 @@
 // dependencies
 var expect = require('expect');
 
-// tests
+// specifications
 describe('lyftWebApi', function () {
 
   it('tests', function () {
