@@ -17,8 +17,14 @@ npm install
 2. Open [index.html](http://localhost:8080/webpack-dev-server/) in a web browser.
 3. As you work the page will automatically update via websocket connection.
 
-### Questions
+### Scripts
+```bash
+# build
+npm run-script build
 
-**Q:** Halp?
+# build with minification
+npm run-script build:dist
 
-**A:** John Madden.
+# test (silence ELIFECYCLE output)
+npm run-script --silent test
+```
