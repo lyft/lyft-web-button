@@ -14,7 +14,8 @@
       window,
       document,
       scriptSrc,
-      objectName,
+      buttonObjectName,
+      modalObjectName,
       rootElementId,
       rootElement,
       scriptElement
@@ -23,16 +24,23 @@
       scriptElement = document.createElement('script');
       scriptElement.async = true;
       scriptElement.onload = function(){
-        window[objectName].initialize({
-          clientToken: 'CLIENT_TOKEN_GOES_HERE',
-          location: {
-            address: 'China Basin, 185 Berry St, San Francisco, CA 94107',
-            latitude: '37.776252',
-            longitude: '-122.3913909',
-            name: 'Lyft HQ'
-          },
-          rootElement: rootElement,
-          theme: 'multicolor'
+        var clientToken = 'CLIENT_TOKEN_GOES_HERE';
+        var location = {
+          'address': 'China Basin, 185 Berry St, San Francisco, CA 94107',
+          'latitude': '37.776252',
+          'longitude': '-122.3913909',
+          'name': 'Lyft HQ'
+        };
+        window[modalObjectName].initialize({
+          'clientToken': clientToken,
+          'location': location
+        });
+        window[buttonObjectName].initialize({
+          'clientToken': clientToken,
+          'location': location,
+          'onClick': function(){lyftWebModal.show();return false;},
+          'rootElement': rootElement,
+          'theme': 'multicolor'
         });
       };
       scriptElement.src = scriptSrc;
@@ -42,6 +50,7 @@
       document,
       'lyftWebButton.js',
       'lyftWebButton',
+      'lyftWebModal',
       'lyft-web-library-root'
     );
     </script>

@@ -45,140 +45,51 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// dependencies
-	var lyftWebApi = __webpack_require__(1);
+	var api = __webpack_require__(1);
+	var selector = __webpack_require__(2);
+	var lyftWebModal = __webpack_require__(3);
 
 	// styles
-	__webpack_require__(2);
-	__webpack_require__(6);
+	__webpack_require__(9);
 
 	/**
 	 * lyftWebButton
 	 */
-	var lyftWebButton = (function(lyftWebApi) {
+	var lyftWebButton = (function(api, selector) {
 
 	  /* ========== */
 	  /* Properties */
 	  /* ========== */
 
-	  var buttonElement;
-	  var modalElement;
-
-	  /* =================== */
-	  /* Convenience Methods */
-	  /* =================== */
-
-	  function addClass(element, className) {
-	      var classList = element.className.split(' ');
-	      if (classList.indexOf(className) === -1) {classList.push(className);}
-	      element.className = classList.join(' ');
-	  }
-
-	  function removeClass(element, className) {
-	      var classList = element.className.split(' ');
-	      var classIndex = classList.indexOf(className);
-	      if (classIndex !== -1) {classList.splice(classIndex, 1);}
-	      element.className = classList.join(' ');
-	  }
-
-	  function selectChildElementByAttribute(element, attributeName, attributeValue) {
-	    var childNodes = element.childNodes || [];
-	    for (var i = 0, l = childNodes.length; i < l; i++) {
-	      if (childNodes[i][attributeName] === attributeValue) {
-	        return childNodes[i];
-	      }
-	    }
-	  }
-
-	  function selectChildElement(element, attributes) {
-	    var currentElement = element;
-	    for (var i = 0, l = attributes.length; i < l; i++) {
-	      if (!currentElement || !attributes[i].length) {return;}  /* short-circuit on failure */
-	      var attributeName = (attributes[i][0] === '.') ? 'className' : 'id';
-	      var attributeValue = attributes[i].slice(1);
-	      currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);
-	    }
-	    return currentElement;
-	  }
+	  var etaElement;
+	  var priceRangeElement;
+	  var rootElement;
 
 	  /* ======================== */
 	  /* DOM Manipulation Methods */
 	  /* ======================== */
 
-	  function createButton(theme) {
+	  function createElements() {
+	    // create tree from template
 	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(8);
-	    var element = template.childNodes[0];
-	    element.type = 'button';
-	    element.onclick = function () {
-	      addClass(modalElement, 'on');
-	      return false;
-	    };
-	    addClass(element, theme);
-	    return element;
+	    template.innerHTML = __webpack_require__(11);
+	    // store references to important elements
+	    rootElement = template.childNodes[0];
+	    priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
+	    etaElement = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
+	    // return reference to root element
+	    return rootElement;
 	  }
 
-	  function createModal(location) {
-	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(9);
-	    // modal root (bind event)
-	    var element = template.childNodes[0];
-	    if (element) {
-	      element.onclick = function (event) {
-	        if (event && event.target === element) {
-	          removeClass(element, 'on');
-	          return false;
-	        }
-	        return true;
-	      };
+	  function bindEvents(onClick) {
+	    // root element: close modal window on click
+	    if (rootElement) {
+	      rootElement.onclick = onClick;
 	    }
-	    // close-window (bind event)
-	    var closeElement = selectChildElement(element, ['.footer', '.close']);
-	    if (closeElement) {
-	      closeElement.onclick = function (event) {
-	        if (event && event.target === closeElement) {
-	          removeClass(element, 'on');
-	          return false;
-	        }
-	        return true;
-	      };
-	    }
-	    // map-container (set background-image)
-	    var mapElement = selectChildElement(element, ['.content', '.map-container']);
-	    if (mapElement && typeof location !== 'undefined') {
-	      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
-	                   '?center=' + location.latitude + ',' + location.longitude +
-	                   '&maptype=roadmap' +
-	                   '&size=640x300' +
-	                   '&zoom=15';
-	      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
-	    }
-	    // map-label-name (set text)
-	    var mapLabelNameElement = selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-	    if (mapLabelNameElement) {mapLabelNameElement.textContent = location.name;}
-	    // map-label-description (set text)
-	    var mapLabelDescriptionElement = selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-	    if (mapLabelDescriptionElement) {mapLabelDescriptionElement.textContent = location.address;}
-	    // message-form (bind event)
-	    var messageFormElement = selectChildElement(element, ['.content', '.message-form-container', '.message-form']);
-	    var messageFormInput = selectChildElement(messageFormElement, ['.message-form-input']);
-	    messageFormElement.onsubmit = function (event) {
-	      lyftWebApi.postMessages({
-	        phone_number: messageFormInput.value,
-	        // client_id: 'TODO',
-	        end_lat: location.latitude,
-	        end_lng: location.longitude
-	      }, 'lyftWebButton.onPostMessagesSuccess');
-	      return false;
-	    };
-	    // open-app-cta (set href)
-	    var openAppCtaElement = selectChildElement(element, ['.content', '.open-app-container', '.open-app-cta']);
-	    if (openAppCtaElement) {
-	      openAppCtaElement.href = 'lyft://ridetype' +
-	                               '?id=lyft' +
-	                               '&destination%5Blatitude%5D=' + location.latitude +
-	                               '&destination%5Blongitude%5D=' + location.longitude;
-	    }
-	    return element;
+	  }
+
+	  function updateContents(theme) {
+	    selector.addClass(rootElement, theme);
 	  }
 
 	  /* ================ */
@@ -193,8 +104,9 @@
 	          var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
 	          if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
 	              !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-	            var element = selectChildElement(buttonElement, ['.price-range']);
-	            if (element) {element.textContent = '$'+min+((min !== max) ? ('-'+max) : '');}
+	            if (priceRangeElement) {
+	              priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+	            }
 	          }
 	        }
 	      }
@@ -207,18 +119,12 @@
 	        if (data.eta_estimates[i].ride_type === 'lyft') {
 	          var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
 	          if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-	            var element = selectChildElement(buttonElement, ['.cta-eta', '.eta']);
-	            if (element) {element.textContent = 'Lyft in '+eta+' min';}
+	            if (etaElement) {
+	              etaElement.textContent = 'Lyft in '+eta+' min';
+	            }
 	          }
 	        }
 	      }
-	    }
-	  }
-
-	  function onPostMessagesSuccess(data) {
-	    if (data.messages) {
-	      var element = selectChildElement(modalElement, ['.content', '.message-form-container', '.message-form']);
-	      element.style = 'display:none;';
 	    }
 	  }
 
@@ -235,26 +141,26 @@
 	   * @param {string} options.theme
 	   */
 	  function initialize(options) {
-	    /* parse arguments */
-	    lyftWebApi.setClientToken(options.clientToken);
-	    /* insert modal */
-	    modalElement = createModal(options.location);
-	    options.rootElement.insertBefore(modalElement, options.rootElement.childNodes[0]);
-	    /* insert button */
-	    buttonElement = createButton(options.theme);
-	    options.rootElement.insertBefore(buttonElement, options.rootElement.childNodes[0]);
-	    /* get device location */
+	    // parse arguments
+	    api.setClientToken(options.clientToken);
+	    // create element tree
+	    createElements();
+	    bindEvents(options.onClick);
+	    updateContents(options.theme);
+	    // insert element into DOM
+	    options.rootElement.insertBefore(rootElement, options.rootElement.childNodes[0]);
+	    // get device location
 	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
 	      navigator.geolocation.getCurrentPosition(function(position) {
-	        /* request costs */
-	        lyftWebApi.getCosts({
+	        // request costs
+	        api.getCosts({
 	          start_lat: position.coords.latitude,
 	          start_lng: position.coords.longitude,
 	          end_lat: options.location.latitude,
 	          end_lng: options.location.longitude
 	        }, 'lyftWebButton.onGetCostsSuccess');
-	        /* request etas */
-	        lyftWebApi.getEtas({
+	        // request etas
+	        api.getEtas({
 	          lat: position.coords.latitude,
 	          lng: position.coords.longitude
 	        }, 'lyftWebButton.onGetEtasSuccess');
@@ -269,11 +175,10 @@
 	  return {
 	    initialize: initialize,
 	    onGetCostsSuccess: onGetCostsSuccess,
-	    onGetEtasSuccess: onGetEtasSuccess,
-	    onPostMessagesSuccess: onPostMessagesSuccess
+	    onGetEtasSuccess: onGetEtasSuccess
 	  };
 
-	})(lyftWebApi);
+	})(api, selector);
 
 	module.exports = window.lyftWebButton = lyftWebButton;
 
@@ -282,196 +187,410 @@
 /* 1 */
 /***/ function(module, exports) {
 
+	/* ========== */
+	/* Properties */
+	/* ========== */
+
+	var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
+	var GET_COSTS_URL      = SERVER_URL + '/get_costs';
+	var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
+	var GET_ETAS_URL       = SERVER_URL + '/get_etas';
+	var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
+	var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
+
+	var client_token;
+	function setClientToken(value) {client_token = value;}
+
+	/* =================== */
+	/* Convenience Methods */
+	/* =================== */
+
 	/**
-	 * lyftWebApi
+	 * Injects a script into the DOM with given options.
+	 * @param {Object} options Required.
+	 * @param {string} options.src Required.
+	 * @param {boolean} options.async Optional.
+	 * @param {function} options.callback Optional.
+	 * @param {boolean} options.defer Optional.
 	 */
-	var lyftWebApi = (function() {
+	function injectScript(options) {
+	  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
+	    throw new TypeError('injectScript missing one of: options, options.src');
+	  }
+
+	  var headElement = document.getElementsByTagName('head')[0] || document.documentElement;
+	  var scriptElement = document.createElement('script');
+	  scriptElement.src = options.src;
+	  scriptElement.async = options.async || false;
+	  scriptElement.defer = options.defer || false;
+
+	  /* polyfill `onload` event for some older browsers */
+	  var isDone = false;
+	  scriptElement.onload = scriptElement.onreadystatechange = function(event) {
+	    /* if script is loaded... */
+	    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+	      isDone = true;
+	      /* invoke user callback */
+	      var callbackResult =
+	        (Object.prototype.toString.call(options.callback) === '[object Function]') ?
+	        options.callback(event) :
+	        undefined;
+	      /* unset event handler (avoid memory leak) */
+	      scriptElement.onload = scriptElement.onreadystatechange = null;
+	      /* remove DOM element */
+	      if (headElement && scriptElement.parentNode) {
+	        headElement.removeChild(scriptElement);
+	      }
+	      /* return user callback result */
+	      return callbackResult;
+	    }
+	  };
+	  /* insertBefore instead of appendChild for browser compatibility */
+	  headElement.insertBefore(scriptElement, headElement.firstChild);
+	}
+
+	/**
+	 * Recursively serializes data as a query-parameter string.
+	 * @param {Object} obj Data to serialize (required).
+	 * @param {string} pfx Key prefix for data chunk (optional).
+	 * @returns {string} Query-parameter string.
+	 */
+	function serialize(obj, pfx) {
+	  var results = [];
+	  for(var prop in obj) {
+	    if (obj.hasOwnProperty(prop)) {
+	      var key = pfx ? (pfx + '[' + prop + ']') : prop;
+	      var val = obj[prop]
+	      results.push(
+	        (typeof val === 'object') ?
+	        serialize(val, key) :
+	        (encodeURIComponent(key) + '=' + encodeURIComponent(val))
+	      );
+	    }
+	  }
+	  return results.join('&');
+	}
+
+	/**
+	 * Performs a JSONP request.
+	 * @param {Object} options Required.
+	 * @param {string} options.url Required.
+	 * @param {string} options.callback Callback path relative to window context (optional).
+	 * @param {Object} options.data JSON-compatible data payload (optional).
+	 */
+	function requestJsonp(options) {
+	  if (typeof options === 'undefined' || typeof options.url === 'undefined') {
+	    throw new TypeError('requestJsonp missing one of: options, options.url');
+	  }
+	  /* construct the request src */
+	  var src = options.url +
+	    (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback +
+	    '&' + serialize(options.data);
+	  /* perform the request */
+	  return injectScript({src: src});
+	}
+
+	/* ================ */
+	/* Workflow Methods */
+	/* ================ */
+
+	/**
+	 * Requests JSONP with injected `client_token`.
+	 * @param {Object} data Required.
+	 * @param {function} callback Optional.
+	 * @param {string} url Required.
+	 */
+	function requestJsonpWithClientToken(data, callback, url) {
+	  /* build data payload */
+	  data = data || {};
+	  data.client_token = client_token;
+	  /* perform request */
+	  return requestJsonp({
+	    url: url,
+	    data: data,
+	    callback: callback
+	  });
+	}
+
+	/**
+	 * Gets `costs`.
+	 * @param {Object} data Required.
+	 * @param {string} data.start_lat Required.
+	 * @param {string} data.start_lng Required.
+	 * @param {string} data.end_lat Required.
+	 * @param {string} data.end_lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getCosts(data, callback) {
+	  return requestJsonpWithClientToken(data, callback, GET_COSTS_URL);
+	}
+
+	/**
+	 * Gets `drivers`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {function} callback Optional.
+	 */
+	function getDrivers(data, callback) {
+	  return requestJsonpWithClientToken(data, callback, GET_DRIVERS_URL);
+	}
+
+	/**
+	 * Gets `etas`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getEtas(data, callback) {
+	  return requestJsonpWithClientToken(data, callback, GET_ETAS_URL);
+	}
+
+	/**
+	 * Gets `ride_types`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getRideTypes(data, callback) {
+	  return requestJsonpWithClientToken(data, callback, GET_RIDE_TYPES_URL);
+	}
+
+	/**
+	 * POSTs `messages`.
+	 * @param {Object} data Required.
+	 * @param {string} data.phone_number Required.
+	 * @param {string} data.client_id Optional.
+	 * @param {string} data.end_lat Optional.
+	 * @param {string} data.end_lng Optional.
+	 * @param {function} callback Optional.
+	 */
+	function postMessages(data, callback) {
+	  return requestJsonpWithClientToken(data, callback, POST_MESSAGES_URL);
+	}
+
+	/* ===================================== */
+	/* Publicly-Exposed Properties & Methods */
+	/* ===================================== */
+
+	module.exports = {
+	  getCosts: getCosts,
+	  getDrivers: getDrivers,
+	  getEtas: getEtas,
+	  getRideTypes: getRideTypes,
+	  postMessages: postMessages,
+	  setClientToken: setClientToken
+	};
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	/* =================== */
+	/* Convenience Methods */
+	/* =================== */
+
+	function addClass(element, className) {
+	    var classList = element.className.split(' ');
+	    if (classList.indexOf(className) === -1) {classList.push(className);}
+	    element.className = classList.join(' ');
+	}
+
+	function removeClass(element, className) {
+	    var classList = element.className.split(' ');
+	    var classIndex = classList.indexOf(className);
+	    if (classIndex !== -1) {classList.splice(classIndex, 1);}
+	    element.className = classList.join(' ');
+	}
+
+	function selectChildElementByAttribute(element, attributeName, attributeValue) {
+	  var childNodes = element.childNodes || [];
+	  for (var i = 0, l = childNodes.length; i < l; i++) {
+	    if (childNodes[i][attributeName] === attributeValue) {
+	      return childNodes[i];
+	    }
+	  }
+	}
+
+	function selectChildElement(element, attributes) {
+	  var currentElement = element;
+	  for (var i = 0, l = attributes.length; i < l; i++) {
+	    if (!currentElement || !attributes[i].length) {return;}  /* short-circuit on failure */
+	    var attributeName = (attributes[i][0] === '.') ? 'className' : 'id';
+	    var attributeValue = attributes[i].slice(1);
+	    currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);
+	  }
+	  return currentElement;
+	}
+
+	/* ===================================== */
+	/* Publicly-Exposed Properties & Methods */
+	/* ===================================== */
+
+	module.exports = {
+	  addClass: addClass,
+	  removeClass: removeClass,
+	  selectChildElement: selectChildElement
+	};
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// dependencies
+	var api = __webpack_require__(1);
+	var selector = __webpack_require__(2);
+
+	// styles
+	__webpack_require__(4);
+
+	/**
+	 * lyftWebModal
+	 */
+	var lyftWebModal = (function(api, selector) {
 
 	  /* ========== */
 	  /* Properties */
 	  /* ========== */
 
-	  var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
-	  var GET_COSTS_URL      = SERVER_URL + '/get_costs';
-	  var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
-	  var GET_ETAS_URL       = SERVER_URL + '/get_etas';
-	  var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
-	  var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
+	  var closeElement;
+	  var mapElement;
+	  var mapLabelDescriptionElement;
+	  var mapLabelNameElement;
+	  var messageFormElement;
+	  var messageFormInputElement;
+	  var openAppCtaElement;
+	  var rootElement;
 
-	  var client_token;
-	  function setClientToken(value) {client_token = value;}
+	  /* ======================== */
+	  /* DOM Manipulation Methods */
+	  /* ======================== */
 
-	  /* =================== */
-	  /* Convenience Methods */
-	  /* =================== */
+	  function createElements() {
+	    // create tree from template
+	    var template = document.createElement('div');
+	    template.innerHTML = __webpack_require__(8);
+	    // store references to important elements
+	    rootElement = template.childNodes[0];
+	    closeElement = selector.selectChildElement(rootElement, ['.footer', '.close']);
+	    mapElement = selector.selectChildElement(rootElement, ['.content', '.map-container']);
+	    mapLabelNameElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+	    mapLabelDescriptionElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+	    messageFormElement = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on', '.message-form-container', '.message-form']);
+	    messageFormInputElement = selector.selectChildElement(messageFormElement, ['.message-form-input']);
+	    openAppCtaElement = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on', '.open-app-container', '.open-app-cta']);
+	    // return reference to root element
+	    return rootElement;
+	  }
 
-	  /**
-	   * Injects a script into the DOM with given options.
-	   * @param {Object} options Required.
-	   * @param {string} options.src Required.
-	   * @param {boolean} options.async Optional.
-	   * @param {function} options.callback Optional.
-	   * @param {boolean} options.defer Optional.
-	   */
-	  function injectScript(options) {
-	    if (typeof options === 'undefined' || typeof options.src === 'undefined') {
-	      throw new TypeError('injectScript missing one of: options, options.src');
-	    }
-
-	    var headElement = document.getElementsByTagName('head')[0] || document.documentElement;
-	    var scriptElement = document.createElement('script');
-	    scriptElement.src = options.src;
-	    scriptElement.async = options.async || false;
-	    scriptElement.defer = options.defer || false;
-
-	    /* polyfill `onload` event for some older browsers */
-	    var isDone = false;
-	    scriptElement.onload = scriptElement.onreadystatechange = function(event) {
-	      /* if script is loaded... */
-	      if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
-	        isDone = true;
-	        /* invoke user callback */
-	        var callbackResult =
-	          (Object.prototype.toString.call(options.callback) === '[object Function]') ?
-	          options.callback(event) :
-	          undefined;
-	        /* unset event handler (avoid memory leak) */
-	        scriptElement.onload = scriptElement.onreadystatechange = null;
-	        /* remove DOM element */
-	        if (headElement && scriptElement.parentNode) {
-	          headElement.removeChild(scriptElement);
+	  function bindEvents(location) {
+	    location = location || {};
+	    // root element: close modal window on click
+	    if (rootElement) {
+	      rootElement.onclick = function (event) {
+	        if (event && event.target === rootElement) {
+	          selector.removeClass(rootElement, 'on');
+	          return false;
 	        }
-	        /* return user callback result */
-	        return callbackResult;
-	      }
-	    };
-	    /* insertBefore instead of appendChild for browser compatibility */
-	    headElement.insertBefore(scriptElement, headElement.firstChild);
+	        return true;
+	      };
+	    }
+	    // close element: close modal window on click
+	    if (closeElement) {
+	      closeElement.onclick = function (event) {
+	        if (event && event.target === closeElement) {
+	          selector.removeClass(rootElement, 'on');
+	          return false;
+	        }
+	        return true;
+	      };
+	    }
+	    // message form element: request JSONP on submit
+	    if (messageFormElement && messageFormInputElement) {
+	      messageFormElement.onsubmit = function (event) {
+	        api.postMessages({
+	          phone_number: messageFormInputElement.value,
+	          // client_id: 'TODO',
+	          end_lat: location.latitude,
+	          end_lng: location.longitude
+	        }, 'lyftWebModal.onPostMessagesSuccess');
+	        return false;
+	      };
+	    }
+	    return rootElement;
 	  }
 
-	  /**
-	   * Recursively serializes data as a query-parameter string.
-	   * @param {Object} obj Data to serialize (required).
-	   * @param {string} pfx Key prefix for data chunk (optional).
-	   * @returns {string} Query-parameter string.
-	   */
-	  function serialize(obj, pfx) {
-	    var results = [];
-	    for(var prop in obj) {
-	      if (obj.hasOwnProperty(prop)) {
-	        var key = pfx ? (pfx + '[' + prop + ']') : prop;
-	        var val = obj[prop]
-	        results.push(
-	          (typeof val === 'object') ?
-	          serialize(val, key) :
-	          (encodeURIComponent(key) + '=' + encodeURIComponent(val))
-	        );
-	      }
+	  function updateContents(location) {
+	    location = location || {};
+	    // map-container: set background-image
+	    if (mapElement) {
+	      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
+	        '?center=' + location.latitude + ',' + location.longitude +
+	        '&maptype=roadmap&size=640x300&zoom=15';
+	      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
 	    }
-	    return results.join('&');
-	  }
-
-	  /**
-	   * Performs a JSONP request.
-	   * @param {Object} options Required.
-	   * @param {string} options.url Required.
-	   * @param {string} options.callback Callback path relative to window context (optional).
-	   * @param {Object} options.data JSON-compatible data payload (optional).
-	   */
-	  function requestJsonp(options) {
-	    if (typeof options === 'undefined' || typeof options.url === 'undefined') {
-	      throw new TypeError('requestJsonp missing one of: options, options.url');
+	    // map-label-name: set text
+	    if (mapLabelNameElement) {
+	      mapLabelNameElement.textContent = location.name;
 	    }
-	    /* construct the request src */
-	    var src = options.url +
-	      (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback +
-	      '&' + serialize(options.data);
-	    /* perform the request */
-	    return injectScript({src: src});
+	    // map-label-description: set text
+	    if (mapLabelDescriptionElement) {
+	      mapLabelDescriptionElement.textContent = location.address;
+	    }
+	    // open-app-cta: set href
+	    if (openAppCtaElement) {
+	      openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
+	        '&destination%5Blatitude%5D=' + location.latitude +
+	        '&destination%5Blongitude%5D=' + location.longitude;
+	    }
 	  }
 
 	  /* ================ */
 	  /* Workflow Methods */
 	  /* ================ */
 
-	  /**
-	   * Requests JSONP with injected `client_token`.
-	   * @param {Object} data Required.
-	   * @param {function} callback Optional.
-	   * @param {string} url Required.
-	   */
-	  function requestJsonpWithClientToken(data, callback, url) {
-	    /* build data payload */
-	    data = data || {};
-	    data.client_token = client_token;
-	    /* perform request */
-	    return requestJsonp({
-	      url: url,
-	      data: data,
-	      callback: callback
-	    });
+	  function onPostMessagesSuccess(data) {
+	    if (data.messages) {
+	      var frame1 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on']);
+	      var frame2 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-2']);
+	      selector.removeClass(frame1, 'on');
+	      selector.addClass(frame2, 'on');
+	    }
+	  }
+
+	  function show() {
+	    document.body.insertBefore(rootElement, document.body.childNodes[0]);
+	    selector.addClass(rootElement, 'on');
+	  }
+
+	  function hide() {
+	    document.body.removeChild(rootElement);
 	  }
 
 	  /**
-	   * Gets `costs`.
-	   * @param {Object} data Required.
-	   * @param {string} data.start_lat Required.
-	   * @param {string} data.start_lng Required.
-	   * @param {string} data.end_lat Required.
-	   * @param {string} data.end_lng Required.
-	   * @param {string} data.ride_type Optional.
-	   * @param {function} callback Optional.
+	   * Initialize.
+	   * @param {Object} options
+	   * @param {string} options.clientToken
+	   * @param {Object} options.location
+	   * @param {string} options.location.address
+	   * @param {string} options.location.latitude
+	   * @param {string} options.location.longitude
+	   * @param {string} options.location.name
 	   */
-	  function getCosts(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, GET_COSTS_URL);
-	  }
-
-	  /**
-	   * Gets `drivers`.
-	   * @param {Object} data Required.
-	   * @param {string} data.lat Required.
-	   * @param {string} data.lng Required.
-	   * @param {function} callback Optional.
-	   */
-	  function getDrivers(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, GET_DRIVERS_URL);
-	  }
-
-	  /**
-	   * Gets `etas`.
-	   * @param {Object} data Required.
-	   * @param {string} data.lat Required.
-	   * @param {string} data.lng Required.
-	   * @param {string} data.ride_type Optional.
-	   * @param {function} callback Optional.
-	   */
-	  function getEtas(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, GET_ETAS_URL);
-	  }
-
-	  /**
-	   * Gets `ride_types`.
-	   * @param {Object} data Required.
-	   * @param {string} data.lat Required.
-	   * @param {string} data.lng Required.
-	   * @param {string} data.ride_type Optional.
-	   * @param {function} callback Optional.
-	   */
-	  function getRideTypes(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, GET_RIDE_TYPES_URL);
-	  }
-
-	  /**
-	   * POSTs `messages`.
-	   * @param {Object} data Required.
-	   * @param {string} data.phone_number Required.
-	   * @param {string} data.client_id Optional.
-	   * @param {string} data.end_lat Optional.
-	   * @param {string} data.end_lng Optional.
-	   * @param {function} callback Optional.
-	   */
-	  function postMessages(data, callback) {
-	    return requestJsonpWithClientToken(data, callback, POST_MESSAGES_URL);
+	  function initialize(options) {
+	    // parse arguments
+	    api.setClientToken(options.clientToken);
+	    // create element tree
+	    createElements();
+	    bindEvents(options.location);
+	    updateContents(options.location);
 	  }
 
 	  /* ===================================== */
@@ -479,30 +598,28 @@
 	  /* ===================================== */
 
 	  return {
-	    getCosts: getCosts,
-	    getDrivers: getDrivers,
-	    getEtas: getEtas,
-	    getRideTypes: getRideTypes,
-	    postMessages: postMessages,
-	    setClientToken: setClientToken
+	    hide: hide,
+	    initialize: initialize,
+	    onPostMessagesSuccess: onPostMessagesSuccess,
+	    show: show
 	  };
 
-	})();
+	})(api, selector);
 
-	module.exports = window.lyftWebApi = lyftWebApi;
+	module.exports = window.lyftWebModal = lyftWebModal;
 
 
 /***/ },
-/* 2 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(3);
+	var content = __webpack_require__(5);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
+	var update = __webpack_require__(7)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -519,21 +636,21 @@
 	}
 
 /***/ },
-/* 3 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(4)();
+	exports = module.exports = __webpack_require__(6)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "/* common styles */\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 100%;\n  max-width: 640px;\n  margin: 100px auto 0 auto;\n  padding: 0;\n  color: #000000;\n  font-family: sans-serif;\n  text-align: center;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n.lyft-web-modal > .content > .map-container {\n  width: 100%;\n  height: 200px; /* background-image src will be 300px */\n  background-color: #EEEEEE;\n  background-position: center top; /* bump the marker down by 100px */\n  background-repeat: no-repeat;\n  -webkit-border-radius: 8px 8px 0 0;\n     -moz-border-radius: 8px 8px 0 0;\n          border-radius: 8px 8px 0 0;\n}\n.lyft-web-modal > .content > .map-container > .map-label {\n  display: inline-block;\n  max-width: 300px;\n  margin: 20px auto 0 auto;\n  padding: 10px;\n  background-color: #FFFFFF;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\n  display: block;\n  font-size: 16px;\n  font-weight: 700;\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\n  display: block;\n  margin-top: 5px;\n  font-size: 12px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content > .map-container > .map-marker {\n  margin-top: 13px;\n}\n.lyft-web-modal > .content > .map-container > .map-marker > svg {\n  display: inline-block;\n}\n.lyft-web-modal > .content > .lyft-logo-tile-container > .lyft-logo-tile {\n  display: inline-block;\n  width: 64px;\n  height: 64px;\n  margin: 20px 0 0 0;\n  vertical-align: middle;\n}\n.lyft-web-modal > .content > .text-container > h1 {\n  margin: 20px 0 10px 0;\n  color: #352384;\n  font-size: 24px;\n  font-weight: 500;\n}\n.lyft-web-modal > .content > .text-container > p {\n  width: 100%;\n  max-width: 320px;\n  margin: 0 auto;\n  color: #000000;\n  font-size: 16px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content > .message-form-container > form > .message-form-input {\n  /* lyft style attributes */\n  -webkit-appearance: none;\n  height: 36px;\n  color: #333447;\n  font-size: 16px;\n  font-weight: lighter;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FFFFFF;\n  background-image: none;\n  border: 1px solid #CCCCCC;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 320px;\n  margin: 20px 0 0 0;\n}\n.lyft-web-modal > .content > .message-form-container > form > .message-form-button {\n  /* lyft style attributes */\n  -webkit-appearance: button;\n  cursor: pointer;\n  height: 40px;\n  color: #FFFFFF;\n  font-size: 16px;\n  font-weight: 500;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FF00BF;\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\n  border: none;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 320px;\n  margin: 10px 0 20px 0;\n}\n.lyft-web-modal > .content > .open-app-container {\n  padding-bottom: 20px;\n}\n.lyft-web-modal > .content > .open-app-container > .open-app-separator {\n  display: block;\n  margin: 0 0 20px 0;\n  color: #000000;\n}\n.lyft-web-modal > .content > .open-app-container > .open-app-cta {\n  color: #FF00BF;\n  text-decoration: none;\n}\n.lyft-web-modal > .footer {\n  text-align: center;\n}\n.lyft-web-modal > .footer > .close {\n  color: #FFFFFF;\n  font-family: Arial, sans-serif;\n  font-size: 60px;\n  text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "/* common styles */\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  opacity: 0;\n  width: 100%;\n  max-width: 640px;\n  margin: 100px auto 0 auto;\n  padding: 0;\n  color: #000000;\n  font-family: sans-serif;\n  text-align: center;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n.lyft-web-modal > .content > .map-container {\n  width: 100%;\n  height: 200px; /* background-image src will be 300px */\n  background-color: #EEEEEE;\n  background-position: center top; /* bump the marker down by 100px */\n  background-repeat: no-repeat;\n  -webkit-border-radius: 8px 8px 0 0;\n     -moz-border-radius: 8px 8px 0 0;\n          border-radius: 8px 8px 0 0;\n}\n.lyft-web-modal > .content > .map-container > .map-label {\n  display: inline-block;\n  max-width: 300px;\n  margin: 20px auto 0 auto;\n  padding: 10px;\n  background-color: #FFFFFF;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\n  display: block;\n  font-size: 16px;\n  font-weight: 700;\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\n  display: block;\n  margin-top: 5px;\n  font-size: 12px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content > .map-container > .map-marker {\n  margin-top: 13px;\n}\n.lyft-web-modal > .content > .map-container > .map-marker > svg {\n  display: inline-block;\n}\n.lyft-web-modal > .content > .frame-container {\n  position: relative;\n}\n.lyft-web-modal > .content > .frame-container > .frame-1 {\n  position: static;\n  z-index: 1;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal > .content > .frame-container > .frame-1.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content > .frame-container > .frame-2 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 2;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal > .content > .frame-container > .frame-2.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {\n  display: inline-block;\n  width: 64px;\n  height: 64px;\n  margin: 20px 0 0 0;\n  vertical-align: middle;\n}\n.lyft-web-modal > .content .text-container > h1 {\n  margin: 20px 0 10px 0;\n  color: #352384;\n  font-size: 24px;\n  font-weight: 500;\n}\n.lyft-web-modal > .content .text-container > p {\n  width: 100%;\n  max-width: 320px;\n  margin: 0 auto;\n  color: #000000;\n  font-size: 16px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content .message-form-container > form > .message-form-input {\n  /* lyft style attributes */\n  -webkit-appearance: none;\n  height: 36px;\n  color: #333447;\n  font-size: 16px;\n  font-weight: lighter;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FFFFFF;\n  background-image: none;\n  border: 1px solid #CCCCCC;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 320px;\n  margin: 20px 0 0 0;\n}\n.lyft-web-modal > .content .message-form-container > form > .message-form-button {\n  /* lyft style attributes */\n  -webkit-appearance: button;\n  cursor: pointer;\n  height: 40px;\n  color: #FFFFFF;\n  font-size: 16px;\n  font-weight: 500;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FF00BF;\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\n  border: none;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 320px;\n  margin: 10px 0 20px 0;\n}\n.lyft-web-modal > .content .open-app-container {\n  padding-bottom: 20px;\n}\n.lyft-web-modal > .content .open-app-container > .open-app-separator {\n  display: block;\n  margin: 0 0 20px 0;\n  color: #000000;\n}\n.lyft-web-modal > .content .open-app-container > .open-app-cta {\n  color: #FF00BF;\n  text-decoration: none;\n}\n.lyft-web-modal > .footer {\n  text-align: center;\n}\n.lyft-web-modal > .footer > .close {\n  color: #FFFFFF;\n  font-family: Arial, sans-serif;\n  font-size: 60px;\n  text-decoration: none;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports) {
 
 	/*
@@ -589,7 +706,7 @@
 
 
 /***/ },
-/* 5 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -841,16 +958,22 @@
 
 
 /***/ },
-/* 6 */
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"lyft-web-modal\" title=\"Lyft web modal\">\n  <div class=\"content\">\n    <div class=\"map-container\" title=\"map\">\n      <div class=\"map-label\">\n        <span class=\"map-label-name\" title=\"location name\"></span>\n        <span class=\"map-label-description\" title=\"location description\"></span>\n      </div>\n      <div class=\"map-marker\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40px\" height=\"64px\" viewBox=\"0 0 76 121\">\n          <defs>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-1\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feComposite in=\"shadowBlurOuter1\" in2=\"SourceAlpha\" operator=\"out\" result=\"shadowBlurOuter1\"></feComposite>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-2\">\n              <feGaussianBlur stdDeviation=\"3\" in=\"SourceGraphic\"></feGaussianBlur>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-3\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <linearGradient x1=\"50%\" y1=\"0%\" x2=\"50%\" y2=\"97.7032156%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#000000\" stop-opacity=\"0\" offset=\"0%\"></stop>\n              <stop stop-color=\"#000000\" stop-opacity=\"0.68115942\" offset=\"100%\"></stop>\n            </linearGradient>\n            <mask id=\"mask-1\" maskContentUnits=\"userSpaceOnUse\" maskUnits=\"objectBoundingBox\" x=\"0\" y=\"0\" width=\"70\" height=\"70\" fill=\"#FFFFFF\">\n              <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\"></rect>\n            </mask>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\" transform=\"translate(3.000000, 3.000000)\">\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-1)\"></rect>\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#FF00BF\" fill-rule=\"evenodd\" stroke=\"#FFFFFF\" stroke-width=\"8\" mask=\"url(#mask-1)\"></rect>\n            <g stroke-width=\"1\" fill-rule=\"evenodd\" transform=\"translate(27.000000, 65.000000)\">\n              <polyline fill=\"url(#linearGradient-1)\" opacity=\"0.6\" filter=\"url(#filter-2)\" transform=\"translate(23.618189, 29.706625) rotate(49.000000) translate(-23.618189, -29.706625) \" points=\"21.6181893 4.70662517 21.6181893 54.7066252 25.6181893 54.7066252 25.6181893 4.70662517 21.6181893 4.70662517\"></polyline>\n              <circle fill=\"#000000\" cx=\"8\" cy=\"43\" r=\"5\"></circle>\n              <g transform=\"translate(0.000000, 0.500000)\">\n                <mask id=\"mask-7\" fill=\"#FFFFFF\">\n                  <rect x=\"0\" y=\"0.5\" width=\"16\" height=\"47\"></rect>\n                </mask>\n                <g mask=\"url(#mask-7)\">\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-3)\"></path>\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#FFFFFF\" fill-rule=\"evenodd\"></path>\n                </g>\n              </g>\n            </g>\n            <rect fill=\"#FFFFFF\" fill-rule=\"evenodd\" x=\"27\" y=\"27\" width=\"16\" height=\"16\" rx=\"8\"></rect>\n          </g>\n        </svg>\n      </div>\n    </div>\n    <div class=\"frame-container\">\n      <div class=\"frame-1 on\">\n        <div class=\"lyft-logo-tile-container\">\n          <span class=\"lyft-logo-tile\" title=\"Lyft logo tile\">\n            <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\">\n              <defs>\n                <linearGradient x1=\"50%\" y1=\"1.17229889%\" x2=\"50%\" y2=\"99.482476%\" id=\"linearGradient-1\">\n                  <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n                  <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n                </linearGradient>\n                <linearGradient x1=\"50%\" y1=\"-50.0248301%\" x2=\"50%\" y2=\"145.665234%\" id=\"linearGradient-2\">\n                  <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n                  <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n                </linearGradient>\n              </defs>\n              <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n                <rect fill=\"url(#linearGradient-1)\" x=\"0\" y=\"0\" width=\"64\" height=\"64\" rx=\"14\"></rect>\n                <path d=\"M15.6681127,17.1010796 L15.6681127,35.8341526 C15.6681127,38.7987402 17.3849122,40.564675 18.4549305,41.32167 C17.3221198,42.3308419 13.8604322,43.2139254 11.2799224,41.0692609 C9.75854079,39.8051257 9.13939394,37.726408 9.13939394,35.7709923 L9.13939394,17.1010796 L15.6681127,17.1010796 L15.6681127,17.1010796 Z M52.5956515,30.8390071 L54.8653867,30.8390071 L54.8653867,23.7142904 L52.3871161,23.7142904 C51.4915724,19.5677688 48.0260922,16.5333333 43.6206659,16.5333333 C38.5456093,16.5333333 34.5043965,20.656402 34.5043965,25.7422012 L34.5043965,41.8710719 C35.950242,42.0747175 37.3818353,41.8457614 38.8473758,40.6278353 C40.3685257,39.3634678 41.0603998,37.2849824 41.0603998,35.3295666 L41.0603998,34.5171669 L44.6844566,34.5171669 L44.6844566,27.3924503 L41.0603998,27.3924503 L41.0603998,25.7422012 C41.0687412,24.4506655 42.3316854,23.4036438 43.6206659,23.4036438 C44.9094147,23.4036438 46.1038023,24.4506655 46.1038023,25.7422012 L46.1038023,32.6622041 C46.1038023,37.7480032 49.7857812,41.8710719 54.8606061,41.8710719 L54.8606061,35.0007614 C53.5718573,35.0007614 52.5956515,33.9537398 52.5956515,32.6622041 L52.5956515,30.8390071 L52.5956515,30.8390071 Z M26.5800228,33.9230884 C26.5800228,34.4984975 25.7399989,34.9650015 25.1521608,34.9650015 C24.5643227,34.9650015 23.6515715,34.4984975 23.6515715,33.9230884 L23.6515715,23.7142904 L17.1960718,23.7142904 L17.1960718,35.7080642 C17.1960718,37.8524964 17.921775,40.564675 21.2242806,41.4477585 C24.5302619,42.3317708 26.4480925,40.5017469 26.4480925,40.5017469 C26.2733861,41.707366 25.1403438,42.5904494 23.3151956,42.7796982 C21.9342278,42.9227378 20.2408919,42.464361 19.3599457,42.0858635 L19.3599457,48.4016635 C21.6047135,49.0650791 23.9062776,49.2794062 26.2298254,48.8275313 C30.446643,48.0076081 33.0352908,44.4755064 33.0352908,39.776332 L33.0352908,23.7142904 L26.5800228,23.7142904 L26.5800228,33.9230884 L26.5800228,33.9230884 Z\" stroke=\"url(#linearGradient-2)\" stroke-width=\"0.545454545\" fill=\"#FFFFFF\"></path>\n              </g>\n            </svg>\n          </span>\n        </div>\n        <div class=\"text-container\">\n          <h1>Ride with the Lyft mobile app.</h1>\n          <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\n        </div>\n        <div class=\"message-form-container\">\n          <form name=\"lyftMessageForm\" method=\"get\" action=\"#\" class=\"message-form\" onsubmit=\"window.open('http://www.lyft.com/signup/SDKSIGNUP','_blank');return false;\">\n            <input type=\"text\" class=\"message-form-input\" name=\"phoneNumber\" placeholder=\"Phone number\" required title=\"phone number\" />\n            <input type=\"submit\" class=\"message-form-button\" name=\"submitButton\" title=\"text me a link\" value=\"Text me a link\" />\n          </form>\n        </div>\n        <div class=\"open-app-container\">\n          <p class=\"open-app-separator\">—&nbsp;or&nbsp;—</p>\n          <a href=\"#\" class=\"open-app-cta\" title=\"Open in Lyft app\">Open in Lyft app</a>\n        </div>\n      </div>\n      <div class=\"frame-2\">\n        <span>frame-2</span>\n        <p>\n          Succulents portland vegan, small batch organic green juice irony offal\n          asymmetrical fanny pack. Sartorial venmo literally subway tile, knausgaard\n          3 wolf moon kinfolk. Kickstarter umami raw denim, whatever aesthetic pug\n          lomo beard squid cliche tote bag dreamcatcher hella lo-fi activated\n          charcoal. Biodiesel copper mug next level pop-up selfies pabst, godard\n          squid blog shoreditch kitsch viral trust fund aesthetic intelligentsia.\n          Helvetica hoodie bespoke, tumblr readymade neutra food truck pok pok\n          dreamcatcher chia edison bulb. Meh echo park street art hoodie bushwick\n          raclette. Bicycle rights direct trade green juice, distillery gochujang\n          actually air plant irony.\n        </p>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"close Lyft web modal\">&#215;</a>\n  </div>\n</div>\n";
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(7);
+	var content = __webpack_require__(10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
+	var update = __webpack_require__(7)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -867,10 +990,10 @@
 	}
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(4)();
+	exports = module.exports = __webpack_require__(6)();
 	// imports
 
 
@@ -881,16 +1004,10 @@
 
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<button type=\"button\" class=\"lyft-web-button\" title=\"Lyft web button\">\n  <span class=\"lyft-logo\" title=\"Lyft logo\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 62 45\">\n      <path d=\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\" fill=\"#FF00BF\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <div class=\"cta-eta\">\n    <span class=\"cta\">Get a ride</span>\n    <span class=\"eta\" title=\"estimated time of arrival\"></span>\n  </div>\n  <span class=\"arrow-icon\" title=\"arrow icon\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 20 20\">\n      <path d=\"M14,13.7506336 L14,6 L6.24936644,6 L8.93723605,8.68786953 L3,17 L11.3121305,11.062764 L14,13.7506336 Z M0,10 C0,15.5228475 4.4771525,20 10,20 C15.5228475,20 20,15.5228475 20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,1.70234197e-14 1.48029737e-14,4.4771525 0,10 L0,10 Z\" fill=\"#000000\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <span class=\"price-range\" title=\"price range\"></span>\n</button>\n";
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"lyft-web-modal\" title=\"Lyft web modal\">\n  <div class=\"content\">\n    <div class=\"map-container\" title=\"map\">\n      <div class=\"map-label\">\n        <span class=\"map-label-name\" title=\"location name\"></span>\n        <span class=\"map-label-description\" title=\"location description\"></span>\n      </div>\n      <div class=\"map-marker\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40px\" height=\"64px\" viewBox=\"0 0 76 121\">\n          <defs>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-1\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feComposite in=\"shadowBlurOuter1\" in2=\"SourceAlpha\" operator=\"out\" result=\"shadowBlurOuter1\"></feComposite>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-2\">\n              <feGaussianBlur stdDeviation=\"3\" in=\"SourceGraphic\"></feGaussianBlur>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-3\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <linearGradient x1=\"50%\" y1=\"0%\" x2=\"50%\" y2=\"97.7032156%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#000000\" stop-opacity=\"0\" offset=\"0%\"></stop>\n              <stop stop-color=\"#000000\" stop-opacity=\"0.68115942\" offset=\"100%\"></stop>\n            </linearGradient>\n            <mask id=\"mask-1\" maskContentUnits=\"userSpaceOnUse\" maskUnits=\"objectBoundingBox\" x=\"0\" y=\"0\" width=\"70\" height=\"70\" fill=\"#FFFFFF\">\n              <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\"></rect>\n            </mask>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\" transform=\"translate(3.000000, 3.000000)\">\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-1)\"></rect>\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#FF00BF\" fill-rule=\"evenodd\" stroke=\"#FFFFFF\" stroke-width=\"8\" mask=\"url(#mask-1)\"></rect>\n            <g stroke-width=\"1\" fill-rule=\"evenodd\" transform=\"translate(27.000000, 65.000000)\">\n              <polyline fill=\"url(#linearGradient-1)\" opacity=\"0.6\" filter=\"url(#filter-2)\" transform=\"translate(23.618189, 29.706625) rotate(49.000000) translate(-23.618189, -29.706625) \" points=\"21.6181893 4.70662517 21.6181893 54.7066252 25.6181893 54.7066252 25.6181893 4.70662517 21.6181893 4.70662517\"></polyline>\n              <circle fill=\"#000000\" cx=\"8\" cy=\"43\" r=\"5\"></circle>\n              <g transform=\"translate(0.000000, 0.500000)\">\n                <mask id=\"mask-7\" fill=\"#FFFFFF\">\n                  <rect x=\"0\" y=\"0.5\" width=\"16\" height=\"47\"></rect>\n                </mask>\n                <g mask=\"url(#mask-7)\">\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-3)\"></path>\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#FFFFFF\" fill-rule=\"evenodd\"></path>\n                </g>\n              </g>\n            </g>\n            <rect fill=\"#FFFFFF\" fill-rule=\"evenodd\" x=\"27\" y=\"27\" width=\"16\" height=\"16\" rx=\"8\"></rect>\n          </g>\n        </svg>\n      </div>\n    </div>\n    <div class=\"lyft-logo-tile-container\">\n      <span class=\"lyft-logo-tile\" title=\"Lyft logo tile\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\">\n          <defs>\n            <linearGradient x1=\"50%\" y1=\"1.17229889%\" x2=\"50%\" y2=\"99.482476%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n            <linearGradient x1=\"50%\" y1=\"-50.0248301%\" x2=\"50%\" y2=\"145.665234%\" id=\"linearGradient-2\">\n              <stop stop-color=\"#F500BB\" offset=\"0%\"></stop>\n              <stop stop-color=\"#B800B0\" offset=\"100%\"></stop>\n            </linearGradient>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\">\n            <rect fill=\"url(#linearGradient-1)\" x=\"0\" y=\"0\" width=\"64\" height=\"64\" rx=\"14\"></rect>\n            <path d=\"M15.6681127,17.1010796 L15.6681127,35.8341526 C15.6681127,38.7987402 17.3849122,40.564675 18.4549305,41.32167 C17.3221198,42.3308419 13.8604322,43.2139254 11.2799224,41.0692609 C9.75854079,39.8051257 9.13939394,37.726408 9.13939394,35.7709923 L9.13939394,17.1010796 L15.6681127,17.1010796 L15.6681127,17.1010796 Z M52.5956515,30.8390071 L54.8653867,30.8390071 L54.8653867,23.7142904 L52.3871161,23.7142904 C51.4915724,19.5677688 48.0260922,16.5333333 43.6206659,16.5333333 C38.5456093,16.5333333 34.5043965,20.656402 34.5043965,25.7422012 L34.5043965,41.8710719 C35.950242,42.0747175 37.3818353,41.8457614 38.8473758,40.6278353 C40.3685257,39.3634678 41.0603998,37.2849824 41.0603998,35.3295666 L41.0603998,34.5171669 L44.6844566,34.5171669 L44.6844566,27.3924503 L41.0603998,27.3924503 L41.0603998,25.7422012 C41.0687412,24.4506655 42.3316854,23.4036438 43.6206659,23.4036438 C44.9094147,23.4036438 46.1038023,24.4506655 46.1038023,25.7422012 L46.1038023,32.6622041 C46.1038023,37.7480032 49.7857812,41.8710719 54.8606061,41.8710719 L54.8606061,35.0007614 C53.5718573,35.0007614 52.5956515,33.9537398 52.5956515,32.6622041 L52.5956515,30.8390071 L52.5956515,30.8390071 Z M26.5800228,33.9230884 C26.5800228,34.4984975 25.7399989,34.9650015 25.1521608,34.9650015 C24.5643227,34.9650015 23.6515715,34.4984975 23.6515715,33.9230884 L23.6515715,23.7142904 L17.1960718,23.7142904 L17.1960718,35.7080642 C17.1960718,37.8524964 17.921775,40.564675 21.2242806,41.4477585 C24.5302619,42.3317708 26.4480925,40.5017469 26.4480925,40.5017469 C26.2733861,41.707366 25.1403438,42.5904494 23.3151956,42.7796982 C21.9342278,42.9227378 20.2408919,42.464361 19.3599457,42.0858635 L19.3599457,48.4016635 C21.6047135,49.0650791 23.9062776,49.2794062 26.2298254,48.8275313 C30.446643,48.0076081 33.0352908,44.4755064 33.0352908,39.776332 L33.0352908,23.7142904 L26.5800228,23.7142904 L26.5800228,33.9230884 L26.5800228,33.9230884 Z\" stroke=\"url(#linearGradient-2)\" stroke-width=\"0.545454545\" fill=\"#FFFFFF\"></path>\n          </g>\n        </svg>\n      </span>\n    </div>\n    <div class=\"text-container\">\n      <h1>Ride with the Lyft mobile app.</h1>\n      <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\n    </div>\n    <div class=\"message-form-container\">\n      <form name=\"lyftMessageForm\" method=\"get\" action=\"#\" class=\"message-form\" onsubmit=\"window.open('http://www.lyft.com/signup/SDKSIGNUP','_blank');return false;\">\n        <input type=\"text\" class=\"message-form-input\" name=\"phoneNumber\" placeholder=\"Phone number\" required title=\"phone number\" />\n        <input type=\"submit\" class=\"message-form-button\" name=\"submitButton\" title=\"text me a link\" value=\"Text me a link\" />\n      </form>\n    </div>\n    <div class=\"open-app-container\">\n      <p class=\"open-app-separator\">—&nbsp;or&nbsp;—</p>\n      <a href=\"#\" class=\"open-app-cta\" title=\"Open in Lyft app\">Open in Lyft app</a>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"close Lyft web modal\">&#215;</a>\n  </div>\n</div>\n";
 
 /***/ }
 /******/ ]);
