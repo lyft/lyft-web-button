@@ -50,7 +50,7 @@ var lyftWebModal = (function(api, selector) {
     if (rootElement) {
       rootElement.onclick = function (event) {
         if (event && event.target === rootElement) {
-          selector.removeClass(rootElement, 'on');
+          close();
           return false;
         }
         return true;
@@ -60,7 +60,7 @@ var lyftWebModal = (function(api, selector) {
     if (closeElement) {
       closeElement.onclick = function (event) {
         if (event && event.target === closeElement) {
-          selector.removeClass(rootElement, 'on');
+          close();
           return false;
         }
         return true;
@@ -119,13 +119,18 @@ var lyftWebModal = (function(api, selector) {
     }
   }
 
-  function show() {
+  function open() {
     document.body.insertBefore(rootElement, document.body.childNodes[0]);
-    selector.addClass(rootElement, 'on');
+    window.setTimeout(function () {
+      selector.addClass(rootElement, 'on');
+    }, 10);
   }
 
-  function hide() {
-    document.body.removeChild(rootElement);
+  function close() {
+    selector.removeClass(rootElement, 'on');
+    window.setTimeout(function () {
+      rootElement.parentElement.removeChild(rootElement);
+    }, 400);
   }
 
   /**
@@ -152,10 +157,10 @@ var lyftWebModal = (function(api, selector) {
   /* ===================================== */
 
   return {
-    hide: hide,
+    close: close,
     initialize: initialize,
     onPostMessagesSuccess: onPostMessagesSuccess,
-    show: show
+    open: open
   };
 
 })(api, selector);

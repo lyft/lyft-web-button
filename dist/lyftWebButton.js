@@ -318,7 +318,7 @@
 
 	  /* polyfill `onload` event for some older browsers */
 	  var isDone = false;
-	  scriptElement.onload = scriptElement.onreadystatechange = function(event) {
+	  scriptElement.onload = scriptElement.onreadystatechange = function (event) {
 	    /* if script is loaded... */
 	    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
 	      isDone = true;
@@ -489,7 +489,7 @@
 	    if (rootElement) {
 	      rootElement.onclick = function (event) {
 	        if (event && event.target === rootElement) {
-	          selector.removeClass(rootElement, 'on');
+	          close();
 	          return false;
 	        }
 	        return true;
@@ -499,7 +499,7 @@
 	    if (closeElement) {
 	      closeElement.onclick = function (event) {
 	        if (event && event.target === closeElement) {
-	          selector.removeClass(rootElement, 'on');
+	          close();
 	          return false;
 	        }
 	        return true;
@@ -558,13 +558,18 @@
 	    }
 	  }
 
-	  function show() {
+	  function open() {
 	    document.body.insertBefore(rootElement, document.body.childNodes[0]);
-	    selector.addClass(rootElement, 'on');
+	    window.setTimeout(function () {
+	      selector.addClass(rootElement, 'on');
+	    }, 10);
 	  }
 
-	  function hide() {
-	    document.body.removeChild(rootElement);
+	  function close() {
+	    selector.removeClass(rootElement, 'on');
+	    window.setTimeout(function () {
+	      rootElement.parentElement.removeChild(rootElement);
+	    }, 400);
 	  }
 
 	  /**
@@ -591,10 +596,10 @@
 	  /* ===================================== */
 
 	  return {
-	    hide: hide,
+	    close: close,
 	    initialize: initialize,
 	    onPostMessagesSuccess: onPostMessagesSuccess,
-	    show: show
+	    open: open
 	  };
 
 	})(api, selector);

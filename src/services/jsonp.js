@@ -19,7 +19,7 @@ function injectScript(options) {
 
   /* polyfill `onload` event for some older browsers */
   var isDone = false;
-  scriptElement.onload = scriptElement.onreadystatechange = function(event) {
+  scriptElement.onload = scriptElement.onreadystatechange = function (event) {
     /* if script is loaded... */
     if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
       isDone = true;

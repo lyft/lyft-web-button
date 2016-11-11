@@ -38,7 +38,7 @@
         window[buttonObjectName].initialize({
           'clientToken': clientToken,
           'location': location,
-          'onClick': function(){lyftWebModal.show();return false;},
+          'onClick': function(){window[modalObjectName].open();return false;},
           'parentElement': parentElement,
           'theme': 'multicolor'
         });
