@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body style="background-color:#AAAAAA;">
-    <div id="lyft-web-library-root"></div>
+    <div id="lyft-web-button-parent"></div>
     <script type="text/javascript">
     (function(
       window,
@@ -16,11 +16,11 @@
       scriptSrc,
       buttonObjectName,
       modalObjectName,
-      rootElementId,
-      rootElement,
+      parentElementId,
+      parentElement,
       scriptElement
     ){
-      rootElement = document.getElementById(rootElementId);
+      parentElement = document.getElementById(parentElementId);
       scriptElement = document.createElement('script');
       scriptElement.async = true;
       scriptElement.onload = function(){
@@ -39,19 +39,19 @@
           'clientToken': clientToken,
           'location': location,
           'onClick': function(){lyftWebModal.show();return false;},
-          'rootElement': rootElement,
+          'parentElement': parentElement,
           'theme': 'multicolor'
         });
       };
       scriptElement.src = scriptSrc;
-      rootElement.insertBefore(scriptElement, rootElement.childNodes[0]);
+      parentElement.insertBefore(scriptElement, parentElement.childNodes[0]);
     })(
       window,
       document,
       'lyftWebButton.js',
       'lyftWebButton',
       'lyftWebModal',
-      'lyft-web-library-root'
+      'lyft-web-button-parent'
     );
     </script>
   </body>

@@ -28,9 +28,9 @@ var lyftWebButton = (function(api, selector) {
     var template = document.createElement('div');
     template.innerHTML = require('html!./index.html');
     // store references to important elements
-    rootElement = template.childNodes[0];
+    rootElement       = template.childNodes[0];
     priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
-    etaElement = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
+    etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
     // return reference to root element
     return rootElement;
   }
@@ -91,7 +91,7 @@ var lyftWebButton = (function(api, selector) {
    * @param {string} options.location.latitude
    * @param {string} options.location.longitude
    * @param {string} options.location.name
-   * @param {Object} options.rootElement
+   * @param {Object} options.parentElement
    * @param {string} options.theme
    */
   function initialize(options) {
@@ -102,7 +102,7 @@ var lyftWebButton = (function(api, selector) {
     bindEvents(options.onClick);
     updateContents(options.theme);
     // insert element into DOM
-    options.rootElement.insertBefore(rootElement, options.rootElement.childNodes[0]);
+    options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
     // get device location
     if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
       navigator.geolocation.getCurrentPosition(function(position) {
