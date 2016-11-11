@@ -1,7 +1,3 @@
-/* =================== */
-/* Convenience Methods */
-/* =================== */
-
 function addClass(element, className) {
     var classList = element.className.split(' ');
     if (classList.indexOf(className) === -1) {classList.push(className);}
@@ -35,10 +31,7 @@ function selectChildElement(element, attributes) {
   return currentElement;
 }
 
-/* ===================================== */
-/* Publicly-Exposed Properties & Methods */
-/* ===================================== */
-
+// exports
 module.exports = {
   addClass: addClass,
   removeClass: removeClass,
