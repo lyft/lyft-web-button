@@ -119,8 +119,8 @@ var lyftWebButton = (function(lyftWebApi) {
       lyftWebApi.postMessages({
         phone_number: messageFormInput.value,
         // client_id: 'TODO',
-        destination_latitude: location.latitude,
-        destination_longitude: location.longitude
+        end_lat: location.latitude,
+        end_lng: location.longitude
       }, 'lyftWebButton.onPostMessagesSuccess');
       return false;
     };

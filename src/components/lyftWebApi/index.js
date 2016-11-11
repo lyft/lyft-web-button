@@ -182,8 +182,8 @@ var lyftWebApi = (function() {
    * @param {Object} data Required.
    * @param {string} data.phone_number Required.
    * @param {string} data.client_id Optional.
-   * @param {string} data.destination_latitude Optional.
-   * @param {string} data.destination_longitude Optional.
+   * @param {string} data.end_lat Optional.
+   * @param {string} data.end_lng Optional.
    * @param {function} callback Optional.
    */
   function postMessages(data, callback) {
