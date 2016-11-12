@@ -132,6 +132,13 @@
   margin: 20px 0 0 0;
   vertical-align: middle;
 }
+.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 20px 0 0 0;
+  vertical-align: middle;
+}
 .lyft-web-modal > .content .text-container > h1 {
   margin: 20px 0 10px 0;
   color: #352384;
