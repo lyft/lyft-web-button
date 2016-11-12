@@ -94,7 +94,7 @@
 .lyft-web-modal > .content > .frame-container {
   position: relative;
 }
-.lyft-web-modal > .content > .frame-container > .frame-1 {
+.lyft-web-modal > .content > .frame-container > .frame-before {
   position: static;
   z-index: 1;
   visibility: hidden;
@@ -104,11 +104,11 @@
        -o-transition: visibility 0.4s, opacity 0.4s;
           transition: visibility 0.4s, opacity 0.4s;
 }
-.lyft-web-modal > .content > .frame-container > .frame-1.on {
+.lyft-web-modal > .content > .frame-container > .frame-before.on {
   visibility: visible;
   opacity: 1;
 }
-.lyft-web-modal > .content > .frame-container > .frame-2 {
+.lyft-web-modal > .content > .frame-container > .frame-after {
   position: absolute;
   top: 0;
   left: 0;
@@ -121,7 +121,7 @@
        -o-transition: visibility 0.4s, opacity 0.4s;
           transition: visibility 0.4s, opacity 0.4s;
 }
-.lyft-web-modal > .content > .frame-container > .frame-2.on {
+.lyft-web-modal > .content > .frame-container > .frame-after.on {
   visibility: visible;
   opacity: 1;
 }

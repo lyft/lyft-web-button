@@ -32,14 +32,17 @@ var lyftWebModal = (function(api, selector) {
     var template = document.createElement('div');
     template.innerHTML = require('html!./index.html');
     // store references to important elements
-    rootElement                = template.childNodes[0];
-    closeElement               = selector.selectChildElement(rootElement, ['.footer', '.close']);
-    mapElement                 = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-    mapLabelNameElement        = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-    mapLabelDescriptionElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-    messageFormElement         = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on', '.message-form-container', '.message-form']);
-    messageFormInputElement    = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-    openAppCtaElement          = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on', '.open-app-container', '.open-app-cta']);
+    rootElement                 = template.childNodes[0];
+    closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
+    mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
+    mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+    mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+    frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
+    messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
+    messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
+    openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
+    frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
+    frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
     // return reference to root element
     return rootElement;
   }
@@ -112,10 +115,9 @@ var lyftWebModal = (function(api, selector) {
 
   function onPostMessagesSuccess(data) {
     if (data.messages) {
-      var frame1 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-1 on']);
-      var frame2 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-2']);
-      selector.removeClass(frame1, 'on');
-      selector.addClass(frame2, 'on');
+      frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
+      selector.removeClass(frameBefore, 'on');
+      selector.addClass(frameAfter, 'on');
     }
   }
 
