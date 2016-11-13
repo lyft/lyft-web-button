@@ -131,6 +131,22 @@
   height: 64px;
   margin: 20px 0 0 0;
   vertical-align: middle;
+  background-color: #FF00BF;
+  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);
+  border: none;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+}
+.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {
+  display: inline-block;
+  width: 45px;
+  height: 32px;
+  margin: 17px 0 0 0;
+  fill: #FFFFFF;
 }
 .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {
   display: inline-block;
@@ -138,6 +154,22 @@
   height: 64px;
   margin: 20px 0 0 0;
   vertical-align: middle;
+  background-color: #FF00BF;
+  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);
+  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);
+  border: none;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+}
+.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  margin: 10px 0 0 0;
+  fill: #FFFFFF;
 }
 .lyft-web-modal > .content .text-container > h1 {
   margin: 20px 0 10px 0;
