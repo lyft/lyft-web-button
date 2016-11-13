@@ -3,6 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 1;
   display: block;
   visibility: hidden;
@@ -26,6 +27,8 @@
 .lyft-web-modal > .content {
   position: relative;
   top: -300px;
+  left: 0;
+  right: 0;
   opacity: 0;
   width: 100%;
   max-width: 640px;
