@@ -1,15 +1,25 @@
-window['lyftWebButton'] = require('../../../../src/components/lyftWebButton/index.js');
+var lyftWebButton = require('../../../../src/components/lyftWebButton/index.js');
 
 describe('lyftWebButton', function () {
 
   it('exists', function () {
-    expect(window.lyftWebButton).toExist();
+    expect(lyftWebButton).toExist();
   });
 
-  it('exposes methods', function () {
-    expect(typeof window.lyftWebButton.initialize).toEqual('function');
-    expect(typeof window.lyftWebButton.onGetCostsSuccess).toEqual('function');
-    expect(typeof window.lyftWebButton.onGetEtasSuccess).toEqual('function');
+  it('exposes some methods', function () {
+    expect(typeof lyftWebButton.initialize).toEqual('function');
+    expect(typeof lyftWebButton.onGetCostsSuccess).toEqual('function');
+    expect(typeof lyftWebButton.onGetEtasSuccess).toEqual('function');
+  });
+
+  describe('initialize', function () {
+
+    it('is callable', function () {
+      expect.spyOn(lyftWebButton, 'initialize');
+      lyftWebButton.initialize();
+      expect(lyftWebButton.initialize).toHaveBeenCalled();
+    });
+
   });
 
 });
