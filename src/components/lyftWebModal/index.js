@@ -6,7 +6,10 @@ var selector = require('../../services/selector.js');
 require('./index.css');
 
 /**
- * lyftWebModal
+ * lyftWebModal is a DOM manipulation widget.
+ * @param {Object} api Api service.
+ * @param {Object} selector Selector service.
+ * @returns {Object} Singleton of lyftWebModal.
  */
 var lyftWebModal = (function(api, selector) {
 

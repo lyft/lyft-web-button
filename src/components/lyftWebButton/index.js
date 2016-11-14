@@ -7,7 +7,10 @@ var lyftWebModal = require('../lyftWebModal/index.js');
 require('./index.css');
 
 /**
- * lyftWebButton
+ * lyftWebButton is a DOM manipulation widget.
+ * @param {Object} api Api service.
+ * @param {Object} selector Selector service.
+ * @returns {Object} Singleton of lyftWebButton.
  */
 var lyftWebButton = (function(api, selector) {
 

@@ -53,7 +53,10 @@
 	__webpack_require__(10);
 
 	/**
-	 * lyftWebButton
+	 * lyftWebButton is a DOM manipulation widget.
+	 * @param {Object} api Api service.
+	 * @param {Object} selector Selector service.
+	 * @returns {Object} Singleton of lyftWebButton.
 	 */
 	var lyftWebButton = (function(api, selector) {
 
@@ -451,7 +454,10 @@
 	__webpack_require__(5);
 
 	/**
-	 * lyftWebModal
+	 * lyftWebModal is a DOM manipulation widget.
+	 * @param {Object} api Api service.
+	 * @param {Object} selector Selector service.
+	 * @returns {Object} Singleton of lyftWebModal.
 	 */
 	var lyftWebModal = (function(api, selector) {
 
