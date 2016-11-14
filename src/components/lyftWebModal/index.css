@@ -1,4 +1,4 @@
-/* common styles */
+/* small styles */
 .lyft-web-modal {
   position: fixed;
   top: 0;
@@ -31,8 +31,8 @@
   right: 0;
   opacity: 0;
   width: 100%;
-  max-width: 640px;
-  margin: 100px auto 0 auto;
+  max-width: 320px;
+  margin: 20px auto 0 auto;
   padding: 0;
   color: #000000;
   font-family: sans-serif;
@@ -79,13 +79,13 @@
 }
 .lyft-web-modal > .content > .map-container > .map-label > .map-label-name {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 }
 .lyft-web-modal > .content > .map-container > .map-label > .map-label-description {
   display: block;
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 300;
 }
 .lyft-web-modal > .content > .map-container > .map-marker {
@@ -100,7 +100,7 @@
 .lyft-web-modal > .content > .frame-container > .frame-before {
   position: static;
   z-index: 1;
-  padding: 20px;
+  padding: 10px;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0.4s, opacity 0.4s;
@@ -118,7 +118,7 @@
   left: 0;
   right: 0;
   z-index: 2;
-  padding: 20px;
+  padding: 10px;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0.4s, opacity 0.4s;
@@ -175,24 +175,24 @@
   fill: #FFFFFF;
 }
 .lyft-web-modal > .content .text-container {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .lyft-web-modal > .content .text-container > h1 {
   margin: 0 0 0 0;
   color: #352384;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
 }
 .lyft-web-modal > .content .text-container > p {
   width: 100%;
   max-width: 320px;
-  margin: 10px auto 0 auto;
+  margin: 5px auto 0 auto;
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 .lyft-web-modal > .content .message-form-container {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .lyft-web-modal > .content .message-form-container > form > .message-form-input {
   /* lyft style attributes */
@@ -243,19 +243,20 @@
   /* element-specific attributes */
   width: 100%;
   max-width: 320px;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
 }
 .lyft-web-modal > .content .open-app-container {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .lyft-web-modal > .content .open-app-container > .open-app-separator {
   display: block;
   margin: 0 0 0 0;
   color: #000000;
+  font-weight: 300;
 }
 .lyft-web-modal > .content .open-app-container > .open-app-cta {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 10px;
   color: #FF00BF;
   text-decoration: none;
 }
@@ -267,6 +268,51 @@
   margin-top: 20px;
   color: #FFFFFF;
   font-family: Arial, sans-serif;
-  font-size: 48px;
+  font-size: 36px;
   text-decoration: none;
+}
+
+/* large styles */
+@media(min-width:768px) {
+  .lyft-web-modal > .content {
+    max-width: 640px;
+    margin: 40px auto 0 auto;
+  }
+  .lyft-web-modal > .content > .map-container > .map-label > .map-label-name {
+    font-size: 16px;
+  }
+  .lyft-web-modal > .content > .map-container > .map-label > .map-label-description {
+    font-size: 12px;
+  }
+  .lyft-web-modal > .content > .frame-container > .frame-before {
+    padding: 20px;
+  }
+  .lyft-web-modal > .content > .frame-container > .frame-after {
+    padding: 20px;
+  }
+  .lyft-web-modal > .content .text-container {
+    margin-top: 20px;
+  }
+  .lyft-web-modal > .content .text-container > h1 {
+    font-size: 24px;
+  }
+  .lyft-web-modal > .content .text-container > p {
+    margin: 10px auto 0 auto;
+    font-size: 16px;
+  }
+  .lyft-web-modal > .content .message-form-container {
+    margin-top: 20px;
+  }
+  .lyft-web-modal > .content .message-form-container > form > .message-form-button {
+    margin: 10px 0 0 0;
+  }
+  .lyft-web-modal > .content .open-app-container {
+    margin-top: 20px;
+  }
+  .lyft-web-modal > .content .open-app-container > .open-app-cta {
+    margin-top: 20px;
+  }
+  .lyft-web-modal > .footer > .close {
+    font-size: 48px;
+  }
 }
