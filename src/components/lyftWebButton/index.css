@@ -1,6 +1,6 @@
-/* common styles */
+/* small styles */
 .lyft-web-button {
-  padding: 18px 20px;
+  padding: 5px 10px;
   color: #000000;
   font-family: sans-serif;
   background-color: #FFFFFF;
@@ -11,39 +11,65 @@
 }
 .lyft-web-button > .lyft-logo {
   display: inline-block;
-  width: 55px;
+  width: 48px;
   height: auto;
+  margin-top: 4px;
   vertical-align: middle;
 }
 .lyft-web-button > .cta-eta {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
   text-align: left;
   vertical-align: middle;
 }
 .lyft-web-button > .cta-eta > .cta {
   display: block;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 300;
 }
 .lyft-web-button > .cta-eta > .eta {
   display: block;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 300;
 }
 .lyft-web-button > .arrow-icon {
   display: inline-block;
   width: 18px;
   height: auto;
-  margin-left: 20px;
+  margin-left: 10px;
   vertical-align: middle;
 }
 .lyft-web-button > .price-range {
   display: inline-block;
   margin-left: 4px;
   vertical-align: middle;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 300;
+}
+
+/* large styles */
+@media(min-width:768px) {
+  .lyft-web-button {
+    padding: 18px 20px;
+  }
+  .lyft-web-button > .lyft-logo {
+    width: 55px;
+  }
+  .lyft-web-button > .cta-eta {
+    margin-left: 20px;
+  }
+  .lyft-web-button > .cta-eta > .cta {
+    font-size: 30px;
+  }
+  .lyft-web-button > .cta-eta > .eta {
+    font-size: 20px;
+  }
+  .lyft-web-button > .arrow-icon {
+    margin-left: 20px;
+  }
+  .lyft-web-button > .price-range {
+    font-size: 20px;
+  }
 }
 
 /* hot-pink */
