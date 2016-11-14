@@ -56,10 +56,11 @@
 }
 .lyft-web-modal > .content > .map-container {
   width: 100%;
-  height: 200px; /* background-image src will be 300px */
+  height: 150px; /* background-image src will be 300px */
   background-color: #EEEEEE;
-  background-position: center top; /* bump the marker down by 100px */
+  background-position: center top; /* bump the marker down by 150px */
   background-repeat: no-repeat;
+  background-size: 167% 167%;
   -webkit-border-radius: 8px 8px 0 0;
      -moz-border-radius: 8px 8px 0 0;
           border-radius: 8px 8px 0 0;
@@ -67,8 +68,8 @@
 .lyft-web-modal > .content > .map-container > .map-label {
   display: inline-block;
   max-width: 300px;
-  margin: 20px auto 0 auto;
-  padding: 10px;
+  margin: 10px auto 0 auto;
+  padding: 5px;
   background-color: #FFFFFF;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
@@ -277,6 +278,14 @@
   .lyft-web-modal > .content {
     max-width: 640px;
     margin: 40px auto 0 auto;
+  }
+  .lyft-web-modal > .content > .map-container {
+    height: 200px;
+    background-size: auto;
+  }
+  .lyft-web-modal > .content > .map-container > .map-label {
+    margin: 20px auto 0 auto;
+    padding: 10px;
   }
   .lyft-web-modal > .content > .map-container > .map-label > .map-label-name {
     font-size: 16px;
