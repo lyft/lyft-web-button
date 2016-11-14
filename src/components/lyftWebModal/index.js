@@ -143,6 +143,7 @@ var lyftWebModal = (function(api, selector) {
   /**
    * Initialize.
    * @param {Object} options
+   * @param {string} options.clientId
    * @param {string} options.clientToken
    * @param {Object} options.location
    * @param {string} options.location.address
@@ -152,6 +153,7 @@ var lyftWebModal = (function(api, selector) {
    */
   function initialize(options) {
     // parse arguments
+    api.setClientId(options.clientId);
     api.setClientToken(options.clientToken);
     // create element tree
     createElements();

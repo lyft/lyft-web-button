@@ -10,18 +10,21 @@ var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
 var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
 
 // configuration
+var client_id;
+function setClientId(value) {client_id = value;}
 var client_token;
 function setClientToken(value) {client_token = value;}
 
 /**
- * Requests JSONP with injected `client_token`.
+ * Requests JSONP with injected credentials.
  * @param {Object} data Required.
  * @param {function} callback Optional.
  * @param {string} url Required.
  */
-function requestWithClientToken(data, callback, url) {
+function requestWithCredentials(data, callback, url) {
   /* build data payload */
   data = data || {};
+  data.client_id = client_id;
   data.client_token = client_token;
   /* perform request */
   return jsonp.request({
@@ -42,7 +45,7 @@ function requestWithClientToken(data, callback, url) {
  * @param {function} callback Optional.
  */
 function getCosts(data, callback) {
-  return requestWithClientToken(data, callback, GET_COSTS_URL);
+  return requestWithCredentials(data, callback, GET_COSTS_URL);
 }
 
 /**
@@ -53,7 +56,7 @@ function getCosts(data, callback) {
  * @param {function} callback Optional.
  */
 function getDrivers(data, callback) {
-  return requestWithClientToken(data, callback, GET_DRIVERS_URL);
+  return requestWithCredentials(data, callback, GET_DRIVERS_URL);
 }
 
 /**
@@ -65,7 +68,7 @@ function getDrivers(data, callback) {
  * @param {function} callback Optional.
  */
 function getEtas(data, callback) {
-  return requestWithClientToken(data, callback, GET_ETAS_URL);
+  return requestWithCredentials(data, callback, GET_ETAS_URL);
 }
 
 /**
@@ -77,7 +80,7 @@ function getEtas(data, callback) {
  * @param {function} callback Optional.
  */
 function getRideTypes(data, callback) {
-  return requestWithClientToken(data, callback, GET_RIDE_TYPES_URL);
+  return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
 }
 
 /**
@@ -90,7 +93,7 @@ function getRideTypes(data, callback) {
  * @param {function} callback Optional.
  */
 function postMessages(data, callback) {
-  return requestWithClientToken(data, callback, POST_MESSAGES_URL);
+  return requestWithCredentials(data, callback, POST_MESSAGES_URL);
 }
 
 // exports
@@ -100,5 +103,6 @@ module.exports = {
   getEtas: getEtas,
   getRideTypes: getRideTypes,
   postMessages: postMessages,
+  setClientId: setClientId,
   setClientToken: setClientToken
 };
