@@ -133,8 +133,8 @@
 }
 .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {
   display: inline-block;
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   vertical-align: middle;
   background-color: #FF00BF;
   background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
@@ -142,21 +142,21 @@
   background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);
   background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);
   border: none;
-  -webkit-border-radius: 15px;
-     -moz-border-radius: 15px;
-          border-radius: 15px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {
   display: inline-block;
-  width: 45px;
-  height: 32px;
-  margin: 17px 0 0 0;
+  width: 30px;
+  height: 21px;
+  margin: 11px 0 0 0;
   fill: #FFFFFF;
 }
 .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {
   display: inline-block;
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   vertical-align: middle;
   background-color: #FF00BF;
   background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
@@ -170,9 +170,9 @@
 }
 .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {
   display: inline-block;
-  width: 42px;
-  height: 42px;
-  margin: 10px 0 0 0;
+  width: 30px;
+  height: 30px;
+  margin: 5px 0 0 0;
   fill: #FFFFFF;
 }
 .lyft-web-modal > .content .text-container {
@@ -217,8 +217,9 @@
           box-shadow: none;
   /* element-specific attributes */
   width: 100%;
-  max-width: 320px;
+  max-width: 298px; /* manually correct for border */
   margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 .lyft-web-modal > .content .message-form-container > form > .message-form-button {
   /* lyft style attributes */
@@ -243,7 +244,7 @@
           border-radius: 5px;
   /* element-specific attributes */
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   margin: 5px 0 0 0;
 }
 .lyft-web-modal > .content .open-app-container {
@@ -253,12 +254,14 @@
   display: block;
   margin: 0 0 0 0;
   color: #000000;
+  font-size: 14px;
   font-weight: 300;
 }
 .lyft-web-modal > .content .open-app-container > .open-app-cta {
   display: inline-block;
   margin-top: 10px;
   color: #FF00BF;
+  font-size: 14px;
   text-decoration: none;
 }
 .lyft-web-modal > .footer {
@@ -294,10 +297,28 @@
     font-size: 12px;
   }
   .lyft-web-modal > .content > .frame-container > .frame-before {
-    padding: 20px;
+    padding: 15px;
   }
   .lyft-web-modal > .content > .frame-container > .frame-after {
-    padding: 20px;
+    padding: 15px;
+  }
+  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {
+    width: 64px;
+    height: 64px;
+  }
+  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {
+    width: 45px;
+    height: 32px;
+    margin: 17px 0 0 0;
+  }
+  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {
+    width: 64px;
+    height: 64px;
+  }
+  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {
+    width: 42px;
+    height: 42px;
+    margin: 10px 0 0 0;
   }
   .lyft-web-modal > .content .text-container {
     margin-top: 20px;
@@ -312,14 +333,22 @@
   .lyft-web-modal > .content .message-form-container {
     margin-top: 20px;
   }
+  .lyft-web-modal > .content .message-form-container > form > .message-form-input {
+    max-width: 318px; /* manually correct for border */
+  }
   .lyft-web-modal > .content .message-form-container > form > .message-form-button {
+    max-width: 320px;
     margin: 10px 0 0 0;
   }
   .lyft-web-modal > .content .open-app-container {
     margin-top: 20px;
   }
+  .lyft-web-modal > .content .open-app-container > .open-app-separator {
+    font-size: 16px;
+  }
   .lyft-web-modal > .content .open-app-container > .open-app-cta {
     margin-top: 20px;
+    font-size: 16px;
   }
   .lyft-web-modal > .footer > .close {
     font-size: 48px;
