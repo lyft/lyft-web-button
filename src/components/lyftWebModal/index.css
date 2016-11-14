@@ -100,6 +100,7 @@
 .lyft-web-modal > .content > .frame-container > .frame-before {
   position: static;
   z-index: 1;
+  padding: 20px;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0.4s, opacity 0.4s;
@@ -117,6 +118,7 @@
   left: 0;
   right: 0;
   z-index: 2;
+  padding: 20px;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0.4s, opacity 0.4s;
@@ -132,7 +134,6 @@
   display: inline-block;
   width: 64px;
   height: 64px;
-  margin: 20px 0 0 0;
   vertical-align: middle;
   background-color: #FF00BF;
   background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
@@ -155,7 +156,6 @@
   display: inline-block;
   width: 64px;
   height: 64px;
-  margin: 20px 0 0 0;
   vertical-align: middle;
   background-color: #FF00BF;
   background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);
@@ -174,8 +174,11 @@
   margin: 10px 0 0 0;
   fill: #FFFFFF;
 }
+.lyft-web-modal > .content .text-container {
+  margin-top: 20px;
+}
 .lyft-web-modal > .content .text-container > h1 {
-  margin: 20px 0 10px 0;
+  margin: 0 0 0 0;
   color: #352384;
   font-size: 24px;
   font-weight: 500;
@@ -183,10 +186,13 @@
 .lyft-web-modal > .content .text-container > p {
   width: 100%;
   max-width: 320px;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
   color: #000000;
   font-size: 16px;
   font-weight: 300;
+}
+.lyft-web-modal > .content .message-form-container {
+  margin-top: 20px;
 }
 .lyft-web-modal > .content .message-form-container > form > .message-form-input {
   /* lyft style attributes */
@@ -211,7 +217,7 @@
   /* element-specific attributes */
   width: 100%;
   max-width: 320px;
-  margin: 20px 0 0 0;
+  margin: 0 0 0 0;
 }
 .lyft-web-modal > .content .message-form-container > form > .message-form-button {
   /* lyft style attributes */
@@ -237,17 +243,19 @@
   /* element-specific attributes */
   width: 100%;
   max-width: 320px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 0 0;
 }
 .lyft-web-modal > .content .open-app-container {
-  padding-bottom: 20px;
+  margin-top: 20px;
 }
 .lyft-web-modal > .content .open-app-container > .open-app-separator {
   display: block;
-  margin: 0 0 20px 0;
+  margin: 0 0 0 0;
   color: #000000;
 }
 .lyft-web-modal > .content .open-app-container > .open-app-cta {
+  display: inline-block;
+  margin-top: 20px;
   color: #FF00BF;
   text-decoration: none;
 }

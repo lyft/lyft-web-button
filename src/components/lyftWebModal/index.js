@@ -118,6 +118,11 @@ var lyftWebModal = (function(api, selector) {
       frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
       selector.removeClass(frameBefore, 'on');
       selector.addClass(frameAfter, 'on');
+      // remove extra whitespace
+      window.setTimeout(function () {
+        frameBefore.style = 'display:none;';
+        frameAfter.style = 'position:relative;';
+      }, 400);
     }
   }
 
