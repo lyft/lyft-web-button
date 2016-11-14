@@ -17,7 +17,7 @@ module.exports = function (config) {
     exclude: [],
 
     // preprocess matching files before serving them to the browser
-    preprocessors: {'karma.unit.js': ['webpack']},
+    preprocessors: {'karma.unit.js': ['webpack'], 'test/**/*.spec.@(js|jsx)': ['webpack']},
 
     // test results reporter to use
     reporters: ['progress'],

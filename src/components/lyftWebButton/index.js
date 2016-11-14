@@ -1,7 +1,7 @@
 // dependencies
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
-var lyftWebModal = require('../lyftWebModal/index.js');
+require('../lyftWebModal/index.js');  // binds itself to window
 
 // styles
 require('./index.css');

@@ -47,7 +47,7 @@
 	// dependencies
 	var api = __webpack_require__(1);
 	var selector = __webpack_require__(3);
-	var lyftWebModal = __webpack_require__(4);
+	__webpack_require__(4);  // binds itself to window
 
 	// styles
 	__webpack_require__(10);
