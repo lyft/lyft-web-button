@@ -263,8 +263,10 @@
   text-align: center;
 }
 .lyft-web-modal > .footer > .close {
+  display: inline-block;
+  margin-top: 20px;
   color: #FFFFFF;
   font-family: Arial, sans-serif;
-  font-size: 60px;
+  font-size: 48px;
   text-decoration: none;
 }
