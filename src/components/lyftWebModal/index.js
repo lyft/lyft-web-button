@@ -122,7 +122,7 @@ var lyftWebModal = (function(api, selector) {
       selector.removeClass(frameBefore, 'on');
       selector.addClass(frameAfter, 'on');
       // remove extra whitespace
-      window.setTimeout(function () {
+      setTimeout(function () {
         frameBefore.style = 'display:none;';
         frameAfter.style = 'position:relative;';
       }, 400);
@@ -131,14 +131,14 @@ var lyftWebModal = (function(api, selector) {
 
   function open() {
     document.body.insertBefore(rootElement, document.body.childNodes[0]);
-    window.setTimeout(function () {
+    setTimeout(function () {
       selector.addClass(rootElement, 'on');
     }, 10);
   }
 
   function close() {
     selector.removeClass(rootElement, 'on');
-    window.setTimeout(function () {
+    setTimeout(function () {
       rootElement.parentElement.removeChild(rootElement);
     }, 400);
   }
@@ -177,4 +177,4 @@ var lyftWebModal = (function(api, selector) {
 
 })(api, selector);
 
-module.exports = window.lyftWebModal = lyftWebModal;
+module.exports = lyftWebModal;

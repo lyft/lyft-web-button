@@ -1,8 +1,8 @@
-require('../../dist/lyftWebButton.js');  // binds itself to window
+window['lyftWebButton'] = require('../../../../src/components/lyftWebButton/index.js');
 
-describe('dist/lyftWebButton', function () {
+describe('lyftWebButton', function () {
 
-  it('binds itself to window', function () {
+  it('exists', function () {
     expect(window.lyftWebButton).toExist();
   });
 

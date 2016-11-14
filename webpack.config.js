@@ -1,10 +1,10 @@
 // dependencies
 var webpack = require('webpack');
 
-// webpack configuration
+// development webpack configuration
 var webpackConfig = {
   entry: {
-    lyftWebButton: './src/components/lyftWebButton/index.js'
+    lyftWebButton: './webpack.entry.lyftWebButton.js'
   },
   output: {
     path: './dist',
@@ -20,7 +20,7 @@ var webpackConfig = {
   plugins: []
 };
 
-// production
+// production webpack configuration
 if (process.env.NODE_ENV === 'production') {
   // filename
   webpackConfig.output.filename = '[name].min.js';

@@ -44,148 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// dependencies
-	var api = __webpack_require__(1);
-	var selector = __webpack_require__(3);
-	__webpack_require__(4);  // binds itself to window
-
-	// styles
-	__webpack_require__(10);
-
-	/**
-	 * lyftWebButton is a DOM manipulation widget.
-	 * @param {Object} api Api service.
-	 * @param {Object} selector Selector service.
-	 * @returns {Object} Singleton of lyftWebButton.
-	 */
-	var lyftWebButton = (function(api, selector) {
-
-	  /* ========== */
-	  /* Properties */
-	  /* ========== */
-
-	  var etaElement;
-	  var priceRangeElement;
-	  var rootElement;
-
-	  /* ======================== */
-	  /* DOM Manipulation Methods */
-	  /* ======================== */
-
-	  function createElements() {
-	    // create tree from template
-	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(12);
-	    // store references to important elements
-	    rootElement       = template.childNodes[0];
-	    priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
-	    etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
-	    // return reference to root element
-	    return rootElement;
-	  }
-
-	  function bindEvents(onClick) {
-	    // root element: close modal window on click
-	    if (rootElement) {
-	      rootElement.onclick = onClick;
-	    }
-	  }
-
-	  function updateContents(theme) {
-	    selector.addClass(rootElement, theme);
-	  }
-
-	  /* ================ */
-	  /* Workflow Methods */
-	  /* ================ */
-
-	  function onGetCostsSuccess(data) {
-	    if (data.cost_estimates && data.cost_estimates.length) {
-	      for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
-	        if (data.cost_estimates[i].ride_type === 'lyft') {
-	          var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
-	          var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
-	          if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
-	              !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-	            if (priceRangeElement) {
-	              priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
-	            }
-	          }
-	        }
-	      }
-	    }
-	  }
-
-	  function onGetEtasSuccess(data) {
-	    if (data.eta_estimates && data.eta_estimates.length) {
-	      for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
-	        if (data.eta_estimates[i].ride_type === 'lyft') {
-	          var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
-	          if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-	            if (etaElement) {
-	              etaElement.textContent = 'Lyft in '+eta+' min';
-	            }
-	          }
-	        }
-	      }
-	    }
-	  }
-
-	  /**
-	   * Initialize.
-	   * @param {Object} options
-	   * @param {string} options.clientId
-	   * @param {string} options.clientToken
-	   * @param {Object} options.location
-	   * @param {string} options.location.address
-	   * @param {string} options.location.latitude
-	   * @param {string} options.location.longitude
-	   * @param {string} options.location.name
-	   * @param {Object} options.parentElement
-	   * @param {string} options.theme
-	   */
-	  function initialize(options) {
-	    // parse arguments
-	    api.setClientId(options.clientId);
-	    api.setClientToken(options.clientToken);
-	    // create element tree
-	    createElements();
-	    bindEvents(options.onClick);
-	    updateContents(options.theme);
-	    // insert element into DOM
-	    options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
-	    // get device location
-	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-	      navigator.geolocation.getCurrentPosition(function(position) {
-	        // request costs
-	        api.getCosts({
-	          start_lat: position.coords.latitude,
-	          start_lng: position.coords.longitude,
-	          end_lat: options.location.latitude,
-	          end_lng: options.location.longitude
-	        }, 'lyftWebButton.onGetCostsSuccess');
-	        // request etas
-	        api.getEtas({
-	          lat: position.coords.latitude,
-	          lng: position.coords.longitude
-	        }, 'lyftWebButton.onGetEtasSuccess');
-	      });
-	    }
-	  }
-
-	  /* ===================================== */
-	  /* Publicly-Exposed Properties & Methods */
-	  /* ===================================== */
-
-	  return {
-	    initialize: initialize,
-	    onGetCostsSuccess: onGetCostsSuccess,
-	    onGetEtasSuccess: onGetEtasSuccess
-	  };
-
-	})(api, selector);
-
-	module.exports = window.lyftWebButton = lyftWebButton;
+	// webpack begins its journey here
+	window['lyftWebModal'] = __webpack_require__(1);
+	window['lyftWebButton'] = __webpack_require__(10);
 
 
 /***/ },
@@ -193,262 +54,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// dependencies
-	var jsonp = __webpack_require__(2);
-
-	// constants
-	var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
-	var GET_COSTS_URL      = SERVER_URL + '/get_costs';
-	var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
-	var GET_ETAS_URL       = SERVER_URL + '/get_etas';
-	var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
-	var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
-
-	// configuration
-	var client_id;
-	function setClientId(value) {client_id = value;}
-	var client_token;
-	function setClientToken(value) {client_token = value;}
-
-	/**
-	 * Requests JSONP with injected credentials.
-	 * @param {Object} data Required.
-	 * @param {function} callback Optional.
-	 * @param {string} url Required.
-	 */
-	function requestWithCredentials(data, callback, url) {
-	  /* build data payload */
-	  data = data || {};
-	  data.client_id = client_id;
-	  data.client_token = client_token;
-	  /* perform request */
-	  return jsonp.request({
-	    url: url,
-	    data: data,
-	    callback: callback
-	  });
-	}
-
-	/**
-	 * Gets `costs`.
-	 * @param {Object} data Required.
-	 * @param {string} data.start_lat Required.
-	 * @param {string} data.start_lng Required.
-	 * @param {string} data.end_lat Required.
-	 * @param {string} data.end_lng Required.
-	 * @param {string} data.ride_type Optional.
-	 * @param {function} callback Optional.
-	 */
-	function getCosts(data, callback) {
-	  return requestWithCredentials(data, callback, GET_COSTS_URL);
-	}
-
-	/**
-	 * Gets `drivers`.
-	 * @param {Object} data Required.
-	 * @param {string} data.lat Required.
-	 * @param {string} data.lng Required.
-	 * @param {function} callback Optional.
-	 */
-	function getDrivers(data, callback) {
-	  return requestWithCredentials(data, callback, GET_DRIVERS_URL);
-	}
-
-	/**
-	 * Gets `etas`.
-	 * @param {Object} data Required.
-	 * @param {string} data.lat Required.
-	 * @param {string} data.lng Required.
-	 * @param {string} data.ride_type Optional.
-	 * @param {function} callback Optional.
-	 */
-	function getEtas(data, callback) {
-	  return requestWithCredentials(data, callback, GET_ETAS_URL);
-	}
-
-	/**
-	 * Gets `ride_types`.
-	 * @param {Object} data Required.
-	 * @param {string} data.lat Required.
-	 * @param {string} data.lng Required.
-	 * @param {string} data.ride_type Optional.
-	 * @param {function} callback Optional.
-	 */
-	function getRideTypes(data, callback) {
-	  return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
-	}
-
-	/**
-	 * POSTs `messages`.
-	 * @param {Object} data Required.
-	 * @param {string} data.phone_number Required.
-	 * @param {string} data.client_id Optional.
-	 * @param {string} data.end_lat Optional.
-	 * @param {string} data.end_lng Optional.
-	 * @param {function} callback Optional.
-	 */
-	function postMessages(data, callback) {
-	  return requestWithCredentials(data, callback, POST_MESSAGES_URL);
-	}
-
-	// exports
-	module.exports = {
-	  getCosts: getCosts,
-	  getDrivers: getDrivers,
-	  getEtas: getEtas,
-	  getRideTypes: getRideTypes,
-	  postMessages: postMessages,
-	  setClientId: setClientId,
-	  setClientToken: setClientToken
-	};
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	/**
-	 * Injects a script into the DOM with given options.
-	 * @param {Object} options Required.
-	 * @param {string} options.src Required.
-	 * @param {boolean} options.async Optional.
-	 * @param {function} options.callback Optional.
-	 * @param {boolean} options.defer Optional.
-	 */
-	function injectScript(options) {
-	  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
-	    throw new TypeError('injectScript missing one of: options, options.src');
-	  }
-
-	  var headElement = document.getElementsByTagName('head')[0] || document.documentElement;
-	  var scriptElement = document.createElement('script');
-	  scriptElement.src = options.src;
-	  scriptElement.async = options.async || false;
-	  scriptElement.defer = options.defer || false;
-
-	  /* polyfill `onload` event for some older browsers */
-	  var isDone = false;
-	  scriptElement.onload = scriptElement.onreadystatechange = function (event) {
-	    /* if script is loaded... */
-	    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
-	      isDone = true;
-	      /* invoke user callback */
-	      var callbackResult =
-	        (Object.prototype.toString.call(options.callback) === '[object Function]') ?
-	        options.callback(event) :
-	        undefined;
-	      /* unset event handler (avoid memory leak) */
-	      scriptElement.onload = scriptElement.onreadystatechange = null;
-	      /* remove DOM element */
-	      if (headElement && scriptElement.parentNode) {
-	        headElement.removeChild(scriptElement);
-	      }
-	      /* return user callback result */
-	      return callbackResult;
-	    }
-	  };
-	  /* insertBefore instead of appendChild for browser compatibility */
-	  headElement.insertBefore(scriptElement, headElement.firstChild);
-	}
-
-	/**
-	 * Recursively serializes data as a query-parameter string.
-	 * @param {Object} obj Data to serialize (required).
-	 * @param {string} pfx Key prefix for data chunk (optional).
-	 * @returns {string} Query-parameter string.
-	 */
-	function serialize(obj, pfx) {
-	  var results = [];
-	  for(var prop in obj) {
-	    if (obj.hasOwnProperty(prop)) {
-	      var key = pfx ? (pfx + '[' + prop + ']') : prop;
-	      var val = obj[prop]
-	      results.push(
-	        (typeof val === 'object') ?
-	        serialize(val, key) :
-	        (encodeURIComponent(key) + '=' + encodeURIComponent(val))
-	      );
-	    }
-	  }
-	  return results.join('&');
-	}
-
-	/**
-	 * Performs a JSONP request.
-	 * @param {Object} options Required.
-	 * @param {string} options.url Required.
-	 * @param {string} options.callback Callback path relative to window context (optional).
-	 * @param {Object} options.data JSON-compatible data payload (optional).
-	 */
-	function request(options) {
-	  if (typeof options === 'undefined' || typeof options.url === 'undefined') {
-	    throw new TypeError('request missing one of: options, options.url');
-	  }
-	  /* construct the request src */
-	  var src = options.url +
-	    (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback +
-	    '&' + serialize(options.data);
-	  /* perform the request */
-	  return injectScript({src: src});
-	}
-
-	// exports
-	module.exports = {
-	  request: request
-	};
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	function addClass(element, className) {
-	    var classList = element.className.split(' ');
-	    if (classList.indexOf(className) === -1) {classList.push(className);}
-	    element.className = classList.join(' ');
-	}
-
-	function removeClass(element, className) {
-	    var classList = element.className.split(' ');
-	    var classIndex = classList.indexOf(className);
-	    if (classIndex !== -1) {classList.splice(classIndex, 1);}
-	    element.className = classList.join(' ');
-	}
-
-	function selectChildElementByAttribute(element, attributeName, attributeValue) {
-	  var childNodes = element.childNodes || [];
-	  for (var i = 0, l = childNodes.length; i < l; i++) {
-	    if (childNodes[i][attributeName] === attributeValue) {
-	      return childNodes[i];
-	    }
-	  }
-	}
-
-	function selectChildElement(element, attributes) {
-	  var currentElement = element;
-	  for (var i = 0, l = attributes.length; i < l; i++) {
-	    if (!currentElement || !attributes[i].length) {return;}  /* short-circuit on failure */
-	    var attributeName = (attributes[i][0] === '.') ? 'className' : 'id';
-	    var attributeValue = attributes[i].slice(1);
-	    currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);
-	  }
-	  return currentElement;
-	}
-
-	// exports
-	module.exports = {
-	  addClass: addClass,
-	  removeClass: removeClass,
-	  selectChildElement: selectChildElement
-	};
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// dependencies
-	var api = __webpack_require__(1);
-	var selector = __webpack_require__(3);
+	var api = __webpack_require__(2);
+	var selector = __webpack_require__(4);
 
 	// styles
 	__webpack_require__(5);
@@ -570,7 +177,7 @@
 	      selector.removeClass(frameBefore, 'on');
 	      selector.addClass(frameAfter, 'on');
 	      // remove extra whitespace
-	      window.setTimeout(function () {
+	      setTimeout(function () {
 	        frameBefore.style = 'display:none;';
 	        frameAfter.style = 'position:relative;';
 	      }, 400);
@@ -579,14 +186,14 @@
 
 	  function open() {
 	    document.body.insertBefore(rootElement, document.body.childNodes[0]);
-	    window.setTimeout(function () {
+	    setTimeout(function () {
 	      selector.addClass(rootElement, 'on');
 	    }, 10);
 	  }
 
 	  function close() {
 	    selector.removeClass(rootElement, 'on');
-	    window.setTimeout(function () {
+	    setTimeout(function () {
 	      rootElement.parentElement.removeChild(rootElement);
 	    }, 400);
 	  }
@@ -625,7 +232,261 @@
 
 	})(api, selector);
 
-	module.exports = window.lyftWebModal = lyftWebModal;
+	module.exports = lyftWebModal;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// dependencies
+	var jsonp = __webpack_require__(3);
+
+	// constants
+	var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
+	var GET_COSTS_URL      = SERVER_URL + '/get_costs';
+	var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
+	var GET_ETAS_URL       = SERVER_URL + '/get_etas';
+	var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
+	var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
+
+	// configuration
+	var client_id;
+	function setClientId(value) {client_id = value;}
+	var client_token;
+	function setClientToken(value) {client_token = value;}
+
+	/**
+	 * Requests JSONP with injected credentials.
+	 * @param {Object} data Required.
+	 * @param {function} callback Optional.
+	 * @param {string} url Required.
+	 */
+	function requestWithCredentials(data, callback, url) {
+	  /* build data payload */
+	  data = data || {};
+	  data.client_id = client_id;
+	  data.client_token = client_token;
+	  /* perform request */
+	  return jsonp.request({
+	    url: url,
+	    data: data,
+	    callback: callback
+	  });
+	}
+
+	/**
+	 * Gets `costs`.
+	 * @param {Object} data Required.
+	 * @param {string} data.start_lat Required.
+	 * @param {string} data.start_lng Required.
+	 * @param {string} data.end_lat Required.
+	 * @param {string} data.end_lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getCosts(data, callback) {
+	  return requestWithCredentials(data, callback, GET_COSTS_URL);
+	}
+
+	/**
+	 * Gets `drivers`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {function} callback Optional.
+	 */
+	function getDrivers(data, callback) {
+	  return requestWithCredentials(data, callback, GET_DRIVERS_URL);
+	}
+
+	/**
+	 * Gets `etas`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getEtas(data, callback) {
+	  return requestWithCredentials(data, callback, GET_ETAS_URL);
+	}
+
+	/**
+	 * Gets `ride_types`.
+	 * @param {Object} data Required.
+	 * @param {string} data.lat Required.
+	 * @param {string} data.lng Required.
+	 * @param {string} data.ride_type Optional.
+	 * @param {function} callback Optional.
+	 */
+	function getRideTypes(data, callback) {
+	  return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
+	}
+
+	/**
+	 * POSTs `messages`.
+	 * @param {Object} data Required.
+	 * @param {string} data.phone_number Required.
+	 * @param {string} data.client_id Optional.
+	 * @param {string} data.end_lat Optional.
+	 * @param {string} data.end_lng Optional.
+	 * @param {function} callback Optional.
+	 */
+	function postMessages(data, callback) {
+	  return requestWithCredentials(data, callback, POST_MESSAGES_URL);
+	}
+
+	// exports
+	module.exports = {
+	  getCosts: getCosts,
+	  getDrivers: getDrivers,
+	  getEtas: getEtas,
+	  getRideTypes: getRideTypes,
+	  postMessages: postMessages,
+	  setClientId: setClientId,
+	  setClientToken: setClientToken
+	};
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	/**
+	 * Injects a script into the DOM with given options.
+	 * @param {Object} options Required.
+	 * @param {string} options.src Required.
+	 * @param {boolean} options.async Optional.
+	 * @param {function} options.callback Optional.
+	 * @param {boolean} options.defer Optional.
+	 */
+	function injectScript(options) {
+	  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
+	    throw new TypeError('injectScript missing one of: options, options.src');
+	  }
+
+	  var headElement = document.getElementsByTagName('head')[0] || document.documentElement;
+	  var scriptElement = document.createElement('script');
+	  scriptElement.src = options.src;
+	  scriptElement.async = options.async || false;
+	  scriptElement.defer = options.defer || false;
+
+	  /* polyfill `onload` event for some older browsers */
+	  var isDone = false;
+	  scriptElement.onload = scriptElement.onreadystatechange = function (event) {
+	    /* if script is loaded... */
+	    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+	      isDone = true;
+	      /* invoke user callback */
+	      var callbackResult =
+	        (Object.prototype.toString.call(options.callback) === '[object Function]') ?
+	        options.callback(event) :
+	        undefined;
+	      /* unset event handler (avoid memory leak) */
+	      scriptElement.onload = scriptElement.onreadystatechange = null;
+	      /* remove DOM element */
+	      if (headElement && scriptElement.parentNode) {
+	        headElement.removeChild(scriptElement);
+	      }
+	      /* return user callback result */
+	      return callbackResult;
+	    }
+	  };
+	  /* insertBefore instead of appendChild for browser compatibility */
+	  headElement.insertBefore(scriptElement, headElement.firstChild);
+	}
+
+	/**
+	 * Recursively serializes data as a query-parameter string.
+	 * @param {Object} obj Data to serialize (required).
+	 * @param {string} pfx Key prefix for data chunk (optional).
+	 * @returns {string} Query-parameter string.
+	 */
+	function serialize(obj, pfx) {
+	  var results = [];
+	  for(var prop in obj) {
+	    if (obj.hasOwnProperty(prop)) {
+	      var key = pfx ? (pfx + '[' + prop + ']') : prop;
+	      var val = obj[prop]
+	      results.push(
+	        (typeof val === 'object') ?
+	        serialize(val, key) :
+	        (encodeURIComponent(key) + '=' + encodeURIComponent(val))
+	      );
+	    }
+	  }
+	  return results.join('&');
+	}
+
+	/**
+	 * Performs a JSONP request.
+	 * @param {Object} options Required.
+	 * @param {string} options.url Required.
+	 * @param {string} options.callback Callback path relative to window context (optional).
+	 * @param {Object} options.data JSON-compatible data payload (optional).
+	 */
+	function request(options) {
+	  if (typeof options === 'undefined' || typeof options.url === 'undefined') {
+	    throw new TypeError('request missing one of: options, options.url');
+	  }
+	  /* construct the request src */
+	  var src = options.url +
+	    (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback +
+	    '&' + serialize(options.data);
+	  /* perform the request */
+	  return injectScript({src: src});
+	}
+
+	// exports
+	module.exports = {
+	  request: request
+	};
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	function addClass(element, className) {
+	    var classList = element.className.split(' ');
+	    if (classList.indexOf(className) === -1) {classList.push(className);}
+	    element.className = classList.join(' ');
+	}
+
+	function removeClass(element, className) {
+	    var classList = element.className.split(' ');
+	    var classIndex = classList.indexOf(className);
+	    if (classIndex !== -1) {classList.splice(classIndex, 1);}
+	    element.className = classList.join(' ');
+	}
+
+	function selectChildElementByAttribute(element, attributeName, attributeValue) {
+	  var childNodes = element.childNodes || [];
+	  for (var i = 0, l = childNodes.length; i < l; i++) {
+	    if (childNodes[i][attributeName] === attributeValue) {
+	      return childNodes[i];
+	    }
+	  }
+	}
+
+	function selectChildElement(element, attributes) {
+	  var currentElement = element;
+	  for (var i = 0, l = attributes.length; i < l; i++) {
+	    if (!currentElement || !attributes[i].length) {return;}  /* short-circuit on failure */
+	    var attributeName = (attributes[i][0] === '.') ? 'className' : 'id';
+	    var attributeValue = attributes[i].slice(1);
+	    currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);
+	  }
+	  return currentElement;
+	}
+
+	// exports
+	module.exports = {
+	  addClass: addClass,
+	  removeClass: removeClass,
+	  selectChildElement: selectChildElement
+	};
 
 
 /***/ },
@@ -986,10 +847,160 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// dependencies
+	var api = __webpack_require__(2);
+	var selector = __webpack_require__(4);
+
+	// styles
+	__webpack_require__(11);
+
+	/**
+	 * lyftWebButton is a DOM manipulation widget.
+	 * @param {Object} api Api service.
+	 * @param {Object} selector Selector service.
+	 * @returns {Object} Singleton of lyftWebButton.
+	 */
+	var lyftWebButton = (function(api, selector) {
+
+	  /* ========== */
+	  /* Properties */
+	  /* ========== */
+
+	  var etaElement;
+	  var priceRangeElement;
+	  var rootElement;
+
+	  /* ======================== */
+	  /* DOM Manipulation Methods */
+	  /* ======================== */
+
+	  function createElements() {
+	    // create tree from template
+	    var template = document.createElement('div');
+	    template.innerHTML = __webpack_require__(13);
+	    // store references to important elements
+	    rootElement       = template.childNodes[0];
+	    priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
+	    etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
+	    // return reference to root element
+	    return rootElement;
+	  }
+
+	  function bindEvents(onClick) {
+	    // root element: bind user-specified event handler
+	    if (rootElement) {
+	      rootElement.onclick = onClick;
+	    }
+	  }
+
+	  function updateContents(theme) {
+	    // root element: apply user-specified theme
+	    if (rootElement && theme) {
+	      selector.addClass(rootElement, theme);
+	    }
+	  }
+
+	  /* ================ */
+	  /* Workflow Methods */
+	  /* ================ */
+
+	  function onGetCostsSuccess(data) {
+	    if (data.cost_estimates && data.cost_estimates.length) {
+	      for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
+	        if (data.cost_estimates[i].ride_type === 'lyft') {
+	          var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
+	          var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
+	          if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
+	              !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
+	            if (priceRangeElement) {
+	              priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+
+	  function onGetEtasSuccess(data) {
+	    if (data.eta_estimates && data.eta_estimates.length) {
+	      for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
+	        if (data.eta_estimates[i].ride_type === 'lyft') {
+	          var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
+	          if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
+	            if (etaElement) {
+	              etaElement.textContent = 'Lyft in '+eta+' min';
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+
+	  /**
+	   * Initialize.
+	   * @param {Object} options
+	   * @param {string} options.clientId
+	   * @param {string} options.clientToken
+	   * @param {Object} options.location
+	   * @param {string} options.location.address
+	   * @param {string} options.location.latitude
+	   * @param {string} options.location.longitude
+	   * @param {string} options.location.name
+	   * @param {Object} options.parentElement
+	   * @param {string} options.theme
+	   */
+	  function initialize(options) {
+	    // parse arguments
+	    api.setClientId(options.clientId);
+	    api.setClientToken(options.clientToken);
+	    // create element tree
+	    createElements();
+	    bindEvents(options.onClick);
+	    updateContents(options.theme);
+	    // insert element into DOM
+	    options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
+	    // get device location
+	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+	      navigator.geolocation.getCurrentPosition(function(position) {
+	        // request costs
+	        api.getCosts({
+	          start_lat: position.coords.latitude,
+	          start_lng: position.coords.longitude,
+	          end_lat: options.location.latitude,
+	          end_lng: options.location.longitude
+	        }, 'lyftWebButton.onGetCostsSuccess');
+	        // request etas
+	        api.getEtas({
+	          lat: position.coords.latitude,
+	          lng: position.coords.longitude
+	        }, 'lyftWebButton.onGetEtasSuccess');
+	      });
+	    }
+	  }
+
+	  /* ===================================== */
+	  /* Publicly-Exposed Properties & Methods */
+	  /* ===================================== */
+
+	  return {
+	    initialize: initialize,
+	    onGetCostsSuccess: onGetCostsSuccess,
+	    onGetEtasSuccess: onGetEtasSuccess
+	  };
+
+	})(api, selector);
+
+	module.exports = lyftWebButton;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(11);
+	var content = __webpack_require__(12);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -1009,7 +1020,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -1023,7 +1034,7 @@
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = "<button type=\"button\" class=\"lyft-web-button\" title=\"Lyft web button\">\n  <span class=\"lyft-logo\" title=\"Lyft logo\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 62 45\">\n      <path d=\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\" fill=\"#FF00BF\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <div class=\"cta-eta\">\n    <span class=\"cta\">Get a ride</span>\n    <span class=\"eta\" title=\"estimated time of arrival\"></span>\n  </div>\n  <span class=\"arrow-icon\" title=\"arrow icon\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 20 20\">\n      <path d=\"M14,13.7506336 L14,6 L6.24936644,6 L8.93723605,8.68786953 L3,17 L11.3121305,11.062764 L14,13.7506336 Z M0,10 C0,15.5228475 4.4771525,20 10,20 C15.5228475,20 20,15.5228475 20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,1.70234197e-14 1.48029737e-14,4.4771525 0,10 L0,10 Z\" fill=\"#000000\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <span class=\"price-range\" title=\"price range\"></span>\n</button>\n";

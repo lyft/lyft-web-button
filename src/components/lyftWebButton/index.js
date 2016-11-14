@@ -1,7 +1,6 @@
 // dependencies
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
-require('../lyftWebModal/index.js');  // binds itself to window
 
 // styles
 require('./index.css');
@@ -39,14 +38,17 @@ var lyftWebButton = (function(api, selector) {
   }
 
   function bindEvents(onClick) {
-    // root element: close modal window on click
+    // root element: bind user-specified event handler
     if (rootElement) {
       rootElement.onclick = onClick;
     }
   }
 
   function updateContents(theme) {
-    selector.addClass(rootElement, theme);
+    // root element: apply user-specified theme
+    if (rootElement && theme) {
+      selector.addClass(rootElement, theme);
+    }
   }
 
   /* ================ */
@@ -139,4 +141,4 @@ var lyftWebButton = (function(api, selector) {
 
 })(api, selector);
 
-module.exports = window.lyftWebButton = lyftWebButton;
+module.exports = lyftWebButton;
