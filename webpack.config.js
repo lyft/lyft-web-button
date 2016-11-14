@@ -4,7 +4,7 @@ var webpack = require('webpack');
 // webpack configuration
 var webpackConfig = {
   entry: {
-    lyftWebButton: './src/components/LyftWebButton/index.js'
+    lyftWebButton: './src/components/lyftWebButton/index.js'
   },
   output: {
     path: './dist',
