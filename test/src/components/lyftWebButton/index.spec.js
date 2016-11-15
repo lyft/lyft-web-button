@@ -26,23 +26,45 @@ describe('lyftWebButton', function () {
   describe('initialize', function () {
 
     var options;
+    var position;
 
     beforeEach(function() {
+      // options
       options = {
         clientId: 'someClientId',
         clientToken: 'someClientToken',
+        location: {
+          latitude: 'someEndLatitude',
+          longitude: 'someEndLongitude'
+        },
         onClick: expect.createSpy(),
         parentElement: {
-          childNodes: [],
+          childNodes: ['someChildNode'],
           insertBefore: expect.createSpy()
         },
         theme: 'someTheme'
       };
+      // spies
+      expect.spyOn(lyftWebButton.__get__('api'), 'getCosts');
+      expect.spyOn(lyftWebButton.__get__('api'), 'getEtas');
       expect.spyOn(lyftWebButton.__get__('api'), 'setClientId');
       expect.spyOn(lyftWebButton.__get__('api'), 'setClientToken');
       lyftWebButton.__set__('createElements', expect.createSpy());
       lyftWebButton.__set__('bindEvents', expect.createSpy());
       lyftWebButton.__set__('updateContents', expect.createSpy());
+      // navigator
+      position = {
+        coords: {
+          latitude: 'someStartLatitude',
+          longitude: 'someStartLongitude'
+        }
+      };
+      navigator = navigator || {};
+      navigator.geolocation = navigator.geolocation || {};
+      navigator.geolocation.getCurrentPosition = function (callback) {
+        return callback(position);
+      }
+      expect.spyOn(navigator.geolocation, 'getCurrentPosition').andCallThrough();
     });
 
     afterEach(function() {
@@ -77,6 +99,41 @@ describe('lyftWebButton', function () {
       lyftWebButton.initialize(options);
       expect(lyftWebButton.__get__('updateContents'))
         .toHaveBeenCalledWith(options.theme);
+    });
+
+    it('inserts an element tree into the DOM', function () {
+      lyftWebButton.initialize(options);
+      expect(options.parentElement.insertBefore)
+        .toHaveBeenCalledWith(
+          lyftWebButton.__get__('rootElement'),
+          options.parentElement.childNodes[0]
+        );
+    });
+
+    it('queries current position', function () {
+      lyftWebButton.initialize(options);
+      expect(navigator.geolocation.getCurrentPosition)
+        .toHaveBeenCalled();
+    });
+
+    it('successfully queries current position and requests costs', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('api').getCosts)
+        .toHaveBeenCalledWith({
+          start_lat: position.coords.latitude,
+          start_lng: position.coords.longitude,
+          end_lat: options.location.latitude,
+          end_lng: options.location.longitude
+        }, 'lyftWebButton.onGetCostsSuccess');
+    });
+
+    it('successfully queries current position and requests etas', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('api').getEtas)
+        .toHaveBeenCalledWith({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }, 'lyftWebButton.onGetEtasSuccess');
     });
 
   });
