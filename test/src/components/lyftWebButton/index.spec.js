@@ -25,22 +25,58 @@ describe('lyftWebButton', function () {
 
   describe('initialize', function () {
 
-    it('sets client_id', function () {
-      var clientId = 'someClientId';
+    var options;
 
-      expect.spyOn(lyftWebButton.__get__('api'), 'setClientId');
-      lyftWebButton.__set__('createElements', expect.createSpy());
-      lyftWebButton.__set__('bindEvents', expect.createSpy());
-      lyftWebButton.__set__('updateContents', expect.createSpy());
-
-      lyftWebButton.initialize({
-        clientId: clientId,
+    beforeEach(function() {
+      options = {
+        clientId: 'someClientId',
+        clientToken: 'someClientToken',
+        onClick: expect.createSpy(),
         parentElement: {
           childNodes: [],
           insertBefore: expect.createSpy()
-        }
-      });
-      expect(lyftWebButton.__get__('api').setClientId).toHaveBeenCalledWith(clientId);
+        },
+        theme: 'someTheme'
+      };
+      expect.spyOn(lyftWebButton.__get__('api'), 'setClientId');
+      expect.spyOn(lyftWebButton.__get__('api'), 'setClientToken');
+      lyftWebButton.__set__('createElements', expect.createSpy());
+      lyftWebButton.__set__('bindEvents', expect.createSpy());
+      lyftWebButton.__set__('updateContents', expect.createSpy());
+    });
+
+    afterEach(function() {
+      options = undefined;
+    });
+
+    it('sets client_id', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('api').setClientId)
+        .toHaveBeenCalledWith(options.clientId);
+    });
+
+    it('sets client_token', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('api').setClientToken)
+        .toHaveBeenCalledWith(options.clientToken);
+    });
+
+    it('creates elements', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('createElements'))
+        .toHaveBeenCalled();
+    });
+
+    it('binds events', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('bindEvents'))
+        .toHaveBeenCalledWith(options.onClick);
+    });
+
+    it('updates contents', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('updateContents'))
+        .toHaveBeenCalledWith(options.theme);
     });
 
   });
