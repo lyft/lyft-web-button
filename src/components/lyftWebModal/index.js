@@ -109,7 +109,7 @@ function updateContents(location) {
 /* ================ */
 
 function onPostMessagesSuccess(data) {
-  if (data.messages) {
+  if (data && data.messages) {
     frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
     selector.removeClass(frameBefore, 'on');
     selector.addClass(frameAfter, 'on');

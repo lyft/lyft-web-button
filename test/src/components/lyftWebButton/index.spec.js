@@ -129,6 +129,56 @@ describe('lyftWebButton', function () {
 
   });
 
+  describe('onGetCostsSuccess', function () {
+
+    it('updates price range if element references and data are defined', function () {
+      lyftWebButton.__set__('priceRangeElement', {});
+      lyftWebButton.onGetCostsSuccess({
+        cost_estimates: [{
+          ride_type: 'lyft',
+          estimated_cost_cents_min: 100,
+          estimated_cost_cents_max: 1000
+        }]
+      });
+      expect(lyftWebButton.__get__('priceRangeElement').textContent)
+        .toEqual('$1-10');
+    });
+
+    it('ceilings cents to the next whole dollar', function () {
+      lyftWebButton.__set__('priceRangeElement', {});
+      lyftWebButton.onGetCostsSuccess({
+        cost_estimates: [{
+          ride_type: 'lyft',
+          estimated_cost_cents_min: 101,
+          estimated_cost_cents_max: 1099
+        }]
+      });
+      expect(lyftWebButton.__get__('priceRangeElement').textContent)
+        .toEqual('$2-11');
+    });
+
+    it('does not update price range if element references are undefined', function () {
+      lyftWebButton.__set__('priceRangeElement', undefined);
+      lyftWebButton.onGetCostsSuccess({
+        cost_estimates: [{
+          ride_type: 'lyft',
+          estimated_cost_cents_min: 100,
+          estimated_cost_cents_max: 1000
+        }]
+      });
+      expect(lyftWebButton.__get__('priceRangeElement'))
+        .toEqual(undefined);
+    });
+
+    it('does not update price range if data is undefined', function () {
+      lyftWebButton.__set__('priceRangeElement', {});
+      lyftWebButton.onGetCostsSuccess(undefined);
+      expect(lyftWebButton.__get__('priceRangeElement'))
+        .toEqual({});
+    });
+
+  });
+
   describe('initialize', function () {
 
     var options;

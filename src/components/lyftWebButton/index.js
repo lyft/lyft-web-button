@@ -64,7 +64,7 @@ function updateContents(theme) {
  * @param {Object} data Response data.
  */
 function onGetCostsSuccess(data) {
-  if (data.cost_estimates && data.cost_estimates.length) {
+  if (data && data.cost_estimates && data.cost_estimates.length) {
     for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
       if (data.cost_estimates[i].ride_type === 'lyft') {
         var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
@@ -85,7 +85,7 @@ function onGetCostsSuccess(data) {
  * @param {Object} data Response data.
  */
 function onGetEtasSuccess(data) {
-  if (data.eta_estimates && data.eta_estimates.length) {
+  if (data && data.eta_estimates && data.eta_estimates.length) {
     for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
       if (data.eta_estimates[i].ride_type === 'lyft') {
         var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
