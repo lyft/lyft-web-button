@@ -26,28 +26,18 @@ describe('lyftWebButton', function () {
 
   describe('createElements', function () {
 
-    var rootElementBefore;
-    var priceRangeElementBefore;
-    var etaElementBefore;
+    var rootElement = {};
+    var priceRangeElement = {};
+    var etaElement = {};
 
     beforeEach(function () {
-      // before
-      rootElementBefore = 'rootElementBefore';
-      priceRangeElementBefore = 'priceRangeElementBefore';
-      etaElementBefore = 'etaElementBefore';
-      // spies
-      lyftWebButton.__set__('rootElement', rootElementBefore);
-      lyftWebButton.__set__('priceRangeElement', priceRangeElementBefore);
-      lyftWebButton.__set__('etaElement', etaElementBefore);
+      lyftWebButton.__set__('rootElement', rootElement);
+      lyftWebButton.__set__('priceRangeElement', priceRangeElement);
+      lyftWebButton.__set__('etaElement', etaElement);
       expect.spyOn(lyftWebButton.__get__('selector'), 'selectChildElement');
     });
 
     afterEach(function () {
-      // before
-      rootElementBefore = undefined;
-      priceRangeElementBefore = undefined;
-      etaElementBefore = undefined;
-      // spies
       lyftWebButton.__get__('selector').selectChildElement.reset();
     });
 
@@ -60,11 +50,11 @@ describe('lyftWebButton', function () {
     it('sets some references to elements in the template', function () {
       lyftWebButton.__get__('createElements')();
       expect(lyftWebButton.__get__('rootElement'))
-        .toNotEqual(rootElementBefore);
+        .toNotEqual(rootElement);
       expect(lyftWebButton.__get__('priceRangeElement'))
-        .toNotEqual(priceRangeElementBefore);
+        .toNotEqual(priceRangeElement);
       expect(lyftWebButton.__get__('etaElement'))
-        .toNotEqual(etaElementBefore);
+        .toNotEqual(etaElement);
     });
 
     it('returns the root element from the template', function () {
