@@ -69,6 +69,7 @@ describe('lyftWebButton', function () {
 
     afterEach(function() {
       options = undefined;
+      position = undefined;
     });
 
     it('sets client_id', function () {
