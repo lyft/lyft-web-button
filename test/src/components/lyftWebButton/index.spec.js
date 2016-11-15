@@ -179,6 +179,53 @@ describe('lyftWebButton', function () {
 
   });
 
+  describe('onGetEtasSuccess', function () {
+
+    it('updates eta if element references and data are defined', function () {
+      lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.onGetEtasSuccess({
+        eta_estimates: [{
+          ride_type: 'lyft',
+          eta_seconds: 60
+        }]
+      });
+      expect(lyftWebButton.__get__('etaElement').textContent)
+        .toEqual('Lyft in 1 min');
+    });
+
+    it('ceilings seconds to the next whole minute', function () {
+      lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.onGetEtasSuccess({
+        eta_estimates: [{
+          ride_type: 'lyft',
+          eta_seconds: 61
+        }]
+      });
+      expect(lyftWebButton.__get__('etaElement').textContent)
+        .toEqual('Lyft in 2 min');
+    });
+
+    it('does not update eta if element references are undefined', function () {
+      lyftWebButton.__set__('etaElement', undefined);
+      lyftWebButton.onGetEtasSuccess({
+        eta_estimates: [{
+          ride_type: 'lyft',
+          eta_seconds: 60
+        }]
+      });
+      expect(lyftWebButton.__get__('etaElement'))
+        .toEqual(undefined);
+    });
+
+    it('does not update eta if data is undefined', function () {
+      lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.onGetEtasSuccess(undefined);
+      expect(lyftWebButton.__get__('etaElement'))
+        .toEqual({});
+    });
+
+  });
+
   describe('initialize', function () {
 
     var options;
