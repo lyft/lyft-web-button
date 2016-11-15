@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="en_US" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body style="background-color:#AAAAAA;">
+    <div id="lyft-web-button-parent"></div>
+    <script type="text/javascript">
+    (function(
+      window,
+      document,
+      scriptSrc,
+      buttonObjectName,
+      modalObjectName,
+      parentElementId,
+      parentElement,
+      scriptElement
+    ){
+      parentElement = document.getElementById(parentElementId);
+      scriptElement = document.createElement('script');
+      scriptElement.async = true;
+      scriptElement.onload = function(){
+        var clientId = 'CLIENT_ID_GOES_HERE';
+        var clientToken = 'CLIENT_TOKEN_GOES_HERE';
+        var location = {
+          'address': 'China Basin, 185 Berry St, San Francisco, CA 94107',
+          'latitude': '37.776252',
+          'longitude': '-122.3913909',
+          'name': 'Lyft HQ'
+        };
+        var theme = 'multicolor';
+        window[modalObjectName].initialize({
+          'clientId': clientId,
+          'clientToken': clientToken,
+          'location': location
+        });
+        window[buttonObjectName].initialize({
+          'clientId': clientId,
+          'clientToken': clientToken,
+          'location': location,
+          'onClick': function(){window[modalObjectName].open();return false;},
+          'parentElement': parentElement,
+          'theme': theme
+        });
+      };
+      scriptElement.src = scriptSrc;
+      parentElement.insertBefore(scriptElement, parentElement.childNodes[0]);
+    })(
+      window,
+      document,
+      'lyftWebButton.js',
+      'lyftWebButton',
+      'lyftWebModal',
+      'lyft-web-button-parent'
+    );
+    </script>
+  </body>
+</html>
