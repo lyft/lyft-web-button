@@ -71,6 +71,26 @@ describe('lyftWebButton', function () {
 
   });
 
+  describe('bindEvents', function () {
+
+    var onClick = expect.createSpy();
+
+    it('binds events if element references are defined', function () {
+      lyftWebButton.__set__('rootElement', {});
+      lyftWebButton.__get__('bindEvents')(onClick);
+      expect(lyftWebButton.__get__('rootElement').onclick)
+        .toEqual(onClick);
+    });
+
+    it('does not bind events if element references are undefined', function () {
+      lyftWebButton.__set__('rootElement', undefined);
+      lyftWebButton.__get__('bindEvents')(onClick);
+      expect(lyftWebButton.__get__('rootElement'))
+        .toEqual(undefined);
+    });
+
+  });
+
   describe('initialize', function () {
 
     var options;
