@@ -23,12 +23,60 @@ describe('lyftWebButton', function () {
     expect(typeof lyftWebButton.__get__('updateContents')).toEqual('function');
   });
 
+  describe('createElements', function () {
+
+    var rootElementBefore;
+    var priceRangeElementBefore;
+    var etaElementBefore;
+
+    beforeEach(function () {
+      // before
+      rootElementBefore = 'rootElementBefore';
+      priceRangeElementBefore = 'priceRangeElementBefore';
+      etaElementBefore = 'etaElementBefore';
+      // spies
+      lyftWebButton.__set__('rootElement', rootElementBefore);
+      lyftWebButton.__set__('priceRangeElement', priceRangeElementBefore);
+      lyftWebButton.__set__('etaElement', etaElementBefore);
+      expect.spyOn(lyftWebButton.__get__('selector'), 'selectChildElement');
+    });
+
+    afterEach(function () {
+      rootElementBefore = undefined;
+      priceRangeElementBefore = undefined;
+      etaElementBefore = undefined;
+    });
+
+    it('selects some elements from the template', function () {
+      lyftWebButton.__get__('createElements')();
+      expect(lyftWebButton.__get__('selector').selectChildElement)
+        .toHaveBeenCalled();
+    });
+
+    it('sets some references to elements in the template', function () {
+      lyftWebButton.__get__('createElements')();
+      expect(lyftWebButton.__get__('rootElement'))
+        .toNotEqual(rootElementBefore);
+      expect(lyftWebButton.__get__('priceRangeElement'))
+        .toNotEqual(priceRangeElementBefore);
+      expect(lyftWebButton.__get__('etaElement'))
+        .toNotEqual(etaElementBefore);
+    });
+
+    it('returns the root element from the template', function () {
+      var result = lyftWebButton.__get__('createElements')();
+      expect(Object.prototype.toString.call(result))
+        .toEqual('[object HTMLButtonElement]');
+    });
+
+  });
+
   describe('initialize', function () {
 
     var options;
     var position;
 
-    beforeEach(function() {
+    beforeEach(function () {
       // options
       options = {
         clientId: 'someClientId',
@@ -67,7 +115,7 @@ describe('lyftWebButton', function () {
       expect.spyOn(navigator.geolocation, 'getCurrentPosition').andCallThrough();
     });
 
-    afterEach(function() {
+    afterEach(function () {
       options = undefined;
       position = undefined;
     });

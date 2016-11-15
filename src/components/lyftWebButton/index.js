@@ -17,6 +17,10 @@ var rootElement;
 /* DOM Manipulation Methods */
 /* ======================== */
 
+/**
+ * Creates elements from a template and stores some useful references.
+ * @returns {Object} Template's root element.
+ */
 function createElements() {
   // create tree from template
   var template = document.createElement('div');
@@ -29,6 +33,10 @@ function createElements() {
   return rootElement;
 }
 
+/**
+ * Binds events to some elements.
+ * @param {function} onClick Handler for button's onclick event.
+ */
 function bindEvents(onClick) {
   // root element: bind user-specified event handler
   if (rootElement) {
@@ -36,6 +44,10 @@ function bindEvents(onClick) {
   }
 }
 
+/**
+ * Updates the contents of some elements.
+ * @param {string} theme Name of the user's chosen theme.
+ */
 function updateContents(theme) {
   // root element: apply user-specified theme
   if (rootElement && theme) {
@@ -47,6 +59,10 @@ function updateContents(theme) {
 /* Workflow Methods */
 /* ================ */
 
+/**
+ * Success callback for getCosts request.
+ * @param {Object} data Response data.
+ */
 function onGetCostsSuccess(data) {
   if (data.cost_estimates && data.cost_estimates.length) {
     for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
@@ -64,6 +80,10 @@ function onGetCostsSuccess(data) {
   }
 }
 
+/**
+ * Success callback for getEtas request.
+ * @param {Object} data Response data.
+ */
 function onGetEtasSuccess(data) {
   if (data.eta_estimates && data.eta_estimates.length) {
     for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
