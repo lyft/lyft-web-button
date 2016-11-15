@@ -1,4 +1,5 @@
 // dependencies (require)
+var expect = require('expect');
 var rewire = require('rewire');
 
 // dependencies (rewire)

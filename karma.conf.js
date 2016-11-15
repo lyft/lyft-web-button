@@ -17,13 +17,13 @@ module.exports = function (config) {
     frameworks: ['mocha'],
 
     // list of files / patterns to load in the browser
-    files: ['karma.unit.js', 'test/**/*.spec.@(js|jsx)'],
+    files: ['test/**/*.spec.@(js|jsx)'],
 
     // list of files to exclude
     exclude: [],
 
     // preprocess matching files before serving them to the browser
-    preprocessors: {'karma.unit.js': ['webpack'], 'test/**/*.spec.@(js|jsx)': ['webpack']},
+    preprocessors: {'test/**/*.spec.@(js|jsx)': ['webpack']},
 
     // test results reporter to use
     reporters: ['progress'],
