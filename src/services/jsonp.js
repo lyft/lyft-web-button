@@ -85,5 +85,5 @@ function request(options) {
 
 // exports
 module.exports = {
-  request: request
+  'request': request
 };

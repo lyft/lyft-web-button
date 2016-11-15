@@ -24,8 +24,8 @@ function setClientToken(value) {client_token = value;}
 function requestWithCredentials(data, callback, url) {
   /* build data payload */
   data = data || {};
-  data.client_id = client_id;
-  data.client_token = client_token;
+  data['client_id'] = client_id;
+  data['client_token'] = client_token;
   /* perform request */
   return jsonp.request({
     url: url,
@@ -87,7 +87,6 @@ function getRideTypes(data, callback) {
  * POSTs `messages`.
  * @param {Object} data Required.
  * @param {string} data.phone_number Required.
- * @param {string} data.client_id Optional.
  * @param {string} data.end_lat Optional.
  * @param {string} data.end_lng Optional.
  * @param {function} callback Optional.
@@ -98,11 +97,11 @@ function postMessages(data, callback) {
 
 // exports
 module.exports = {
-  getCosts: getCosts,
-  getDrivers: getDrivers,
-  getEtas: getEtas,
-  getRideTypes: getRideTypes,
-  postMessages: postMessages,
-  setClientId: setClientId,
-  setClientToken: setClientToken
+  'getCosts': getCosts,
+  'getDrivers': getDrivers,
+  'getEtas': getEtas,
+  'getRideTypes': getRideTypes,
+  'postMessages': postMessages,
+  'setClientId': setClientId,
+  'setClientToken': setClientToken
 };

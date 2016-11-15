@@ -1,5 +1,11 @@
-var webpackConfig = require('./webpack.config.js');
+// dependencies
+var RewirePlugin = require('rewire-webpack');
 
+// webpack config
+var webpackConfig = require('./webpack.config.js');
+webpackConfig.plugins.push(new RewirePlugin());
+
+// karma config
 module.exports = function (config) {
 
   config.set({

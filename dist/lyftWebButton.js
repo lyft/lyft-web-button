@@ -60,179 +60,167 @@
 	// styles
 	__webpack_require__(5);
 
-	/**
-	 * lyftWebModal is a DOM manipulation widget.
-	 * @param {Object} api Api service.
-	 * @param {Object} selector Selector service.
-	 * @returns {Object} Singleton of lyftWebModal.
-	 */
-	var lyftWebModal = (function(api, selector) {
+	/* ========== */
+	/* Properties */
+	/* ========== */
 
-	  /* ========== */
-	  /* Properties */
-	  /* ========== */
+	var closeElement;
+	var mapElement;
+	var mapLabelDescriptionElement;
+	var mapLabelNameElement;
+	var messageFormElement;
+	var messageFormInputElement;
+	var openAppCtaElement;
+	var rootElement;
 
-	  var closeElement;
-	  var mapElement;
-	  var mapLabelDescriptionElement;
-	  var mapLabelNameElement;
-	  var messageFormElement;
-	  var messageFormInputElement;
-	  var openAppCtaElement;
-	  var rootElement;
+	/* ======================== */
+	/* DOM Manipulation Methods */
+	/* ======================== */
 
-	  /* ======================== */
-	  /* DOM Manipulation Methods */
-	  /* ======================== */
+	function createElements() {
+	  // create tree from template
+	  var template = document.createElement('div');
+	  template.innerHTML = __webpack_require__(9);
+	  // store references to important elements
+	  rootElement                 = template.childNodes[0];
+	  closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
+	  mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
+	  mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+	  mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+	  frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
+	  messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
+	  messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
+	  openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
+	  frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
+	  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
+	  // return reference to root element
+	  return rootElement;
+	}
 
-	  function createElements() {
-	    // create tree from template
-	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(9);
-	    // store references to important elements
-	    rootElement                 = template.childNodes[0];
-	    closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
-	    mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-	    mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-	    mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-	    frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
-	    messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
-	    messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-	    openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
-	    frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
-	    frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
-	    // return reference to root element
-	    return rootElement;
-	  }
-
-	  function bindEvents(location) {
-	    location = location || {};
-	    // root element: close modal window on click
-	    if (rootElement) {
-	      rootElement.onclick = function (event) {
-	        if (event && event.target === rootElement) {
-	          close();
-	          return false;
-	        }
-	        return true;
-	      };
-	    }
-	    // close element: close modal window on click
-	    if (closeElement) {
-	      closeElement.onclick = function (event) {
-	        if (event && event.target === closeElement) {
-	          close();
-	          return false;
-	        }
-	        return true;
-	      };
-	    }
-	    // message form element: request JSONP on submit
-	    if (messageFormElement && messageFormInputElement) {
-	      messageFormElement.onsubmit = function (event) {
-	        api.postMessages({
-	          phone_number: messageFormInputElement.value,
-	          // client_id: 'TODO',
-	          end_lat: location.latitude,
-	          end_lng: location.longitude
-	        }, 'lyftWebModal.onPostMessagesSuccess');
+	function bindEvents(location) {
+	  location = location || {};
+	  // root element: close modal window on click
+	  if (rootElement) {
+	    rootElement.onclick = function (event) {
+	      if (event && event.target === rootElement) {
+	        close();
 	        return false;
-	      };
-	    }
-	    return rootElement;
+	      }
+	      return true;
+	    };
 	  }
-
-	  function updateContents(location) {
-	    location = location || {};
-	    // map-container: set background-image
-	    if (mapElement) {
-	      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
-	        '?center=' + location.latitude + ',' + location.longitude +
-	        '&maptype=roadmap&size=640x300&zoom=15';
-	      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
-	    }
-	    // map-label-name: set text
-	    if (mapLabelNameElement) {
-	      mapLabelNameElement.textContent = location.name;
-	    }
-	    // map-label-description: set text
-	    if (mapLabelDescriptionElement) {
-	      mapLabelDescriptionElement.textContent = location.address;
-	    }
-	    // open-app-cta: set href
-	    if (openAppCtaElement) {
-	      openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
-	        '&destination%5Blatitude%5D=' + location.latitude +
-	        '&destination%5Blongitude%5D=' + location.longitude;
-	    }
+	  // close element: close modal window on click
+	  if (closeElement) {
+	    closeElement.onclick = function (event) {
+	      if (event && event.target === closeElement) {
+	        close();
+	        return false;
+	      }
+	      return true;
+	    };
 	  }
-
-	  /* ================ */
-	  /* Workflow Methods */
-	  /* ================ */
-
-	  function onPostMessagesSuccess(data) {
-	    if (data.messages) {
-	      frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
-	      selector.removeClass(frameBefore, 'on');
-	      selector.addClass(frameAfter, 'on');
-	      // remove extra whitespace
-	      setTimeout(function () {
-	        frameBefore.style = 'display:none;';
-	        frameAfter.style = 'position:relative;';
-	      }, 400);
-	    }
+	  // message form element: request JSONP on submit
+	  if (messageFormElement && messageFormInputElement) {
+	    messageFormElement.onsubmit = function (event) {
+	      api.postMessages({
+	        phone_number: messageFormInputElement.value,
+	        // client_id: 'TODO',
+	        end_lat: location.latitude,
+	        end_lng: location.longitude
+	      }, 'lyftWebModal.onPostMessagesSuccess');
+	      return false;
+	    };
 	  }
+	  return rootElement;
+	}
 
-	  function open() {
-	    document.body.insertBefore(rootElement, document.body.childNodes[0]);
+	function updateContents(location) {
+	  location = location || {};
+	  // map-container: set background-image
+	  if (mapElement) {
+	    var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
+	      '?center=' + location.latitude + ',' + location.longitude +
+	      '&maptype=roadmap&size=640x300&zoom=15';
+	    mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+	  }
+	  // map-label-name: set text
+	  if (mapLabelNameElement) {
+	    mapLabelNameElement.textContent = location.name;
+	  }
+	  // map-label-description: set text
+	  if (mapLabelDescriptionElement) {
+	    mapLabelDescriptionElement.textContent = location.address;
+	  }
+	  // open-app-cta: set href
+	  if (openAppCtaElement) {
+	    openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
+	      '&destination%5Blatitude%5D=' + location.latitude +
+	      '&destination%5Blongitude%5D=' + location.longitude;
+	  }
+	}
+
+	/* ================ */
+	/* Workflow Methods */
+	/* ================ */
+
+	function onPostMessagesSuccess(data) {
+	  if (data.messages) {
+	    frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
+	    selector.removeClass(frameBefore, 'on');
+	    selector.addClass(frameAfter, 'on');
+	    // remove extra whitespace
 	    setTimeout(function () {
-	      selector.addClass(rootElement, 'on');
-	    }, 10);
-	  }
-
-	  function close() {
-	    selector.removeClass(rootElement, 'on');
-	    setTimeout(function () {
-	      rootElement.parentElement.removeChild(rootElement);
+	      frameBefore.style = 'display:none;';
+	      frameAfter.style = 'position:relative;';
 	    }, 400);
 	  }
+	}
 
-	  /**
-	   * Initialize.
-	   * @param {Object} options
-	   * @param {string} options.clientId
-	   * @param {string} options.clientToken
-	   * @param {Object} options.location
-	   * @param {string} options.location.address
-	   * @param {string} options.location.latitude
-	   * @param {string} options.location.longitude
-	   * @param {string} options.location.name
-	   */
-	  function initialize(options) {
-	    // parse arguments
-	    api.setClientId(options.clientId);
-	    api.setClientToken(options.clientToken);
-	    // create element tree
-	    createElements();
-	    bindEvents(options.location);
-	    updateContents(options.location);
-	  }
+	function open() {
+	  document.body.insertBefore(rootElement, document.body.childNodes[0]);
+	  setTimeout(function () {
+	    selector.addClass(rootElement, 'on');
+	  }, 10);
+	}
 
-	  /* ===================================== */
-	  /* Publicly-Exposed Properties & Methods */
-	  /* ===================================== */
+	function close() {
+	  selector.removeClass(rootElement, 'on');
+	  setTimeout(function () {
+	    rootElement.parentElement.removeChild(rootElement);
+	  }, 400);
+	}
 
-	  return {
-	    close: close,
-	    initialize: initialize,
-	    onPostMessagesSuccess: onPostMessagesSuccess,
-	    open: open
-	  };
+	/**
+	 * Initialize.
+	 * @param {Object} options
+	 * @param {string} options.clientId
+	 * @param {string} options.clientToken
+	 * @param {Object} options.location
+	 * @param {string} options.location.address
+	 * @param {string} options.location.latitude
+	 * @param {string} options.location.longitude
+	 * @param {string} options.location.name
+	 */
+	function initialize(options) {
+	  // parse arguments
+	  api.setClientId(options.clientId);
+	  api.setClientToken(options.clientToken);
+	  // create element tree
+	  createElements();
+	  bindEvents(options.location);
+	  updateContents(options.location);
+	}
 
-	})(api, selector);
+	/* ===================================== */
+	/* Publicly-Exposed Properties & Methods */
+	/* ===================================== */
 
-	module.exports = lyftWebModal;
+	module.exports = {
+	  'close': close,
+	  'initialize': initialize,
+	  'onPostMessagesSuccess': onPostMessagesSuccess,
+	  'open': open
+	};
 
 
 /***/ },
@@ -265,8 +253,8 @@
 	function requestWithCredentials(data, callback, url) {
 	  /* build data payload */
 	  data = data || {};
-	  data.client_id = client_id;
-	  data.client_token = client_token;
+	  data['client_id'] = client_id;
+	  data['client_token'] = client_token;
 	  /* perform request */
 	  return jsonp.request({
 	    url: url,
@@ -328,7 +316,6 @@
 	 * POSTs `messages`.
 	 * @param {Object} data Required.
 	 * @param {string} data.phone_number Required.
-	 * @param {string} data.client_id Optional.
 	 * @param {string} data.end_lat Optional.
 	 * @param {string} data.end_lng Optional.
 	 * @param {function} callback Optional.
@@ -339,13 +326,13 @@
 
 	// exports
 	module.exports = {
-	  getCosts: getCosts,
-	  getDrivers: getDrivers,
-	  getEtas: getEtas,
-	  getRideTypes: getRideTypes,
-	  postMessages: postMessages,
-	  setClientId: setClientId,
-	  setClientToken: setClientToken
+	  'getCosts': getCosts,
+	  'getDrivers': getDrivers,
+	  'getEtas': getEtas,
+	  'getRideTypes': getRideTypes,
+	  'postMessages': postMessages,
+	  'setClientId': setClientId,
+	  'setClientToken': setClientToken
 	};
 
 
@@ -440,7 +427,7 @@
 
 	// exports
 	module.exports = {
-	  request: request
+	  'request': request
 	};
 
 
@@ -483,9 +470,9 @@
 
 	// exports
 	module.exports = {
-	  addClass: addClass,
-	  removeClass: removeClass,
-	  selectChildElement: selectChildElement
+	  'addClass': addClass,
+	  'removeClass': removeClass,
+	  'selectChildElement': selectChildElement
 	};
 
 
@@ -854,143 +841,131 @@
 	// styles
 	__webpack_require__(11);
 
+	/* ========== */
+	/* Properties */
+	/* ========== */
+
+	var etaElement;
+	var priceRangeElement;
+	var rootElement;
+
+	/* ======================== */
+	/* DOM Manipulation Methods */
+	/* ======================== */
+
+	function createElements() {
+	  // create tree from template
+	  var template = document.createElement('div');
+	  template.innerHTML = __webpack_require__(13);
+	  // store references to important elements
+	  rootElement       = template.childNodes[0];
+	  priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
+	  etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
+	  // return reference to root element
+	  return rootElement;
+	}
+
+	function bindEvents(onClick) {
+	  // root element: bind user-specified event handler
+	  if (rootElement) {
+	    rootElement.onclick = onClick;
+	  }
+	}
+
+	function updateContents(theme) {
+	  // root element: apply user-specified theme
+	  if (rootElement && theme) {
+	    selector.addClass(rootElement, theme);
+	  }
+	}
+
+	/* ================ */
+	/* Workflow Methods */
+	/* ================ */
+
+	function onGetCostsSuccess(data) {
+	  if (data.cost_estimates && data.cost_estimates.length) {
+	    for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
+	      if (data.cost_estimates[i].ride_type === 'lyft') {
+	        var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
+	        var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
+	        if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
+	            !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
+	          if (priceRangeElement) {
+	            priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+	          }
+	        }
+	      }
+	    }
+	  }
+	}
+
+	function onGetEtasSuccess(data) {
+	  if (data.eta_estimates && data.eta_estimates.length) {
+	    for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
+	      if (data.eta_estimates[i].ride_type === 'lyft') {
+	        var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
+	        if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
+	          if (etaElement) {
+	            etaElement.textContent = 'Lyft in '+eta+' min';
+	          }
+	        }
+	      }
+	    }
+	  }
+	}
+
 	/**
-	 * lyftWebButton is a DOM manipulation widget.
-	 * @param {Object} api Api service.
-	 * @param {Object} selector Selector service.
-	 * @returns {Object} Singleton of lyftWebButton.
+	 * Initialize.
+	 * @param {Object} options
+	 * @param {string} options.clientId
+	 * @param {string} options.clientToken
+	 * @param {Object} options.location
+	 * @param {string} options.location.address
+	 * @param {string} options.location.latitude
+	 * @param {string} options.location.longitude
+	 * @param {string} options.location.name
+	 * @param {Object} options.parentElement
+	 * @param {string} options.theme
 	 */
-	var lyftWebButton = (function(api, selector) {
-
-	  /* ========== */
-	  /* Properties */
-	  /* ========== */
-
-	  var etaElement;
-	  var priceRangeElement;
-	  var rootElement;
-
-	  /* ======================== */
-	  /* DOM Manipulation Methods */
-	  /* ======================== */
-
-	  function createElements() {
-	    // create tree from template
-	    var template = document.createElement('div');
-	    template.innerHTML = __webpack_require__(13);
-	    // store references to important elements
-	    rootElement       = template.childNodes[0];
-	    priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
-	    etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
-	    // return reference to root element
-	    return rootElement;
+	function initialize(options) {
+	  // parse arguments
+	  api.setClientId(options.clientId);
+	  api.setClientToken(options.clientToken);
+	  // create element tree
+	  createElements();
+	  bindEvents(options.onClick);
+	  updateContents(options.theme);
+	  // insert element into DOM
+	  options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
+	  // get device location
+	  if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	      // request costs
+	      api.getCosts({
+	        start_lat: position.coords.latitude,
+	        start_lng: position.coords.longitude,
+	        end_lat: options.location.latitude,
+	        end_lng: options.location.longitude
+	      }, 'lyftWebButton.onGetCostsSuccess');
+	      // request etas
+	      api.getEtas({
+	        lat: position.coords.latitude,
+	        lng: position.coords.longitude
+	      }, 'lyftWebButton.onGetEtasSuccess');
+	    });
 	  }
+	}
 
-	  function bindEvents(onClick) {
-	    // root element: bind user-specified event handler
-	    if (rootElement) {
-	      rootElement.onclick = onClick;
-	    }
-	  }
+	/* ===================================== */
+	/* Publicly-Exposed Properties & Methods */
+	/* ===================================== */
 
-	  function updateContents(theme) {
-	    // root element: apply user-specified theme
-	    if (rootElement && theme) {
-	      selector.addClass(rootElement, theme);
-	    }
-	  }
-
-	  /* ================ */
-	  /* Workflow Methods */
-	  /* ================ */
-
-	  function onGetCostsSuccess(data) {
-	    if (data.cost_estimates && data.cost_estimates.length) {
-	      for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
-	        if (data.cost_estimates[i].ride_type === 'lyft') {
-	          var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
-	          var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
-	          if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
-	              !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-	            if (priceRangeElement) {
-	              priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
-	            }
-	          }
-	        }
-	      }
-	    }
-	  }
-
-	  function onGetEtasSuccess(data) {
-	    if (data.eta_estimates && data.eta_estimates.length) {
-	      for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
-	        if (data.eta_estimates[i].ride_type === 'lyft') {
-	          var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
-	          if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-	            if (etaElement) {
-	              etaElement.textContent = 'Lyft in '+eta+' min';
-	            }
-	          }
-	        }
-	      }
-	    }
-	  }
-
-	  /**
-	   * Initialize.
-	   * @param {Object} options
-	   * @param {string} options.clientId
-	   * @param {string} options.clientToken
-	   * @param {Object} options.location
-	   * @param {string} options.location.address
-	   * @param {string} options.location.latitude
-	   * @param {string} options.location.longitude
-	   * @param {string} options.location.name
-	   * @param {Object} options.parentElement
-	   * @param {string} options.theme
-	   */
-	  function initialize(options) {
-	    // parse arguments
-	    api.setClientId(options.clientId);
-	    api.setClientToken(options.clientToken);
-	    // create element tree
-	    createElements();
-	    bindEvents(options.onClick);
-	    updateContents(options.theme);
-	    // insert element into DOM
-	    options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
-	    // get device location
-	    if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-	      navigator.geolocation.getCurrentPosition(function(position) {
-	        // request costs
-	        api.getCosts({
-	          start_lat: position.coords.latitude,
-	          start_lng: position.coords.longitude,
-	          end_lat: options.location.latitude,
-	          end_lng: options.location.longitude
-	        }, 'lyftWebButton.onGetCostsSuccess');
-	        // request etas
-	        api.getEtas({
-	          lat: position.coords.latitude,
-	          lng: position.coords.longitude
-	        }, 'lyftWebButton.onGetEtasSuccess');
-	      });
-	    }
-	  }
-
-	  /* ===================================== */
-	  /* Publicly-Exposed Properties & Methods */
-	  /* ===================================== */
-
-	  return {
-	    initialize: initialize,
-	    onGetCostsSuccess: onGetCostsSuccess,
-	    onGetEtasSuccess: onGetEtasSuccess
-	  };
-
-	})(api, selector);
-
-	module.exports = lyftWebButton;
+	module.exports = {
+	  'initialize': initialize,
+	  'onGetCostsSuccess': onGetCostsSuccess,
+	  'onGetEtasSuccess': onGetEtasSuccess
+	};
 
 
 /***/ },

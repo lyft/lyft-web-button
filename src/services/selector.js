@@ -33,7 +33,7 @@ function selectChildElement(element, attributes) {
 
 // exports
 module.exports = {
-  addClass: addClass,
-  removeClass: removeClass,
-  selectChildElement: selectChildElement
+  'addClass': addClass,
+  'removeClass': removeClass,
+  'selectChildElement': selectChildElement
 };

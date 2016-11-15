@@ -5,176 +5,164 @@ var selector = require('../../services/selector.js');
 // styles
 require('./index.css');
 
-/**
- * lyftWebModal is a DOM manipulation widget.
- * @param {Object} api Api service.
- * @param {Object} selector Selector service.
- * @returns {Object} Singleton of lyftWebModal.
- */
-var lyftWebModal = (function(api, selector) {
+/* ========== */
+/* Properties */
+/* ========== */
 
-  /* ========== */
-  /* Properties */
-  /* ========== */
+var closeElement;
+var mapElement;
+var mapLabelDescriptionElement;
+var mapLabelNameElement;
+var messageFormElement;
+var messageFormInputElement;
+var openAppCtaElement;
+var rootElement;
 
-  var closeElement;
-  var mapElement;
-  var mapLabelDescriptionElement;
-  var mapLabelNameElement;
-  var messageFormElement;
-  var messageFormInputElement;
-  var openAppCtaElement;
-  var rootElement;
+/* ======================== */
+/* DOM Manipulation Methods */
+/* ======================== */
 
-  /* ======================== */
-  /* DOM Manipulation Methods */
-  /* ======================== */
+function createElements() {
+  // create tree from template
+  var template = document.createElement('div');
+  template.innerHTML = require('html!./index.html');
+  // store references to important elements
+  rootElement                 = template.childNodes[0];
+  closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
+  mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
+  mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+  mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+  frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
+  messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
+  messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
+  openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
+  frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
+  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
+  // return reference to root element
+  return rootElement;
+}
 
-  function createElements() {
-    // create tree from template
-    var template = document.createElement('div');
-    template.innerHTML = require('html!./index.html');
-    // store references to important elements
-    rootElement                 = template.childNodes[0];
-    closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
-    mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-    mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-    mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-    frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
-    messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
-    messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-    openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
-    frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
-    frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
-    // return reference to root element
-    return rootElement;
-  }
-
-  function bindEvents(location) {
-    location = location || {};
-    // root element: close modal window on click
-    if (rootElement) {
-      rootElement.onclick = function (event) {
-        if (event && event.target === rootElement) {
-          close();
-          return false;
-        }
-        return true;
-      };
-    }
-    // close element: close modal window on click
-    if (closeElement) {
-      closeElement.onclick = function (event) {
-        if (event && event.target === closeElement) {
-          close();
-          return false;
-        }
-        return true;
-      };
-    }
-    // message form element: request JSONP on submit
-    if (messageFormElement && messageFormInputElement) {
-      messageFormElement.onsubmit = function (event) {
-        api.postMessages({
-          phone_number: messageFormInputElement.value,
-          // client_id: 'TODO',
-          end_lat: location.latitude,
-          end_lng: location.longitude
-        }, 'lyftWebModal.onPostMessagesSuccess');
+function bindEvents(location) {
+  location = location || {};
+  // root element: close modal window on click
+  if (rootElement) {
+    rootElement.onclick = function (event) {
+      if (event && event.target === rootElement) {
+        close();
         return false;
-      };
-    }
-    return rootElement;
+      }
+      return true;
+    };
   }
-
-  function updateContents(location) {
-    location = location || {};
-    // map-container: set background-image
-    if (mapElement) {
-      var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
-        '?center=' + location.latitude + ',' + location.longitude +
-        '&maptype=roadmap&size=640x300&zoom=15';
-      mapElement.style = 'background-image:url(\''+mapSrc+'\');';
-    }
-    // map-label-name: set text
-    if (mapLabelNameElement) {
-      mapLabelNameElement.textContent = location.name;
-    }
-    // map-label-description: set text
-    if (mapLabelDescriptionElement) {
-      mapLabelDescriptionElement.textContent = location.address;
-    }
-    // open-app-cta: set href
-    if (openAppCtaElement) {
-      openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
-        '&destination%5Blatitude%5D=' + location.latitude +
-        '&destination%5Blongitude%5D=' + location.longitude;
-    }
+  // close element: close modal window on click
+  if (closeElement) {
+    closeElement.onclick = function (event) {
+      if (event && event.target === closeElement) {
+        close();
+        return false;
+      }
+      return true;
+    };
   }
-
-  /* ================ */
-  /* Workflow Methods */
-  /* ================ */
-
-  function onPostMessagesSuccess(data) {
-    if (data.messages) {
-      frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
-      selector.removeClass(frameBefore, 'on');
-      selector.addClass(frameAfter, 'on');
-      // remove extra whitespace
-      setTimeout(function () {
-        frameBefore.style = 'display:none;';
-        frameAfter.style = 'position:relative;';
-      }, 400);
-    }
+  // message form element: request JSONP on submit
+  if (messageFormElement && messageFormInputElement) {
+    messageFormElement.onsubmit = function (event) {
+      api.postMessages({
+        phone_number: messageFormInputElement.value,
+        // client_id: 'TODO',
+        end_lat: location.latitude,
+        end_lng: location.longitude
+      }, 'lyftWebModal.onPostMessagesSuccess');
+      return false;
+    };
   }
+  return rootElement;
+}
 
-  function open() {
-    document.body.insertBefore(rootElement, document.body.childNodes[0]);
+function updateContents(location) {
+  location = location || {};
+  // map-container: set background-image
+  if (mapElement) {
+    var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
+      '?center=' + location.latitude + ',' + location.longitude +
+      '&maptype=roadmap&size=640x300&zoom=15';
+    mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+  }
+  // map-label-name: set text
+  if (mapLabelNameElement) {
+    mapLabelNameElement.textContent = location.name;
+  }
+  // map-label-description: set text
+  if (mapLabelDescriptionElement) {
+    mapLabelDescriptionElement.textContent = location.address;
+  }
+  // open-app-cta: set href
+  if (openAppCtaElement) {
+    openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
+      '&destination%5Blatitude%5D=' + location.latitude +
+      '&destination%5Blongitude%5D=' + location.longitude;
+  }
+}
+
+/* ================ */
+/* Workflow Methods */
+/* ================ */
+
+function onPostMessagesSuccess(data) {
+  if (data.messages) {
+    frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
+    selector.removeClass(frameBefore, 'on');
+    selector.addClass(frameAfter, 'on');
+    // remove extra whitespace
     setTimeout(function () {
-      selector.addClass(rootElement, 'on');
-    }, 10);
-  }
-
-  function close() {
-    selector.removeClass(rootElement, 'on');
-    setTimeout(function () {
-      rootElement.parentElement.removeChild(rootElement);
+      frameBefore.style = 'display:none;';
+      frameAfter.style = 'position:relative;';
     }, 400);
   }
+}
 
-  /**
-   * Initialize.
-   * @param {Object} options
-   * @param {string} options.clientId
-   * @param {string} options.clientToken
-   * @param {Object} options.location
-   * @param {string} options.location.address
-   * @param {string} options.location.latitude
-   * @param {string} options.location.longitude
-   * @param {string} options.location.name
-   */
-  function initialize(options) {
-    // parse arguments
-    api.setClientId(options.clientId);
-    api.setClientToken(options.clientToken);
-    // create element tree
-    createElements();
-    bindEvents(options.location);
-    updateContents(options.location);
-  }
+function open() {
+  document.body.insertBefore(rootElement, document.body.childNodes[0]);
+  setTimeout(function () {
+    selector.addClass(rootElement, 'on');
+  }, 10);
+}
 
-  /* ===================================== */
-  /* Publicly-Exposed Properties & Methods */
-  /* ===================================== */
+function close() {
+  selector.removeClass(rootElement, 'on');
+  setTimeout(function () {
+    rootElement.parentElement.removeChild(rootElement);
+  }, 400);
+}
 
-  return {
-    close: close,
-    initialize: initialize,
-    onPostMessagesSuccess: onPostMessagesSuccess,
-    open: open
-  };
+/**
+ * Initialize.
+ * @param {Object} options
+ * @param {string} options.clientId
+ * @param {string} options.clientToken
+ * @param {Object} options.location
+ * @param {string} options.location.address
+ * @param {string} options.location.latitude
+ * @param {string} options.location.longitude
+ * @param {string} options.location.name
+ */
+function initialize(options) {
+  // parse arguments
+  api.setClientId(options.clientId);
+  api.setClientToken(options.clientToken);
+  // create element tree
+  createElements();
+  bindEvents(options.location);
+  updateContents(options.location);
+}
 
-})(api, selector);
+/* ===================================== */
+/* Publicly-Exposed Properties & Methods */
+/* ===================================== */
 
-module.exports = lyftWebModal;
+module.exports = {
+  'close': close,
+  'initialize': initialize,
+  'onPostMessagesSuccess': onPostMessagesSuccess,
+  'open': open
+};

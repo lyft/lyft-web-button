@@ -24,7 +24,7 @@ var webpackConfig = {
 if (process.env.NODE_ENV === 'production') {
   // filename
   webpackConfig.output.filename = '[name].min.js';
-  // uglifyJsPlugin
+  // plugins
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
