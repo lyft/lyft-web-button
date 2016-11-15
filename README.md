@@ -28,3 +28,7 @@ npm run-script build:dist
 # test (silence ELIFECYCLE output)
 npm run-script --silent test
 ```
+
+### Limitations
+- `lyftWebButton` cannot appear more than once on a page at this time. This is a technical implementation detail, and it may change in the future.
+- `lyftWebModal` uses a single theme, but it can be changed with CSS.
