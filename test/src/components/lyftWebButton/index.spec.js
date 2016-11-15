@@ -42,9 +42,12 @@ describe('lyftWebButton', function () {
     });
 
     afterEach(function () {
+      // before
       rootElementBefore = undefined;
       priceRangeElementBefore = undefined;
       etaElementBefore = undefined;
+      // spies
+      lyftWebButton.__get__('selector').selectChildElement.reset();
     });
 
     it('selects some elements from the template', function () {
@@ -91,6 +94,41 @@ describe('lyftWebButton', function () {
 
   });
 
+  describe('updateContents', function () {
+
+    var theme = 'someTheme';
+
+    beforeEach(function () {
+      expect.spyOn(lyftWebButton.__get__('selector'), 'addClass');
+    });
+
+    afterEach(function () {
+      lyftWebButton.__get__('selector').addClass.reset();
+    });
+
+    it('updates contents if element references and theme are defined', function () {
+      lyftWebButton.__set__('rootElement', {});
+      lyftWebButton.__get__('updateContents')(theme);
+      expect(lyftWebButton.__get__('selector').addClass)
+        .toHaveBeenCalledWith(lyftWebButton.__get__('rootElement'), theme);
+    });
+
+    it('does not update contents if element references are undefined', function () {
+      lyftWebButton.__set__('rootElement', undefined);
+      lyftWebButton.__get__('updateContents')(theme);
+      expect(lyftWebButton.__get__('selector').addClass)
+        .toNotHaveBeenCalled();
+    });
+
+    it('does not update contents if theme is undefined', function () {
+      lyftWebButton.__set__('rootElement', {});
+      lyftWebButton.__get__('updateContents')(undefined);
+      expect(lyftWebButton.__get__('selector').addClass)
+        .toNotHaveBeenCalled();
+    });
+
+  });
+
   describe('initialize', function () {
 
     var options;
@@ -112,14 +150,6 @@ describe('lyftWebButton', function () {
         },
         theme: 'someTheme'
       };
-      // spies
-      expect.spyOn(lyftWebButton.__get__('api'), 'getCosts');
-      expect.spyOn(lyftWebButton.__get__('api'), 'getEtas');
-      expect.spyOn(lyftWebButton.__get__('api'), 'setClientId');
-      expect.spyOn(lyftWebButton.__get__('api'), 'setClientToken');
-      lyftWebButton.__set__('createElements', expect.createSpy());
-      lyftWebButton.__set__('bindEvents', expect.createSpy());
-      lyftWebButton.__set__('updateContents', expect.createSpy());
       // navigator
       position = {
         coords: {
@@ -133,11 +163,30 @@ describe('lyftWebButton', function () {
         return callback(position);
       }
       expect.spyOn(navigator.geolocation, 'getCurrentPosition').andCallThrough();
+      // spies
+      expect.spyOn(lyftWebButton.__get__('api'), 'getCosts');
+      expect.spyOn(lyftWebButton.__get__('api'), 'getEtas');
+      expect.spyOn(lyftWebButton.__get__('api'), 'setClientId');
+      expect.spyOn(lyftWebButton.__get__('api'), 'setClientToken');
+      lyftWebButton.__set__('createElements', expect.createSpy());
+      lyftWebButton.__set__('bindEvents', expect.createSpy());
+      lyftWebButton.__set__('updateContents', expect.createSpy());
     });
 
     afterEach(function () {
+      // options
       options = undefined;
+      // navigator
       position = undefined;
+      navigator.geolocation.getCurrentPosition.reset();
+      // spies
+      lyftWebButton.__get__('api').getCosts.reset();
+      lyftWebButton.__get__('api').getEtas.reset();
+      lyftWebButton.__get__('api').setClientId.reset();
+      lyftWebButton.__get__('api').setClientToken.reset();
+      lyftWebButton.__get__('createElements').reset();
+      lyftWebButton.__get__('bindEvents').reset();
+      lyftWebButton.__get__('updateContents').reset();
     });
 
     it('sets client_id', function () {
