@@ -144,4 +144,75 @@ describe('lyftWebModal', function () {
 
   });
 
+  describe('updateContents', function () {
+
+    var location = {
+      address: 'someAddress',
+      latitude: 'someLatitude',
+      longitude: 'someLongitude',
+      name: 'someName'
+    };
+
+    it('updates mapElement contents if mapElement is defined', function () {
+      lyftWebModal.__set__('mapElement', {});
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapElement').style.indexOf(location.latitude))
+        .toNotEqual(-1);
+      expect(lyftWebModal.__get__('mapElement').style.indexOf(location.longitude))
+        .toNotEqual(-1);
+    });
+
+    it('does not update mapElement contents if mapElement is undefined', function () {
+      lyftWebModal.__set__('mapElement', undefined);
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapElement'))
+        .toEqual(undefined);
+    });
+
+    it('updates mapLabelNameElement contents if mapLabelNameElement is defined', function () {
+      lyftWebModal.__set__('mapLabelNameElement', {});
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapLabelNameElement').textContent)
+        .toEqual(location.name);
+    });
+
+    it('does not update mapLabelNameElement contents if mapLabelNameElement is undefined', function () {
+      lyftWebModal.__set__('mapLabelNameElement', undefined);
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapLabelNameElement'))
+        .toEqual(undefined);
+    });
+
+    it('updates mapLabelDescriptionElement contents if mapLabelDescriptionElement is defined', function () {
+      lyftWebModal.__set__('mapLabelDescriptionElement', {});
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapLabelDescriptionElement').textContent)
+        .toEqual(location.address);
+    });
+
+    it('does not update mapLabelDescriptionElement contents if mapLabelDescriptionElement is undefined', function () {
+      lyftWebModal.__set__('mapLabelDescriptionElement', undefined);
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('mapLabelDescriptionElement'))
+        .toEqual(undefined);
+    });
+
+    it('updates openAppCtaElement contents if openAppCtaElement is defined', function () {
+      lyftWebModal.__set__('openAppCtaElement', {});
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('openAppCtaElement').href.indexOf(location.latitude))
+        .toNotEqual(-1);
+      expect(lyftWebModal.__get__('openAppCtaElement').href.indexOf(location.longitude))
+        .toNotEqual(-1);
+    });
+
+    it('does not update openAppCtaElement contents if openAppCtaElement is undefined', function () {
+      lyftWebModal.__set__('openAppCtaElement', undefined);
+      lyftWebModal.__get__('updateContents')(location);
+      expect(lyftWebModal.__get__('openAppCtaElement'))
+        .toEqual(undefined);
+    });
+
+  });
+
 });
