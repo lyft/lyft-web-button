@@ -350,4 +350,63 @@ describe('lyftWebModal', function () {
 
   });
 
+  describe('initialize', function () {
+
+    var options = {
+      clientId: 'someClientId',
+      clientToken: 'someClientToken',
+      location: {
+        latitude: 'someEndLatitude',
+        longitude: 'someEndLongitude'
+      }
+    };
+
+    beforeEach(function () {
+      expect.spyOn(lyftWebModal.__get__('api'), 'setClientId');
+      expect.spyOn(lyftWebModal.__get__('api'), 'setClientToken');
+      lyftWebModal.__set__('createElements', expect.createSpy());
+      lyftWebModal.__set__('bindEvents', expect.createSpy());
+      lyftWebModal.__set__('updateContents', expect.createSpy());
+    });
+
+    afterEach(function () {
+      lyftWebModal.__get__('api').setClientId.reset();
+      lyftWebModal.__get__('api').setClientToken.reset();
+      lyftWebModal.__get__('createElements').reset();
+      lyftWebModal.__get__('bindEvents').reset();
+      lyftWebModal.__get__('updateContents').reset();
+    });
+
+    it('sets client_id', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('api').setClientId)
+        .toHaveBeenCalledWith(options.clientId);
+    });
+
+    it('sets client_token', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('api').setClientToken)
+        .toHaveBeenCalledWith(options.clientToken);
+    });
+
+    it('creates elements', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('createElements'))
+        .toHaveBeenCalled();
+    });
+
+    it('binds events', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('bindEvents'))
+        .toHaveBeenCalledWith(options.location);
+    });
+
+    it('updates contents', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('updateContents'))
+        .toHaveBeenCalledWith(options.location);
+    });
+
+  });
+
 });
