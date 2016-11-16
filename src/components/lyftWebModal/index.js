@@ -79,13 +79,14 @@ function bindEvents(location, objectName) {
   return rootElement;
 }
 
-function updateContents(location) {
+function updateContents(googleApiKey, location) {
   location = location || {};
   // map-container: set background-image
   if (mapElement) {
     var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' +
       '?center=' + location.latitude + ',' + location.longitude +
-      '&maptype=roadmap&size=640x300&zoom=15';
+      '&maptype=roadmap&size=640x300&zoom=15' +
+      (googleApiKey ? ('&key=' + googleApiKey) : '');
     mapElement.style = 'background-image:url(\''+mapSrc+'\');';
   }
   // map-label-name: set text
@@ -140,6 +141,7 @@ function close() {
  * @param {Object} options
  * @param {string} options.clientId
  * @param {string} options.clientToken
+ * @param {string} options.googleApiKey
  * @param {Object} options.location
  * @param {string} options.location.address
  * @param {string} options.location.latitude
@@ -156,7 +158,7 @@ function initialize(options) {
   // create element tree
   createElements();
   bindEvents(options.location, options.objectName);
-  updateContents(options.location);
+  updateContents(options.googleApiKey, options.location);
 }
 
 /* ===================================== */

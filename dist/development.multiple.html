@@ -15,10 +15,9 @@
     <script type="text/javascript">
     // configurations
     var configurations = [{
-      clientId: 'CLIENT_ID_GOES_HERE',
-      clientToken: 'CLIENT_TOKEN_GOES_HERE',
-      userModalObjectName: 'lyftWebModal1',
-      userButtonObjectName: 'lyftWebButton1',
+      clientId: '', // Lyft client id goes here
+      clientToken: '', // Lyft client token goes here
+      googleApiKey: '', // Google api key goes here
       location: {
         'address': 'Golden Gate Bridge, San Francisco, CA',
         'latitude': '37.8199286',
@@ -26,12 +25,13 @@
         'name': 'Golden Gate Bridge'
       },
       parentElement: document.getElementById('lyft-web-button-parent-1'),
-      theme: 'hot-pink'
+      theme: 'hot-pink',
+      userButtonObjectName: 'lyftWebButton1',
+      userModalObjectName: 'lyftWebModal1'
     }, {
-      clientId: 'CLIENT_ID_GOES_HERE',
-      clientToken: 'CLIENT_TOKEN_GOES_HERE',
-      userModalObjectName: 'lyftWebModal2',
-      userButtonObjectName: 'lyftWebButton2',
+      clientId: '', // Lyft client id goes here
+      clientToken: '', // Lyft client token goes here
+      googleApiKey: '', // Google api key goes here
       location: {
         'address': 'Fisherman\'s Wharf, San Francisco, CA',
         'latitude': '37.80811',
@@ -39,12 +39,13 @@
         'name': 'Fisherman\'s Wharf'
       },
       parentElement: document.getElementById('lyft-web-button-parent-2'),
-      theme: 'mulberry-dark'
+      theme: 'mulberry-dark',
+      userButtonObjectName: 'lyftWebButton2',
+      userModalObjectName: 'lyftWebModal2'
     }, {
-      clientId: 'CLIENT_ID_GOES_HERE',
-      clientToken: 'CLIENT_TOKEN_GOES_HERE',
-      userModalObjectName: 'lyftWebModal3',
-      userButtonObjectName: 'lyftWebButton3',
+      clientId: '', // Lyft client id goes here
+      clientToken: '', // Lyft client token goes here
+      googleApiKey: '', // Google api key goes here
       location: {
         'address': 'Golden Gate Park, San Francisco, CA 94122',
         'latitude': '37.7694208',
@@ -52,12 +53,13 @@
         'name': 'Golden Gate Park'
       },
       parentElement: document.getElementById('lyft-web-button-parent-3'),
-      theme: 'mulberry-light'
+      theme: 'mulberry-light',
+      userButtonObjectName: 'lyftWebButton3',
+      userModalObjectName: 'lyftWebModal3'
     }, {
-      clientId: 'CLIENT_ID_GOES_HERE',
-      clientToken: 'CLIENT_TOKEN_GOES_HERE',
-      userModalObjectName: 'lyftWebModal4',
-      userButtonObjectName: 'lyftWebButton4',
+      clientId: '', // Lyft client id goes here
+      clientToken: '', // Lyft client token goes here
+      googleApiKey: '', // Google api key goes here
       location: {
         'address': '870 Market St, San Francisco, CA 94102',
         'latitude': '37.7851667',
@@ -65,7 +67,9 @@
         'name': 'Flood Building'
       },
       parentElement: document.getElementById('lyft-web-button-parent-4'),
-      theme: 'multicolor'
+      theme: 'multicolor',
+      userButtonObjectName: 'lyftWebButton4',
+      userModalObjectName: 'lyftWebModal4'
     }];
     // invocations
     for (var i = 0, l = configurations.length; i < l; i++) {
@@ -94,6 +98,7 @@
           window[configuration.userModalObjectName].initialize({
             'clientId': configuration.clientId,
             'clientToken': configuration.clientToken,
+            'googleApiKey': configuration.googleApiKey,
             'location': configuration.location,
             'objectName': configuration.userModalObjectName,
             'parentElement': document.body

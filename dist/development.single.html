@@ -25,8 +25,9 @@
       scriptElement.async = true;
       scriptElement.onload = function(){
         // configure
-        var clientId = 'CLIENT_ID_GOES_HERE';
-        var clientToken = 'CLIENT_TOKEN_GOES_HERE';
+        var clientId = ''; // Lyft client id goes here
+        var clientToken = ''; // Lyft client token goes here
+        var googleApiKey = ''; // Google api key goes here
         var location = {
           'address': 'China Basin, 185 Berry St, San Francisco, CA 94107',
           'latitude': '37.776252',
@@ -47,6 +48,7 @@
         window[userModalObjectName].initialize({
           'clientId': clientId,
           'clientToken': clientToken,
+          'googleApiKey': googleApiKey,
           'location': location,
           'objectName': userModalObjectName,
           'parentElement': document.body
