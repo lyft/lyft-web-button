@@ -1,13 +1,13 @@
-# Lyft Web Library
+# Lyft Web SDK
 
 ### Installation (requires [node](https://nodejs.org))
 
 ```bash
 # clone repository
-git clone https://github.com/lyft/lyft-web-library.git
+git clone https://github.com/lyft/lyft-web-sdk.git
 
 # install dependencies
-cd lyft-web-library
+cd lyft-web-sdk
 npm install
 ```
 

@@ -1,12 +1,12 @@
 {
-  "name": "lyft-web-library",
+  "name": "lyft-web-sdk",
   "version": "0.0.1",
-  "description": "Lyft Web Library",
+  "description": "Lyft Web SDK",
   "author": "Jordan Patton <jpatton@lyft.com>",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/lyft/lyft-web-library.git"
+    "url": "https://github.com/lyft/lyft-web-sdk.git"
   },
   "dependencies": {},
   "devDependencies": {
