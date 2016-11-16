@@ -65,7 +65,7 @@ function bindEvents(location) {
     };
   }
   // message form element: request JSONP on submit
-  if (messageFormElement && messageFormInputElement) {
+  if (messageFormElement) {
     messageFormElement.onsubmit = function (event) {
       api.postMessages({
         phone_number: messageFormInputElement.value,

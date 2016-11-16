@@ -98,4 +98,50 @@ describe('lyftWebModal', function () {
 
   });
 
+  describe('bindEvents', function () {
+
+    it('binds an event to rootElement if rootElement is defined', function () {
+      lyftWebModal.__set__('rootElement', {});
+      lyftWebModal.__get__('bindEvents')();
+      expect(typeof lyftWebModal.__get__('rootElement').onclick)
+        .toEqual('function');
+    });
+
+    it('does not bind an event to rootElement if rootElement is undefined', function () {
+      lyftWebModal.__set__('rootElement', undefined);
+      lyftWebModal.__get__('bindEvents')();
+      expect(lyftWebModal.__get__('rootElement'))
+        .toEqual(undefined);
+    });
+
+    it('binds an event to closeElement if closeElement is defined', function () {
+      lyftWebModal.__set__('closeElement', {});
+      lyftWebModal.__get__('bindEvents')();
+      expect(typeof lyftWebModal.__get__('closeElement').onclick)
+        .toEqual('function');
+    });
+
+    it('does not bind an event to closeElement if closeElement is undefined', function () {
+      lyftWebModal.__set__('closeElement', undefined);
+      lyftWebModal.__get__('bindEvents')();
+      expect(lyftWebModal.__get__('closeElement'))
+        .toEqual(undefined);
+    });
+
+    it('binds an event to messageFormElement if messageFormElement is defined', function () {
+      lyftWebModal.__set__('messageFormElement', {});
+      lyftWebModal.__get__('bindEvents')();
+      expect(typeof lyftWebModal.__get__('messageFormElement').onsubmit)
+        .toEqual('function');
+    });
+
+    it('does not bind an event to messageFormElement if messageFormElement is undefined', function () {
+      lyftWebModal.__set__('messageFormElement', undefined);
+      lyftWebModal.__get__('bindEvents')();
+      expect(lyftWebModal.__get__('messageFormElement'))
+        .toEqual(undefined);
+    });
+
+  });
+
 });
