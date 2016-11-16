@@ -215,4 +215,48 @@ describe('lyftWebModal', function () {
 
   });
 
+  describe('onPostMessagesSuccess', function () {
+
+    var value = 'someValue';
+
+    beforeEach(function () {
+      expect.spyOn(lyftWebModal.__get__('selector'), 'removeClass');
+      expect.spyOn(lyftWebModal.__get__('selector'), 'addClass');
+    });
+
+    afterEach(function () {
+      lyftWebModal.__get__('selector').removeClass.reset();
+      lyftWebModal.__get__('selector').addClass.reset();
+    });
+
+    it('updates the user interface if data is truthy', function () {
+      lyftWebModal.__set__('messageFormInputElement', {value: value});
+      lyftWebModal.__set__('frameAfterTextHeaderElement', {});
+      lyftWebModal.__set__('frameBefore', {className: 'frame-before on'});
+      lyftWebModal.__set__('frameAfter', {className: 'frame-after'});
+      lyftWebModal.onPostMessagesSuccess({messages: true});
+      expect(lyftWebModal.__get__('frameAfterTextHeaderElement').textContent.indexOf(value))
+        .toNotEqual(-1);
+      expect(lyftWebModal.__get__('selector').removeClass)
+        .toHaveBeenCalledWith(lyftWebModal.__get__('frameBefore'), 'on');
+      expect(lyftWebModal.__get__('selector').addClass)
+        .toHaveBeenCalledWith(lyftWebModal.__get__('frameAfter'), 'on');
+    });
+
+    it('does not update the user interface if data is falsey', function () {
+      lyftWebModal.__set__('messageFormInputElement', {value: value});
+      lyftWebModal.__set__('frameAfterTextHeaderElement', {});
+      lyftWebModal.__set__('frameBefore', {className: 'frame-before on'});
+      lyftWebModal.__set__('frameAfter', {className: 'frame-after'});
+      lyftWebModal.onPostMessagesSuccess({messages: false});
+      expect(lyftWebModal.__get__('frameAfterTextHeaderElement').textContent)
+        .toEqual(undefined);
+      expect(lyftWebModal.__get__('selector').removeClass)
+        .toNotHaveBeenCalled();
+      expect(lyftWebModal.__get__('selector').addClass)
+        .toNotHaveBeenCalled();
+    });
+
+  });
+
 });
