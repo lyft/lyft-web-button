@@ -257,6 +257,21 @@ describe('lyftWebModal', function () {
         .toNotHaveBeenCalled();
     });
 
+    it('updates the style of the frames', function (done) {
+      lyftWebModal.__set__('messageFormInputElement', {value: value});
+      lyftWebModal.__set__('frameAfterTextHeaderElement', {});
+      lyftWebModal.__set__('frameBefore', {className: 'frame-before on'});
+      lyftWebModal.__set__('frameAfter', {className: 'frame-after'});
+      lyftWebModal.onPostMessagesSuccess({messages: true});
+      setTimeout(function () {
+        expect(lyftWebModal.__get__('frameBefore').style)
+          .toNotEqual(undefined);
+        expect(lyftWebModal.__get__('frameAfter').style)
+          .toNotEqual(undefined);
+        done();
+      }, 500);
+    });
+
   });
 
   describe('open', function () {
