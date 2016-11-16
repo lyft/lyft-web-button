@@ -231,6 +231,7 @@ describe('lyftWebButton', function () {
           latitude: 'someEndLatitude',
           longitude: 'someEndLongitude'
         },
+        objectName: 'someObjectName',
         onClick: expect.createSpy(),
         parentElement: {
           childNodes: ['someChildNode'],
@@ -330,7 +331,7 @@ describe('lyftWebButton', function () {
           start_lng: position.coords.longitude,
           end_lat: options.location.latitude,
           end_lng: options.location.longitude
-        }, 'lyftWebButton.onGetCostsSuccess');
+        }, (options.objectName + '.onGetCostsSuccess'));
     });
 
     it('successfully queries current position and requests etas', function () {
@@ -339,7 +340,7 @@ describe('lyftWebButton', function () {
         .toHaveBeenCalledWith({
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }, 'lyftWebButton.onGetEtasSuccess');
+        }, (options.objectName + '.onGetEtasSuccess'));
     });
 
   });

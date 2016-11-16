@@ -276,31 +276,29 @@ describe('lyftWebModal', function () {
 
   describe('open', function () {
 
-    var mockDocument;
+    var parentElement;
 
     beforeEach(function () {
-      mockDocument = {
-        body: {
-          childNodes: ['someChildNode'],
-          insertBefore: expect.createSpy()
-        }
+      parentElement = {
+        childNodes: ['someChildNode'],
+        insertBefore: expect.createSpy()
       };
-      lyftWebModal.__set__('document', mockDocument);
+      lyftWebModal.__set__('parentElement', parentElement);
       expect.spyOn(lyftWebModal.__get__('selector'), 'addClass');
     });
 
     afterEach(function () {
-      mockDocument = undefined;
+      parentElement = undefined;
       lyftWebModal.__get__('selector').addClass.reset();
     });
 
     it('inserts the template into the DOM', function () {
       lyftWebModal.__set__('rootElement', {className: 'rootElement'});
       lyftWebModal.open();
-      expect(mockDocument.body.insertBefore)
+      expect(parentElement.insertBefore)
         .toHaveBeenCalledWith(
           lyftWebModal.__get__('rootElement'),
-          mockDocument.body.childNodes[0]
+          parentElement.childNodes[0]
         );
     });
 
@@ -358,7 +356,9 @@ describe('lyftWebModal', function () {
       location: {
         latitude: 'someEndLatitude',
         longitude: 'someEndLongitude'
-      }
+      },
+      objectName: 'someObjectName',
+      parentElement: 'someParentElement'
     };
 
     beforeEach(function () {
@@ -375,6 +375,12 @@ describe('lyftWebModal', function () {
       lyftWebModal.__get__('createElements').reset();
       lyftWebModal.__get__('bindEvents').reset();
       lyftWebModal.__get__('updateContents').reset();
+    });
+
+    it('sets parentElement', function () {
+      lyftWebModal.initialize(options);
+      expect(lyftWebModal.__get__('parentElement'))
+        .toEqual(options.parentElement);
     });
 
     it('sets client_id', function () {
@@ -398,7 +404,7 @@ describe('lyftWebModal', function () {
     it('binds events', function () {
       lyftWebModal.initialize(options);
       expect(lyftWebModal.__get__('bindEvents'))
-        .toHaveBeenCalledWith(options.location);
+        .toHaveBeenCalledWith(options.location, options.objectName);
     });
 
     it('updates contents', function () {
