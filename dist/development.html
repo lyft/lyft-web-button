@@ -14,16 +14,17 @@
       window,
       document,
       scriptSrc,
-      buttonObjectName,
-      modalObjectName,
-      parentElementId,
+      defaultModalObjectName,
+      defaultButtonObjectName,
+      userModalObjectName,
+      userButtonObjectName,
       parentElement,
       scriptElement
     ){
-      parentElement = document.getElementById(parentElementId);
       scriptElement = document.createElement('script');
       scriptElement.async = true;
       scriptElement.onload = function(){
+        // configure
         var clientId = 'CLIENT_ID_GOES_HERE';
         var clientToken = 'CLIENT_TOKEN_GOES_HERE';
         var location = {
@@ -33,16 +34,29 @@
           'name': 'Lyft HQ'
         };
         var theme = 'multicolor';
-        window[modalObjectName].initialize({
-          'clientId': clientId,
-          'clientToken': clientToken,
-          'location': location
-        });
-        window[buttonObjectName].initialize({
+        // rename
+        if (userModalObjectName !== defaultModalObjectName) {
+          window[userModalObjectName] = window[defaultModalObjectName];
+          delete window[defaultModalObjectName];
+        }
+        if (userButtonObjectName !== defaultButtonObjectName) {
+          window[userButtonObjectName] = window[defaultButtonObjectName];
+          delete window[defaultButtonObjectName];
+        }
+        // initialize
+        window[userModalObjectName].initialize({
           'clientId': clientId,
           'clientToken': clientToken,
           'location': location,
-          'onClick': function(){window[modalObjectName].open();return false;},
+          'objectName': userModalObjectName,
+          'parentElement': document.body
+        });
+        window[userButtonObjectName].initialize({
+          'clientId': clientId,
+          'clientToken': clientToken,
+          'location': location,
+          'objectName': userButtonObjectName,
+          'onClick': function(){window[userModalObjectName].open();return false;},
           'parentElement': parentElement,
           'theme': theme
         });
@@ -53,9 +67,11 @@
       window,
       document,
       'lyftWebButton.js',
-      'lyftWebButton',
       'lyftWebModal',
-      'lyft-web-button-parent'
+      'lyftWebButton',
+      'lyftWebModalExample',
+      'lyftWebButtonExample',
+      document.getElementById('lyft-web-button-parent')
     );
     </script>
   </body>

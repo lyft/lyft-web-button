@@ -109,6 +109,7 @@ function onGetEtasSuccess(data) {
  * @param {string} options.location.latitude
  * @param {string} options.location.longitude
  * @param {string} options.location.name
+ * @param {string} options.objectName
  * @param {Object} options.parentElement
  * @param {string} options.theme
  */
@@ -131,12 +132,12 @@ function initialize(options) {
         start_lng: position.coords.longitude,
         end_lat: options.location.latitude,
         end_lng: options.location.longitude
-      }, 'lyftWebButton.onGetCostsSuccess');
+      }, (options.objectName + '.onGetCostsSuccess'));
       // request etas
       api.getEtas({
         lat: position.coords.latitude,
         lng: position.coords.longitude
-      }, 'lyftWebButton.onGetEtasSuccess');
+      }, (options.objectName + '.onGetEtasSuccess'));
     });
   }
 }

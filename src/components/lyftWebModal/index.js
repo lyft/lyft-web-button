@@ -16,6 +16,7 @@ var mapLabelNameElement;
 var messageFormElement;
 var messageFormInputElement;
 var openAppCtaElement;
+var parentElement;
 var rootElement;
 
 /* ======================== */
@@ -42,7 +43,7 @@ function createElements() {
   return rootElement;
 }
 
-function bindEvents(location) {
+function bindEvents(location, objectName) {
   location = location || {};
   // root element: close modal window on click
   if (rootElement) {
@@ -69,10 +70,9 @@ function bindEvents(location) {
     messageFormElement.onsubmit = function (event) {
       api.postMessages({
         phone_number: messageFormInputElement.value,
-        // client_id: 'TODO',
         end_lat: location.latitude,
         end_lng: location.longitude
-      }, 'lyftWebModal.onPostMessagesSuccess');
+      }, (objectName + '.onPostMessagesSuccess'));
       return false;
     };
   }
@@ -122,7 +122,7 @@ function onPostMessagesSuccess(data) {
 }
 
 function open() {
-  document.body.insertBefore(rootElement, document.body.childNodes[0]);
+  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
   setTimeout(function () {
     selector.addClass(rootElement, 'on');
   }, 10);
@@ -145,14 +145,17 @@ function close() {
  * @param {string} options.location.latitude
  * @param {string} options.location.longitude
  * @param {string} options.location.name
+ * @param {string} options.objectName
+ * @param {Object} options.parentElement
  */
 function initialize(options) {
   // parse arguments
+  parentElement = options.parentElement;
   api.setClientId(options.clientId);
   api.setClientToken(options.clientToken);
   // create element tree
   createElements();
-  bindEvents(options.location);
+  bindEvents(options.location, options.objectName);
   updateContents(options.location);
 }
 

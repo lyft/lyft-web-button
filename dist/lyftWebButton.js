@@ -71,6 +71,7 @@
 	var messageFormElement;
 	var messageFormInputElement;
 	var openAppCtaElement;
+	var parentElement;
 	var rootElement;
 
 	/* ======================== */
@@ -97,7 +98,7 @@
 	  return rootElement;
 	}
 
-	function bindEvents(location) {
+	function bindEvents(location, objectName) {
 	  location = location || {};
 	  // root element: close modal window on click
 	  if (rootElement) {
@@ -124,10 +125,9 @@
 	    messageFormElement.onsubmit = function (event) {
 	      api.postMessages({
 	        phone_number: messageFormInputElement.value,
-	        // client_id: 'TODO',
 	        end_lat: location.latitude,
 	        end_lng: location.longitude
-	      }, 'lyftWebModal.onPostMessagesSuccess');
+	      }, (objectName + '.onPostMessagesSuccess'));
 	      return false;
 	    };
 	  }
@@ -177,7 +177,7 @@
 	}
 
 	function open() {
-	  document.body.insertBefore(rootElement, document.body.childNodes[0]);
+	  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
 	  setTimeout(function () {
 	    selector.addClass(rootElement, 'on');
 	  }, 10);
@@ -200,14 +200,17 @@
 	 * @param {string} options.location.latitude
 	 * @param {string} options.location.longitude
 	 * @param {string} options.location.name
+	 * @param {string} options.objectName
+	 * @param {Object} options.parentElement
 	 */
 	function initialize(options) {
 	  // parse arguments
+	  parentElement = options.parentElement;
 	  api.setClientId(options.clientId);
 	  api.setClientToken(options.clientToken);
 	  // create element tree
 	  createElements();
-	  bindEvents(options.location);
+	  bindEvents(options.location, options.objectName);
 	  updateContents(options.location);
 	}
 
@@ -945,6 +948,7 @@
 	 * @param {string} options.location.latitude
 	 * @param {string} options.location.longitude
 	 * @param {string} options.location.name
+	 * @param {string} options.objectName
 	 * @param {Object} options.parentElement
 	 * @param {string} options.theme
 	 */
@@ -967,12 +971,12 @@
 	        start_lng: position.coords.longitude,
 	        end_lat: options.location.latitude,
 	        end_lng: options.location.longitude
-	      }, 'lyftWebButton.onGetCostsSuccess');
+	      }, (options.objectName + '.onGetCostsSuccess'));
 	      // request etas
 	      api.getEtas({
 	        lat: position.coords.latitude,
 	        lng: position.coords.longitude
-	      }, 'lyftWebButton.onGetEtasSuccess');
+	      }, (options.objectName + '.onGetEtasSuccess'));
 	    });
 	  }
 	}
