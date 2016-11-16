@@ -289,6 +289,50 @@ describe('lyftWebModal', function () {
         );
     });
 
+    it('adds a class to rootElement', function (done) {
+      lyftWebModal.__set__('rootElement', {className: 'rootElement'});
+      lyftWebModal.open();
+      setTimeout(function () {
+        expect(lyftWebModal.__get__('selector').addClass)
+          .toHaveBeenCalledWith(lyftWebModal.__get__('rootElement'), 'on');
+        done();
+      }, 110);
+    });
+
+  });
+
+  describe('close', function () {
+
+    beforeEach(function () {
+      expect.spyOn(lyftWebModal.__get__('selector'), 'removeClass');
+    });
+
+    afterEach(function () {
+      lyftWebModal.__get__('selector').removeClass.reset();
+    });
+
+    it('removes a class from rootElement', function () {
+      lyftWebModal.__set__('rootElement', {className: 'rootElement on'});
+      lyftWebModal.close();
+      expect(lyftWebModal.__get__('selector').removeClass)
+        .toHaveBeenCalledWith(lyftWebModal.__get__('rootElement'), 'on');
+    });
+
+    it('removes rootElement from the DOM', function (done) {
+      lyftWebModal.__set__('rootElement', {
+        className: 'rootElement',
+        parentElement: {
+          removeChild: expect.createSpy()
+        }
+      });
+      lyftWebModal.close();
+      setTimeout(function () {
+        expect(lyftWebModal.__get__('rootElement').parentElement.removeChild)
+          .toHaveBeenCalledWith(lyftWebModal.__get__('rootElement'));
+        done();
+      }, 500);
+    });
+
   });
 
 });
