@@ -21,6 +21,35 @@ describe('jsonp', function () {
     expect(typeof jsonp.__get__('serialize')).toEqual('function');
   });
 
+  describe('serialize', function () {
+
+    it('returns an empty string when the given object is ill-defined', function () {
+      var inputs = [undefined, null, {}, []];
+      for (var i = 0, l = inputs.length; i < l; i++) {
+        expect(jsonp.__get__('serialize')(inputs[i])).toEqual('');
+      }
+    });
+
+    it('serializes a simple object to a query parameter string', function () {
+      var someObj = {key: 'val'};
+      var result = jsonp.__get__('serialize')(someObj);
+      expect(result).toEqual('key=val');
+    });
+
+    it('serializes a complex object to a query parameter string', function () {
+      var someObj = {key1: 'val1', key2: {key3: 'val3'}};
+      var result = jsonp.__get__('serialize')(someObj);
+      expect(result).toEqual('key1=val1&key2%5Bkey3%5D=val3');
+    });
+
+    it('serializes an array to a query parameter string', function () {
+      var someObj = {key1: ['val0', 'val1']};
+      var result = jsonp.__get__('serialize')(someObj);
+      expect(result).toEqual('key1%5B0%5D=val0&key1%5B1%5D=val1');
+    });
+
+  });
+
   describe('request', function () {
 
     beforeEach(function () {
