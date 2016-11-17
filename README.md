@@ -30,5 +30,6 @@ npm run-script --silent test
 ```
 
 ### Limitations
-- `lyftWebButton` cannot appear more than once on a page at this time. This is a technical implementation detail, and it may change in the future.
-- `lyftWebModal` uses a single theme, but it can be changed with CSS.
+- `lyftWebButton` can appear more than once on a page, but the implementation needs improvement.
+- `lyftWebModal` uses a single theme, but it can be overridden with CSS.
+- `lyftWebModal` only supports Google Maps at this time, but it may be worth allowing a custom background image.
