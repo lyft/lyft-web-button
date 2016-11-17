@@ -21,6 +21,24 @@ describe('jsonp', function () {
     expect(typeof jsonp.__get__('serialize')).toEqual('function');
   });
 
+  describe('injectScript', function () {
+
+    it('throws an exception if the options object is undefined', function () {
+      var options = undefined;
+      expect(function () {
+        jsonp.__get__('injectScript')(options);
+      }).toThrow(TypeError);
+    });
+
+    it('throws an exception if the src is undefined', function () {
+      var options = {src: undefined};
+      expect(function () {
+        jsonp.__get__('injectScript')(options);
+      }).toThrow(TypeError);
+    });
+
+  });
+
   describe('serialize', function () {
 
     it('returns an empty string when the given object is ill-defined', function () {
@@ -62,6 +80,13 @@ describe('jsonp', function () {
 
     it('throws an exception if the options object is undefined', function () {
       var options = undefined;
+      expect(function () {
+        jsonp.request(options);
+      }).toThrow(TypeError);
+    });
+
+    it('throws an exception if the src is undefined', function () {
+      var options = {src: undefined};
       expect(function () {
         jsonp.request(options);
       }).toThrow(TypeError);
