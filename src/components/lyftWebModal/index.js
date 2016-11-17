@@ -23,6 +23,10 @@ var rootElement;
 /* DOM Manipulation Methods */
 /* ======================== */
 
+/**
+ * Creates elements from a template and stores some useful references.
+ * @returns {Object} Template's root element.
+ */
 function createElements() {
   // create tree from template
   var template = document.createElement('div');
@@ -43,6 +47,15 @@ function createElements() {
   return rootElement;
 }
 
+/**
+ * Binds events to some elements.
+ * @param {Object} location Location of the intended destination.
+ * @param {string} location.address
+ * @param {string} location.latitude
+ * @param {string} location.longitude
+ * @param {string} location.name
+ * @param {string} objectName This instance's name in the global namespace.
+ */
 function bindEvents(location, objectName) {
   location = location || {};
   // root element: close modal window on click
@@ -79,6 +92,15 @@ function bindEvents(location, objectName) {
   return rootElement;
 }
 
+/**
+ * Updates the contents of some elements.
+ * @param {string} googleApiKey API key for Google Static Maps.
+ * @param {Object} location Location of the intended destination.
+ * @param {string} location.address
+ * @param {string} location.latitude
+ * @param {string} location.longitude
+ * @param {string} location.name
+ */
 function updateContents(googleApiKey, location) {
   location = location || {};
   // map-container: set background-image
@@ -109,6 +131,10 @@ function updateContents(googleApiKey, location) {
 /* Workflow Methods */
 /* ================ */
 
+/**
+ * Success callback for postMessages request.
+ * @param {Object} data Response data.
+ */
 function onPostMessagesSuccess(data) {
   if (data && data.messages) {
     frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
@@ -122,6 +148,9 @@ function onPostMessagesSuccess(data) {
   }
 }
 
+/**
+ * Attaches the modal window to the DOM and makes it visible.
+ */
 function open() {
   parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
   setTimeout(function () {
@@ -129,6 +158,9 @@ function open() {
   }, 10);
 }
 
+/**
+ * Makes the modal window invisible and detaches it from the DOM.
+ */
 function close() {
   selector.removeClass(rootElement, 'on');
   setTimeout(function () {
