@@ -39,7 +39,7 @@ function injectScript(options) {
     }
   };
   /* insertBefore instead of appendChild for browser compatibility */
-  headElement.insertBefore(scriptElement, headElement.firstChild);
+  headElement.insertBefore(scriptElement, headElement.childNodes[0]);
 }
 
 /**

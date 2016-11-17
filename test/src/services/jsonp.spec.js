@@ -23,6 +23,30 @@ describe('jsonp', function () {
 
   describe('injectScript', function () {
 
+    var mockDocument;
+    var mockHead;
+    var mockScript;
+
+    beforeEach(function () {
+      mockHead = {
+        childNodes: ['someChildNode'],
+        insertBefore: expect.createSpy(),
+        removeChild: expect.createSpy()
+      };
+      mockScript = {};
+      mockDocument = {
+        createElement: expect.createSpy().andReturn(mockScript),
+        getElementsByTagName: expect.createSpy().andReturn([mockHead])
+      };
+      jsonp.__set__('document', mockDocument);
+    });
+
+    afterEach(function () {
+      mockHead = undefined;
+      mockScript = undefined;
+      mockDocument = undefined;
+    });
+
     it('throws an exception if the options object is undefined', function () {
       var options = undefined;
       expect(function () {
@@ -35,6 +59,29 @@ describe('jsonp', function () {
       expect(function () {
         jsonp.__get__('injectScript')(options);
       }).toThrow(TypeError);
+    });
+
+    it('sets some script attributes from the given options', function () {
+      var options = {
+        async: 'someAsync',
+        callback: expect.createSpy(),
+        defer: 'someDefer',
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      expect(mockScript.async).toEqual(options.async);
+      expect(mockScript.defer).toEqual(options.defer);
+      expect(mockScript.src).toEqual(options.src);
+    });
+
+    it('sets some script attributes from default values', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      expect(mockScript.async).toNotEqual(undefined);
+      expect(mockScript.defer).toNotEqual(undefined);
     });
 
   });
