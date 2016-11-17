@@ -33,7 +33,9 @@ describe('jsonp', function () {
         insertBefore: expect.createSpy(),
         removeChild: expect.createSpy()
       };
-      mockScript = {};
+      mockScript = {
+        parentNode: 'someParentNode'
+      };
       mockDocument = {
         createElement: expect.createSpy().andReturn(mockScript),
         getElementsByTagName: expect.createSpy().andReturn([mockHead])
@@ -69,9 +71,12 @@ describe('jsonp', function () {
         src: 'someSrc'
       };
       jsonp.__get__('injectScript')(options);
-      expect(mockScript.async).toEqual(options.async);
-      expect(mockScript.defer).toEqual(options.defer);
-      expect(mockScript.src).toEqual(options.src);
+      expect(mockScript.async)
+        .toEqual(options.async);
+      expect(mockScript.defer)
+        .toEqual(options.defer);
+      expect(mockScript.src)
+        .toEqual(options.src);
     });
 
     it('sets some script attributes from default values', function () {
@@ -80,8 +85,64 @@ describe('jsonp', function () {
         src: 'someSrc'
       };
       jsonp.__get__('injectScript')(options);
-      expect(mockScript.async).toNotEqual(undefined);
-      expect(mockScript.defer).toNotEqual(undefined);
+      expect(mockScript.async)
+        .toNotEqual(undefined);
+      expect(mockScript.defer)
+        .toNotEqual(undefined);
+    });
+
+    it('assigns an onload event handler to the script', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      expect(typeof mockScript.onload)
+        .toEqual('function');
+    });
+
+    it('invokes the given callback during the onload event handler', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      var event = 'someEvent';
+      mockScript.onload(event);
+      expect(options.callback)
+        .toHaveBeenCalledWith(event);
+    });
+
+    it('nullifies the onload event handler after invoking the callback', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      mockScript.onload();
+      expect(mockScript.onload)
+        .toEqual(null);
+    });
+
+    it('removes the script element from the document head after nullifying the onload event handler', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      mockScript.onload();
+      expect(mockHead.removeChild)
+        .toHaveBeenCalledWith(mockScript);
+    });
+
+    it('inserts the script element into the document head', function () {
+      var options = {
+        callback: expect.createSpy(),
+        src: 'someSrc'
+      };
+      jsonp.__get__('injectScript')(options);
+      expect(mockHead.insertBefore)
+        .toHaveBeenCalledWith(mockScript, mockHead.childNodes[0]);
     });
 
   });
@@ -91,26 +152,30 @@ describe('jsonp', function () {
     it('returns an empty string when the given object is ill-defined', function () {
       var inputs = [undefined, null, {}, []];
       for (var i = 0, l = inputs.length; i < l; i++) {
-        expect(jsonp.__get__('serialize')(inputs[i])).toEqual('');
+        expect(jsonp.__get__('serialize')(inputs[i]))
+          .toEqual('');
       }
     });
 
     it('serializes a simple object to a query parameter string', function () {
       var someObj = {key: 'val'};
       var result = jsonp.__get__('serialize')(someObj);
-      expect(result).toEqual('key=val');
+      expect(result)
+        .toEqual('key=val');
     });
 
     it('serializes a complex object to a query parameter string', function () {
       var someObj = {key1: 'val1', key2: {key3: 'val3'}};
       var result = jsonp.__get__('serialize')(someObj);
-      expect(result).toEqual('key1=val1&key2%5Bkey3%5D=val3');
+      expect(result)
+        .toEqual('key1=val1&key2%5Bkey3%5D=val3');
     });
 
     it('serializes an array to a query parameter string', function () {
       var someObj = {key1: ['val0', 'val1']};
       var result = jsonp.__get__('serialize')(someObj);
-      expect(result).toEqual('key1%5B0%5D=val0&key1%5B1%5D=val1');
+      expect(result)
+        .toEqual('key1%5B0%5D=val0&key1%5B1%5D=val1');
     });
 
   });
