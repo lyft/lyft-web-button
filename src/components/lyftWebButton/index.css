@@ -1,4 +1,4 @@
-/* small styles */
+/* medium styles */
 .lyft-web-button {
   padding: 5px 10px;
   color: #000000;
@@ -48,28 +48,26 @@
 }
 
 /* large styles */
-@media(min-width:768px) {
-  .lyft-web-button {
-    padding: 18px 20px;
-  }
-  .lyft-web-button > .lyft-logo {
-    width: 55px;
-  }
-  .lyft-web-button > .cta-eta {
-    margin-left: 20px;
-  }
-  .lyft-web-button > .cta-eta > .cta {
-    font-size: 30px;
-  }
-  .lyft-web-button > .cta-eta > .eta {
-    font-size: 20px;
-  }
-  .lyft-web-button > .arrow-icon {
-    margin-left: 20px;
-  }
-  .lyft-web-button > .price-range {
-    font-size: 20px;
-  }
+.lyft-web-button.large {
+  padding: 18px 20px;
+}
+.lyft-web-button.large > .lyft-logo {
+  width: 55px;
+}
+.lyft-web-button.large > .cta-eta {
+  margin-left: 20px;
+}
+.lyft-web-button.large > .cta-eta > .cta {
+  font-size: 30px;
+}
+.lyft-web-button.large > .cta-eta > .eta {
+  font-size: 20px;
+}
+.lyft-web-button.large > .arrow-icon {
+  margin-left: 20px;
+}
+.lyft-web-button.large > .price-range {
+  font-size: 20px;
 }
 
 /* hot-pink */

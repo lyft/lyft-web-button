@@ -1,4 +1,4 @@
-/* small styles */
+/* small-to-medium screen styles */
 .lyft-web-modal {
   position: fixed;
   top: 0;
@@ -276,7 +276,7 @@
   text-decoration: none;
 }
 
-/* large styles */
+/* large-to-very-large screen styles */
 @media(min-width:768px) {
   .lyft-web-modal > .content {
     max-width: 640px;
