@@ -472,12 +472,22 @@
 /* 4 */
 /***/ function(module, exports) {
 
+	/**
+	 * Adds a class to an element.
+	 * @param {Object} element
+	 * @param {string} className
+	 */
 	function addClass(element, className) {
 	    var classList = element.className.split(' ');
 	    if (classList.indexOf(className) === -1) {classList.push(className);}
 	    element.className = classList.join(' ');
 	}
 
+	/**
+	 * Removes a class from an element.
+	 * @param {Object} element
+	 * @param {string} className
+	 */
 	function removeClass(element, className) {
 	    var classList = element.className.split(' ');
 	    var classIndex = classList.indexOf(className);
@@ -485,6 +495,13 @@
 	    element.className = classList.join(' ');
 	}
 
+	/**
+	 * Selects a single child element from a given element according to some criteria.
+	 * @param {Object} element The parent element from which the child will be selected.
+	 * @param {string} attributeName Name of the attribute for selection.
+	 * @param {string} attributeValue Value of the named attribute for selection.
+	 * @returns {Object} The selected element.
+	 */
 	function selectChildElementByAttribute(element, attributeName, attributeValue) {
 	  var childNodes = element.childNodes || [];
 	  for (var i = 0, l = childNodes.length; i < l; i++) {
@@ -494,6 +511,12 @@
 	  }
 	}
 
+	/**
+	 * Selects a single child element from an element tree according to some criteria.
+	 * @param {Object} element The top level of the element tree.
+	 * @param {Array} attributes Strings describing the selection criteria.
+	 * @returns {Object} The selected element.
+	 */
 	function selectChildElement(element, attributes) {
 	  var currentElement = element;
 	  for (var i = 0, l = attributes.length; i < l; i++) {
