@@ -1,5 +1,6 @@
 /* medium styles */
 .lyft-web-button {
+  cursor: pointer;
   padding: 5px 10px;
   color: #000000; /* white */
   font-family: sans-serif;
