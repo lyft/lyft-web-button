@@ -247,6 +247,13 @@
   max-width: 300px;
   margin: 5px 0 0 0;
 }
+.lyft-web-modal > .content .message-form-container > form > .message-form-button:hover {
+  background-color: #E600AC; /* reduce brightness by 10% */
+  background-image: -webkit-linear-gradient(top left, #E600AC, #9E0978);
+  background-image: -moz-linear-gradient(top left, #E600AC, #9E0978);
+  background-image: -o-linear-gradient(top left, #E600AC, #9E0978);
+  background-image: linear-gradient(to bottom right, #E600AC, #9E0978);
+}
 .lyft-web-modal > .content .open-app-container {
   margin-top: 10px;
 }
