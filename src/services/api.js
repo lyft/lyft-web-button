@@ -20,6 +20,7 @@ function setClientToken(value) {client_token = value;}
  * @param {Object} data Required.
  * @param {function} callback Optional.
  * @param {string} url Required.
+ * @returns {void} Result of jsonp.request().
  */
 function requestWithCredentials(data, callback, url) {
   /* build data payload */
@@ -43,6 +44,7 @@ function requestWithCredentials(data, callback, url) {
  * @param {string} data.end_lng Required.
  * @param {string} data.ride_type Optional.
  * @param {function} callback Optional.
+ * @returns {void} Result of requestWithCredentials().
  */
 function getCosts(data, callback) {
   return requestWithCredentials(data, callback, GET_COSTS_URL);
@@ -54,6 +56,7 @@ function getCosts(data, callback) {
  * @param {string} data.lat Required.
  * @param {string} data.lng Required.
  * @param {function} callback Optional.
+ * @returns {void} Result of requestWithCredentials().
  */
 function getDrivers(data, callback) {
   return requestWithCredentials(data, callback, GET_DRIVERS_URL);
@@ -66,6 +69,7 @@ function getDrivers(data, callback) {
  * @param {string} data.lng Required.
  * @param {string} data.ride_type Optional.
  * @param {function} callback Optional.
+ * @returns {void} Result of requestWithCredentials().
  */
 function getEtas(data, callback) {
   return requestWithCredentials(data, callback, GET_ETAS_URL);
@@ -78,6 +82,7 @@ function getEtas(data, callback) {
  * @param {string} data.lng Required.
  * @param {string} data.ride_type Optional.
  * @param {function} callback Optional.
+ * @returns {void} Result of requestWithCredentials().
  */
 function getRideTypes(data, callback) {
   return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
@@ -90,6 +95,7 @@ function getRideTypes(data, callback) {
  * @param {string} data.end_lat Optional.
  * @param {string} data.end_lng Optional.
  * @param {function} callback Optional.
+ * @returns {void} Result of requestWithCredentials().
  */
 function postMessages(data, callback) {
   return requestWithCredentials(data, callback, POST_MESSAGES_URL);

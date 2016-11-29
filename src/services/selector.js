@@ -2,6 +2,7 @@
  * Adds a class to an element.
  * @param {Object} element
  * @param {string} className
+ * @returns {void}
  */
 function addClass(element, className) {
     var classList = element.className.split(' ');
@@ -13,6 +14,7 @@ function addClass(element, className) {
  * Removes a class from an element.
  * @param {Object} element
  * @param {string} className
+ * @returns {void}
  */
 function removeClass(element, className) {
     var classList = element.className.split(' ');

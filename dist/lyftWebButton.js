@@ -110,6 +110,7 @@
 	 * @param {string} location.longitude
 	 * @param {string} location.name
 	 * @param {string} objectName This instance's name in the global namespace.
+	 * @returns {void}
 	 */
 	function bindEvents(location, objectName) {
 	  location = location || {};
@@ -144,7 +145,6 @@
 	      return false;
 	    };
 	  }
-	  return rootElement;
 	}
 
 	/**
@@ -155,6 +155,7 @@
 	 * @param {string} location.latitude
 	 * @param {string} location.longitude
 	 * @param {string} location.name
+	 * @returns {void}
 	 */
 	function updateContents(googleApiKey, location) {
 	  location = location || {};
@@ -189,6 +190,7 @@
 	/**
 	 * Success callback for postMessages request.
 	 * @param {Object} data Response data.
+	 * @returns {void}
 	 */
 	function onPostMessagesSuccess(data) {
 	  if (data && data.messages) {
@@ -205,6 +207,7 @@
 
 	/**
 	 * Attaches the modal window to the DOM and makes it visible.
+	 * @returns {void}
 	 */
 	function open() {
 	  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
@@ -215,6 +218,7 @@
 
 	/**
 	 * Makes the modal window invisible and detaches it from the DOM.
+	 * @returns {void}
 	 */
 	function close() {
 	  selector.removeClass(rootElement, 'on');
@@ -236,6 +240,7 @@
 	 * @param {string} options.location.name
 	 * @param {string} options.objectName
 	 * @param {Object} options.parentElement
+	 * @returns {void}
 	 */
 	function initialize(options) {
 	  // parse arguments
@@ -286,6 +291,7 @@
 	 * @param {Object} data Required.
 	 * @param {function} callback Optional.
 	 * @param {string} url Required.
+	 * @returns {void} Result of jsonp.request().
 	 */
 	function requestWithCredentials(data, callback, url) {
 	  /* build data payload */
@@ -309,6 +315,7 @@
 	 * @param {string} data.end_lng Required.
 	 * @param {string} data.ride_type Optional.
 	 * @param {function} callback Optional.
+	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getCosts(data, callback) {
 	  return requestWithCredentials(data, callback, GET_COSTS_URL);
@@ -320,6 +327,7 @@
 	 * @param {string} data.lat Required.
 	 * @param {string} data.lng Required.
 	 * @param {function} callback Optional.
+	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getDrivers(data, callback) {
 	  return requestWithCredentials(data, callback, GET_DRIVERS_URL);
@@ -332,6 +340,7 @@
 	 * @param {string} data.lng Required.
 	 * @param {string} data.ride_type Optional.
 	 * @param {function} callback Optional.
+	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getEtas(data, callback) {
 	  return requestWithCredentials(data, callback, GET_ETAS_URL);
@@ -344,6 +353,7 @@
 	 * @param {string} data.lng Required.
 	 * @param {string} data.ride_type Optional.
 	 * @param {function} callback Optional.
+	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getRideTypes(data, callback) {
 	  return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
@@ -356,6 +366,7 @@
 	 * @param {string} data.end_lat Optional.
 	 * @param {string} data.end_lng Optional.
 	 * @param {function} callback Optional.
+	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function postMessages(data, callback) {
 	  return requestWithCredentials(data, callback, POST_MESSAGES_URL);
@@ -384,6 +395,7 @@
 	 * @param {boolean} options.async Optional.
 	 * @param {function} options.callback Optional.
 	 * @param {boolean} options.defer Optional.
+	 * @returns {void}
 	 */
 	function injectScript(options) {
 	  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
@@ -449,6 +461,7 @@
 	 * @param {string} options.url Required.
 	 * @param {string} options.callback Callback path relative to window context (optional).
 	 * @param {Object} options.data JSON-compatible data payload (optional).
+	 * @returns {void} Result of injectScript().
 	 */
 	function request(options) {
 	  if (typeof options === 'undefined' || typeof options.url === 'undefined') {
@@ -476,6 +489,7 @@
 	 * Adds a class to an element.
 	 * @param {Object} element
 	 * @param {string} className
+	 * @returns {void}
 	 */
 	function addClass(element, className) {
 	    var classList = element.className.split(' ');
@@ -487,6 +501,7 @@
 	 * Removes a class from an element.
 	 * @param {Object} element
 	 * @param {string} className
+	 * @returns {void}
 	 */
 	function removeClass(element, className) {
 	    var classList = element.className.split(' ');
@@ -932,6 +947,7 @@
 	/**
 	 * Binds events to some elements.
 	 * @param {function} onClick Handler for button's onclick event.
+	 * @returns {void}
 	 */
 	function bindEvents(onClick) {
 	  // root element: bind user-specified event handler
@@ -943,6 +959,7 @@
 	/**
 	 * Updates the contents of some elements.
 	 * @param {string} theme Name of the user's chosen theme.
+	 * @returns {void}
 	 */
 	function updateContents(theme) {
 	  // root element: apply user-specified theme
@@ -958,6 +975,7 @@
 	/**
 	 * Success callback for getCosts request.
 	 * @param {Object} data Response data.
+	 * @returns {void}
 	 */
 	function onGetCostsSuccess(data) {
 	  if (data && data.cost_estimates && data.cost_estimates.length) {
@@ -979,6 +997,7 @@
 	/**
 	 * Success callback for getEtas request.
 	 * @param {Object} data Response data.
+	 * @returns {void}
 	 */
 	function onGetEtasSuccess(data) {
 	  if (data && data.eta_estimates && data.eta_estimates.length) {
@@ -1008,6 +1027,7 @@
 	 * @param {string} options.objectName
 	 * @param {Object} options.parentElement
 	 * @param {string} options.theme
+	 * @returns {void}
 	 */
 	function initialize(options) {
 	  // parse arguments

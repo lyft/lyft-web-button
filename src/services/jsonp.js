@@ -5,6 +5,7 @@
  * @param {boolean} options.async Optional.
  * @param {function} options.callback Optional.
  * @param {boolean} options.defer Optional.
+ * @returns {void}
  */
 function injectScript(options) {
   if (typeof options === 'undefined' || typeof options.src === 'undefined') {
@@ -70,6 +71,7 @@ function serialize(obj, pfx) {
  * @param {string} options.url Required.
  * @param {string} options.callback Callback path relative to window context (optional).
  * @param {Object} options.data JSON-compatible data payload (optional).
+ * @returns {void} Result of injectScript().
  */
 function request(options) {
   if (typeof options === 'undefined' || typeof options.url === 'undefined') {

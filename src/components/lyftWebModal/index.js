@@ -55,6 +55,7 @@ function createElements() {
  * @param {string} location.longitude
  * @param {string} location.name
  * @param {string} objectName This instance's name in the global namespace.
+ * @returns {void}
  */
 function bindEvents(location, objectName) {
   location = location || {};
@@ -89,7 +90,6 @@ function bindEvents(location, objectName) {
       return false;
     };
   }
-  return rootElement;
 }
 
 /**
@@ -100,6 +100,7 @@ function bindEvents(location, objectName) {
  * @param {string} location.latitude
  * @param {string} location.longitude
  * @param {string} location.name
+ * @returns {void}
  */
 function updateContents(googleApiKey, location) {
   location = location || {};
@@ -134,6 +135,7 @@ function updateContents(googleApiKey, location) {
 /**
  * Success callback for postMessages request.
  * @param {Object} data Response data.
+ * @returns {void}
  */
 function onPostMessagesSuccess(data) {
   if (data && data.messages) {
@@ -150,6 +152,7 @@ function onPostMessagesSuccess(data) {
 
 /**
  * Attaches the modal window to the DOM and makes it visible.
+ * @returns {void}
  */
 function open() {
   parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
@@ -160,6 +163,7 @@ function open() {
 
 /**
  * Makes the modal window invisible and detaches it from the DOM.
+ * @returns {void}
  */
 function close() {
   selector.removeClass(rootElement, 'on');
@@ -181,6 +185,7 @@ function close() {
  * @param {string} options.location.name
  * @param {string} options.objectName
  * @param {Object} options.parentElement
+ * @returns {void}
  */
 function initialize(options) {
   // parse arguments

@@ -36,6 +36,7 @@ function createElements() {
 /**
  * Binds events to some elements.
  * @param {function} onClick Handler for button's onclick event.
+ * @returns {void}
  */
 function bindEvents(onClick) {
   // root element: bind user-specified event handler
@@ -47,6 +48,7 @@ function bindEvents(onClick) {
 /**
  * Updates the contents of some elements.
  * @param {string} theme Name of the user's chosen theme.
+ * @returns {void}
  */
 function updateContents(theme) {
   // root element: apply user-specified theme
@@ -62,6 +64,7 @@ function updateContents(theme) {
 /**
  * Success callback for getCosts request.
  * @param {Object} data Response data.
+ * @returns {void}
  */
 function onGetCostsSuccess(data) {
   if (data && data.cost_estimates && data.cost_estimates.length) {
@@ -83,6 +86,7 @@ function onGetCostsSuccess(data) {
 /**
  * Success callback for getEtas request.
  * @param {Object} data Response data.
+ * @returns {void}
  */
 function onGetEtasSuccess(data) {
   if (data && data.eta_estimates && data.eta_estimates.length) {
@@ -112,6 +116,7 @@ function onGetEtasSuccess(data) {
  * @param {string} options.objectName
  * @param {Object} options.parentElement
  * @param {string} options.theme
+ * @returns {void}
  */
 function initialize(options) {
   // parse arguments
