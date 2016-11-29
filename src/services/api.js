@@ -2,7 +2,7 @@
 var jsonp = require('./jsonp.js');
 
 // constants
-var SERVER_URL         = 'http://www.lyft.com/api/jsonp';
+var SERVER_URL         = 'https://www.lyft.com/api/jsonp';
 var GET_COSTS_URL      = SERVER_URL + '/get_costs';
 var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
 var GET_ETAS_URL       = SERVER_URL + '/get_etas';
