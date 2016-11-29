@@ -253,10 +253,10 @@
 	/* ===================================== */
 
 	module.exports = {
-	  'close': close,
-	  'initialize': initialize,
-	  'onPostMessagesSuccess': onPostMessagesSuccess,
-	  'open': open
+	  close: close,
+	  initialize: initialize,
+	  onPostMessagesSuccess: onPostMessagesSuccess,
+	  open: open
 	};
 
 
@@ -363,13 +363,13 @@
 
 	// exports
 	module.exports = {
-	  'getCosts': getCosts,
-	  'getDrivers': getDrivers,
-	  'getEtas': getEtas,
-	  'getRideTypes': getRideTypes,
-	  'postMessages': postMessages,
-	  'setClientId': setClientId,
-	  'setClientToken': setClientToken
+	  getCosts: getCosts,
+	  getDrivers: getDrivers,
+	  getEtas: getEtas,
+	  getRideTypes: getRideTypes,
+	  postMessages: postMessages,
+	  setClientId: setClientId,
+	  setClientToken: setClientToken
 	};
 
 
@@ -464,7 +464,7 @@
 
 	// exports
 	module.exports = {
-	  'request': request
+	  request: request
 	};
 
 
@@ -530,9 +530,9 @@
 
 	// exports
 	module.exports = {
-	  'addClass': addClass,
-	  'removeClass': removeClass,
-	  'selectChildElement': selectChildElement
+	  addClass: addClass,
+	  removeClass: removeClass,
+	  selectChildElement: selectChildElement
 	};
 
 
@@ -1043,9 +1043,9 @@
 	/* ===================================== */
 
 	module.exports = {
-	  'initialize': initialize,
-	  'onGetCostsSuccess': onGetCostsSuccess,
-	  'onGetEtasSuccess': onGetEtasSuccess
+	  initialize: initialize,
+	  onGetCostsSuccess: onGetCostsSuccess,
+	  onGetEtasSuccess: onGetEtasSuccess
 	};
 
 

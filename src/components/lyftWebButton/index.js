@@ -147,7 +147,7 @@ function initialize(options) {
 /* ===================================== */
 
 module.exports = {
-  'initialize': initialize,
-  'onGetCostsSuccess': onGetCostsSuccess,
-  'onGetEtasSuccess': onGetEtasSuccess
+  initialize: initialize,
+  onGetCostsSuccess: onGetCostsSuccess,
+  onGetEtasSuccess: onGetEtasSuccess
 };

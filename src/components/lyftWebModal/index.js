@@ -198,8 +198,8 @@ function initialize(options) {
 /* ===================================== */
 
 module.exports = {
-  'close': close,
-  'initialize': initialize,
-  'onPostMessagesSuccess': onPostMessagesSuccess,
-  'open': open
+  close: close,
+  initialize: initialize,
+  onPostMessagesSuccess: onPostMessagesSuccess,
+  open: open
 };

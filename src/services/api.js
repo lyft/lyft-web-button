@@ -97,11 +97,11 @@ function postMessages(data, callback) {
 
 // exports
 module.exports = {
-  'getCosts': getCosts,
-  'getDrivers': getDrivers,
-  'getEtas': getEtas,
-  'getRideTypes': getRideTypes,
-  'postMessages': postMessages,
-  'setClientId': setClientId,
-  'setClientToken': setClientToken
+  getCosts: getCosts,
+  getDrivers: getDrivers,
+  getEtas: getEtas,
+  getRideTypes: getRideTypes,
+  postMessages: postMessages,
+  setClientId: setClientId,
+  setClientToken: setClientToken
 };
