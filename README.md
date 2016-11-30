@@ -1,7 +1,7 @@
 # Lyft Web SDK
 
 [Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md)
- | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/doc/CODE_OF_CONDUCT.md)
+ | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/CODE_OF_CONDUCT.md)
  | [Lyft.com/developers](https://www.lyft.com/developers)
 
 ### Installation (requires [node](https://nodejs.org))
