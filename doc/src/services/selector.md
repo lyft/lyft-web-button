@@ -28,8 +28,8 @@
 Adds a class to an element.
 
 #### Arguments
-1. `element` *(Object)*:
-2. `className` *(string)*:
+1. `element` *(Object)*: Required.
+2. `className` *(string)*: Required.
 
 #### Returns
 *(void)*: Void.
@@ -46,8 +46,8 @@ Adds a class to an element.
 Removes a class from an element.
 
 #### Arguments
-1. `element` *(Object)*:
-2. `className` *(string)*:
+1. `element` *(Object)*: Required.
+2. `className` *(string)*: Required.
 
 #### Returns
 *(void)*: Void.

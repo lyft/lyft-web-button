@@ -2,8 +2,8 @@
  * Adds a class to an element.
  * @memberOf selector
  * @category selector
- * @param {Object} element
- * @param {string} className
+ * @param {Object} element Required.
+ * @param {string} className Required.
  * @returns {void} Void.
  */
 function addClass(element, className) {
@@ -16,8 +16,8 @@ function addClass(element, className) {
  * Removes a class from an element.
  * @memberOf selector
  * @category selector
- * @param {Object} element
- * @param {string} className
+ * @param {Object} element Required.
+ * @param {string} className Required.
  * @returns {void} Void.
  */
 function removeClass(element, className) {
