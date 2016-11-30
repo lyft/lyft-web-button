@@ -2,11 +2,20 @@
   "name": "lyft-web-sdk",
   "version": "0.0.1",
   "description": "Lyft Web SDK",
-  "author": "Jordan Patton <jpatton@lyft.com>",
+  "license": "Apache-2.0",
   "private": true,
+  "author": "Jordan Patton <jpatton@lyft.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/lyft/lyft-web-sdk.git"
+  },
+  "scripts": {
+    "build": "webpack --progress --colors",
+    "build:dev": "NODE_ENV=development webpack --progress --colors",
+    "build:dist": "NODE_ENV=production webpack --progress --colors",
+    "doc": "node doc/index.js",
+    "start": "webpack-dev-server --content-base dist/",
+    "test": "karma start"
   },
   "dependencies": {},
   "devDependencies": {
@@ -25,12 +34,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },
-  "scripts": {
-    "build": "webpack --progress --colors",
-    "build:dev": "NODE_ENV=development webpack --progress --colors",
-    "build:dist": "NODE_ENV=production webpack --progress --colors",
-    "doc": "node doc/index.js",
-    "start": "webpack-dev-server --content-base dist/",
-    "test": "karma start"
+  "engines": {
+    "node": ">=4.0.0"
   }
 }
