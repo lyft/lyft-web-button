@@ -1,5 +1,9 @@
 # Lyft Web SDK
 
+[Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md) |
+Code of Conduct |
+[Lyft.com/developers](https://www.lyft.com/developers)
+
 ### Installation (requires [node](https://nodejs.org))
 
 ```bash
@@ -24,6 +28,9 @@ npm run-script build
 
 # build with minification
 npm run-script build:dist
+
+# regenerate documentation
+npm run-script doc
 
 # test (silence ELIFECYCLE output)
 npm run-script --silent test
