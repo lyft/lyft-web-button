@@ -4,8 +4,25 @@
  | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/CODE_OF_CONDUCT.md)
  | [Lyft.com/developers](https://www.lyft.com/developers)
 
-### Installation (requires [node](https://nodejs.org))
+### Quick Start
 
+**If you only want a finished component you don't need install anything.** Just grab what you want from
+ [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist)
+ and get started. You're probably looking for lyftWebButton
+ [minified](https://github.com/lyft/lyft-web-sdk/blob/master/dist/lyftWebButton.min.js)
+ or
+ [unminified](https://github.com/lyft/lyft-web-sdk/blob/master/dist/lyftWebButton.js).
+
+If you want to build your own components or modify existing ones you'll need to continue reading.
+
+### Installation
+
+To build this from source make sure you have the following:
+- [git](https://git-scm.com/downloads) (latest version)
+- [node](https://nodejs.org) (>=4.0.0)
+- npm (auto-installs with node)
+
+Next, open a shell session and enter the following commands:
 ```bash
 # clone repository
 git clone https://github.com/lyft/lyft-web-sdk.git
