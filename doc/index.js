@@ -8,9 +8,11 @@ var GITHUB_URL = 'https://github.com/lyft/lyft-web-sdk';
 
 /**
  * Returns a configuration for consumption by docdown.
+ * @memberOf doc
+ * @category doc
  * @param {string} name Local file name minus the extension.
  * @param {string} title Title to be shown in the generated markdown.
- * @param {string} type Type of the file. One of [component, service].
+ * @param {string} type Type of the file. One of [component, dist, service].
  * @returns {Object} Docdown configuration.
  */
 function getDocdownConfiguration(name, title, type) {
@@ -53,12 +55,12 @@ function getDocdownConfiguration(name, title, type) {
 
 // configurations
 var configurations = [
-  getDocdownConfiguration('api', 'API Service', 'service'),
-  getDocdownConfiguration('jsonp', 'JSONP Service', 'service'),
-  getDocdownConfiguration('selector', 'Selector Service', 'service'),
+  getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Distributable', 'dist'),
   getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Component', 'component'),
   getDocdownConfiguration('lyftWebModal', 'Lyft Web Modal Component', 'component'),
-  getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Distributable', 'dist')
+  getDocdownConfiguration('api', 'API Service', 'service'),
+  getDocdownConfiguration('jsonp', 'JSONP Service', 'service'),
+  getDocdownConfiguration('selector', 'Selector Service', 'service')
 ];
 
 // generate markdown data and write files

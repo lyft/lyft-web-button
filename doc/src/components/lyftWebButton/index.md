@@ -33,7 +33,7 @@ Binds events to some elements.
 1. `onClick` *(function)*: Handler for button's onclick event.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -74,7 +74,7 @@ Initialize.
 11. `options.theme` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -91,7 +91,7 @@ Success callback for getCosts request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -108,7 +108,7 @@ Success callback for getEtas request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -125,7 +125,7 @@ Updates the contents of some elements.
 1. `theme` *(string)*: Name of the user's chosen theme.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 

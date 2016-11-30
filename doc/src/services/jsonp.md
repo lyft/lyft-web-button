@@ -34,7 +34,7 @@ Injects a script into the DOM with given options.
 5. `options.defer` *(boolean)*: Optional.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 

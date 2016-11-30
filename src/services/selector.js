@@ -4,7 +4,7 @@
  * @category selector
  * @param {Object} element
  * @param {string} className
- * @returns {void}
+ * @returns {void} Void.
  */
 function addClass(element, className) {
     var classList = element.className.split(' ');
@@ -18,7 +18,7 @@ function addClass(element, className) {
  * @category selector
  * @param {Object} element
  * @param {string} className
- * @returns {void}
+ * @returns {void} Void.
  */
 function removeClass(element, className) {
     var classList = element.className.split(' ');

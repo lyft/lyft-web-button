@@ -39,7 +39,7 @@ Binds events to some elements.
 6. `objectName` *(string)*: This instance's name in the global namespace.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -53,7 +53,7 @@ Binds events to some elements.
 Makes the modal window invisible and detaches it from the DOM.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -94,7 +94,7 @@ Initialize.
 11. `options.parentElement` *(Object)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -111,7 +111,7 @@ Success callback for postMessages request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -125,7 +125,7 @@ Success callback for postMessages request.
 Attaches the modal window to the DOM and makes it visible.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -147,7 +147,7 @@ Updates the contents of some elements.
 6. `location.name` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 

@@ -7,7 +7,7 @@
  * @param {boolean} options.async Optional.
  * @param {function} options.callback Optional.
  * @param {boolean} options.defer Optional.
- * @returns {void}
+ * @returns {void} Void.
  */
 function injectScript(options) {
   if (typeof options === 'undefined' || typeof options.src === 'undefined') {

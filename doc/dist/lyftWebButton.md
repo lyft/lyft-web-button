@@ -212,7 +212,7 @@ Injects a script into the DOM with given options.
 5. `options.defer` *(boolean)*: Optional.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -273,7 +273,7 @@ Binds events to some elements.
 1. `onClick` *(function)*: Handler for button's onclick event.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -314,7 +314,7 @@ Initialize.
 11. `options.theme` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -331,7 +331,7 @@ Success callback for getCosts request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -348,7 +348,7 @@ Success callback for getEtas request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -365,7 +365,7 @@ Updates the contents of some elements.
 1. `theme` *(string)*: Name of the user's chosen theme.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -393,7 +393,7 @@ Binds events to some elements.
 6. `objectName` *(string)*: This instance's name in the global namespace.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -407,7 +407,7 @@ Binds events to some elements.
 Makes the modal window invisible and detaches it from the DOM.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -448,7 +448,7 @@ Initialize.
 11. `options.parentElement` *(Object)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -465,7 +465,7 @@ Success callback for postMessages request.
 1. `data` *(Object)*: Response data.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -479,7 +479,7 @@ Success callback for postMessages request.
 Attaches the modal window to the DOM and makes it visible.
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -501,7 +501,7 @@ Updates the contents of some elements.
 6. `location.name` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -525,7 +525,7 @@ Adds a class to an element.
 2. `className` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -543,7 +543,7 @@ Removes a class from an element.
 2. `className` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 

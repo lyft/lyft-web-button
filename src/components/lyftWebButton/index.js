@@ -40,7 +40,7 @@ function createElements() {
  * @memberOf lyftWebButton
  * @category lyftWebButton
  * @param {function} onClick Handler for button's onclick event.
- * @returns {void}
+ * @returns {void} Void.
  */
 function bindEvents(onClick) {
   // root element: bind user-specified event handler
@@ -54,7 +54,7 @@ function bindEvents(onClick) {
  * @memberOf lyftWebButton
  * @category lyftWebButton
  * @param {string} theme Name of the user's chosen theme.
- * @returns {void}
+ * @returns {void} Void.
  */
 function updateContents(theme) {
   // root element: apply user-specified theme
@@ -72,7 +72,7 @@ function updateContents(theme) {
  * @memberOf lyftWebButton
  * @category lyftWebButton
  * @param {Object} data Response data.
- * @returns {void}
+ * @returns {void} Void.
  */
 function onGetCostsSuccess(data) {
   if (data && data.cost_estimates && data.cost_estimates.length) {
@@ -96,7 +96,7 @@ function onGetCostsSuccess(data) {
  * @memberOf lyftWebButton
  * @category lyftWebButton
  * @param {Object} data Response data.
- * @returns {void}
+ * @returns {void} Void.
  */
 function onGetEtasSuccess(data) {
   if (data && data.eta_estimates && data.eta_estimates.length) {
@@ -128,7 +128,7 @@ function onGetEtasSuccess(data) {
  * @param {string} options.objectName
  * @param {Object} options.parentElement
  * @param {string} options.theme
- * @returns {void}
+ * @returns {void} Void.
  */
 function initialize(options) {
   // parse arguments

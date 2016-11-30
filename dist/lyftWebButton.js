@@ -114,7 +114,7 @@
 	 * @param {string} location.longitude
 	 * @param {string} location.name
 	 * @param {string} objectName This instance's name in the global namespace.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function bindEvents(location, objectName) {
 	  location = location || {};
@@ -161,7 +161,7 @@
 	 * @param {string} location.latitude
 	 * @param {string} location.longitude
 	 * @param {string} location.name
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function updateContents(googleApiKey, location) {
 	  location = location || {};
@@ -198,7 +198,7 @@
 	 * @memberOf lyftWebModal
 	 * @category lyftWebModal
 	 * @param {Object} data Response data.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function onPostMessagesSuccess(data) {
 	  if (data && data.messages) {
@@ -217,7 +217,7 @@
 	 * Attaches the modal window to the DOM and makes it visible.
 	 * @memberOf lyftWebModal
 	 * @category lyftWebModal
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function open() {
 	  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
@@ -230,7 +230,7 @@
 	 * Makes the modal window invisible and detaches it from the DOM.
 	 * @memberOf lyftWebModal
 	 * @category lyftWebModal
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function close() {
 	  selector.removeClass(rootElement, 'on');
@@ -254,7 +254,7 @@
 	 * @param {string} options.location.name
 	 * @param {string} options.objectName
 	 * @param {Object} options.parentElement
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function initialize(options) {
 	  // parse arguments
@@ -423,7 +423,7 @@
 	 * @param {boolean} options.async Optional.
 	 * @param {function} options.callback Optional.
 	 * @param {boolean} options.defer Optional.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function injectScript(options) {
 	  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
@@ -523,7 +523,7 @@
 	 * @category selector
 	 * @param {Object} element
 	 * @param {string} className
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function addClass(element, className) {
 	    var classList = element.className.split(' ');
@@ -537,7 +537,7 @@
 	 * @category selector
 	 * @param {Object} element
 	 * @param {string} className
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function removeClass(element, className) {
 	    var classList = element.className.split(' ');
@@ -991,7 +991,7 @@
 	 * @memberOf lyftWebButton
 	 * @category lyftWebButton
 	 * @param {function} onClick Handler for button's onclick event.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function bindEvents(onClick) {
 	  // root element: bind user-specified event handler
@@ -1005,7 +1005,7 @@
 	 * @memberOf lyftWebButton
 	 * @category lyftWebButton
 	 * @param {string} theme Name of the user's chosen theme.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function updateContents(theme) {
 	  // root element: apply user-specified theme
@@ -1023,7 +1023,7 @@
 	 * @memberOf lyftWebButton
 	 * @category lyftWebButton
 	 * @param {Object} data Response data.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function onGetCostsSuccess(data) {
 	  if (data && data.cost_estimates && data.cost_estimates.length) {
@@ -1047,7 +1047,7 @@
 	 * @memberOf lyftWebButton
 	 * @category lyftWebButton
 	 * @param {Object} data Response data.
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function onGetEtasSuccess(data) {
 	  if (data && data.eta_estimates && data.eta_estimates.length) {
@@ -1079,7 +1079,7 @@
 	 * @param {string} options.objectName
 	 * @param {Object} options.parentElement
 	 * @param {string} options.theme
-	 * @returns {void}
+	 * @returns {void} Void.
 	 */
 	function initialize(options) {
 	  // parse arguments

@@ -32,7 +32,7 @@ Adds a class to an element.
 2. `className` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
@@ -50,7 +50,7 @@ Removes a class from an element.
 2. `className` *(string)*:
 
 #### Returns
-*(void)*:
+*(void)*: Void.
 
 ---
 
