@@ -1,5 +1,7 @@
 /**
  * Injects a script into the DOM with given options.
+ * @memberOf jsonp
+ * @category jsonp
  * @param {Object} options Required.
  * @param {string} options.src Required.
  * @param {boolean} options.async Optional.
@@ -45,6 +47,8 @@ function injectScript(options) {
 
 /**
  * Recursively serializes data as a query-parameter string.
+ * @memberOf jsonp
+ * @category jsonp
  * @param {Object} obj Data to serialize (required).
  * @param {string} pfx Key prefix for data chunk (optional).
  * @returns {string} Query-parameter string.
@@ -67,6 +71,8 @@ function serialize(obj, pfx) {
 
 /**
  * Performs a JSONP request.
+ * @memberOf jsonp
+ * @category jsonp
  * @param {Object} options Required.
  * @param {string} options.url Required.
  * @param {string} options.callback Callback path relative to window context (optional).

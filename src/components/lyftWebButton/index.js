@@ -19,6 +19,8 @@ var rootElement;
 
 /**
  * Creates elements from a template and stores some useful references.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @returns {Object} Template's root element.
  */
 function createElements() {
@@ -35,6 +37,8 @@ function createElements() {
 
 /**
  * Binds events to some elements.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @param {function} onClick Handler for button's onclick event.
  * @returns {void}
  */
@@ -47,6 +51,8 @@ function bindEvents(onClick) {
 
 /**
  * Updates the contents of some elements.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @param {string} theme Name of the user's chosen theme.
  * @returns {void}
  */
@@ -63,6 +69,8 @@ function updateContents(theme) {
 
 /**
  * Success callback for getCosts request.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @param {Object} data Response data.
  * @returns {void}
  */
@@ -85,6 +93,8 @@ function onGetCostsSuccess(data) {
 
 /**
  * Success callback for getEtas request.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @param {Object} data Response data.
  * @returns {void}
  */
@@ -105,6 +115,8 @@ function onGetEtasSuccess(data) {
 
 /**
  * Initialize.
+ * @memberOf lyftWebButton
+ * @category lyftWebButton
  * @param {Object} options
  * @param {string} options.clientId
  * @param {string} options.clientToken

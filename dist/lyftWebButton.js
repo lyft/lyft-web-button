@@ -80,6 +80,8 @@
 
 	/**
 	 * Creates elements from a template and stores some useful references.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @returns {Object} Template's root element.
 	 */
 	function createElements() {
@@ -104,6 +106,8 @@
 
 	/**
 	 * Binds events to some elements.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @param {Object} location Location of the intended destination.
 	 * @param {string} location.address
 	 * @param {string} location.latitude
@@ -149,6 +153,8 @@
 
 	/**
 	 * Updates the contents of some elements.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @param {string} googleApiKey API key for Google Static Maps.
 	 * @param {Object} location Location of the intended destination.
 	 * @param {string} location.address
@@ -189,6 +195,8 @@
 
 	/**
 	 * Success callback for postMessages request.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @param {Object} data Response data.
 	 * @returns {void}
 	 */
@@ -207,6 +215,8 @@
 
 	/**
 	 * Attaches the modal window to the DOM and makes it visible.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @returns {void}
 	 */
 	function open() {
@@ -218,6 +228,8 @@
 
 	/**
 	 * Makes the modal window invisible and detaches it from the DOM.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @returns {void}
 	 */
 	function close() {
@@ -229,6 +241,8 @@
 
 	/**
 	 * Initialize.
+	 * @memberOf lyftWebModal
+	 * @category lyftWebModal
 	 * @param {Object} options
 	 * @param {string} options.clientId
 	 * @param {string} options.clientToken
@@ -288,6 +302,8 @@
 
 	/**
 	 * Requests JSONP with injected credentials.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {function} callback Optional.
 	 * @param {string} url Required.
@@ -308,6 +324,8 @@
 
 	/**
 	 * Gets `costs`.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {string} data.start_lat Required.
 	 * @param {string} data.start_lng Required.
@@ -323,6 +341,8 @@
 
 	/**
 	 * Gets `drivers`.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {string} data.lat Required.
 	 * @param {string} data.lng Required.
@@ -335,6 +355,8 @@
 
 	/**
 	 * Gets `etas`.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {string} data.lat Required.
 	 * @param {string} data.lng Required.
@@ -348,6 +370,8 @@
 
 	/**
 	 * Gets `ride_types`.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {string} data.lat Required.
 	 * @param {string} data.lng Required.
@@ -361,6 +385,8 @@
 
 	/**
 	 * POSTs `messages`.
+	 * @memberOf api
+	 * @category api
 	 * @param {Object} data Required.
 	 * @param {string} data.phone_number Required.
 	 * @param {string} data.end_lat Optional.
@@ -390,6 +416,8 @@
 
 	/**
 	 * Injects a script into the DOM with given options.
+	 * @memberOf jsonp
+	 * @category jsonp
 	 * @param {Object} options Required.
 	 * @param {string} options.src Required.
 	 * @param {boolean} options.async Optional.
@@ -435,6 +463,8 @@
 
 	/**
 	 * Recursively serializes data as a query-parameter string.
+	 * @memberOf jsonp
+	 * @category jsonp
 	 * @param {Object} obj Data to serialize (required).
 	 * @param {string} pfx Key prefix for data chunk (optional).
 	 * @returns {string} Query-parameter string.
@@ -457,6 +487,8 @@
 
 	/**
 	 * Performs a JSONP request.
+	 * @memberOf jsonp
+	 * @category jsonp
 	 * @param {Object} options Required.
 	 * @param {string} options.url Required.
 	 * @param {string} options.callback Callback path relative to window context (optional).
@@ -487,6 +519,8 @@
 
 	/**
 	 * Adds a class to an element.
+	 * @memberOf selector
+	 * @category selector
 	 * @param {Object} element
 	 * @param {string} className
 	 * @returns {void}
@@ -499,6 +533,8 @@
 
 	/**
 	 * Removes a class from an element.
+	 * @memberOf selector
+	 * @category selector
 	 * @param {Object} element
 	 * @param {string} className
 	 * @returns {void}
@@ -512,6 +548,8 @@
 
 	/**
 	 * Selects a single child element from a given element according to some criteria.
+	 * @memberOf selector
+	 * @category selector
 	 * @param {Object} element The parent element from which the child will be selected.
 	 * @param {string} attributeName Name of the attribute for selection.
 	 * @param {string} attributeValue Value of the named attribute for selection.
@@ -528,6 +566,8 @@
 
 	/**
 	 * Selects a single child element from an element tree according to some criteria.
+	 * @memberOf selector
+	 * @category selector
 	 * @param {Object} element The top level of the element tree.
 	 * @param {Array} attributes Strings describing the selection criteria.
 	 * @returns {Object} The selected element.
@@ -930,6 +970,8 @@
 
 	/**
 	 * Creates elements from a template and stores some useful references.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @returns {Object} Template's root element.
 	 */
 	function createElements() {
@@ -946,6 +988,8 @@
 
 	/**
 	 * Binds events to some elements.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @param {function} onClick Handler for button's onclick event.
 	 * @returns {void}
 	 */
@@ -958,6 +1002,8 @@
 
 	/**
 	 * Updates the contents of some elements.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @param {string} theme Name of the user's chosen theme.
 	 * @returns {void}
 	 */
@@ -974,6 +1020,8 @@
 
 	/**
 	 * Success callback for getCosts request.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @param {Object} data Response data.
 	 * @returns {void}
 	 */
@@ -996,6 +1044,8 @@
 
 	/**
 	 * Success callback for getEtas request.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @param {Object} data Response data.
 	 * @returns {void}
 	 */
@@ -1016,6 +1066,8 @@
 
 	/**
 	 * Initialize.
+	 * @memberOf lyftWebButton
+	 * @category lyftWebButton
 	 * @param {Object} options
 	 * @param {string} options.clientId
 	 * @param {string} options.clientToken

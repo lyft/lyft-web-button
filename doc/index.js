@@ -19,32 +19,46 @@ function getDocdownConfiguration(name, title, type) {
       return {
         // for docdown:
         path: path.join(__dirname, '../src/components/' + name + '/index.js'),
+        properties: 'categories',
         style: 'github',
         title: title,
         url: GITHUB_URL + '/blob/master/src/components/' + name + '/index.js',
         // for fs.writeFileSync:
-        __writePath: path.join(__dirname, './components/' + name + '/index.md')
+        __writePath: path.join(__dirname, './src/components/' + name + '/index.md')
+      };
+    case 'dist':
+      return {
+        // for docdown:
+        path: path.join(__dirname, '../dist/' + name + '.js'),
+        properties: 'categories',
+        style: 'github',
+        title: title,
+        url: GITHUB_URL + '/blob/master/dist/' + name + '.js',
+        // for fs.writeFileSync:
+        __writePath: path.join(__dirname, './dist/' + name + '.md')
       };
     case 'service':
       return {
         // for docdown:
         path: path.join(__dirname, '../src/services/' + name + '.js'),
+        properties: 'categories',
         style: 'github',
         title: title,
         url: GITHUB_URL + '/blob/master/src/services/' + name + '.js',
         // for fs.writeFileSync:
-        __writePath: path.join(__dirname, './services/' + name + '.md')
+        __writePath: path.join(__dirname, './src/services/' + name + '.md')
       };
   }
 }
 
 // configurations
 var configurations = [
-  getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Component', 'component'),
-  getDocdownConfiguration('lyftWebModal', 'Lyft Web Modal Component', 'component'),
   getDocdownConfiguration('api', 'API Service', 'service'),
   getDocdownConfiguration('jsonp', 'JSONP Service', 'service'),
-  getDocdownConfiguration('selector', 'Selector Service', 'service')
+  getDocdownConfiguration('selector', 'Selector Service', 'service'),
+  getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Component', 'component'),
+  getDocdownConfiguration('lyftWebModal', 'Lyft Web Modal Component', 'component'),
+  getDocdownConfiguration('lyftWebButton', 'Lyft Web Button Distributable', 'dist')
 ];
 
 // generate markdown data and write files

@@ -17,6 +17,8 @@ function setClientToken(value) {client_token = value;}
 
 /**
  * Requests JSONP with injected credentials.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {function} callback Optional.
  * @param {string} url Required.
@@ -37,6 +39,8 @@ function requestWithCredentials(data, callback, url) {
 
 /**
  * Gets `costs`.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {string} data.start_lat Required.
  * @param {string} data.start_lng Required.
@@ -52,6 +56,8 @@ function getCosts(data, callback) {
 
 /**
  * Gets `drivers`.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {string} data.lat Required.
  * @param {string} data.lng Required.
@@ -64,6 +70,8 @@ function getDrivers(data, callback) {
 
 /**
  * Gets `etas`.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {string} data.lat Required.
  * @param {string} data.lng Required.
@@ -77,6 +85,8 @@ function getEtas(data, callback) {
 
 /**
  * Gets `ride_types`.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {string} data.lat Required.
  * @param {string} data.lng Required.
@@ -90,6 +100,8 @@ function getRideTypes(data, callback) {
 
 /**
  * POSTs `messages`.
+ * @memberOf api
+ * @category api
  * @param {Object} data Required.
  * @param {string} data.phone_number Required.
  * @param {string} data.end_lat Optional.

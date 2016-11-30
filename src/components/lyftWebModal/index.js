@@ -25,6 +25,8 @@ var rootElement;
 
 /**
  * Creates elements from a template and stores some useful references.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @returns {Object} Template's root element.
  */
 function createElements() {
@@ -49,6 +51,8 @@ function createElements() {
 
 /**
  * Binds events to some elements.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @param {Object} location Location of the intended destination.
  * @param {string} location.address
  * @param {string} location.latitude
@@ -94,6 +98,8 @@ function bindEvents(location, objectName) {
 
 /**
  * Updates the contents of some elements.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @param {string} googleApiKey API key for Google Static Maps.
  * @param {Object} location Location of the intended destination.
  * @param {string} location.address
@@ -134,6 +140,8 @@ function updateContents(googleApiKey, location) {
 
 /**
  * Success callback for postMessages request.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @param {Object} data Response data.
  * @returns {void}
  */
@@ -152,6 +160,8 @@ function onPostMessagesSuccess(data) {
 
 /**
  * Attaches the modal window to the DOM and makes it visible.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @returns {void}
  */
 function open() {
@@ -163,6 +173,8 @@ function open() {
 
 /**
  * Makes the modal window invisible and detaches it from the DOM.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @returns {void}
  */
 function close() {
@@ -174,6 +186,8 @@ function close() {
 
 /**
  * Initialize.
+ * @memberOf lyftWebModal
+ * @category lyftWebModal
  * @param {Object} options
  * @param {string} options.clientId
  * @param {string} options.clientToken

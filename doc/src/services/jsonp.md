@@ -4,22 +4,10 @@
 
 <!-- div -->
 
-## `injectScript`
-* <a href="#injectscriptoptions">`injectScript`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `request`
-* <a href="#requestoptions">`request`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `serialize`
-* <a href="#serializeobj-pfx">`serialize`</a>
+## `jsonp.prototype`
+* <a href="#jsonpprototypeinjectscriptoptions">`jsonp.prototype.injectScript`</a>
+* <a href="#jsonpprototyperequestoptions">`jsonp.prototype.request`</a>
+* <a href="#jsonpprototypeserializeobj-pfx">`jsonp.prototype.serialize`</a>
 
 <!-- /div -->
 
@@ -29,12 +17,12 @@
 
 <!-- div -->
 
-## `injectScript`
+## `jsonp.prototype`
 
 <!-- div -->
 
-<h3 id="injectscriptoptions"><code>injectScript(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L10 "View in source") [&#x24C9;][1]
+<h3 id="jsonpprototypeinjectscriptoptions"><code>jsonp.prototype.injectScript(options)</code></h3>
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L12 "View in source") [&#x24C9;][1]
 
 Injects a script into the DOM with given options.
 
@@ -52,16 +40,10 @@ Injects a script into the DOM with given options.
 
 <!-- /div -->
 
-<!-- /div -->
-
 <!-- div -->
 
-## `request`
-
-<!-- div -->
-
-<h3 id="requestoptions"><code>request(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L76 "View in source") [&#x24C9;][1]
+<h3 id="jsonpprototyperequestoptions"><code>jsonp.prototype.request(options)</code></h3>
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L82 "View in source") [&#x24C9;][1]
 
 Performs a JSONP request.
 
@@ -78,16 +60,10 @@ Performs a JSONP request.
 
 <!-- /div -->
 
-<!-- /div -->
-
 <!-- div -->
 
-## `serialize`
-
-<!-- div -->
-
-<h3 id="serializeobj-pfx"><code>serialize(obj, pfx)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L52 "View in source") [&#x24C9;][1]
+<h3 id="jsonpprototypeserializeobj-pfx"><code>jsonp.prototype.serialize(obj, pfx)</code></h3>
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L56 "View in source") [&#x24C9;][1]
 
 Recursively serializes data as a query-parameter string.
 
@@ -106,4 +82,4 @@ Recursively serializes data as a query-parameter string.
 
 <!-- /div -->
 
- [1]: #injectscript "Jump back to the TOC."
+ [1]: #jsonp.prototype "Jump back to the TOC."
