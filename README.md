@@ -1,8 +1,8 @@
 # Lyft Web SDK
 
-[Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md) |
-Code of Conduct |
-[Lyft.com/developers](https://www.lyft.com/developers)
+[Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md)
+ | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/doc/CODE_OF_CONDUCT.md)
+ | [Lyft.com/developers](https://www.lyft.com/developers)
 
 ### Installation (requires [node](https://nodejs.org))
 
@@ -17,7 +17,7 @@ npm install
 
 ### Usage
 
-1. Start the server with `npm run-script start`.
+1. Start the server with `npm start` (or `npm run-script start`).
 2. Open [webpack-dev-server](http://localhost:8080/webpack-dev-server/) in a web browser.
 3. As you work the page will automatically update via websocket connection.
 
