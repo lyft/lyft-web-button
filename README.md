@@ -6,12 +6,11 @@
 
 ### Quick Start
 
-**If you only want a finished component you don't need install anything.** Just grab what you want from
- [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist)
- and get started. You're probably looking for lyftWebButton
- [minified](https://github.com/lyft/lyft-web-sdk/blob/master/dist/lyftWebButton.min.js)
- or
- [unminified](https://github.com/lyft/lyft-web-sdk/blob/master/dist/lyftWebButton.js).
+**If you only want a finished component you don't need install anything.** Instead, do the following:
+1. Sign up for a `client_id` and `client_token` at [lyft.com/developers](https://www.lyft.com/developers).
+2. (Optional) Get a [Google API Key](https://developers.google.com/maps/documentation/static-maps/) for Google Static Maps.
+3. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
+4. Copy an example html file from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist) and fill in the blanks.
 
 If you want to build your own components or modify existing ones you'll need to continue reading.
 
