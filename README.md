@@ -71,8 +71,8 @@ npm run-script --silent test
 If you're looking for help configuring or using the Lyft Web SDK, or if you have general
  questions related to our APIs, the Lyft Developer Platform team provides support through
  our [forum](https://developer.lyft.com/discuss) as well as on Stack Overflow using the
- `lyft-api` tag. _Please do not create tickets on help.lyft.com, as this is our help
- desk for regular users, and we won't be able to respond to requests made there._
+ `lyft-api` tag. _Please do not create tickets on help.lyft.com as this is our help desk
+ for regular users, and we won't be able to respond to requests made there._
 
 ## Reporting Security Vulnerabilities
 
