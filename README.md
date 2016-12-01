@@ -2,6 +2,7 @@
 
 [Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md)
  | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/CODE_OF_CONDUCT.md)
+ | [License](https://github.com/lyft/lyft-web-sdk/blob/master/LICENSE)
  | [Lyft.com/developers](https://www.lyft.com/developers)
 
 ### Quick Start
