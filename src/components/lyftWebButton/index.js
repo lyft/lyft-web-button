@@ -83,7 +83,7 @@ function onGetCostsSuccess(data) {
         if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
             !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
           if (priceRangeElement) {
-            priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+            priceRangeElement.textContent = '$' + min + ((min !== max) ? ('-' + max) : '');
           }
         }
       }
@@ -105,7 +105,7 @@ function onGetEtasSuccess(data) {
         var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
         if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
           if (etaElement) {
-            etaElement.textContent = 'Lyft in '+eta+' min';
+            etaElement.textContent = 'Lyft in ' + eta + ' min';
           }
         }
       }
@@ -142,7 +142,7 @@ function initialize(options) {
   options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
   // get device location
   if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       // request costs
       api.getCosts({
         start_lat: position.coords.latitude,

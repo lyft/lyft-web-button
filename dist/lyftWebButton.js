@@ -65,6 +65,9 @@
 	/* ========== */
 
 	var closeElement;
+	var frameAfter;
+	var frameAfterTextHeaderElement;
+	var frameBefore;
 	var mapElement;
 	var mapLabelDescriptionElement;
 	var mapLabelNameElement;
@@ -89,17 +92,28 @@
 	  var template = document.createElement('div');
 	  template.innerHTML = __webpack_require__(9);
 	  // store references to important elements
-	  rootElement                 = template.childNodes[0];
-	  closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
-	  mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-	  mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-	  mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-	  frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
-	  messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
-	  messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-	  openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
-	  frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
-	  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
+	  rootElement =
+	    template.childNodes[0];
+	  closeElement =
+	    selector.selectChildElement(rootElement, ['.footer', '.close']);
+	  mapElement =
+	    selector.selectChildElement(rootElement, ['.content', '.map-container']);
+	  mapLabelNameElement =
+	    selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+	  mapLabelDescriptionElement =
+	    selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+	  frameBefore =
+	    selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
+	  messageFormElement =
+	    selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
+	  messageFormInputElement =
+	    selector.selectChildElement(messageFormElement, ['.message-form-input']);
+	  openAppCtaElement =
+	    selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
+	  frameAfter =
+	    selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
+	  frameAfterTextHeaderElement =
+	    selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
 	  // return reference to root element
 	  return rootElement;
 	}
@@ -140,7 +154,7 @@
 	  }
 	  // message form element: request JSONP on submit
 	  if (messageFormElement) {
-	    messageFormElement.onsubmit = function (event) {
+	    messageFormElement.onsubmit = function () {
 	      api.postMessages({
 	        phone_number: messageFormInputElement.value,
 	        end_lat: location.latitude,
@@ -171,7 +185,7 @@
 	      '?center=' + location.latitude + ',' + location.longitude +
 	      '&maptype=roadmap&size=640x300&zoom=15' +
 	      (googleApiKey ? ('&key=' + googleApiKey) : '');
-	    mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+	    mapElement.style = 'background-image:url(\'' + mapSrc + '\');';
 	  }
 	  // map-label-name: set text
 	  if (mapLabelNameElement) {
@@ -471,10 +485,10 @@
 	 */
 	function serialize(obj, pfx) {
 	  var results = [];
-	  for(var prop in obj) {
+	  for (var prop in obj) {
 	    if (obj.hasOwnProperty(prop)) {
 	      var key = pfx ? (pfx + '[' + prop + ']') : prop;
-	      var val = obj[prop]
+	      var val = obj[prop];
 	      results.push(
 	        (typeof val === 'object') ?
 	        serialize(val, key) :
@@ -526,9 +540,9 @@
 	 * @returns {void} Void.
 	 */
 	function addClass(element, className) {
-	    var classList = element.className.split(' ');
-	    if (classList.indexOf(className) === -1) {classList.push(className);}
-	    element.className = classList.join(' ');
+	  var classList = element.className.split(' ');
+	  if (classList.indexOf(className) === -1) {classList.push(className);}
+	  element.className = classList.join(' ');
 	}
 
 	/**
@@ -540,10 +554,10 @@
 	 * @returns {void} Void.
 	 */
 	function removeClass(element, className) {
-	    var classList = element.className.split(' ');
-	    var classIndex = classList.indexOf(className);
-	    if (classIndex !== -1) {classList.splice(classIndex, 1);}
-	    element.className = classList.join(' ');
+	  var classList = element.className.split(' ');
+	  var classIndex = classList.indexOf(className);
+	  if (classIndex !== -1) {classList.splice(classIndex, 1);}
+	  element.className = classList.join(' ');
 	}
 
 	/**
@@ -1034,7 +1048,7 @@
 	        if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
 	            !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
 	          if (priceRangeElement) {
-	            priceRangeElement.textContent = '$'+min+((min !== max) ? ('-'+max) : '');
+	            priceRangeElement.textContent = '$' + min + ((min !== max) ? ('-' + max) : '');
 	          }
 	        }
 	      }
@@ -1056,7 +1070,7 @@
 	        var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
 	        if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
 	          if (etaElement) {
-	            etaElement.textContent = 'Lyft in '+eta+' min';
+	            etaElement.textContent = 'Lyft in ' + eta + ' min';
 	          }
 	        }
 	      }
@@ -1093,7 +1107,7 @@
 	  options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
 	  // get device location
 	  if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-	    navigator.geolocation.getCurrentPosition(function(position) {
+	    navigator.geolocation.getCurrentPosition(function (position) {
 	      // request costs
 	      api.getCosts({
 	        start_lat: position.coords.latitude,

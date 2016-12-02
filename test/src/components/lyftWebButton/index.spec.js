@@ -1,3 +1,9 @@
+// globals (mocha >> karma >> window)
+var afterEach = window.afterEach;
+var beforeEach = window.beforeEach;
+var describe = window.describe;
+var it = window.it;
+
 // dependencies (require)
 var expect = require('expect');
 var rewire = require('rewire');
@@ -7,7 +13,6 @@ var lyftWebButton = rewire('../../../../src/components/lyftWebButton/index.js');
 
 // tests
 describe('lyftWebButton', function () {
-
   it('exists', function () {
     expect(lyftWebButton).toExist();
   });
@@ -25,7 +30,6 @@ describe('lyftWebButton', function () {
   });
 
   describe('createElements', function () {
-
     var rootElement = {};
     var priceRangeElement = {};
     var etaElement = {};
@@ -62,11 +66,9 @@ describe('lyftWebButton', function () {
       expect(Object.prototype.toString.call(result))
         .toEqual('[object HTMLButtonElement]');
     });
-
   });
 
   describe('bindEvents', function () {
-
     var onClick = expect.createSpy();
 
     it('binds events if element references are defined', function () {
@@ -82,11 +84,9 @@ describe('lyftWebButton', function () {
       expect(lyftWebButton.__get__('rootElement'))
         .toEqual(undefined);
     });
-
   });
 
   describe('updateContents', function () {
-
     var theme = 'someTheme';
 
     beforeEach(function () {
@@ -117,11 +117,9 @@ describe('lyftWebButton', function () {
       expect(lyftWebButton.__get__('selector').addClass)
         .toNotHaveBeenCalled();
     });
-
   });
 
   describe('onGetCostsSuccess', function () {
-
     it('updates price range if element references and data are defined', function () {
       lyftWebButton.__set__('priceRangeElement', {});
       lyftWebButton.onGetCostsSuccess({
@@ -167,11 +165,9 @@ describe('lyftWebButton', function () {
       expect(lyftWebButton.__get__('priceRangeElement'))
         .toEqual({});
     });
-
   });
 
   describe('onGetEtasSuccess', function () {
-
     it('updates eta if element references and data are defined', function () {
       lyftWebButton.__set__('etaElement', {});
       lyftWebButton.onGetEtasSuccess({
@@ -214,11 +210,9 @@ describe('lyftWebButton', function () {
       expect(lyftWebButton.__get__('etaElement'))
         .toEqual({});
     });
-
   });
 
   describe('initialize', function () {
-
     var options;
     var position;
 
@@ -246,11 +240,12 @@ describe('lyftWebButton', function () {
           longitude: 'someStartLongitude'
         }
       };
+      // eslint-disable-next-line no-native-reassign
       navigator = navigator || {};
       navigator.geolocation = navigator.geolocation || {};
       navigator.geolocation.getCurrentPosition = function (callback) {
         return callback(position);
-      }
+      };
       expect.spyOn(navigator.geolocation, 'getCurrentPosition').andCallThrough();
       // spies
       expect.spyOn(lyftWebButton.__get__('api'), 'getCosts');
@@ -342,7 +337,5 @@ describe('lyftWebButton', function () {
           lng: position.coords.longitude
         }, (options.objectName + '.onGetEtasSuccess'));
     });
-
   });
-
 });

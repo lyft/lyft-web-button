@@ -10,6 +10,9 @@ require('./index.css');
 /* ========== */
 
 var closeElement;
+var frameAfter;
+var frameAfterTextHeaderElement;
+var frameBefore;
 var mapElement;
 var mapLabelDescriptionElement;
 var mapLabelNameElement;
@@ -34,17 +37,28 @@ function createElements() {
   var template = document.createElement('div');
   template.innerHTML = require('html!./index.html');
   // store references to important elements
-  rootElement                 = template.childNodes[0];
-  closeElement                = selector.selectChildElement(rootElement, ['.footer', '.close']);
-  mapElement                  = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-  mapLabelNameElement         = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-  mapLabelDescriptionElement  = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-  frameBefore                 = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
-  messageFormElement          = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
-  messageFormInputElement     = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-  openAppCtaElement           = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
-  frameAfter                  = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
-  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
+  rootElement =
+    template.childNodes[0];
+  closeElement =
+    selector.selectChildElement(rootElement, ['.footer', '.close']);
+  mapElement =
+    selector.selectChildElement(rootElement, ['.content', '.map-container']);
+  mapLabelNameElement =
+    selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
+  mapLabelDescriptionElement =
+    selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
+  frameBefore =
+    selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
+  messageFormElement =
+    selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
+  messageFormInputElement =
+    selector.selectChildElement(messageFormElement, ['.message-form-input']);
+  openAppCtaElement =
+    selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
+  frameAfter =
+    selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
+  frameAfterTextHeaderElement =
+    selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
   // return reference to root element
   return rootElement;
 }
@@ -85,7 +99,7 @@ function bindEvents(location, objectName) {
   }
   // message form element: request JSONP on submit
   if (messageFormElement) {
-    messageFormElement.onsubmit = function (event) {
+    messageFormElement.onsubmit = function () {
       api.postMessages({
         phone_number: messageFormInputElement.value,
         end_lat: location.latitude,
@@ -116,7 +130,7 @@ function updateContents(googleApiKey, location) {
       '?center=' + location.latitude + ',' + location.longitude +
       '&maptype=roadmap&size=640x300&zoom=15' +
       (googleApiKey ? ('&key=' + googleApiKey) : '');
-    mapElement.style = 'background-image:url(\''+mapSrc+'\');';
+    mapElement.style = 'background-image:url(\'' + mapSrc + '\');';
   }
   // map-label-name: set text
   if (mapLabelNameElement) {

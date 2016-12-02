@@ -26,7 +26,7 @@
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypebindeventslocation-objectname"><code>lyftWebModal.prototype.bindEvents(location, objectName)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L64 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L78 "View in source") [&#x24C9;][1]
 
 Binds events to some elements.
 
@@ -48,7 +48,7 @@ Binds events to some elements.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeclose"><code>lyftWebModal.prototype.close()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L180 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L194 "View in source") [&#x24C9;][1]
 
 Makes the modal window invisible and detaches it from the DOM.
 
@@ -62,7 +62,7 @@ Makes the modal window invisible and detaches it from the DOM.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypecreateelements"><code>lyftWebModal.prototype.createElements()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L32 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L35 "View in source") [&#x24C9;][1]
 
 Creates elements from a template and stores some useful references.
 
@@ -76,7 +76,7 @@ Creates elements from a template and stores some useful references.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeinitializeoptions"><code>lyftWebModal.prototype.initialize(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L204 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L218 "View in source") [&#x24C9;][1]
 
 Initialize.
 
@@ -103,7 +103,7 @@ Initialize.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeonpostmessagessuccessdata"><code>lyftWebModal.prototype.onPostMessagesSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L148 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L162 "View in source") [&#x24C9;][1]
 
 Success callback for postMessages request.
 
@@ -120,7 +120,7 @@ Success callback for postMessages request.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeopen"><code>lyftWebModal.prototype.open()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L167 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L181 "View in source") [&#x24C9;][1]
 
 Attaches the modal window to the DOM and makes it visible.
 
@@ -134,7 +134,7 @@ Attaches the modal window to the DOM and makes it visible.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeupdatecontentsgoogleapikey-location"><code>lyftWebModal.prototype.updateContents(googleApiKey, location)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L111 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebModal/index.js#L125 "View in source") [&#x24C9;][1]
 
 Updates the contents of some elements.
 

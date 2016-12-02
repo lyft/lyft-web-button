@@ -1,3 +1,7 @@
+// globals (mocha >> karma >> window)
+var describe = window.describe;
+var it = window.it;
+
 // dependencies (require)
 var expect = require('expect');
 var rewire = require('rewire');
@@ -7,7 +11,6 @@ var selector = rewire('../../../src/services/selector.js');
 
 // tests
 describe('selector', function () {
-
   it('exists', function () {
     expect(selector).toExist();
   });
@@ -23,7 +26,6 @@ describe('selector', function () {
   });
 
   describe('addClass', function () {
-
     it('adds a class to an element with existing classes', function () {
       var className = 'new-class';
       var element = {className: 'existing-class'};
@@ -39,11 +41,9 @@ describe('selector', function () {
       expect(element.className.indexOf(className))
         .toNotEqual(-1);
     });
-
   });
 
   describe('removeClass', function () {
-
     it('removes a class from an element with multiple existing classes', function () {
       var className = 'remove-class';
       var element = {className: 'remove-class keep-class'};
@@ -67,11 +67,9 @@ describe('selector', function () {
       expect(element.className)
         .toEqual('keep-class');
     });
-
   });
 
   describe('selectChildElementByAttribute', function () {
-
     var attributeName = 'someAttributeName';
     var attributeValue = 'someAttributeValue';
 
@@ -111,11 +109,9 @@ describe('selector', function () {
       var result = selector.__get__('selectChildElementByAttribute')(element, attributeName, attributeValue);
       expect(result).toEqual(undefined);
     });
-
   });
 
   describe('selectChildElement', function () {
-
     it('selects a child element by className if the "." prefix is given', function () {
       var element = {
         childNodes: [{
@@ -171,7 +167,5 @@ describe('selector', function () {
       var result = selector.selectChildElement(element, ['.some-class']);
       expect(result).toEqual(undefined);
     });
-
   });
-
 });

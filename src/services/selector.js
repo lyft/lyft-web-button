@@ -7,9 +7,9 @@
  * @returns {void} Void.
  */
 function addClass(element, className) {
-    var classList = element.className.split(' ');
-    if (classList.indexOf(className) === -1) {classList.push(className);}
-    element.className = classList.join(' ');
+  var classList = element.className.split(' ');
+  if (classList.indexOf(className) === -1) {classList.push(className);}
+  element.className = classList.join(' ');
 }
 
 /**
@@ -21,10 +21,10 @@ function addClass(element, className) {
  * @returns {void} Void.
  */
 function removeClass(element, className) {
-    var classList = element.className.split(' ');
-    var classIndex = classList.indexOf(className);
-    if (classIndex !== -1) {classList.splice(classIndex, 1);}
-    element.className = classList.join(' ');
+  var classList = element.className.split(' ');
+  var classIndex = classList.indexOf(className);
+  if (classIndex !== -1) {classList.splice(classIndex, 1);}
+  element.className = classList.join(' ');
 }
 
 /**

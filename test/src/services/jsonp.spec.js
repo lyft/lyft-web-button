@@ -1,3 +1,9 @@
+// globals (mocha >> karma >> window)
+var afterEach = window.afterEach;
+var beforeEach = window.beforeEach;
+var describe = window.describe;
+var it = window.it;
+
 // dependencies (require)
 var expect = require('expect');
 var rewire = require('rewire');
@@ -7,7 +13,6 @@ var jsonp = rewire('../../../src/services/jsonp.js');
 
 // tests
 describe('jsonp', function () {
-
   it('exists', function () {
     expect(jsonp).toExist();
   });
@@ -22,7 +27,6 @@ describe('jsonp', function () {
   });
 
   describe('injectScript', function () {
-
     var mockDocument;
     var mockHead;
     var mockScript;
@@ -50,6 +54,7 @@ describe('jsonp', function () {
     });
 
     it('throws an exception if the options object is undefined', function () {
+      // eslint-disable-next-line no-undef-init
       var options = undefined;
       expect(function () {
         jsonp.__get__('injectScript')(options);
@@ -144,11 +149,9 @@ describe('jsonp', function () {
       expect(mockHead.insertBefore)
         .toHaveBeenCalledWith(mockScript, mockHead.childNodes[0]);
     });
-
   });
 
   describe('serialize', function () {
-
     it('returns an empty string when the given object is ill-defined', function () {
       var inputs = [undefined, null, {}, []];
       for (var i = 0, l = inputs.length; i < l; i++) {
@@ -177,11 +180,9 @@ describe('jsonp', function () {
       expect(result)
         .toEqual('key1%5B0%5D=val0&key1%5B1%5D=val1');
     });
-
   });
 
   describe('request', function () {
-
     beforeEach(function () {
       jsonp.__set__('injectScript', expect.createSpy());
     });
@@ -191,6 +192,7 @@ describe('jsonp', function () {
     });
 
     it('throws an exception if the options object is undefined', function () {
+      // eslint-disable-next-line no-undef-init
       var options = undefined;
       expect(function () {
         jsonp.request(options);
@@ -226,7 +228,5 @@ describe('jsonp', function () {
         )
       });
     });
-
   });
-
 });

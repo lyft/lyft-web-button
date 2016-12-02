@@ -55,10 +55,10 @@ function injectScript(options) {
  */
 function serialize(obj, pfx) {
   var results = [];
-  for(var prop in obj) {
+  for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       var key = pfx ? (pfx + '[' + prop + ']') : prop;
-      var val = obj[prop]
+      var val = obj[prop];
       results.push(
         (typeof val === 'object') ?
         serialize(val, key) :

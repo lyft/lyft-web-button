@@ -16,40 +16,42 @@ var GITHUB_URL = 'https://github.com/lyft/lyft-web-sdk';
  * @returns {Object} Docdown configuration.
  */
 function getDocdownConfiguration(name, title, type) {
-  switch(type) {
-    case 'component':
-      return {
-        // for docdown:
-        path: path.join(__dirname, '../src/components/' + name + '/index.js'),
-        properties: 'categories',
-        style: 'github',
-        title: title,
-        url: GITHUB_URL + '/blob/master/src/components/' + name + '/index.js',
-        // for fs.writeFileSync:
-        __writePath: path.join(__dirname, './src/components/' + name + '/index.md')
-      };
-    case 'dist':
-      return {
-        // for docdown:
-        path: path.join(__dirname, '../dist/' + name + '.js'),
-        properties: 'categories',
-        style: 'github',
-        title: title,
-        url: GITHUB_URL + '/blob/master/dist/' + name + '.js',
-        // for fs.writeFileSync:
-        __writePath: path.join(__dirname, './dist/' + name + '.md')
-      };
-    case 'service':
-      return {
-        // for docdown:
-        path: path.join(__dirname, '../src/services/' + name + '.js'),
-        properties: 'categories',
-        style: 'github',
-        title: title,
-        url: GITHUB_URL + '/blob/master/src/services/' + name + '.js',
-        // for fs.writeFileSync:
-        __writePath: path.join(__dirname, './src/services/' + name + '.md')
-      };
+  switch (type) {
+  case 'component':
+    return {
+      // for docdown:
+      path: path.join(__dirname, '../src/components/' + name + '/index.js'),
+      properties: 'categories',
+      style: 'github',
+      title: title,
+      url: GITHUB_URL + '/blob/master/src/components/' + name + '/index.js',
+      // for fs.writeFileSync:
+      __writePath: path.join(__dirname, './src/components/' + name + '/index.md')
+    };
+  case 'dist':
+    return {
+      // for docdown:
+      path: path.join(__dirname, '../dist/' + name + '.js'),
+      properties: 'categories',
+      style: 'github',
+      title: title,
+      url: GITHUB_URL + '/blob/master/dist/' + name + '.js',
+      // for fs.writeFileSync:
+      __writePath: path.join(__dirname, './dist/' + name + '.md')
+    };
+  case 'service':
+    return {
+      // for docdown:
+      path: path.join(__dirname, '../src/services/' + name + '.js'),
+      properties: 'categories',
+      style: 'github',
+      title: title,
+      url: GITHUB_URL + '/blob/master/src/services/' + name + '.js',
+      // for fs.writeFileSync:
+      __writePath: path.join(__dirname, './src/services/' + name + '.md')
+    };
+  default:
+    break;
   }
 }
 
@@ -69,6 +71,6 @@ for (var i = 0, l = configurations.length; i < l; i++) {
   var markdownData = docdown(configurations[i]);
   // ...and this writes the file synchronously
   fs.writeFileSync(configurations[i].__writePath, markdownData, function (err) {
-    if (err) {throw err;};
+    if (err) {throw err;}
   });
 }

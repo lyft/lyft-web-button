@@ -1,3 +1,9 @@
+// globals (mocha >> karma >> window)
+var afterEach = window.afterEach;
+var beforeEach = window.beforeEach;
+var describe = window.describe;
+var it = window.it;
+
 // dependencies (require)
 var expect = require('expect');
 var rewire = require('rewire');
@@ -7,7 +13,6 @@ var api = rewire('../../../src/services/api.js');
 
 // tests
 describe('api', function () {
-
   it('exists', function () {
     expect(api).toExist();
   });
@@ -27,29 +32,24 @@ describe('api', function () {
   });
 
   describe('setClientId', function () {
-
     it('sets client_id', function () {
       api.__set__('client_id', 'before');
       api.setClientId('after');
       expect(api.__get__('client_id'))
         .toEqual('after');
     });
-
   });
 
   describe('setClientToken', function () {
-
     it('sets client_token', function () {
       api.__set__('client_token', 'before');
       api.setClientToken('after');
       expect(api.__get__('client_token'))
         .toEqual('after');
     });
-
   });
 
   describe('requestWithCredentials', function () {
-
     var callback = 'someCallback';
     var clientId = 'someClientId';
     var clientToken = 'someClientToken';
@@ -79,11 +79,9 @@ describe('api', function () {
           callback: callback
         });
     });
-
   });
 
   describe('getCosts', function () {
-
     var GET_COSTS_URL = 'SOME_GET_COSTS_URL';
     var callback = 'someCallback';
     var data = 'someData';
@@ -102,11 +100,9 @@ describe('api', function () {
       expect(api.__get__('requestWithCredentials'))
         .toHaveBeenCalledWith(GET_COSTS_URL, data, callback);
     });
-
   });
 
   describe('getDrivers', function () {
-
     var GET_DRIVERS_URL = 'SOME_GET_DRIVERS_URL';
     var callback = 'someCallback';
     var data = 'someData';
@@ -125,11 +121,9 @@ describe('api', function () {
       expect(api.__get__('requestWithCredentials'))
         .toHaveBeenCalledWith(GET_DRIVERS_URL, data, callback);
     });
-
   });
 
   describe('getEtas', function () {
-
     var GET_ETAS_URL = 'SOME_GET_ETAS_URL';
     var callback = 'someCallback';
     var data = 'someData';
@@ -148,11 +142,9 @@ describe('api', function () {
       expect(api.__get__('requestWithCredentials'))
         .toHaveBeenCalledWith(GET_ETAS_URL, data, callback);
     });
-
   });
 
   describe('getRideTypes', function () {
-
     var GET_RIDE_TYPES_URL = 'SOME_GET_RIDE_TYPES_URL';
     var callback = 'someCallback';
     var data = 'someData';
@@ -171,11 +163,9 @@ describe('api', function () {
       expect(api.__get__('requestWithCredentials'))
         .toHaveBeenCalledWith(GET_RIDE_TYPES_URL, data, callback);
     });
-
   });
 
   describe('postMessages', function () {
-
     var POST_MESSAGES_URL = 'SOME_POST_MESSAGES_URL';
     var callback = 'someCallback';
     var data = 'someData';
@@ -194,7 +184,5 @@ describe('api', function () {
       expect(api.__get__('requestWithCredentials'))
         .toHaveBeenCalledWith(POST_MESSAGES_URL, data, callback);
     });
-
   });
-
 });

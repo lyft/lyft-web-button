@@ -1,3 +1,9 @@
+// globals (mocha >> karma >> window)
+var afterEach = window.afterEach;
+var beforeEach = window.beforeEach;
+var describe = window.describe;
+var it = window.it;
+
 // dependencies (require)
 var expect = require('expect');
 var rewire = require('rewire');
@@ -7,7 +13,6 @@ var lyftWebModal = rewire('../../../../src/components/lyftWebModal/index.js');
 
 // tests
 describe('lyftWebModal', function () {
-
   it('exists', function () {
     expect(lyftWebModal).toExist();
   });
@@ -26,7 +31,6 @@ describe('lyftWebModal', function () {
   });
 
   describe('createElements', function () {
-
     var rootElement = {};
     var closeElement = {};
     var mapElement = {};
@@ -95,11 +99,9 @@ describe('lyftWebModal', function () {
       expect(Object.prototype.toString.call(result))
         .toEqual('[object HTMLDivElement]');
     });
-
   });
 
   describe('bindEvents', function () {
-
     it('binds an event to rootElement if rootElement is defined', function () {
       lyftWebModal.__set__('rootElement', {});
       lyftWebModal.__get__('bindEvents')();
@@ -141,11 +143,9 @@ describe('lyftWebModal', function () {
       expect(lyftWebModal.__get__('messageFormElement'))
         .toEqual(undefined);
     });
-
   });
 
   describe('updateContents', function () {
-
     var googleApiKey = 'someGoogleApiKey';
     var mockLocation = {
       address: 'someAddress',
@@ -215,11 +215,9 @@ describe('lyftWebModal', function () {
       expect(lyftWebModal.__get__('openAppCtaElement'))
         .toEqual(undefined);
     });
-
   });
 
   describe('onPostMessagesSuccess', function () {
-
     var value = 'someValue';
 
     beforeEach(function () {
@@ -274,11 +272,9 @@ describe('lyftWebModal', function () {
         done();
       }, 500);
     });
-
   });
 
   describe('open', function () {
-
     var parentElement;
 
     beforeEach(function () {
@@ -314,11 +310,9 @@ describe('lyftWebModal', function () {
         done();
       }, 110);
     });
-
   });
 
   describe('close', function () {
-
     beforeEach(function () {
       expect.spyOn(lyftWebModal.__get__('selector'), 'removeClass');
     });
@@ -348,11 +342,9 @@ describe('lyftWebModal', function () {
         done();
       }, 500);
     });
-
   });
 
   describe('initialize', function () {
-
     var options = {
       clientId: 'someClientId',
       clientToken: 'someClientToken',
@@ -416,7 +408,5 @@ describe('lyftWebModal', function () {
       expect(lyftWebModal.__get__('updateContents'))
         .toHaveBeenCalledWith(options.googleApiKey, options.location);
     });
-
   });
-
 });
