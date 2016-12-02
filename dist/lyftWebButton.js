@@ -312,8 +312,8 @@
 	function requestWithCredentials(data, callback, url) {
 	  /* build data payload */
 	  data = data || {};
-	  data['client_id'] = client_id;
-	  data['client_token'] = client_token;
+	  data.client_id = client_id;
+	  data.client_token = client_token;
 	  /* perform request */
 	  return jsonp.request({
 	    url: url,
