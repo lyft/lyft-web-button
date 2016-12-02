@@ -10,71 +10,26 @@
   <body style="background-color:#AAAAAA;">
     <div id="lyft-web-button-parent"></div>
     <script type="text/javascript">
-    (function(
-      window,
-      document,
-      scriptSrc,
-      defaultModalObjectName,
-      defaultButtonObjectName,
-      userModalObjectName,
-      userButtonObjectName,
-      parentElement,
-      scriptElement
-    ){
-      scriptElement = document.createElement('script');
-      scriptElement.async = true;
-      scriptElement.onload = function(){
-        // configure
-        var clientId = ''; // Lyft client id goes here
-        var clientToken = ''; // Lyft client token goes here
-        var googleApiKey = ''; // Google api key goes here
-        var location = {
-          'address': 'China Basin, 185 Berry St, San Francisco, CA 94107',
-          'latitude': '37.776252',
-          'longitude': '-122.3913909',
-          'name': 'Lyft HQ'
-        };
-        var theme = 'multicolor large';
-        // rename
-        if (userModalObjectName !== defaultModalObjectName) {
-          window[userModalObjectName] = window[defaultModalObjectName];
-          delete window[defaultModalObjectName];
-        }
-        if (userButtonObjectName !== defaultButtonObjectName) {
-          window[userButtonObjectName] = window[defaultButtonObjectName];
-          delete window[defaultButtonObjectName];
-        }
-        // initialize
-        window[userModalObjectName].initialize({
-          'clientId': clientId,
-          'clientToken': clientToken,
-          'googleApiKey': googleApiKey,
-          'location': location,
-          'objectName': userModalObjectName,
-          'parentElement': document.body
-        });
-        window[userButtonObjectName].initialize({
-          'clientId': clientId,
-          'clientToken': clientToken,
-          'location': location,
-          'objectName': userButtonObjectName,
-          'onClick': function(){window[userModalObjectName].open();return false;},
-          'parentElement': parentElement,
-          'theme': theme
-        });
-      };
-      scriptElement.src = scriptSrc;
-      parentElement.insertBefore(scriptElement, parentElement.childNodes[0]);
-    })(
-      window,
-      document,
-      'lyftWebButton.min.js',
-      'lyftWebModal',
-      'lyftWebButton',
-      'lyftWebModalExample',
-      'lyftWebButtonExample',
-      document.getElementById('lyft-web-button-parent')
-    );
+!function(e,t,n,o,l,i,a,c,d,r,u,y,f,m,b,s){var B=t.createElement('script');B.async=!0,
+B.onload=function(){s!==o&&(e[s]=e[o],delete e[o]),b!==l&&(e[b]=e[l],delete e[l]);
+var n={address:d,latitude:r,longitude:u,name:y};e[s].initialize({clientId:i,clientToken:a,
+googleApiKey:c,location:n,objectName:s,parentElement:t.body}),e[b].initialize({clientId:i,
+clientToken:a,location:n,objectName:b,onClick:function(){return e[s].open(),!1},
+parentElement:f,theme:m})},B.src=n,f.insertBefore(B,f.childNodes[0])}(
+window,document,'lyftWebButton.js','lyftWebModal','lyftWebButton',
+// user arguments (you should edit these and delete the comments)
+'',                                                   // clientId
+'',                                                   // clientToken
+'',                                                   // googleApiKey
+'China Basin, 185 Berry St, San Francisco, CA 94107', // locationAddress
+'37.776252',                                          // locationLatitude
+'-122.3913909',                                       // locationLongitude
+'Lyft HQ',                                            // locationName
+document.getElementById('lyft-web-button-parent'),    // parentElement
+'multicolor large',                                   // theme
+'lyftWebButton',                                      // userButtonObjectName
+'lyftWebModal'                                        // userModalObjectName
+);
     </script>
   </body>
 </html>
