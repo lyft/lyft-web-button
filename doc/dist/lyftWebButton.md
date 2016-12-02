@@ -10,7 +10,7 @@
 * <a href="#apiprototypegetetasdata-callback">`api.prototype.getEtas`</a>
 * <a href="#apiprototypegetridetypesdata-callback">`api.prototype.getRideTypes`</a>
 * <a href="#apiprototypepostmessagesdata-callback">`api.prototype.postMessages`</a>
-* <a href="#apiprototyperequestwithcredentialsdata-callback-url">`api.prototype.requestWithCredentials`</a>
+* <a href="#apiprototyperequestwithcredentialsurl-data-callback">`api.prototype.requestWithCredentials`</a>
 
 <!-- /div -->
 
@@ -174,15 +174,15 @@ POSTs `messages`.
 
 <!-- div -->
 
-<h3 id="apiprototyperequestwithcredentialsdata-callback-url"><code>api.prototype.requestWithCredentials(data, callback, url)</code></h3>
+<h3 id="apiprototyperequestwithcredentialsurl-data-callback"><code>api.prototype.requestWithCredentials(url, data, callback)</code></h3>
 [&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/dist/lyftWebButton.js#L312 "View in source") [&#x24C9;][1]
 
 Requests JSONP with injected credentials.
 
 #### Arguments
-1. `data` *(Object)*: Required.
-2. `callback` *(function)*: Optional.
-3. `url` *(string)*: Required.
+1. `url` *(string)*: Required.
+2. `data` *(Object)*: Required.
+3. `callback` *(function)*: Optional.
 
 #### Returns
 *(void): Result of jsonp.request()*.

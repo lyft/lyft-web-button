@@ -304,12 +304,12 @@
 	 * Requests JSONP with injected credentials.
 	 * @memberOf api
 	 * @category api
+	 * @param {string} url Required.
 	 * @param {Object} data Required.
 	 * @param {function} callback Optional.
-	 * @param {string} url Required.
 	 * @returns {void} Result of jsonp.request().
 	 */
-	function requestWithCredentials(data, callback, url) {
+	function requestWithCredentials(url, data, callback) {
 	  /* build data payload */
 	  data = data || {};
 	  data.client_id = client_id;
@@ -336,7 +336,7 @@
 	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getCosts(data, callback) {
-	  return requestWithCredentials(data, callback, GET_COSTS_URL);
+	  return requestWithCredentials(GET_COSTS_URL, data, callback);
 	}
 
 	/**
@@ -350,7 +350,7 @@
 	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getDrivers(data, callback) {
-	  return requestWithCredentials(data, callback, GET_DRIVERS_URL);
+	  return requestWithCredentials(GET_DRIVERS_URL, data, callback);
 	}
 
 	/**
@@ -365,7 +365,7 @@
 	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getEtas(data, callback) {
-	  return requestWithCredentials(data, callback, GET_ETAS_URL);
+	  return requestWithCredentials(GET_ETAS_URL, data, callback);
 	}
 
 	/**
@@ -380,7 +380,7 @@
 	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function getRideTypes(data, callback) {
-	  return requestWithCredentials(data, callback, GET_RIDE_TYPES_URL);
+	  return requestWithCredentials(GET_RIDE_TYPES_URL, data, callback);
 	}
 
 	/**
@@ -395,7 +395,7 @@
 	 * @returns {void} Result of requestWithCredentials().
 	 */
 	function postMessages(data, callback) {
-	  return requestWithCredentials(data, callback, POST_MESSAGES_URL);
+	  return requestWithCredentials(POST_MESSAGES_URL, data, callback);
 	}
 
 	// exports

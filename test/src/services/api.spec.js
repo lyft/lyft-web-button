@@ -67,7 +67,7 @@ describe('api', function () {
     });
 
     it('requests jsonp with injected credentials', function () {
-      api.__get__('requestWithCredentials')(data, callback, url);
+      api.__get__('requestWithCredentials')(url, data, callback);
       expect(api.__get__('jsonp').request)
         .toHaveBeenCalledWith({
           url: url,
@@ -100,7 +100,7 @@ describe('api', function () {
     it('gets costs with credentials', function () {
       api.getCosts(data, callback);
       expect(api.__get__('requestWithCredentials'))
-        .toHaveBeenCalledWith(data, callback, GET_COSTS_URL);
+        .toHaveBeenCalledWith(GET_COSTS_URL, data, callback);
     });
 
   });
@@ -123,7 +123,7 @@ describe('api', function () {
     it('gets drivers with credentials', function () {
       api.getDrivers(data, callback);
       expect(api.__get__('requestWithCredentials'))
-        .toHaveBeenCalledWith(data, callback, GET_DRIVERS_URL);
+        .toHaveBeenCalledWith(GET_DRIVERS_URL, data, callback);
     });
 
   });
@@ -146,7 +146,7 @@ describe('api', function () {
     it('gets etas with credentials', function () {
       api.getEtas(data, callback);
       expect(api.__get__('requestWithCredentials'))
-        .toHaveBeenCalledWith(data, callback, GET_ETAS_URL);
+        .toHaveBeenCalledWith(GET_ETAS_URL, data, callback);
     });
 
   });
@@ -169,7 +169,7 @@ describe('api', function () {
     it('gets ride_types with credentials', function () {
       api.getRideTypes(data, callback);
       expect(api.__get__('requestWithCredentials'))
-        .toHaveBeenCalledWith(data, callback, GET_RIDE_TYPES_URL);
+        .toHaveBeenCalledWith(GET_RIDE_TYPES_URL, data, callback);
     });
 
   });
@@ -192,7 +192,7 @@ describe('api', function () {
     it('posts messages with credentials', function () {
       api.postMessages(data, callback);
       expect(api.__get__('requestWithCredentials'))
-        .toHaveBeenCalledWith(data, callback, POST_MESSAGES_URL);
+        .toHaveBeenCalledWith(POST_MESSAGES_URL, data, callback);
     });
 
   });
