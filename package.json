@@ -1,6 +1,6 @@
 {
   "name": "lyft-web-sdk",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Lyft Web SDK",
   "license": "Apache-2.0",
   "private": true,
