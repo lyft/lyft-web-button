@@ -170,6 +170,7 @@ describe('lyftWebButton', function () {
   describe('onGetEtasSuccess', function () {
     it('updates eta if element references and data are defined', function () {
       lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.__set__('themeSize', '');
       lyftWebButton.onGetEtasSuccess({
         eta_estimates: [{
           ride_type: 'lyft',
@@ -180,8 +181,22 @@ describe('lyftWebButton', function () {
         .toEqual('Lyft in 1 min');
     });
 
+    it('excludes some text if theme size is "small"', function () {
+      lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.__set__('themeSize', 'small');
+      lyftWebButton.onGetEtasSuccess({
+        eta_estimates: [{
+          ride_type: 'lyft',
+          eta_seconds: 60
+        }]
+      });
+      expect(lyftWebButton.__get__('etaElement').textContent)
+        .toEqual('1 min');
+    });
+
     it('ceilings seconds to the next whole minute', function () {
       lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.__set__('themeSize', '');
       lyftWebButton.onGetEtasSuccess({
         eta_estimates: [{
           ride_type: 'lyft',
@@ -194,6 +209,7 @@ describe('lyftWebButton', function () {
 
     it('does not update eta if element references are undefined', function () {
       lyftWebButton.__set__('etaElement', undefined);
+      lyftWebButton.__set__('themeSize', '');
       lyftWebButton.onGetEtasSuccess({
         eta_estimates: [{
           ride_type: 'lyft',
@@ -206,6 +222,7 @@ describe('lyftWebButton', function () {
 
     it('does not update eta if data is undefined', function () {
       lyftWebButton.__set__('etaElement', {});
+      lyftWebButton.__set__('themeSize', '');
       lyftWebButton.onGetEtasSuccess(undefined);
       expect(lyftWebButton.__get__('etaElement'))
         .toEqual({});
@@ -231,7 +248,7 @@ describe('lyftWebButton', function () {
           childNodes: ['someChildNode'],
           insertBefore: expect.createSpy()
         },
-        theme: 'someTheme'
+        theme: 'themeColor themeSize'
       };
       // navigator
       position = {
@@ -285,6 +302,12 @@ describe('lyftWebButton', function () {
         .toHaveBeenCalledWith(options.clientToken);
     });
 
+    it('sets themeSize', function () {
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('themeSize'))
+        .toEqual('themeSize');
+    });
+
     it('creates elements', function () {
       lyftWebButton.initialize(options);
       expect(lyftWebButton.__get__('createElements'))
@@ -327,6 +350,13 @@ describe('lyftWebButton', function () {
           end_lat: options.location.latitude,
           end_lng: options.location.longitude
         }, (options.objectName + '.onGetCostsSuccess'));
+    });
+
+    it('does not request costs when themeSize is "small"', function () {
+      options.theme = 'themeColor small';
+      lyftWebButton.initialize(options);
+      expect(lyftWebButton.__get__('api').getCosts)
+        .toNotHaveBeenCalled();
     });
 
     it('successfully queries current position and requests etas', function () {

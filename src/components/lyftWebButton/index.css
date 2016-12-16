@@ -51,6 +51,29 @@
   font-weight: 300;
 }
 
+/* small styles */
+.lyft-web-button.small {
+  padding: 4px 8px;
+}
+.lyft-web-button.small > .lyft-logo {
+  width: 32px;
+}
+.lyft-web-button.small > .cta-eta {
+  margin-left: 8px;
+}
+.lyft-web-button.small > .cta-eta > .cta {
+  display: none;
+}
+.lyft-web-button.small > .cta-eta > .eta {
+  font-size: 20px;
+}
+.lyft-web-button.small > .arrow-icon {
+  display: none;
+}
+.lyft-web-button.small > .price-range {
+  display: none;
+}
+
 /* large styles */
 .lyft-web-button.large {
   padding: 18px 20px;
