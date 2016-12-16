@@ -25,7 +25,7 @@
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypebindeventsonclick"><code>lyftWebButton.prototype.bindEvents(onClick)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L45 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L46 "View in source") [&#x24C9;][1]
 
 Binds events to some elements.
 
@@ -42,7 +42,7 @@ Binds events to some elements.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypecreateelements"><code>lyftWebButton.prototype.createElements()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L26 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L27 "View in source") [&#x24C9;][1]
 
 Creates elements from a template and stores some useful references.
 
@@ -56,7 +56,7 @@ Creates elements from a template and stores some useful references.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeinitializeoptions"><code>lyftWebButton.prototype.initialize(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L133 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L134 "View in source") [&#x24C9;][1]
 
 Initialize.
 
@@ -83,7 +83,7 @@ Initialize.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeongetcostssuccessdata"><code>lyftWebButton.prototype.onGetCostsSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L77 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L78 "View in source") [&#x24C9;][1]
 
 Success callback for getCosts request.
 
@@ -100,7 +100,7 @@ Success callback for getCosts request.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeongetetassuccessdata"><code>lyftWebButton.prototype.onGetEtasSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L101 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L102 "View in source") [&#x24C9;][1]
 
 Success callback for getEtas request.
 
@@ -117,7 +117,7 @@ Success callback for getEtas request.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeupdatecontentstheme"><code>lyftWebButton.prototype.updateContents(theme)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L59 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/components/lyftWebButton/index.js#L60 "View in source") [&#x24C9;][1]
 
 Updates the contents of some elements.
 

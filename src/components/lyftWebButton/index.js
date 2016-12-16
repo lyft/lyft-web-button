@@ -12,6 +12,7 @@ require('./index.css');
 var etaElement;
 var priceRangeElement;
 var rootElement;
+var themeSize = ''; // possible values include 'small', 'large'
 
 /* ======================== */
 /* DOM Manipulation Methods */
@@ -105,7 +106,7 @@ function onGetEtasSuccess(data) {
         var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
         if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
           if (etaElement) {
-            etaElement.textContent = 'Lyft in ' + eta + ' min';
+            etaElement.textContent = (themeSize !== 'small' ? 'Lyft in ' : '') + eta + ' min';
           }
         }
       }
@@ -134,6 +135,11 @@ function initialize(options) {
   // parse arguments
   api.setClientId(options.clientId);
   api.setClientToken(options.clientToken);
+  // assume themeSize is last chunk of options.theme (example: 'someColor someSize')
+  if (options.theme && options.theme.split) {
+    var themeSplit = options.theme.split(' ');
+    themeSize = themeSplit[themeSplit.length - 1];
+  }
   // create element tree
   createElements();
   bindEvents(options.onClick);
@@ -144,12 +150,14 @@ function initialize(options) {
   if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
     navigator.geolocation.getCurrentPosition(function (position) {
       // request costs
-      api.getCosts({
-        start_lat: position.coords.latitude,
-        start_lng: position.coords.longitude,
-        end_lat: options.location.latitude,
-        end_lng: options.location.longitude
-      }, (options.objectName + '.onGetCostsSuccess'));
+      if (themeSize !== 'small') {
+        api.getCosts({
+          start_lat: position.coords.latitude,
+          start_lng: position.coords.longitude,
+          end_lat: options.location.latitude,
+          end_lng: options.location.longitude
+        }, (options.objectName + '.onGetCostsSuccess'));
+      }
       // request etas
       api.getEtas({
         lat: position.coords.latitude,

@@ -977,6 +977,7 @@
 	var etaElement;
 	var priceRangeElement;
 	var rootElement;
+	var themeSize = ''; // possible values include 'small', 'large'
 
 	/* ======================== */
 	/* DOM Manipulation Methods */
@@ -1070,7 +1071,7 @@
 	        var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
 	        if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
 	          if (etaElement) {
-	            etaElement.textContent = 'Lyft in ' + eta + ' min';
+	            etaElement.textContent = (themeSize !== 'small' ? 'Lyft in ' : '') + eta + ' min';
 	          }
 	        }
 	      }
@@ -1099,6 +1100,11 @@
 	  // parse arguments
 	  api.setClientId(options.clientId);
 	  api.setClientToken(options.clientToken);
+	  // assume themeSize is last chunk of options.theme (example: 'someColor someSize')
+	  if (options.theme && options.theme.split) {
+	    var themeSplit = options.theme.split(' ');
+	    themeSize = themeSplit[themeSplit.length - 1];
+	  }
 	  // create element tree
 	  createElements();
 	  bindEvents(options.onClick);
@@ -1109,12 +1115,14 @@
 	  if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
 	    navigator.geolocation.getCurrentPosition(function (position) {
 	      // request costs
-	      api.getCosts({
-	        start_lat: position.coords.latitude,
-	        start_lng: position.coords.longitude,
-	        end_lat: options.location.latitude,
-	        end_lng: options.location.longitude
-	      }, (options.objectName + '.onGetCostsSuccess'));
+	      if (themeSize !== 'small') {
+	        api.getCosts({
+	          start_lat: position.coords.latitude,
+	          start_lng: position.coords.longitude,
+	          end_lat: options.location.latitude,
+	          end_lng: options.location.longitude
+	        }, (options.objectName + '.onGetCostsSuccess'));
+	      }
 	      // request etas
 	      api.getEtas({
 	        lat: position.coords.latitude,
@@ -1170,7 +1178,7 @@
 
 
 	// module
-	exports.push([module.id, "/* medium styles */\n.lyft-web-button {\n  cursor: pointer;\n  padding: 5px 10px;\n  color: #000000; /* white */\n  font-family: sans-serif;\n  background-color: #FFFFFF; /* black */\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button > .lyft-logo {\n  display: inline-block;\n  width: 48px;\n  height: auto;\n  margin-top: 4px;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 10px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 24px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 14px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow-icon {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 10px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 14px;\n  font-weight: 300;\n}\n\n/* large styles */\n.lyft-web-button.large {\n  padding: 18px 20px;\n}\n.lyft-web-button.large > .lyft-logo {\n  width: 55px;\n}\n.lyft-web-button.large > .cta-eta {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .cta-eta > .cta {\n  font-size: 30px;\n}\n.lyft-web-button.large > .cta-eta > .eta {\n  font-size: 20px;\n}\n.lyft-web-button.large > .arrow-icon {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .price-range {\n  font-size: 20px;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF; /* white */\n  background-color: #FF00BF; /* pink */\n}\n.lyft-web-button.hot-pink:hover {\n  background-color: #E600AC; /* reduce brightness by 10% */\n}\n.lyft-web-button.hot-pink > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.hot-pink > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF; /* white */\n  background-color: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-dark:hover {\n  background-color: #2B1C6B; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-dark > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-dark > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384; /* mulberry */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-light:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-light > .lyft-logo > svg > path {\n  fill: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-light > .arrow-icon > svg > path {\n  fill: #352384; /* mulberry */\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000; /* black */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.multicolor:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.multicolor > .lyft-logo > svg > path {\n  fill: #FF00BF; /* pink */\n}\n.lyft-web-button.multicolor > .arrow-icon > svg > path {\n  fill: #000000; /* white */\n}\n", ""]);
+	exports.push([module.id, "/* medium styles */\n.lyft-web-button {\n  cursor: pointer;\n  padding: 5px 10px;\n  color: #000000; /* white */\n  font-family: sans-serif;\n  background-color: #FFFFFF; /* black */\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button > .lyft-logo {\n  display: inline-block;\n  width: 48px;\n  height: auto;\n  margin-top: 4px;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 10px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 24px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 14px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow-icon {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  margin-left: 10px;\n  vertical-align: middle;\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 14px;\n  font-weight: 300;\n}\n\n/* small styles */\n.lyft-web-button.small {\n  padding: 4px 8px;\n}\n.lyft-web-button.small > .lyft-logo {\n  width: 32px;\n}\n.lyft-web-button.small > .cta-eta {\n  margin-left: 8px;\n}\n.lyft-web-button.small > .cta-eta > .cta {\n  display: none;\n}\n.lyft-web-button.small > .cta-eta > .eta {\n  font-size: 20px;\n}\n.lyft-web-button.small > .arrow-icon {\n  display: none;\n}\n.lyft-web-button.small > .price-range {\n  display: none;\n}\n\n/* large styles */\n.lyft-web-button.large {\n  padding: 18px 20px;\n}\n.lyft-web-button.large > .lyft-logo {\n  width: 55px;\n}\n.lyft-web-button.large > .cta-eta {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .cta-eta > .cta {\n  font-size: 30px;\n}\n.lyft-web-button.large > .cta-eta > .eta {\n  font-size: 20px;\n}\n.lyft-web-button.large > .arrow-icon {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .price-range {\n  font-size: 20px;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF; /* white */\n  background-color: #FF00BF; /* pink */\n}\n.lyft-web-button.hot-pink:hover {\n  background-color: #E600AC; /* reduce brightness by 10% */\n}\n.lyft-web-button.hot-pink > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.hot-pink > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF; /* white */\n  background-color: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-dark:hover {\n  background-color: #2B1C6B; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-dark > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-dark > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384; /* mulberry */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-light:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-light > .lyft-logo > svg > path {\n  fill: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-light > .arrow-icon > svg > path {\n  fill: #352384; /* mulberry */\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000; /* black */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.multicolor:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.multicolor > .lyft-logo > svg > path {\n  fill: #FF00BF; /* pink */\n}\n.lyft-web-button.multicolor > .arrow-icon > svg > path {\n  fill: #000000; /* white */\n}\n", ""]);
 
 	// exports
 
