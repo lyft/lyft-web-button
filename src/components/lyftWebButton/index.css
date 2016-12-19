@@ -16,9 +16,13 @@
 .lyft-web-button > .lyft-logo {
   display: inline-block;
   width: 48px;
-  height: auto;
+  height: 35px;
   margin-top: 4px;
   vertical-align: middle;
+}
+.lyft-web-button > .lyft-logo > svg {
+  width: 48px; /* fix svg rendering for IE */
+  height: 35px; /* fix svg rendering for IE */
 }
 .lyft-web-button > .cta-eta {
   display: inline-block;
@@ -39,9 +43,13 @@
 .lyft-web-button > .arrow-icon {
   display: inline-block;
   width: 18px;
-  height: auto;
+  height: 19px; /* add 1px to prevent clipping */
   margin-left: 10px;
   vertical-align: middle;
+}
+.lyft-web-button > .arrow-icon > svg {
+  width: 18px; /* fix svg rendering for IE */
+  height: 19px; /* fix svg rendering for IE */
 }
 .lyft-web-button > .price-range {
   display: inline-block;
@@ -57,6 +65,11 @@
 }
 .lyft-web-button.small > .lyft-logo {
   width: 32px;
+  height: 23px;
+}
+.lyft-web-button.small > .lyft-logo > svg {
+  width: 32px; /* fix svg rendering for IE */
+  height: 23px; /* fix svg rendering for IE */
 }
 .lyft-web-button.small > .cta-eta {
   margin-left: 8px;
@@ -80,6 +93,11 @@
 }
 .lyft-web-button.large > .lyft-logo {
   width: 55px;
+  height: 40px;
+}
+.lyft-web-button.large > .lyft-logo > svg {
+  width: 55px; /* fix svg rendering for IE */
+  height: 40px; /* fix svg rendering for IE */
 }
 .lyft-web-button.large > .cta-eta {
   margin-left: 20px;
