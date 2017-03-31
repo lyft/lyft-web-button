@@ -46,6 +46,7 @@
       locationLongitude,
       locationName,
       parentElement,
+      queryParams,
       theme,
       userButtonObjectName,
       userModalObjectName
@@ -87,6 +88,7 @@
             window[userModalObjectName].open();
             return false;
           },
+          'queryParams': queryParams || null,
           'parentElement': parentElement,
           'theme': theme
         });
@@ -109,6 +111,9 @@
       '-122.3913909',                                       // locationLongitude
       'Lyft HQ',                                            // locationName
       document.getElementById('lyft-web-button-parent'),    // parentElement
+      {
+        credits: 'PROMOCODE'
+      },                                   // queryParams
       'multicolor large',                                   // theme
       'lyftWebButton',                                      // userButtonObjectName
       'lyftWebModal'                                        // userModalObjectName

@@ -60,6 +60,7 @@
       locationLongitude,
       locationName,
       parentElement,
+      queryParams,
       theme,
       userButtonObjectName,
       userModalObjectName
@@ -101,6 +102,7 @@
             window[userModalObjectName].open();
             return false;
           },
+          'queryParams': queryParams || null,
           'parentElement': parentElement,
           'theme': theme
         });
@@ -113,7 +115,7 @@
     /* Configurations */
     /* ============== */
     var configurations = [{
-      clientId: '',
+      clientId: 'SOME_CLIENT_ID',
       clientToken: '',
       googleApiKey: '',
       locationAddress: 'Golden Gate Bridge, San Francisco, CA',
@@ -121,6 +123,10 @@
       locationLongitude: '-122.4804438',
       locationName: 'Golden Gate Bridge',
       parentElement: document.getElementById('lyft-web-button-parent-1'),
+      query: {
+        credits: 'PROMOCODE',
+        ridetype: 'lyft_line',
+      },
       theme: 'hot-pink small',
       userButtonObjectName: 'lyftWebButton1',
       userModalObjectName: 'lyftWebModal1'
@@ -278,6 +284,7 @@
         configurations[i].locationLongitude,    // locationLongitude
         configurations[i].locationName,         // locationName
         configurations[i].parentElement,        // parentElement
+        configurations[i].query,                // queryParams
         configurations[i].theme,                // theme
         configurations[i].userButtonObjectName, // userButtonObjectName
         configurations[i].userModalObjectName   // userModalObjectName

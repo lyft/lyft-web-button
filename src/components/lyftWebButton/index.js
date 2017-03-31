@@ -1,6 +1,7 @@
 // dependencies
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
+var serialize = require('../../services/serialize.js');
 
 // styles
 require('./index.css');
@@ -43,10 +44,33 @@ function createElements() {
  * @param {function} onClick Handler for button's onclick event.
  * @returns {void} Void.
  */
-function bindEvents(onClick) {
-  // root element: bind user-specified event handler
-  if (rootElement) {
-    rootElement.onclick = onClick;
+function bindEvents(rootEl, options) {
+  let redirectURI = 'https://ride.lyft.com';
+
+  if (rootEl) {
+    let queryParams;
+
+    if (options.queryParams) {
+      // assign the query parameters from the options
+      queryParams = options.queryParams;
+    }
+
+    if (options.clientId !== '' || undefined) {
+      // if we have a clientId, let's assign it to the `partner` on the query string
+      queryParams.partner = options.clientId;
+    }
+
+    if (queryParams) {
+      // if we have any parameters, redirect to the full query string
+      redirectURI = `${redirectURI}/?${serialize(queryParams)}`;
+    }
+
+    if (redirectURI) {
+      rootEl.onclick = (e) => {
+        e.preventDefault();
+        window.open(redirectURI);
+      };
+    }
   }
 }
 
@@ -142,7 +166,7 @@ function initialize(options) {
   }
   // create element tree
   createElements();
-  bindEvents(options.onClick);
+  bindEvents(rootElement, options);
   updateContents(options.theme);
   // insert element into DOM
   options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
