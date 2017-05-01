@@ -197,7 +197,7 @@
 	  }
 	  // open-app-cta: set href
 	  if (openAppCtaElement) {
-	    openAppCtaElement.href = 'lyft://ridetype?id=lyft' +
+	    openAppCtaElement.href = 'https://lyft.com/ride?id=lyft' +
 	      '&destination%5Blatitude%5D=' + location.latitude +
 	      '&destination%5Blongitude%5D=' + location.longitude;
 	  }
