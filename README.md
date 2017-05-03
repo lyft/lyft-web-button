@@ -9,11 +9,6 @@
 
 ## Quick Start
 
-**If you only want a finished component you don't need to install anything.** Instead,
- use the [configuration tool](https://www.lyft.com/developers/widgets) to generate a
- CDN-backed code snippet. If you'd rather host the component on your own server, do the
- following:
-
 1. Sign up for a `client_id` and `client_token` at [lyft.com/developers](https://www.lyft.com/developers).
 2. (Optional) Get a [Google API Key](https://developers.google.com/maps/documentation/static-maps/) for Google Static Maps.
 3. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
