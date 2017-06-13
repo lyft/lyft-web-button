@@ -1,10 +1,13 @@
 {
   "name": "lyft-web-sdk",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "Lyft Web SDK",
   "license": "Apache-2.0",
   "private": true,
   "author": "Jordan Patton <jpatton@lyft.com>",
+  "contributors": [
+    "Andrew Martin <amartin@lyft.com>"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lyft/lyft-web-sdk.git"
@@ -12,6 +15,7 @@
   "scripts": {
     "build": "webpack --progress --colors",
     "build:dev": "NODE_ENV=development webpack --progress --colors",
+    "watch": "NODE_ENV=development webpack --progress --colors --watch",
     "build:dist": "NODE_ENV=production webpack --progress --colors",
     "doc": "node doc/index.js",
     "lint": "eslint doc/ src/ test/",
@@ -21,23 +25,25 @@
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.28.4",
     "docdown": "^0.7.2",
     "eslint": "^3.11.1",
     "eslint-config-airbnb-es5": "^1.1.0",
-    "eslint-plugin-react": "^6.7.1",
+    "eslint-plugin-react": "^7.0.1",
     "expect": "^1.20.2",
     "html-loader": "^0.4.4",
     "karma": "^1.3.0",
     "karma-mocha": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.2",
-    "karma-webpack": "^1.8.0",
+    "karma-webpack": "^2.0.3",
     "mocha": "^3.1.2",
+    "path": "^0.12.7",
+    "qs": "^6.4.0",
     "rewire": "^2.5.2",
     "rewire-webpack": "^1.0.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "engines": {
     "node": ">=4.0.0"

@@ -1,123 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Language" content="en_US" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body style="background-color:#AAAAAA;">
-    <div id="lyft-web-button-parent"></div>
-    <script type="text/javascript">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en_US" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="background-color:#AAAAAA;">
+  <div id="lyft-web-button-parent"></div>
+  <script type="text/javascript">
     /**
      * Immediately-invoked function expression that configures and instantiates a lyftWebButton.
-     * @param {Object} window Default parameter. Do not edit.
-     * @param {Object} document Default parameter. Do not edit.
-     * @param {string} scriptSrc Default parameter. Do not edit.
-     * @param {string} defaultModalObjectName Default parameter. Do not edit.
-     * @param {string} defaultButtonObjectName Default parameter. Do not edit.
-     * @param {string} clientId User parameter. You must edit this.
-     * @param {string} clientToken User parameter. You must edit this.
-     * @param {string} googleApiKey User parameter. You should edit this.
-     * @param {string} locationAddress User parameter. You must edit this.
-     * @param {string} locationLatitude User parameter. You must edit this.
-     * @param {string} locationLongitude User parameter. You must edit this.
-     * @param {string} locationName User parameter. You must edit this.
-     * @param {Object} parentElement User parameter. You must edit this.
-     * @param {string} theme User parameter. You should edit this.
-     * @param {string} userButtonObjectName User parameter. You should edit this.
-     * @param {string} userModalObjectName User parameter. You should edit this.
-     * @returns {void} Void.
+     * @param {Object} options object for configuring the button (see README.md)
      */
-    (function(
-      // default parameters (do not edit the corresponding arguments)
-      window,
-      document,
-      scriptSrc,
-      defaultModalObjectName,
-      defaultButtonObjectName,
-      // user parameters (you should edit the corresponding arguments)
-      clientId,
-      clientToken,
-      googleApiKey,
-      locationAddress,
-      locationLatitude,
-      locationLongitude,
-      locationName,
-      parentElement,
-      queryParams,
-      theme,
-      userButtonObjectName,
-      userModalObjectName
-    ){
-      // create scriptElement
+    var OPTIONS = {
+      scriptSrc: 'lyftWebButton.js',
+      namespace: '',
+      clientId: '',
+      clientToken: '',
+      location: {
+        pickup: {},
+        destination: {
+          address: '185 Berry St., San Francisco, CA 94107',
+          name: 'Lyft HQ',
+          latitude: '37.7604',
+          longitude: '-122.4132',
+        },
+      },
+      parentElement: document.getElementById('lyft-web-button-parent'),
+      queryParams: {
+        credits: 'PROMO' // optional
+      },
+      theme: 'multicolor large',
+    };
+
+    (function(options) {
+      var window = this.window;
+      var document = this.document;
+      window.lyftInstanceIndex = window.lyftInstanceIndex || 0;
+      var parentElement = options.parentElement;
       var scriptElement = document.createElement('script');
       scriptElement.async = true;
-      scriptElement.onload = function () {
-        // rename
-        if (userModalObjectName !== defaultModalObjectName) {
-          window[userModalObjectName] = window[defaultModalObjectName];
-          delete window[defaultModalObjectName];
-        }
-        if (userButtonObjectName !== defaultButtonObjectName) {
-          window[userButtonObjectName] = window[defaultButtonObjectName];
-          delete window[defaultButtonObjectName];
-        }
-        // initialize
-        var location = {
-          'address': locationAddress,
-          'latitude': locationLatitude,
-          'longitude': locationLongitude,
-          'name': locationName
-        };
-        window[userModalObjectName].initialize({
-          'clientId': clientId,
-          'clientToken': clientToken,
-          'googleApiKey': googleApiKey,
-          'location': location,
-          'objectName': userModalObjectName,
-          'parentElement': document.body
-        });
-        window[userButtonObjectName].initialize({
-          'clientId': clientId,
-          'clientToken': clientToken,
-          'location': location,
-          'objectName': userButtonObjectName,
-          'onClick': function () {
-            window[userModalObjectName].open();
-            return false;
-          },
-          'queryParams': queryParams || null,
-          'parentElement': parentElement,
-          'theme': theme
-        });
+      scriptElement.onload = function() {
+        window.lyftInstanceIndex++;
+        var instanceName = options.namespace ? ('lyftWebButton' + options.namespace + window.lyftInstanceIndex) : 'lyftWebButton' + window.lyftInstanceIndex;
+        window[instanceName] = window['lyftWebButton'];
+        options.objectName = instanceName
+        window[instanceName].initialize(options);
       };
-      scriptElement.src = scriptSrc;
+      scriptElement.src = options.scriptSrc;
       parentElement.insertBefore(scriptElement, parentElement.childNodes[0]);
-    })(
-      // default arguments (do not edit these)
-      window,
-      document,
-      'lyftWebButton.js',
-      'lyftWebModal',
-      'lyftWebButton',
-      // user arguments (you should edit these)
-      '',                                                   // clientId
-      '',                                                   // clientToken
-      '',                                                   // googleApiKey
-      'China Basin, 185 Berry St, San Francisco, CA 94107', // locationAddress
-      '37.776252',                                          // locationLatitude
-      '-122.3913909',                                       // locationLongitude
-      'Lyft HQ',                                            // locationName
-      document.getElementById('lyft-web-button-parent'),    // parentElement
-      {
-        credits: 'PROMOCODE'
-      },                                   // queryParams
-      'multicolor large',                                   // theme
-      'lyftWebButton',                                      // userButtonObjectName
-      'lyftWebModal'                                        // userModalObjectName
-    );
-    </script>
-  </body>
+    }).call(this, OPTIONS);
+  </script>
+</body>
+
 </html>

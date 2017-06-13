@@ -1,5 +1,6 @@
 // dependencies
 var webpack = require('webpack');
+var path = require('path');
 
 // webpack development configuration
 var webpackConfig = {
@@ -7,17 +8,34 @@ var webpackConfig = {
     lyftWebButton: './webpack.entry.lyftWebButton.js'
   },
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
   },
   module: {
-    loaders: [{
-      test: /\.css$/,
+    rules: [{
       exclude: /node_modules/,
-      loader: 'style!css'
+      test: /\.css$/,
+      use: [
+        {
+          loader: 'style-loader'
+        },
+        {
+          loader: 'css-loader'
+        }
+      ]
+    }, {
+      exclude: /node_modules/,
+      test: /\.html$/,
+      loader: 'html-loader'
     }]
   },
-  plugins: []
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    })
+  ]
 };
 
 // webpack production configuration

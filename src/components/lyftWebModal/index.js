@@ -35,7 +35,7 @@ var rootElement;
 function createElements() {
   // create tree from template
   var template = document.createElement('div');
-  template.innerHTML = require('html!./index.html');
+  template.innerHTML = require('./index.html');
   // store references to important elements
   rootElement =
     template.childNodes[0];
@@ -231,8 +231,8 @@ function initialize(options) {
 /* ===================================== */
 
 module.exports = {
-  close: close,
-  initialize: initialize,
-  onPostMessagesSuccess: onPostMessagesSuccess,
-  open: open
+  close,
+  initialize,
+  onPostMessagesSuccess,
+  open
 };

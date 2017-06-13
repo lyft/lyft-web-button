@@ -2,6 +2,8 @@
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
 var serialize = require('../../services/serialize.js');
+var helpers = require('../../services/helpers.js');
+var stringify = require('qs').stringify;
 
 // styles
 require('./index.css');
@@ -28,11 +30,11 @@ var themeSize = ''; // possible values include 'small', 'large'
 function createElements() {
   // create tree from template
   var template = document.createElement('div');
-  template.innerHTML = require('html!./index.html');
+  template.innerHTML = require('./index.html');
   // store references to important elements
-  rootElement       = template.childNodes[0];
+  rootElement = template.childNodes[0];
   priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
-  etaElement        = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
+  etaElement = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
   // return reference to root element
   return rootElement;
 }
@@ -45,32 +47,42 @@ function createElements() {
  * @returns {void} Void.
  */
 function bindEvents(rootEl, options) {
-  let redirectURI = 'https://ride.lyft.com';
+  var redirectURI = 'https://lyft.com/ride?id=lyft';
+
+  const {
+    clientId,
+    queryParams,
+    location: {
+      pickup,
+      destination
+    }
+  } = options;
 
   if (rootEl) {
-    let queryParams;
+    var query = queryParams || {};
 
-    if (options.queryParams) {
-      // assign the query parameters from the options
-      queryParams = options.queryParams;
-    }
+    query.partner = clientId;
 
-    if (options.clientId !== '' || undefined) {
-      // if we have a clientId, let's assign it to the `partner` on the query string
-      queryParams.partner = options.clientId;
-    }
-
-    if (queryParams) {
-      // if we have any parameters, redirect to the full query string
-      redirectURI = `${redirectURI}/?${serialize(queryParams)}`;
-    }
-
-    if (redirectURI) {
-      rootEl.onclick = (e) => {
-        e.preventDefault();
-        window.open(redirectURI);
+    if (!helpers.isEmpty(pickup)) {
+      query.pickup = {
+        latitude: pickup.latitude,
+        longitude: pickup.longitude
       };
     }
+
+    query.destination = {
+      latitude: destination.latitude,
+      longitude: destination.longitude
+    };
+
+    // if we have any parameters, redirect to the full query string
+    redirectURI = redirectURI + '&' + stringify(query);
+
+    rootEl.onclick = function (e) {
+      e.preventDefault();
+      helpers.logger(decodeURI(redirectURI));
+      // window.open(redirectURI);
+    };
   }
 }
 
@@ -106,7 +118,7 @@ function onGetCostsSuccess(data) {
         var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
         var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
         if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 &&
-            !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
+          !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
           if (priceRangeElement) {
             priceRangeElement.textContent = '$' + min + ((min !== max) ? ('-' + max) : '');
           }
@@ -138,6 +150,63 @@ function onGetEtasSuccess(data) {
   }
 }
 
+function checkRequiredOptions(options) {
+  // check at least one level deep for options
+  // does not validate deeper
+  const required = [
+    'clientId',
+    'clientToken',
+    'location',
+    'location.pickup',
+    'parentElement',
+    'scriptSrc'
+  ];
+  required.forEach((option) => {
+    let optionPresent = options[option];
+
+    if (option.indexOf('.') > -1) {
+      let opt = option.split('.');
+      optionPresent = options[opt[0]][opt[1]];
+    }
+
+    if (!optionPresent) {
+      throw new Error(`Missing or invalid options; did you provide a value for ${option} in your options?`);
+    }
+  });
+}
+
+function getCostsAndEtas(location, options) {
+  const {
+      latitude: pickupLatitude,
+    longitude: pickupLongitude
+    } = location;
+
+  const {
+      objectName,
+    location: {
+        destination: {
+        latitude: destinationLatitude,
+      longitude: destinationLongitude
+        }
+      }
+    } = options;
+
+  // request costs
+  if (themeSize !== 'small') {
+    api.getCosts({
+      start_lat: pickupLatitude,
+      start_lng: pickupLongitude,
+      end_lat: destinationLatitude,
+      end_lng: destinationLongitude
+    }, (objectName + '.onGetCostsSuccess'));
+  }
+  // request etas
+  api.getEtas({
+    lat: pickupLatitude,
+    lng: pickupLongitude
+  }, (objectName + '.onGetEtasSuccess'));
+}
+
 /**
  * Initialize.
  * @memberOf lyftWebButton
@@ -146,17 +215,17 @@ function onGetEtasSuccess(data) {
  * @param {string} options.clientId
  * @param {string} options.clientToken
  * @param {Object} options.location
- * @param {string} options.location.address
- * @param {string} options.location.latitude
- * @param {string} options.location.longitude
- * @param {string} options.location.name
+ * @param {Object} options.location.pickup
+ * @param {Object} options.location.destination
+ * @param {string} options.namespace
  * @param {string} options.objectName
  * @param {Object} options.parentElement
  * @param {string} options.theme
  * @returns {void} Void.
  */
 function initialize(options) {
-  // parse arguments
+  checkRequiredOptions(options);
+
   api.setClientId(options.clientId);
   api.setClientToken(options.clientToken);
   // assume themeSize is last chunk of options.theme (example: 'someColor someSize')
@@ -166,28 +235,42 @@ function initialize(options) {
   }
   // create element tree
   createElements();
-  bindEvents(rootElement, options);
   updateContents(options.theme);
   // insert element into DOM
   options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
+
+  const {
+    location,
+    location: {
+      pickup
+    }
+  } = options;
   // get device location
-  if (navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+  // consider moving to Promise
+  if (
+    helpers.hasLocationService() && helpers.isEmpty(location.pickup)
+  ) {
     navigator.geolocation.getCurrentPosition(function (position) {
-      // request costs
-      if (themeSize !== 'small') {
-        api.getCosts({
-          start_lat: position.coords.latitude,
-          start_lng: position.coords.longitude,
-          end_lat: options.location.latitude,
-          end_lng: options.location.longitude
-        }, (options.objectName + '.onGetCostsSuccess'));
-      }
-      // request etas
-      api.getEtas({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }, (options.objectName + '.onGetEtasSuccess'));
+      getCostsAndEtas({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }, options);
+
+      options.location.pickup = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      };
+      bindEvents(rootElement, options);
+    }, function (error) {
+      helpers.logger('Error in location promise', error);
+      bindEvents(rootElement, options);
     });
+  } else {
+    getCostsAndEtas({
+      latitude: pickup.latitude,
+      longitude: pickup.longitude
+    }, options);
+    bindEvents(rootElement, options);
   }
 }
 
@@ -196,7 +279,7 @@ function initialize(options) {
 /* ===================================== */
 
 module.exports = {
-  initialize: initialize,
-  onGetCostsSuccess: onGetCostsSuccess,
-  onGetEtasSuccess: onGetEtasSuccess
+  initialize,
+  onGetCostsSuccess,
+  onGetEtasSuccess
 };

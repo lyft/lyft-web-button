@@ -2,18 +2,18 @@
 var jsonp = require('./jsonp.js');
 
 // constants
-var SERVER_URL         = 'https://www.lyft.com/api/jsonp';
-var GET_COSTS_URL      = SERVER_URL + '/get_costs';
-var GET_DRIVERS_URL    = SERVER_URL + '/get_drivers';
-var GET_ETAS_URL       = SERVER_URL + '/get_etas';
+var SERVER_URL = 'https://www.lyft.com/api/jsonp';
+var GET_COSTS_URL = SERVER_URL + '/get_costs';
+var GET_DRIVERS_URL = SERVER_URL + '/get_drivers';
+var GET_ETAS_URL = SERVER_URL + '/get_etas';
 var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
-var POST_MESSAGES_URL  = SERVER_URL + '/post_messages';
+var POST_MESSAGES_URL = SERVER_URL + '/post_messages';
 
 // configuration
 var client_id;
-function setClientId(value) {client_id = value;}
+function setClientId(value) { client_id = value; }
 var client_token;
-function setClientToken(value) {client_token = value;}
+function setClientToken(value) { client_token = value; }
 
 /**
  * Requests JSONP with injected credentials.
@@ -31,9 +31,9 @@ function requestWithCredentials(url, data, callback) {
   data.client_token = client_token;
   /* perform request */
   return jsonp.request({
-    url: url,
-    data: data,
-    callback: callback
+    url,
+    data,
+    callback
   });
 }
 

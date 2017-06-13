@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Language" content="en_US" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body style="background-color:#AAAAAA;">
-    <div id="lyft-web-button-parent"></div>
-    <script type="text/javascript">
-!function(e,t,n,o,l,i,a,c,d,r,u,y,f,m,b,s){var B=t.createElement('script');B.async=!0,
-B.onload=function(){s!==o&&(e[s]=e[o],delete e[o]),b!==l&&(e[b]=e[l],delete e[l]);
-var n={address:d,latitude:r,longitude:u,name:y};e[s].initialize({clientId:i,clientToken:a,
-googleApiKey:c,location:n,objectName:s,parentElement:t.body}),e[b].initialize({clientId:i,
-clientToken:a,location:n,objectName:b,onClick:function(){return e[s].open(),!1},
-parentElement:f,theme:m})},B.src=n,f.insertBefore(B,f.childNodes[0])}(
-window,document,'lyftWebButton.min.js','lyftWebModal','lyftWebButton',
-// user arguments (you should edit these and delete the comments)
-'',                                                   // clientId
-'',                                                   // clientToken
-'',                                                   // googleApiKey
-'China Basin, 185 Berry St, San Francisco, CA 94107', // locationAddress
-'37.776252',                                          // locationLatitude
-'-122.3913909',                                       // locationLongitude
-'Lyft HQ',                                            // locationName
-document.getElementById('lyft-web-button-parent'),    // parentElement
-'multicolor large',                                   // theme
-'lyftWebButton',                                      // userButtonObjectName
-'lyftWebModal'                                        // userModalObjectName
-);
-    </script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en_US" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="background-color:#AAAAAA;">
+  <div id="lyft-web-button-parent"></div>
+  <script type="text/javascript">
+    /**
+     * Immediately-invoked function expression that configures and instantiates a lyftWebButton.
+     * @param {Object} options object for configuring the button (see README.md)
+     */
+    var OPTIONS = {
+      scriptSrc: 'lyftWebButton.js',
+      namespace: 'myApp',
+      clientId: '',
+      clientToken: '',
+      googleApiKey: '',
+      location: {
+        address: '800 W Olympic Blvd, Los Angeles, CA 90015',
+        name: 'L.A. Live',
+        latitude: '34.0448',
+        longitude: '-118.2654',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent'),
+      queryParams: {
+        credits: 'PROMOCODE'
+      },
+      theme: 'multicolor large',
+    };
+
+    (function(t) {
+      var n = this.window,
+        e = this.document;
+      n.lyftInstanceIndex = n.lyftInstanceIndex || 0;
+      var a = t.parentElement,
+        c = e.createElement("script");
+      c.async = !0, c.onload = function() {
+        n.lyftInstanceIndex++;
+        var e = t.namespace ? "lyftWebButton" + t.namespace + n.lyftInstanceIndex : "lyftWebButton" + n.lyftInstanceIndex;
+        n[e] = n.lyftWebButton, t.objectName = e, n[e].initialize(t)
+      }, c.src = t.scriptSrc, a.insertBefore(c, a.childNodes[0])
+    }).call(this, OPTIONS);
+  </script>
+</body>
+
 </html>
