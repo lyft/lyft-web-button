@@ -1,4 +1,6 @@
 // dependencies
+// require('babel-polyfill');
+
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
 var serialize = require('../../services/serialize.js');
@@ -80,7 +82,7 @@ function bindEvents(rootEl, options) {
 
     rootEl.onclick = function (e) {
       e.preventDefault();
-      helpers.logger(decodeURI(redirectURI));
+      console.log(decodeURI(redirectURI));
       // window.open(redirectURI);
     };
   }
@@ -176,35 +178,20 @@ function checkRequiredOptions(options) {
 }
 
 function getCostsAndEtas(location, options) {
-  const {
-      latitude: pickupLatitude,
-    longitude: pickupLongitude
-    } = location;
-
-  const {
-      objectName,
-    location: {
-        destination: {
-        latitude: destinationLatitude,
-      longitude: destinationLongitude
-        }
-      }
-    } = options;
-
   // request costs
   if (themeSize !== 'small') {
     api.getCosts({
-      start_lat: pickupLatitude,
-      start_lng: pickupLongitude,
-      end_lat: destinationLatitude,
-      end_lng: destinationLongitude
-    }, (objectName + '.onGetCostsSuccess'));
+      start_lat: location.latitude,
+      start_lng: location.longitude,
+      end_lat: options.location.destination.latitude,
+      end_lng: options.location.destination.longitude
+    }, (options.objectName + '.onGetCostsSuccess'));
   }
   // request etas
   api.getEtas({
-    lat: pickupLatitude,
-    lng: pickupLongitude
-  }, (objectName + '.onGetEtasSuccess'));
+    lat: location.latitude,
+    lng: location.longitude
+  }, (options.objectName + '.onGetEtasSuccess'));
 }
 
 /**
@@ -247,6 +234,10 @@ function initialize(options) {
   } = options;
   // get device location
   // consider moving to Promise
+
+  // bind events regardless; will re-bind on location success
+  bindEvents(rootElement, options);
+
   if (
     helpers.hasLocationService() && helpers.isEmpty(location.pickup)
   ) {
@@ -263,14 +254,12 @@ function initialize(options) {
       bindEvents(rootElement, options);
     }, function (error) {
       helpers.logger('Error in location promise', error);
-      bindEvents(rootElement, options);
     });
   } else {
     getCostsAndEtas({
       latitude: pickup.latitude,
       longitude: pickup.longitude
     }, options);
-    bindEvents(rootElement, options);
   }
 }
 
@@ -279,7 +268,7 @@ function initialize(options) {
 /* ===================================== */
 
 module.exports = {
-  initialize,
-  onGetCostsSuccess,
-  onGetEtasSuccess
+  initialize: initialize,
+  onGetCostsSuccess: onGetCostsSuccess,
+  onGetEtasSuccess: onGetEtasSuccess
 };

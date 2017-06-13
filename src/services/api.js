@@ -31,9 +31,9 @@ function requestWithCredentials(url, data, callback) {
   data.client_token = client_token;
   /* perform request */
   return jsonp.request({
-    url,
-    data,
-    callback
+    url: url,
+    data: data,
+    callback: callback
   });
 }
 

@@ -17,20 +17,21 @@
      * @param {Object} options object for configuring the button (see README.md)
      */
     var OPTIONS = {
-      scriptSrc: 'lyftWebButton.js',
-      namespace: 'myApp',
+      scriptSrc: 'lyftWebButton.min.js',
+      namespace: '',
       clientId: '',
       clientToken: '',
-      googleApiKey: '',
       location: {
-        address: '800 W Olympic Blvd, Los Angeles, CA 90015',
-        name: 'L.A. Live',
-        latitude: '34.0448',
-        longitude: '-118.2654',
+        pickup: {},
+        destination: {
+          address: '185 Berry St., San Francisco, CA 94107',
+          latitude: '37.7604',
+          longitude: '-122.4132',
+        },
       },
       parentElement: document.getElementById('lyft-web-button-parent'),
       queryParams: {
-        credits: 'PROMOCODE'
+        credits: 'PROMO' // optional
       },
       theme: 'multicolor large',
     };

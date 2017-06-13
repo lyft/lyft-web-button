@@ -12,22 +12,32 @@ var webpackConfig = {
     filename: '[name].js'
   },
   module: {
-    rules: [{
-      exclude: /node_modules/,
-      test: /\.css$/,
-      use: [
-        {
-          loader: 'style-loader'
-        },
-        {
-          loader: 'css-loader'
+    rules: [
+      {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['es2015']
+          ]
         }
-      ]
-    }, {
-      exclude: /node_modules/,
-      test: /\.html$/,
-      loader: 'html-loader'
-    }]
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
+      }, {
+        exclude: /node_modules/,
+        test: /\.html$/,
+        loader: 'html-loader'
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
