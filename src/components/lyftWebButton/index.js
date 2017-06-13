@@ -82,8 +82,8 @@ function bindEvents(rootEl, options) {
 
     rootEl.onclick = function (e) {
       e.preventDefault();
-      console.log(decodeURI(redirectURI));
-      // window.open(redirectURI);
+      helpers.logger(decodeURI(redirectURI));
+      window.open(redirectURI);
     };
   }
 }
