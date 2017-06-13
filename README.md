@@ -10,9 +10,8 @@
 ## Quick Start / Usage
 
 1. Sign up for a `client_id` and `client_token` at [lyft.com/developers](https://www.lyft.com/developers).
-2. (Optional) Get a [Google API Key](https://developers.google.com/maps/documentation/static-maps/) for Google Static Maps.
-3. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
-4. Copy an example html file from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist) and fill in the blanks.
+2. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
+3. Copy an example html file from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist) and fill in the blanks.
 
 See the example file for a sample configuration object:
 
