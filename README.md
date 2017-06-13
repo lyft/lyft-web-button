@@ -34,7 +34,7 @@ var OPTIONS = {
   },
   parentElement: document.getElementById('lyft-web-button-parent'), // where to place the button on your page
   queryParams: {
-    credits: 'PROMOCODE' // optional credits param is the only accepted redirect parameter presently
+    credits: '' // optional credits param is the only accepted redirect parameter presently
   },
   theme: 'multicolor large', // see below for theme options
 };
