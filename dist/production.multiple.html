@@ -1,193 +1,229 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Language" content="en_US" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body style="background-color:#AAAAAA;">
-    <div id="lyft-web-button-parent-1" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-2" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-3" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-4" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-5" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-6" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-7" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-8" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-9" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-10" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-11" style="margin-bottom:10px;"></div>
-    <div id="lyft-web-button-parent-12" style="margin-bottom:10px;"></div>
-    <script type="text/javascript">
-var configurations = [{
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Bridge, San Francisco, CA',
-  locationLatitude: '37.8199286',
-  locationLongitude: '-122.4804438',
-  locationName: 'Golden Gate Bridge',
-  parentElement: document.getElementById('lyft-web-button-parent-1'),
-  theme: 'hot-pink small',
-  userButtonObjectName: 'lyftWebButton1',
-  userModalObjectName: 'lyftWebModal1'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Fisherman\'s Wharf, San Francisco, CA',
-  locationLatitude: '37.80811',
-  locationLongitude: '-122.4253858',
-  locationName: 'Fisherman\'s Wharf',
-  parentElement: document.getElementById('lyft-web-button-parent-2'),
-  theme: 'mulberry-dark small',
-  userButtonObjectName: 'lyftWebButton2',
-  userModalObjectName: 'lyftWebModal2'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Park, San Francisco, CA 94122',
-  locationLatitude: '37.7694208',
-  locationLongitude: '-122.4884025',
-  locationName: 'Golden Gate Park',
-  parentElement: document.getElementById('lyft-web-button-parent-3'),
-  theme: 'mulberry-light small',
-  userButtonObjectName: 'lyftWebButton3',
-  userModalObjectName: 'lyftWebModal3'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: '870 Market St, San Francisco, CA 94102',
-  locationLatitude: '37.7851667',
-  locationLongitude: '-122.4094671',
-  locationName: 'Flood Building',
-  parentElement: document.getElementById('lyft-web-button-parent-4'),
-  theme: 'multicolor small',
-  userButtonObjectName: 'lyftWebButton4',
-  userModalObjectName: 'lyftWebModal4'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Bridge, San Francisco, CA',
-  locationLatitude: '37.8199286',
-  locationLongitude: '-122.4804438',
-  locationName: 'Golden Gate Bridge',
-  parentElement: document.getElementById('lyft-web-button-parent-5'),
-  theme: 'hot-pink',
-  userButtonObjectName: 'lyftWebButton5',
-  userModalObjectName: 'lyftWebModal5'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Fisherman\'s Wharf, San Francisco, CA',
-  locationLatitude: '37.80811',
-  locationLongitude: '-122.4253858',
-  locationName: 'Fisherman\'s Wharf',
-  parentElement: document.getElementById('lyft-web-button-parent-6'),
-  theme: 'mulberry-dark',
-  userButtonObjectName: 'lyftWebButton6',
-  userModalObjectName: 'lyftWebModal6'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Park, San Francisco, CA 94122',
-  locationLatitude: '37.7694208',
-  locationLongitude: '-122.4884025',
-  locationName: 'Golden Gate Park',
-  parentElement: document.getElementById('lyft-web-button-parent-7'),
-  theme: 'mulberry-light',
-  userButtonObjectName: 'lyftWebButton7',
-  userModalObjectName: 'lyftWebModal7'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: '870 Market St, San Francisco, CA 94102',
-  locationLatitude: '37.7851667',
-  locationLongitude: '-122.4094671',
-  locationName: 'Flood Building',
-  parentElement: document.getElementById('lyft-web-button-parent-8'),
-  theme: 'multicolor',
-  userButtonObjectName: 'lyftWebButton8',
-  userModalObjectName: 'lyftWebModal8'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Bridge, San Francisco, CA',
-  locationLatitude: '37.8199286',
-  locationLongitude: '-122.4804438',
-  locationName: 'Golden Gate Bridge',
-  parentElement: document.getElementById('lyft-web-button-parent-9'),
-  theme: 'hot-pink large',
-  userButtonObjectName: 'lyftWebButton9',
-  userModalObjectName: 'lyftWebModal9'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Fisherman\'s Wharf, San Francisco, CA',
-  locationLatitude: '37.80811',
-  locationLongitude: '-122.4253858',
-  locationName: 'Fisherman\'s Wharf',
-  parentElement: document.getElementById('lyft-web-button-parent-10'),
-  theme: 'mulberry-dark large',
-  userButtonObjectName: 'lyftWebButton10',
-  userModalObjectName: 'lyftWebModal10'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: 'Golden Gate Park, San Francisco, CA 94122',
-  locationLatitude: '37.7694208',
-  locationLongitude: '-122.4884025',
-  locationName: 'Golden Gate Park',
-  parentElement: document.getElementById('lyft-web-button-parent-11'),
-  theme: 'mulberry-light large',
-  userButtonObjectName: 'lyftWebButton11',
-  userModalObjectName: 'lyftWebModal11'
-}, {
-  clientId: '',
-  clientToken: '',
-  googleApiKey: '',
-  locationAddress: '870 Market St, San Francisco, CA 94102',
-  locationLatitude: '37.7851667',
-  locationLongitude: '-122.4094671',
-  locationName: 'Flood Building',
-  parentElement: document.getElementById('lyft-web-button-parent-12'),
-  theme: 'multicolor large',
-  userButtonObjectName: 'lyftWebButton12',
-  userModalObjectName: 'lyftWebModal12'
-}];
 
-for (var i = 0, l = configurations.length; i < l; i++) {
-!function(e,t,n,o,l,i,a,c,d,r,u,y,f,m,b,s){var B=t.createElement('script');B.async=!0,
-B.onload=function(){s!==o&&(e[s]=e[o],delete e[o]),b!==l&&(e[b]=e[l],delete e[l]);
-var n={address:d,latitude:r,longitude:u,name:y};e[s].initialize({clientId:i,clientToken:a,
-googleApiKey:c,location:n,objectName:s,parentElement:t.body}),e[b].initialize({clientId:i,
-clientToken:a,location:n,objectName:b,onClick:function(){return e[s].open(),!1},
-parentElement:f,theme:m})},B.src=n,f.insertBefore(B,f.childNodes[0])}(
-window,document,'lyftWebButton.min.js','lyftWebModal','lyftWebButton',
-configurations[i].clientId,
-configurations[i].clientToken,
-configurations[i].googleApiKey,
-configurations[i].locationAddress,
-configurations[i].locationLatitude,
-configurations[i].locationLongitude,
-configurations[i].locationName,
-configurations[i].parentElement,
-configurations[i].theme,
-configurations[i].userButtonObjectName,
-configurations[i].userModalObjectName
-);
-}
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en_US" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="background-color:#AAAAAA;">
+  <div id="lyft-web-button-parent-1" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-2" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-3" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-4" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-5" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-6" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-7" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-8" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-9" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-10" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-11" style="margin-bottom:10px;"></div>
+  <div id="lyft-web-button-parent-12" style="margin-bottom:10px;"></div>
+  <script type="text/javascript">
+    /* ========= */
+    /* Functions */
+    /* ========= */
+    /**
+     * Configures and instantiates a lyftWebButton.
+     * @param {Object} window Default parameter. Do not edit.
+     * @param {Object} document Default parameter. Do not edit.
+     * @param {string} scriptSrc Default parameter. Do not edit.
+     * @param {string} defaultModalObjectName Default parameter. Do not edit.
+     * @param {string} defaultButtonObjectName Default parameter. Do not edit.
+     * @param {string} clientId User parameter. You must edit this.
+     * @param {string} clientToken User parameter. You must edit this.
+     * location:
+     * @param {string} address User parameter. You must edit this.
+     * @param {string} latitude User parameter. You must edit longitude.
+     * @param {string} locationLongitude User parameter. You must edit this.
+     * },
+     * @param {string} name User parameter. You must edit this.
+     * @param {Object} parentElement User parameter. You must edit this.
+     * @param {string} theme User parameter. You should edit this.
+     * @param {string} namespace User
+     * scriptSrc: 'lyftWebButton.js',parameter. You should edit this.
+     * @returns {void} Void.
+     */
+    function configureLyftWebButton(t) {
+      var n = this.window,
+        e = this.document;
+      n.lyftInstanceIndex = n.lyftInstanceIndex || 0;
+      var c = t.parentElement,
+        a = e.createElement("script");
+      a.async = !0, a.onload = function() {
+        n.lyftInstanceIndex++;
+        var e = t.namespace ? "lyftWebButton" + t.namespace + n.lyftInstanceIndex : "lyftWebButton" + n.lyftInstanceIndex;
+        n[e] = n.lyftWebButton, t.objectName = e, n[e].initialize(t)
+      }, a.src = t.scriptSrc, c.insertBefore(a, c.childNodes[0])
+    }
+
+    /* ============== */
+    /* Configurations */
+    /* ============== */
+
+    var config = {
+      clientId: '',
+      clientToken: '',
+    }
+
+    var configurations = [{
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '34.0448',
+        longitude: '-118.2654',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-1'),
+      query: {
+        credits: '',
+        ridetype: 'lyft_line',
+      },
+      theme: 'hot-pink small',
+      namespace: 'lyftWebButton1',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.80811',
+        longitude: '-122.4253858',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-2'),
+      theme: 'mulberry-dark small',
+      namespace: 'lyftWebButton2',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.7604',
+        longitude: '-122.4132',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-3'),
+      theme: 'mulberry-light small',
+      namespace: 'lyftWebButton3',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.7851667',
+        longitude: '-122.4094671',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-4'),
+      theme: 'multicolor small',
+      namespace: 'lyftWebButton4',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.8199286',
+        longitude: '-122.4804438',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-5'),
+      theme: 'hot-pink',
+      namespace: 'lyftWebButton5',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.80811',
+        longitude: '-122.4253858',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-6'),
+      theme: 'mulberry-dark',
+      namespace: 'lyftWebButton6',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '34.0448',
+        longitude: '-118.2654',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-7'),
+      theme: 'mulberry-light',
+      namespace: 'lyftWebButton7',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.7851667',
+        longitude: '-122.4094671',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-8'),
+      theme: 'multicolor',
+      namespace: 'lyftWebButton8',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.8199286',
+        longitude: '-122.4804438',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-9'),
+      theme: 'hot-pink large',
+      namespace: 'lyftWebButton9',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.80811',
+        longitude: '-122.4253858',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-10'),
+      theme: 'mulberry-dark large',
+      namespace: 'lyftWebButton10',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.7694208',
+        longitude: '-122.4884025',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-11'),
+      theme: 'mulberry-light large',
+      namespace: 'lyftWebButton11',
+      scriptSrc: 'lyftWebButton.js',
+    }, {
+      clientId: config.clientId,
+      clientToken: config.clientToken,
+      location: {
+        pickup: {},
+        latitude: '37.7851667',
+        longitude: '-122.4094671',
+      },
+      parentElement: document.getElementById('lyft-web-button-parent-12'),
+      theme: 'multicolor large',
+      namespace: 'lyftWebButton12',
+      scriptSrc: 'lyftWebButton.js',
+    }];
+
+    /* =========== */
+    /* Invocations */
+    /* =========== */
+    for (var i = 0, l = configurations.length; i < l; i++) configureLyftWebButton.call(this, configurations[i]);
+  </script>
+</body>
+
 </html>

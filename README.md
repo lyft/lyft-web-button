@@ -7,12 +7,42 @@
  | [Support](#support)
  | [Lyft.com/developers](https://www.lyft.com/developers)
 
-## Quick Start
+## Quick Start / Usage
 
 1. Sign up for a `client_id` and `client_token` at [lyft.com/developers](https://www.lyft.com/developers).
 2. (Optional) Get a [Google API Key](https://developers.google.com/maps/documentation/static-maps/) for Google Static Maps.
 3. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
 4. Copy an example html file from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist) and fill in the blanks.
+
+See the example file for a sample configuration object:
+
+```js
+var OPTIONS = {
+  scriptSrc: 'lyftWebButton.js', // path to script location on your server
+  namespace: '', // optional namespace
+  clientId: '',
+  clientToken: '',
+  location: {
+    pickup: { // optional; leave as an empty object to use current location if document.navigator is available
+      latitude: '37.7604',
+      longitude: '-122.4132',
+    },
+    destination: {
+      latitude: '37.7604',
+      longitude: '-122.4132',
+    },
+  },
+  parentElement: document.getElementById('lyft-web-button-parent'), // where to place the button on your page
+  queryParams: {
+    credits: '' // optional credits param is the only accepted redirect parameter presently
+  },
+  theme: 'multicolor large', // see below for theme options
+};
+```
+
+### Theme options
+
+Several themes are available; see `dist/development.multiple.html` for all possible examples, or look in `src/components/lyftWebButton/index.css` for the CSS.
 
 If you chose `lyftWebButton` and configured it correctly it should look like this:
 
@@ -39,11 +69,13 @@ cd lyft-web-sdk
 npm install
 ```
 
-### Usage
+### Development
 
 1. Start the server with `npm start` (or `npm run-script start`).
 2. Open [webpack-dev-server](http://localhost:8080) in a web browser.
 3. As you work the page will automatically update via websocket connection.
+
+_Alternatively, you can run `npm watch:dev` to build assets without using `webpack-dev-server`._
 
 ### Scripts
 ```bash
