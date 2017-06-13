@@ -23,10 +23,14 @@ var OPTIONS = {
   clientId: '',
   clientToken: '',
   location: {
-    address: '185 Berry St., San Francisco, CA 94107',
-    name: 'Lyft HQ',
-    latitude: '37.7604',
-    longitude: '-122.4132',
+    pickup: { // optional; leave as an empty object to use current location if document.navigator is available
+      latitude: '37.7604',
+      longitude: '-122.4132',
+    },
+    destination: {
+      latitude: '37.7604',
+      longitude: '-122.4132',
+    },
   },
   parentElement: document.getElementById('lyft-web-button-parent'), // where to place the button on your page
   queryParams: {
