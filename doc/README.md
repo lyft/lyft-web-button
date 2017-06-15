@@ -20,7 +20,5 @@
 
 # Screenshots of Distributables
 ![lyftWebButton styles](lyftWebButton-styles.png)
-![lyftWebModal small](lyftWebModal-small.png)
-![lyftWebModal large](lyftWebModal-large.png)
 
 _Note: This file is edited by hand and may be out of date. Please regenerate the documentation and browse manually if anything appears to be broken._
