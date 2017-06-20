@@ -22,7 +22,7 @@
 <!-- div -->
 
 <h3 id="jsonpprototypeinjectscriptoptions"><code>jsonp.prototype.injectScript(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L12 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/jsonp.js#L12 "View in source") [&#x24C9;][1]
 
 Injects a script into the DOM with given options.
 
@@ -43,7 +43,7 @@ Injects a script into the DOM with given options.
 <!-- div -->
 
 <h3 id="jsonpprototyperequestoptions"><code>jsonp.prototype.request(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L82 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/jsonp.js#L82 "View in source") [&#x24C9;][1]
 
 Performs a JSONP request.
 
@@ -63,7 +63,7 @@ Performs a JSONP request.
 <!-- div -->
 
 <h3 id="jsonpprototypeserializeobj-pfx"><code>jsonp.prototype.serialize(obj, pfx)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/jsonp.js#L56 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/jsonp.js#L56 "View in source") [&#x24C9;][1]
 
 Recursively serializes data as a query-parameter string.
 

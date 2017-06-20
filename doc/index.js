@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 
 // constants
-var GITHUB_URL = 'https://github.com/lyft/lyft-web-sdk';
+var GITHUB_URL = 'https://github.com/lyft/lyft-web-button';
 
 /**
  * Returns a configuration for consumption by docdown.
