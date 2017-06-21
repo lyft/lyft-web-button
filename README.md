@@ -1,4 +1,4 @@
-# Lyft Web SDK
+# Lyft Web Button
 
 [Documentation](https://github.com/lyft/lyft-web-button/blob/master/doc/README.md)
  | [Code of Conduct](https://github.com/lyft/lyft-web-button/blob/master/CODE_OF_CONDUCT.md)
@@ -101,7 +101,7 @@ npm run-script --silent test
 
 ## Support
 
-If you're looking for help configuring or using the Lyft Web SDK, or if you have general
+If you're looking for help configuring or using the Lyft Web Button, or if you have general
  questions related to our APIs, the Lyft Developer Platform team provides support through
  our [forum](https://developer.lyft.com/discuss) as well as on Stack Overflow using the
  `lyft-api` tag. _Please do not create tickets on help.lyft.com as this is our help desk
@@ -109,7 +109,7 @@ If you're looking for help configuring or using the Lyft Web SDK, or if you have
 
 ## Reporting Security Vulnerabilities
 
-If you've found a vulnerability or a potential vulnerability in the Lyft Web SDK please
+If you've found a vulnerability or a potential vulnerability in the Lyft Web Button please
  let us know at security@lyft.com. We'll send a confirmation email to acknowledge your
  report, and we'll send an additional email when we've identified the issue positively or
  negatively.
