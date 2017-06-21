@@ -25,7 +25,7 @@
 <!-- div -->
 
 <h3 id="apiprototypegetcostsdata-callback"><code>api.prototype.getCosts(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L53 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L53 "View in source") [&#x24C9;][1]
 
 Gets `costs`.
 
@@ -48,7 +48,7 @@ Gets `costs`.
 <!-- div -->
 
 <h3 id="apiprototypegetdriversdata-callback"><code>api.prototype.getDrivers(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L67 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L67 "View in source") [&#x24C9;][1]
 
 Gets `drivers`.
 
@@ -68,7 +68,7 @@ Gets `drivers`.
 <!-- div -->
 
 <h3 id="apiprototypegetetasdata-callback"><code>api.prototype.getEtas(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L82 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L82 "View in source") [&#x24C9;][1]
 
 Gets `etas`.
 
@@ -89,7 +89,7 @@ Gets `etas`.
 <!-- div -->
 
 <h3 id="apiprototypegetridetypesdata-callback"><code>api.prototype.getRideTypes(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L97 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L97 "View in source") [&#x24C9;][1]
 
 Gets `ride_types`.
 
@@ -110,7 +110,7 @@ Gets `ride_types`.
 <!-- div -->
 
 <h3 id="apiprototypepostmessagesdata-callback"><code>api.prototype.postMessages(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L112 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L112 "View in source") [&#x24C9;][1]
 
 POSTs `messages`.
 
@@ -131,7 +131,7 @@ POSTs `messages`.
 <!-- div -->
 
 <h3 id="apiprototyperequestwithcredentialsurl-data-callback"><code>api.prototype.requestWithCredentials(url, data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-sdk/blob/master/src/services/api.js#L27 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/src/services/api.js#L27 "View in source") [&#x24C9;][1]
 
 Requests JSONP with injected credentials.
 

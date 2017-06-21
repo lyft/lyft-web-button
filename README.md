@@ -1,17 +1,17 @@
 # Lyft Web SDK
 
-[Documentation](https://github.com/lyft/lyft-web-sdk/blob/master/doc/README.md)
- | [Code of Conduct](https://github.com/lyft/lyft-web-sdk/blob/master/CODE_OF_CONDUCT.md)
- | [Contributing](https://github.com/lyft/lyft-web-sdk/blob/master/CONTRIBUTING.md)
- | [License](https://github.com/lyft/lyft-web-sdk/blob/master/LICENSE)
+[Documentation](https://github.com/lyft/lyft-web-button/blob/master/doc/README.md)
+ | [Code of Conduct](https://github.com/lyft/lyft-web-button/blob/master/CODE_OF_CONDUCT.md)
+ | [Contributing](https://github.com/lyft/lyft-web-button/blob/master/CONTRIBUTING.md)
+ | [License](https://github.com/lyft/lyft-web-button/blob/master/LICENSE)
  | [Support](#support)
  | [Lyft.com/developers](https://www.lyft.com/developers)
 
 ## Quick Start / Usage
 
 1. Sign up for a `client_id` and `client_token` at [lyft.com/developers](https://www.lyft.com/developers).
-2. Grab the component itself from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist).
-3. Copy an example html file from [dist](https://github.com/lyft/lyft-web-sdk/blob/master/dist) and fill in the blanks.
+2. Grab the component itself from [dist](https://github.com/lyft/lyft-web-button/blob/master/dist).
+3. Copy an example html file from [dist](https://github.com/lyft/lyft-web-button/blob/master/dist) and fill in the blanks.
 
 See the example file for a sample configuration object:
 
@@ -61,10 +61,10 @@ To build this from source make sure you have the following:
 Next, open a shell session and enter the following commands:
 ```bash
 # clone repository
-git clone https://github.com/lyft/lyft-web-sdk.git
+git clone https://github.com/lyft/lyft-web-button.git
 
 # install dependencies
-cd lyft-web-sdk
+cd lyft-web-button
 npm install
 ```
 
