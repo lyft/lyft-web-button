@@ -1,4 +1,8 @@
-# Lyft Web Button
+# Lyft Web Button [DEPRECATED]
+
+## DEPRECATED
+
+Please note that this project is now deprecated, and will no longer be directly supported.
 
 [Documentation](https://github.com/lyft/lyft-web-button/blob/master/doc/README.md)
  | [Code of Conduct](https://github.com/lyft/lyft-web-button/blob/master/CODE_OF_CONDUCT.md)
