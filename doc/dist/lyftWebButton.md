@@ -16,6 +16,13 @@
 
 <!-- div -->
 
+## `hasLocationService`
+* <a href="#haslocationservice">`hasLocationService`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `jsonp.prototype`
 * <a href="#jsonpprototypeinjectscriptoptions">`jsonp.prototype.injectScript`</a>
 * <a href="#jsonpprototyperequestoptions">`jsonp.prototype.request`</a>
@@ -69,7 +76,7 @@
 <!-- div -->
 
 <h3 id="apiprototypegetcostsdata-callback"><code>api.prototype.getCosts(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L352 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L427 "View in source") [&#x24C9;][1]
 
 Gets `costs`.
 
@@ -92,7 +99,7 @@ Gets `costs`.
 <!-- div -->
 
 <h3 id="apiprototypegetdriversdata-callback"><code>api.prototype.getDrivers(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L366 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L441 "View in source") [&#x24C9;][1]
 
 Gets `drivers`.
 
@@ -112,7 +119,7 @@ Gets `drivers`.
 <!-- div -->
 
 <h3 id="apiprototypegetetasdata-callback"><code>api.prototype.getEtas(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L381 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L456 "View in source") [&#x24C9;][1]
 
 Gets `etas`.
 
@@ -133,7 +140,7 @@ Gets `etas`.
 <!-- div -->
 
 <h3 id="apiprototypegetridetypesdata-callback"><code>api.prototype.getRideTypes(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L396 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L471 "View in source") [&#x24C9;][1]
 
 Gets `ride_types`.
 
@@ -154,7 +161,7 @@ Gets `ride_types`.
 <!-- div -->
 
 <h3 id="apiprototypepostmessagesdata-callback"><code>api.prototype.postMessages(data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L411 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L486 "View in source") [&#x24C9;][1]
 
 POSTs `messages`.
 
@@ -175,7 +182,7 @@ POSTs `messages`.
 <!-- div -->
 
 <h3 id="apiprototyperequestwithcredentialsurl-data-callback"><code>api.prototype.requestWithCredentials(url, data, callback)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L326 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L401 "View in source") [&#x24C9;][1]
 
 Requests JSONP with injected credentials.
 
@@ -195,12 +202,32 @@ Requests JSONP with injected credentials.
 
 <!-- div -->
 
+## `hasLocationService`
+
+<!-- div -->
+
+<h3 id="haslocationservice"><code>hasLocationService()</code></h3>
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L2034 "View in source") [&#x24C9;][1]
+
+Check if browser location service is present
+
+#### Returns
+*(bool)*:
+
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `jsonp.prototype`
 
 <!-- div -->
 
 <h3 id="jsonpprototypeinjectscriptoptions"><code>jsonp.prototype.injectScript(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L442 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L2065 "View in source") [&#x24C9;][1]
 
 Injects a script into the DOM with given options.
 
@@ -221,7 +248,7 @@ Injects a script into the DOM with given options.
 <!-- div -->
 
 <h3 id="jsonpprototyperequestoptions"><code>jsonp.prototype.request(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L512 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L2128 "View in source") [&#x24C9;][1]
 
 Performs a JSONP request.
 
@@ -241,7 +268,7 @@ Performs a JSONP request.
 <!-- div -->
 
 <h3 id="jsonpprototypeserializeobj-pfx"><code>jsonp.prototype.serialize(obj, pfx)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L486 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L2106 "View in source") [&#x24C9;][1]
 
 Recursively serializes data as a query-parameter string.
 
@@ -265,7 +292,7 @@ Recursively serializes data as a query-parameter string.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypebindeventsonclick"><code>lyftWebButton.prototype.bindEvents(onClick)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1011 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1002 "View in source") [&#x24C9;][1]
 
 Binds events to some elements.
 
@@ -282,7 +309,7 @@ Binds events to some elements.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypecreateelements"><code>lyftWebButton.prototype.createElements()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L992 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L983 "View in source") [&#x24C9;][1]
 
 Creates elements from a template and stores some useful references.
 
@@ -296,7 +323,7 @@ Creates elements from a template and stores some useful references.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeinitializeoptions"><code>lyftWebButton.prototype.initialize(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1099 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1154 "View in source") [&#x24C9;][1]
 
 Initialize.
 
@@ -305,13 +332,12 @@ Initialize.
 2. `options.clientId` *(string)*:
 3. `options.clientToken` *(string)*:
 4. `options.location` *(Object)*:
-5. `options.location.address` *(string)*:
-6. `options.location.latitude` *(string)*:
-7. `options.location.longitude` *(string)*:
-8. `options.location.name` *(string)*:
-9. `options.objectName` *(string)*:
-10. `options.parentElement` *(Object)*:
-11. `options.theme` *(string)*:
+5. `options.location.pickup` *(Object)*:
+6. `options.location.destination` *(Object)*:
+7. `options.namespace` *(string)*:
+8. `options.objectName` *(string)*:
+9. `options.parentElement` *(Object)*:
+10. `options.theme` *(string)*:
 
 #### Returns
 *(void)*: Void.
@@ -323,7 +349,7 @@ Initialize.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeongetcostssuccessdata"><code>lyftWebButton.prototype.onGetCostsSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1043 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1065 "View in source") [&#x24C9;][1]
 
 Success callback for getCosts request.
 
@@ -340,7 +366,7 @@ Success callback for getCosts request.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeongetetassuccessdata"><code>lyftWebButton.prototype.onGetEtasSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1067 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1088 "View in source") [&#x24C9;][1]
 
 Success callback for getEtas request.
 
@@ -357,7 +383,7 @@ Success callback for getEtas request.
 <!-- div -->
 
 <h3 id="lyftwebbuttonprototypeupdatecontentstheme"><code>lyftWebButton.prototype.updateContents(theme)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1025 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1047 "View in source") [&#x24C9;][1]
 
 Updates the contents of some elements.
 
@@ -380,7 +406,7 @@ Updates the contents of some elements.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypebindeventslocation-objectname"><code>lyftWebModal.prototype.bindEvents(location, objectName)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L133 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1285 "View in source") [&#x24C9;][1]
 
 Binds events to some elements.
 
@@ -402,7 +428,7 @@ Binds events to some elements.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeclose"><code>lyftWebModal.prototype.close()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L249 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1396 "View in source") [&#x24C9;][1]
 
 Makes the modal window invisible and detaches it from the DOM.
 
@@ -416,7 +442,7 @@ Makes the modal window invisible and detaches it from the DOM.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypecreateelements"><code>lyftWebModal.prototype.createElements()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L90 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1253 "View in source") [&#x24C9;][1]
 
 Creates elements from a template and stores some useful references.
 
@@ -430,7 +456,7 @@ Creates elements from a template and stores some useful references.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeinitializeoptions"><code>lyftWebModal.prototype.initialize(options)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L273 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1420 "View in source") [&#x24C9;][1]
 
 Initialize.
 
@@ -457,7 +483,7 @@ Initialize.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeonpostmessagessuccessdata"><code>lyftWebModal.prototype.onPostMessagesSuccess(data)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L217 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1364 "View in source") [&#x24C9;][1]
 
 Success callback for postMessages request.
 
@@ -474,7 +500,7 @@ Success callback for postMessages request.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeopen"><code>lyftWebModal.prototype.open()</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L236 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1383 "View in source") [&#x24C9;][1]
 
 Attaches the modal window to the DOM and makes it visible.
 
@@ -488,7 +514,7 @@ Attaches the modal window to the DOM and makes it visible.
 <!-- div -->
 
 <h3 id="lyftwebmodalprototypeupdatecontentsgoogleapikey-location"><code>lyftWebModal.prototype.updateContents(googleApiKey, location)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L180 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L1332 "View in source") [&#x24C9;][1]
 
 Updates the contents of some elements.
 
@@ -516,7 +542,7 @@ Updates the contents of some elements.
 <!-- div -->
 
 <h3 id="selectorprototypeaddclasselement-classname"><code>selector.prototype.addClass(element, className)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L542 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L516 "View in source") [&#x24C9;][1]
 
 Adds a class to an element.
 
@@ -534,7 +560,7 @@ Adds a class to an element.
 <!-- div -->
 
 <h3 id="selectorprototyperemoveclasselement-classname"><code>selector.prototype.removeClass(element, className)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L556 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L532 "View in source") [&#x24C9;][1]
 
 Removes a class from an element.
 
@@ -552,7 +578,7 @@ Removes a class from an element.
 <!-- div -->
 
 <h3 id="selectorprototypeselectchildelementelement-attributes"><code>selector.prototype.selectChildElement(element, attributes)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L589 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L567 "View in source") [&#x24C9;][1]
 
 Selects a single child element from an element tree according to some criteria.
 
@@ -570,7 +596,7 @@ Selects a single child element from an element tree according to some criteria.
 <!-- div -->
 
 <h3 id="selectorprototypeselectchildelementbyattributeelement-attributename-attributevalue"><code>selector.prototype.selectChildElementByAttribute(element, attributeName, attributeValue)</code></h3>
-[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L572 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/lyft/lyft-web-button/blob/master/dist/lyftWebButton.js#L550 "View in source") [&#x24C9;][1]
 
 Selects a single child element from a given element according to some criteria.
 
