@@ -39,6 +39,7 @@ var webpackConfig = {
       }
     ]
   },
+  mode: 'development',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -50,6 +51,8 @@ var webpackConfig = {
 
 // webpack production configuration
 if (process.env.NODE_ENV === 'production') {
+  // Mode
+  webpackConfig.mode = 'production';
   // filename
   webpackConfig.output.filename = '[name].min.js';
   // plugins

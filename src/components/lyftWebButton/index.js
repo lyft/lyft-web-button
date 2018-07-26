@@ -3,7 +3,6 @@
 
 var api = require('../../services/api.js');
 var selector = require('../../services/selector.js');
-var serialize = require('../../services/serialize.js');
 var helpers = require('../../services/helpers.js');
 var stringify = require('qs').stringify;
 

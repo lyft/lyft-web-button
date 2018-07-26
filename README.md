@@ -93,9 +93,6 @@ npm run-script doc
 
 # lint
 npm run-script lint
-
-# test (silence ELIFECYCLE output)
-npm run-script --silent test
 ```
 
 ### Limitations
