@@ -33,18 +33,35 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -62,2150 +79,260 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./webpack.entry.lyftWebButton.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./node_modules/css-loader/index.js!./src/components/lyftWebButton/index.css":
+/*!**************************************************************************!*\
+  !*** ./node_modules/css-loader!./src/components/lyftWebButton/index.css ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(undefined);\n// imports\n\n\n// module\nexports.push([module.i, \"/* medium styles */\\n.lyft-web-button {\\n  cursor: pointer;\\n  padding: 5px 10px;\\n  color: #000000; /* white */\\n  font-family: sans-serif;\\n  background-color: #FFFFFF; /* black */\\n  border: none;\\n  -webkit-border-radius: 8px;\\n     -moz-border-radius: 8px;\\n          border-radius: 8px;\\n}\\n.lyft-web-button:hover {\\n  background-color: #E6E6E6; /* reduce brightness by 10% */\\n}\\n.lyft-web-button > .lyft-logo {\\n  display: inline-block;\\n  width: 48px;\\n  height: 35px;\\n  margin-top: 4px;\\n  vertical-align: middle;\\n}\\n.lyft-web-button > .lyft-logo > svg {\\n  width: 48px; /* fix svg rendering for IE */\\n  height: 35px; /* fix svg rendering for IE */\\n}\\n.lyft-web-button > .cta-eta {\\n  display: inline-block;\\n  margin-left: 10px;\\n  text-align: left;\\n  vertical-align: middle;\\n}\\n.lyft-web-button > .cta-eta > .cta {\\n  display: block;\\n  font-size: 24px;\\n  font-weight: 300;\\n}\\n.lyft-web-button > .cta-eta > .eta {\\n  display: block;\\n  font-size: 14px;\\n  font-weight: 300;\\n}\\n.lyft-web-button > .arrow-icon {\\n  display: inline-block;\\n  width: 18px;\\n  height: 19px; /* add 1px to prevent clipping */\\n  margin-left: 10px;\\n  vertical-align: middle;\\n}\\n.lyft-web-button > .arrow-icon > svg {\\n  width: 18px; /* fix svg rendering for IE */\\n  height: 19px; /* fix svg rendering for IE */\\n}\\n.lyft-web-button > .price-range {\\n  display: inline-block;\\n  margin-left: 4px;\\n  vertical-align: middle;\\n  font-size: 14px;\\n  font-weight: 300;\\n}\\n\\n/* small styles */\\n.lyft-web-button.small {\\n  padding: 4px 8px;\\n}\\n.lyft-web-button.small > .lyft-logo {\\n  width: 32px;\\n  height: 23px;\\n}\\n.lyft-web-button.small > .lyft-logo > svg {\\n  width: 32px; /* fix svg rendering for IE */\\n  height: 23px; /* fix svg rendering for IE */\\n}\\n.lyft-web-button.small > .cta-eta {\\n  margin-left: 8px;\\n}\\n.lyft-web-button.small > .cta-eta > .cta {\\n  display: none;\\n}\\n.lyft-web-button.small > .cta-eta > .eta {\\n  font-size: 20px;\\n}\\n.lyft-web-button.small > .arrow-icon {\\n  display: none;\\n}\\n.lyft-web-button.small > .price-range {\\n  display: none;\\n}\\n\\n/* large styles */\\n.lyft-web-button.large {\\n  padding: 18px 20px;\\n}\\n.lyft-web-button.large > .lyft-logo {\\n  width: 55px;\\n  height: 40px;\\n}\\n.lyft-web-button.large > .lyft-logo > svg {\\n  width: 55px; /* fix svg rendering for IE */\\n  height: 40px; /* fix svg rendering for IE */\\n}\\n.lyft-web-button.large > .cta-eta {\\n  margin-left: 20px;\\n}\\n.lyft-web-button.large > .cta-eta > .cta {\\n  font-size: 30px;\\n}\\n.lyft-web-button.large > .cta-eta > .eta {\\n  font-size: 20px;\\n}\\n.lyft-web-button.large > .arrow-icon {\\n  margin-left: 20px;\\n}\\n.lyft-web-button.large > .price-range {\\n  font-size: 20px;\\n}\\n\\n/* hot-pink */\\n.lyft-web-button.hot-pink {\\n  color: #FFFFFF; /* white */\\n  background-color: #FF00BF; /* pink */\\n}\\n.lyft-web-button.hot-pink:hover {\\n  background-color: #E600AC; /* reduce brightness by 10% */\\n}\\n.lyft-web-button.hot-pink > .lyft-logo > svg > path {\\n  fill: #FFFFFF; /* white */\\n}\\n.lyft-web-button.hot-pink > .arrow-icon > svg > path {\\n  fill: #FFFFFF; /* white */\\n}\\n\\n/* mulberry-dark */\\n.lyft-web-button.mulberry-dark {\\n  color: #FFFFFF; /* white */\\n  background-color: #352384; /* mulberry */\\n}\\n.lyft-web-button.mulberry-dark:hover {\\n  background-color: #2B1C6B; /* reduce brightness by 10% */\\n}\\n.lyft-web-button.mulberry-dark > .lyft-logo > svg > path {\\n  fill: #FFFFFF; /* white */\\n}\\n.lyft-web-button.mulberry-dark > .arrow-icon > svg > path {\\n  fill: #FFFFFF; /* white */\\n}\\n\\n/* mulberry-light */\\n.lyft-web-button.mulberry-light {\\n  color: #352384; /* mulberry */\\n  background-color: #FFFFFF; /* white */\\n}\\n.lyft-web-button.mulberry-light:hover {\\n  background-color: #E6E6E6; /* reduce brightness by 10% */\\n}\\n.lyft-web-button.mulberry-light > .lyft-logo > svg > path {\\n  fill: #352384; /* mulberry */\\n}\\n.lyft-web-button.mulberry-light > .arrow-icon > svg > path {\\n  fill: #352384; /* mulberry */\\n}\\n\\n/* multicolor */\\n.lyft-web-button.multicolor {\\n  color: #000000; /* black */\\n  background-color: #FFFFFF; /* white */\\n}\\n.lyft-web-button.multicolor:hover {\\n  background-color: #E6E6E6; /* reduce brightness by 10% */\\n}\\n.lyft-web-button.multicolor > .lyft-logo > svg > path {\\n  fill: #FF00BF; /* pink */\\n}\\n.lyft-web-button.multicolor > .arrow-icon > svg > path {\\n  fill: #000000; /* white */\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/components/lyftWebButton/index.css?./node_modules/css-loader");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./src/components/lyftWebModal/index.css":
+/*!*************************************************************************!*\
+  !*** ./node_modules/css-loader!./src/components/lyftWebModal/index.css ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(undefined);\n// imports\n\n\n// module\nexports.push([module.i, \"/* small-to-medium screen styles */\\n.lyft-web-modal {\\n  position: fixed;\\n  top: 0;\\n  left: 0;\\n  right: 0;\\n  z-index: 1;\\n  display: block;\\n  visibility: hidden;\\n  opacity: 0;\\n  width: 100%;\\n  height: 100%;\\n  margin: 0;\\n  padding: 0;\\n  overflow: auto;\\n  background-color: rgb(0,0,0);\\n  background-color: rgba(0,0,0,0.4);\\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\\n     -moz-transition: visibility 0.4s, opacity 0.4s;\\n       -o-transition: visibility 0.4s, opacity 0.4s;\\n          transition: visibility 0.4s, opacity 0.4s;\\n}\\n.lyft-web-modal.on {\\n  visibility: visible;\\n  opacity: 1;\\n}\\n.lyft-web-modal > .content {\\n  position: relative;\\n  top: -300px;\\n  left: 0;\\n  right: 0;\\n  opacity: 0;\\n  width: 100%;\\n  max-width: 320px;\\n  margin: 20px auto 0 auto;\\n  padding: 0;\\n  color: #000000;\\n  font-family: sans-serif;\\n  text-align: center;\\n  background-color: #FFFFFF;\\n  border: none;\\n  -webkit-border-radius: 8px;\\n     -moz-border-radius: 8px;\\n          border-radius: 8px;\\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n  -webkit-transition: top 0.4s, opacity 0.4s;\\n     -moz-transition: top 0.4s, opacity 0.4s;\\n       -o-transition: top 0.4s, opacity 0.4s;\\n          transition: top 0.4s, opacity 0.4s;\\n}\\n.lyft-web-modal.on > .content {\\n  top: 0;\\n  opacity: 1;\\n}\\n.lyft-web-modal > .content > .map-container {\\n  width: 100%;\\n  height: 150px; /* background-image src will be 300px */\\n  background-color: #EEEEEE;\\n  background-position: center top; /* bump the marker down by 150px */\\n  background-repeat: no-repeat;\\n  background-size: 167% 167%;\\n  -webkit-border-radius: 8px 8px 0 0;\\n     -moz-border-radius: 8px 8px 0 0;\\n          border-radius: 8px 8px 0 0;\\n}\\n.lyft-web-modal > .content > .map-container > .map-label {\\n  display: inline-block;\\n  max-width: 300px;\\n  margin: 10px auto 0 auto;\\n  padding: 5px;\\n  background-color: #FFFFFF;\\n  -webkit-border-radius: 5px;\\n     -moz-border-radius: 5px;\\n          border-radius: 5px;\\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\\n}\\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\\n  display: block;\\n  font-size: 14px;\\n  font-weight: 700;\\n}\\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\\n  display: block;\\n  margin-top: 5px;\\n  font-size: 10px;\\n  font-weight: 300;\\n}\\n.lyft-web-modal > .content > .map-container > .map-marker {\\n  margin-top: 13px;\\n}\\n.lyft-web-modal > .content > .map-container > .map-marker > svg {\\n  display: inline-block;\\n  width: 40px;\\n  height: 64px;\\n}\\n.lyft-web-modal > .content > .frame-container {\\n  position: relative;\\n}\\n.lyft-web-modal > .content > .frame-container > .frame-before {\\n  position: static;\\n  z-index: 1;\\n  padding: 10px;\\n  visibility: hidden;\\n  opacity: 0;\\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\\n     -moz-transition: visibility 0.4s, opacity 0.4s;\\n       -o-transition: visibility 0.4s, opacity 0.4s;\\n          transition: visibility 0.4s, opacity 0.4s;\\n}\\n.lyft-web-modal > .content > .frame-container > .frame-before.on {\\n  visibility: visible;\\n  opacity: 1;\\n}\\n.lyft-web-modal > .content > .frame-container > .frame-after {\\n  position: absolute;\\n  top: 0;\\n  left: 0;\\n  right: 0;\\n  z-index: 2;\\n  padding: 10px;\\n  visibility: hidden;\\n  opacity: 0;\\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\\n     -moz-transition: visibility 0.4s, opacity 0.4s;\\n       -o-transition: visibility 0.4s, opacity 0.4s;\\n          transition: visibility 0.4s, opacity 0.4s;\\n}\\n.lyft-web-modal > .content > .frame-container > .frame-after.on {\\n  visibility: visible;\\n  opacity: 1;\\n}\\n.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {\\n  display: inline-block;\\n  width: 40px;\\n  height: 40px;\\n  vertical-align: middle;\\n  background-color: #FF00BF;\\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\\n  border: none;\\n  -webkit-border-radius: 5px;\\n     -moz-border-radius: 5px;\\n          border-radius: 5px;\\n}\\n.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {\\n  display: inline-block;\\n  width: 30px;\\n  height: 21px;\\n  margin: 11px 0 0 0;\\n  fill: #FFFFFF;\\n}\\n.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {\\n  display: inline-block;\\n  width: 40px;\\n  height: 40px;\\n  vertical-align: middle;\\n  background-color: #FF00BF;\\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\\n  border: none;\\n  -webkit-border-radius: 50%;\\n     -moz-border-radius: 50%;\\n          border-radius: 50%;\\n}\\n.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {\\n  display: inline-block;\\n  width: 30px;\\n  height: 30px;\\n  margin: 5px 0 0 0;\\n  fill: #FFFFFF;\\n}\\n.lyft-web-modal > .content .text-container {\\n  margin-top: 10px;\\n}\\n.lyft-web-modal > .content .text-container > h1 {\\n  margin: 0 0 0 0;\\n  color: #352384;\\n  font-size: 20px;\\n  font-weight: 500;\\n}\\n.lyft-web-modal > .content .text-container > p {\\n  width: 100%;\\n  max-width: 320px;\\n  margin: 5px auto 0 auto;\\n  color: #000000;\\n  font-size: 14px;\\n  font-weight: 300;\\n}\\n.lyft-web-modal > .content .message-form-container {\\n  margin-top: 10px;\\n}\\n.lyft-web-modal > .content .message-form-container > form > .message-form-input {\\n  /* lyft style attributes */\\n  -webkit-appearance: none;\\n  height: 36px;\\n  color: #333447;\\n  font-size: 16px;\\n  font-weight: lighter;\\n  text-align: center;\\n  text-transform: none;\\n  line-height: 1.428571429;\\n  vertical-align: middle;\\n  background-color: #FFFFFF;\\n  background-image: none;\\n  border: 1px solid #CCCCCC;\\n  -webkit-border-radius: 5px;\\n     -moz-border-radius: 5px;\\n          border-radius: 5px;\\n  -webkit-box-shadow: none;\\n     -moz-box-shadow: none;\\n          box-shadow: none;\\n  /* element-specific attributes */\\n  width: 100%;\\n  max-width: 298px; /* manually correct for border */\\n  margin: 0 0 0 0;\\n  padding: 0 0 0 0;\\n}\\n.lyft-web-modal > .content .message-form-container > form > .message-form-button {\\n  /* lyft style attributes */\\n  -webkit-appearance: button;\\n  cursor: pointer;\\n  height: 40px;\\n  color: #FFFFFF;\\n  font-size: 16px;\\n  font-weight: 500;\\n  text-align: center;\\n  text-transform: none;\\n  line-height: 1.428571429;\\n  vertical-align: middle;\\n  background-color: #FF00BF;\\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\\n  border: none;\\n  -webkit-border-radius: 5px;\\n     -moz-border-radius: 5px;\\n          border-radius: 5px;\\n  /* element-specific attributes */\\n  width: 100%;\\n  max-width: 300px;\\n  margin: 5px 0 0 0;\\n}\\n.lyft-web-modal > .content .message-form-container > form > .message-form-button:hover {\\n  background-color: #E600AC; /* reduce brightness by 10% */\\n  background-image: -webkit-linear-gradient(top left, #E600AC, #9E0978);\\n  background-image: -moz-linear-gradient(top left, #E600AC, #9E0978);\\n  background-image: -o-linear-gradient(top left, #E600AC, #9E0978);\\n  background-image: linear-gradient(to bottom right, #E600AC, #9E0978);\\n}\\n.lyft-web-modal > .content .open-app-container {\\n  margin-top: 10px;\\n}\\n.lyft-web-modal > .content .open-app-container > .open-app-separator {\\n  display: block;\\n  margin: 0 0 0 0;\\n  color: #000000;\\n  font-size: 14px;\\n  font-weight: 300;\\n}\\n.lyft-web-modal > .content .open-app-container > .open-app-cta {\\n  display: inline-block;\\n  margin-top: 10px;\\n  color: #FF00BF;\\n  font-size: 14px;\\n  text-decoration: none;\\n}\\n.lyft-web-modal > .footer {\\n  text-align: center;\\n}\\n.lyft-web-modal > .footer > .close {\\n  display: inline-block;\\n  margin-top: 20px;\\n  color: #FFFFFF;\\n  font-family: Arial, sans-serif;\\n  font-size: 36px;\\n  text-decoration: none;\\n}\\n\\n/* large-to-very-large screen styles */\\n@media(min-width:768px) {\\n  .lyft-web-modal > .content {\\n    max-width: 640px;\\n    margin: 40px auto 0 auto;\\n  }\\n  .lyft-web-modal > .content > .map-container {\\n    height: 200px;\\n    background-size: auto;\\n  }\\n  .lyft-web-modal > .content > .map-container > .map-label {\\n    margin: 20px auto 0 auto;\\n    padding: 10px;\\n  }\\n  .lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\\n    font-size: 16px;\\n  }\\n  .lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\\n    font-size: 12px;\\n  }\\n  .lyft-web-modal > .content > .frame-container > .frame-before {\\n    padding: 15px;\\n  }\\n  .lyft-web-modal > .content > .frame-container > .frame-after {\\n    padding: 15px;\\n  }\\n  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {\\n    width: 64px;\\n    height: 64px;\\n  }\\n  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {\\n    width: 45px;\\n    height: 32px;\\n    margin: 17px 0 0 0;\\n  }\\n  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {\\n    width: 64px;\\n    height: 64px;\\n  }\\n  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {\\n    width: 42px;\\n    height: 42px;\\n    margin: 10px 0 0 0;\\n  }\\n  .lyft-web-modal > .content .text-container {\\n    margin-top: 20px;\\n  }\\n  .lyft-web-modal > .content .text-container > h1 {\\n    font-size: 24px;\\n  }\\n  .lyft-web-modal > .content .text-container > p {\\n    margin: 10px auto 0 auto;\\n    font-size: 16px;\\n  }\\n  .lyft-web-modal > .content .message-form-container {\\n    margin-top: 20px;\\n  }\\n  .lyft-web-modal > .content .message-form-container > form > .message-form-input {\\n    max-width: 318px; /* manually correct for border */\\n  }\\n  .lyft-web-modal > .content .message-form-container > form > .message-form-button {\\n    max-width: 320px;\\n    margin: 10px 0 0 0;\\n  }\\n  .lyft-web-modal > .content .open-app-container {\\n    margin-top: 20px;\\n  }\\n  .lyft-web-modal > .content .open-app-container > .open-app-separator {\\n    font-size: 16px;\\n  }\\n  .lyft-web-modal > .content .open-app-container > .open-app-cta {\\n    margin-top: 20px;\\n    font-size: 16px;\\n  }\\n  .lyft-web-modal > .footer > .close {\\n    font-size: 48px;\\n  }\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/components/lyftWebModal/index.css?./node_modules/css-loader");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if (item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function (modules, mediaQuery) {
-		if (typeof modules === "string") modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for (var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if (typeof id === "number") alreadyImportedModules[id] = true;
-		}
-		for (i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if (mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if (mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
+eval("\n\n/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\nmodule.exports = function (useSourceMap) {\n\tvar list = [];\n\n\t// return the list of modules as css string\n\tlist.toString = function toString() {\n\t\treturn this.map(function (item) {\n\t\t\tvar content = cssWithMappingToString(item, useSourceMap);\n\t\t\tif (item[2]) {\n\t\t\t\treturn \"@media \" + item[2] + \"{\" + content + \"}\";\n\t\t\t} else {\n\t\t\t\treturn content;\n\t\t\t}\n\t\t}).join(\"\");\n\t};\n\n\t// import a list of modules into the list\n\tlist.i = function (modules, mediaQuery) {\n\t\tif (typeof modules === \"string\") modules = [[null, modules, \"\"]];\n\t\tvar alreadyImportedModules = {};\n\t\tfor (var i = 0; i < this.length; i++) {\n\t\t\tvar id = this[i][0];\n\t\t\tif (typeof id === \"number\") alreadyImportedModules[id] = true;\n\t\t}\n\t\tfor (i = 0; i < modules.length; i++) {\n\t\t\tvar item = modules[i];\n\t\t\t// skip already imported module\n\t\t\t// this implementation is not 100% perfect for weird media query combinations\n\t\t\t//  when a module is imported multiple times with different media queries.\n\t\t\t//  I hope this will never occur (Hey this way we have smaller bundles)\n\t\t\tif (typeof item[0] !== \"number\" || !alreadyImportedModules[item[0]]) {\n\t\t\t\tif (mediaQuery && !item[2]) {\n\t\t\t\t\titem[2] = mediaQuery;\n\t\t\t\t} else if (mediaQuery) {\n\t\t\t\t\titem[2] = \"(\" + item[2] + \") and (\" + mediaQuery + \")\";\n\t\t\t\t}\n\t\t\t\tlist.push(item);\n\t\t\t}\n\t\t}\n\t};\n\treturn list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n\tvar content = item[1] || '';\n\tvar cssMapping = item[3];\n\tif (!cssMapping) {\n\t\treturn content;\n\t}\n\n\tif (useSourceMap && typeof btoa === 'function') {\n\t\tvar sourceMapping = toComment(cssMapping);\n\t\tvar sourceURLs = cssMapping.sources.map(function (source) {\n\t\t\treturn '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';\n\t\t});\n\n\t\treturn [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n\t}\n\n\treturn [content].join('\\n');\n}\n\n// Adapted from convert-source-map (MIT)\nfunction toComment(sourceMap) {\n\t// eslint-disable-next-line no-undef\n\tvar base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n\tvar data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;\n\n\treturn '/*# ' + data + ' */';\n}\n\n//# sourceURL=webpack:///./node_modules/css-loader/lib/css-base.js?");
 
 /***/ }),
-/* 1 */
+
+/***/ "./node_modules/qs/lib/formats.js":
+/*!****************************************!*\
+  !*** ./node_modules/qs/lib/formats.js ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var replace = String.prototype.replace;
-var percentTwenties = /%20/g;
-
-module.exports = {
-    'default': 'RFC3986',
-    formatters: {
-        RFC1738: function RFC1738(value) {
-            return replace.call(value, percentTwenties, '+');
-        },
-        RFC3986: function RFC3986(value) {
-            return value;
-        }
-    },
-    RFC1738: 'RFC1738',
-    RFC3986: 'RFC3986'
-};
+eval("\n\nvar replace = String.prototype.replace;\nvar percentTwenties = /%20/g;\n\nmodule.exports = {\n    'default': 'RFC3986',\n    formatters: {\n        RFC1738: function RFC1738(value) {\n            return replace.call(value, percentTwenties, '+');\n        },\n        RFC3986: function RFC3986(value) {\n            return value;\n        }\n    },\n    RFC1738: 'RFC1738',\n    RFC3986: 'RFC3986'\n};\n\n//# sourceURL=webpack:///./node_modules/qs/lib/formats.js?");
 
 /***/ }),
-/* 2 */
+
+/***/ "./node_modules/qs/lib/index.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/index.js ***!
+  \**************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var has = Object.prototype.hasOwnProperty;
-
-var hexTable = function () {
-    var array = [];
-    for (var i = 0; i < 256; ++i) {
-        array.push('%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase());
-    }
-
-    return array;
-}();
-
-exports.arrayToObject = function (source, options) {
-    var obj = options && options.plainObjects ? Object.create(null) : {};
-    for (var i = 0; i < source.length; ++i) {
-        if (typeof source[i] !== 'undefined') {
-            obj[i] = source[i];
-        }
-    }
-
-    return obj;
-};
-
-exports.merge = function (target, source, options) {
-    if (!source) {
-        return target;
-    }
-
-    if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== 'object') {
-        if (Array.isArray(target)) {
-            target.push(source);
-        } else if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) === 'object') {
-            if (options.plainObjects || options.allowPrototypes || !has.call(Object.prototype, source)) {
-                target[source] = true;
-            }
-        } else {
-            return [target, source];
-        }
-
-        return target;
-    }
-
-    if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object') {
-        return [target].concat(source);
-    }
-
-    var mergeTarget = target;
-    if (Array.isArray(target) && !Array.isArray(source)) {
-        mergeTarget = exports.arrayToObject(target, options);
-    }
-
-    if (Array.isArray(target) && Array.isArray(source)) {
-        source.forEach(function (item, i) {
-            if (has.call(target, i)) {
-                if (target[i] && _typeof(target[i]) === 'object') {
-                    target[i] = exports.merge(target[i], item, options);
-                } else {
-                    target.push(item);
-                }
-            } else {
-                target[i] = item;
-            }
-        });
-        return target;
-    }
-
-    return Object.keys(source).reduce(function (acc, key) {
-        var value = source[key];
-
-        if (Object.prototype.hasOwnProperty.call(acc, key)) {
-            acc[key] = exports.merge(acc[key], value, options);
-        } else {
-            acc[key] = value;
-        }
-        return acc;
-    }, mergeTarget);
-};
-
-exports.decode = function (str) {
-    try {
-        return decodeURIComponent(str.replace(/\+/g, ' '));
-    } catch (e) {
-        return str;
-    }
-};
-
-exports.encode = function (str) {
-    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.
-    // It has been adapted here for stricter adherence to RFC 3986
-    if (str.length === 0) {
-        return str;
-    }
-
-    var string = typeof str === 'string' ? str : String(str);
-
-    var out = '';
-    for (var i = 0; i < string.length; ++i) {
-        var c = string.charCodeAt(i);
-
-        if (c === 0x2D || // -
-        c === 0x2E || // .
-        c === 0x5F || // _
-        c === 0x7E || // ~
-        c >= 0x30 && c <= 0x39 || // 0-9
-        c >= 0x41 && c <= 0x5A || // a-z
-        c >= 0x61 && c <= 0x7A // A-Z
-        ) {
-                out += string.charAt(i);
-                continue;
-            }
-
-        if (c < 0x80) {
-            out = out + hexTable[c];
-            continue;
-        }
-
-        if (c < 0x800) {
-            out = out + (hexTable[0xC0 | c >> 6] + hexTable[0x80 | c & 0x3F]);
-            continue;
-        }
-
-        if (c < 0xD800 || c >= 0xE000) {
-            out = out + (hexTable[0xE0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]);
-            continue;
-        }
-
-        i += 1;
-        c = 0x10000 + ((c & 0x3FF) << 10 | string.charCodeAt(i) & 0x3FF);
-        out += hexTable[0xF0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3F] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]; // eslint-disable-line max-len
-    }
-
-    return out;
-};
-
-exports.compact = function (obj, references) {
-    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object' || obj === null) {
-        return obj;
-    }
-
-    var refs = references || [];
-    var lookup = refs.indexOf(obj);
-    if (lookup !== -1) {
-        return refs[lookup];
-    }
-
-    refs.push(obj);
-
-    if (Array.isArray(obj)) {
-        var compacted = [];
-
-        for (var i = 0; i < obj.length; ++i) {
-            if (obj[i] && _typeof(obj[i]) === 'object') {
-                compacted.push(exports.compact(obj[i], refs));
-            } else if (typeof obj[i] !== 'undefined') {
-                compacted.push(obj[i]);
-            }
-        }
-
-        return compacted;
-    }
-
-    var keys = Object.keys(obj);
-    keys.forEach(function (key) {
-        obj[key] = exports.compact(obj[key], refs);
-    });
-
-    return obj;
-};
-
-exports.isRegExp = function (obj) {
-    return Object.prototype.toString.call(obj) === '[object RegExp]';
-};
-
-exports.isBuffer = function (obj) {
-    if (obj === null || typeof obj === 'undefined') {
-        return false;
-    }
-
-    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
-};
+eval("\n\nvar stringify = __webpack_require__(/*! ./stringify */ \"./node_modules/qs/lib/stringify.js\");\nvar parse = __webpack_require__(/*! ./parse */ \"./node_modules/qs/lib/parse.js\");\nvar formats = __webpack_require__(/*! ./formats */ \"./node_modules/qs/lib/formats.js\");\n\nmodule.exports = {\n    formats: formats,\n    parse: parse,\n    stringify: stringify\n};\n\n//# sourceURL=webpack:///./node_modules/qs/lib/index.js?");
 
 /***/ }),
-/* 3 */
+
+/***/ "./node_modules/qs/lib/parse.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/parse.js ***!
+  \**************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// dependencies
-var jsonp = __webpack_require__(17);
-
-// constants
-var SERVER_URL = 'https://www.lyft.com/api/jsonp';
-var GET_COSTS_URL = SERVER_URL + '/get_costs';
-var GET_DRIVERS_URL = SERVER_URL + '/get_drivers';
-var GET_ETAS_URL = SERVER_URL + '/get_etas';
-var GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';
-var POST_MESSAGES_URL = SERVER_URL + '/post_messages';
-
-// configuration
-var client_id;
-function setClientId(value) {
-  client_id = value;
-}
-var client_token;
-function setClientToken(value) {
-  client_token = value;
-}
-
-/**
- * Requests JSONP with injected credentials.
- * @memberOf api
- * @category api
- * @param {string} url Required.
- * @param {Object} data Required.
- * @param {function} callback Optional.
- * @returns {void} Result of jsonp.request().
- */
-function requestWithCredentials(url, data, callback) {
-  /* build data payload */
-  data = data || {};
-  data.client_id = client_id;
-  data.client_token = client_token;
-  /* perform request */
-  return jsonp.request({
-    url: url,
-    data: data,
-    callback: callback
-  });
-}
-
-/**
- * Gets `costs`.
- * @memberOf api
- * @category api
- * @param {Object} data Required.
- * @param {string} data.start_lat Required.
- * @param {string} data.start_lng Required.
- * @param {string} data.end_lat Required.
- * @param {string} data.end_lng Required.
- * @param {string} data.ride_type Optional.
- * @param {function} callback Optional.
- * @returns {void} Result of requestWithCredentials().
- */
-function getCosts(data, callback) {
-  return requestWithCredentials(GET_COSTS_URL, data, callback);
-}
-
-/**
- * Gets `drivers`.
- * @memberOf api
- * @category api
- * @param {Object} data Required.
- * @param {string} data.lat Required.
- * @param {string} data.lng Required.
- * @param {function} callback Optional.
- * @returns {void} Result of requestWithCredentials().
- */
-function getDrivers(data, callback) {
-  return requestWithCredentials(GET_DRIVERS_URL, data, callback);
-}
-
-/**
- * Gets `etas`.
- * @memberOf api
- * @category api
- * @param {Object} data Required.
- * @param {string} data.lat Required.
- * @param {string} data.lng Required.
- * @param {string} data.ride_type Optional.
- * @param {function} callback Optional.
- * @returns {void} Result of requestWithCredentials().
- */
-function getEtas(data, callback) {
-  return requestWithCredentials(GET_ETAS_URL, data, callback);
-}
-
-/**
- * Gets `ride_types`.
- * @memberOf api
- * @category api
- * @param {Object} data Required.
- * @param {string} data.lat Required.
- * @param {string} data.lng Required.
- * @param {string} data.ride_type Optional.
- * @param {function} callback Optional.
- * @returns {void} Result of requestWithCredentials().
- */
-function getRideTypes(data, callback) {
-  return requestWithCredentials(GET_RIDE_TYPES_URL, data, callback);
-}
-
-/**
- * POSTs `messages`.
- * @memberOf api
- * @category api
- * @param {Object} data Required.
- * @param {string} data.phone_number Required.
- * @param {string} data.end_lat Optional.
- * @param {string} data.end_lng Optional.
- * @param {function} callback Optional.
- * @returns {void} Result of requestWithCredentials().
- */
-function postMessages(data, callback) {
-  return requestWithCredentials(POST_MESSAGES_URL, data, callback);
-}
-
-// exports
-module.exports = {
-  getCosts: getCosts,
-  getDrivers: getDrivers,
-  getEtas: getEtas,
-  getRideTypes: getRideTypes,
-  postMessages: postMessages,
-  setClientId: setClientId,
-  setClientToken: setClientToken
-};
+eval("\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/qs/lib/utils.js\");\n\nvar has = Object.prototype.hasOwnProperty;\n\nvar defaults = {\n    allowDots: false,\n    allowPrototypes: false,\n    arrayLimit: 20,\n    decoder: utils.decode,\n    delimiter: '&',\n    depth: 5,\n    parameterLimit: 1000,\n    plainObjects: false,\n    strictNullHandling: false\n};\n\nvar parseValues = function parseQueryStringValues(str, options) {\n    var obj = {};\n    var parts = str.split(options.delimiter, options.parameterLimit === Infinity ? undefined : options.parameterLimit);\n\n    for (var i = 0; i < parts.length; ++i) {\n        var part = parts[i];\n        var pos = part.indexOf(']=') === -1 ? part.indexOf('=') : part.indexOf(']=') + 1;\n\n        var key, val;\n        if (pos === -1) {\n            key = options.decoder(part);\n            val = options.strictNullHandling ? null : '';\n        } else {\n            key = options.decoder(part.slice(0, pos));\n            val = options.decoder(part.slice(pos + 1));\n        }\n        if (has.call(obj, key)) {\n            obj[key] = [].concat(obj[key]).concat(val);\n        } else {\n            obj[key] = val;\n        }\n    }\n\n    return obj;\n};\n\nvar parseObject = function parseObjectRecursive(chain, val, options) {\n    if (!chain.length) {\n        return val;\n    }\n\n    var root = chain.shift();\n\n    var obj;\n    if (root === '[]') {\n        obj = [];\n        obj = obj.concat(parseObject(chain, val, options));\n    } else {\n        obj = options.plainObjects ? Object.create(null) : {};\n        var cleanRoot = root.charAt(0) === '[' && root.charAt(root.length - 1) === ']' ? root.slice(1, -1) : root;\n        var index = parseInt(cleanRoot, 10);\n        if (!isNaN(index) && root !== cleanRoot && String(index) === cleanRoot && index >= 0 && options.parseArrays && index <= options.arrayLimit) {\n            obj = [];\n            obj[index] = parseObject(chain, val, options);\n        } else {\n            obj[cleanRoot] = parseObject(chain, val, options);\n        }\n    }\n\n    return obj;\n};\n\nvar parseKeys = function parseQueryStringKeys(givenKey, val, options) {\n    if (!givenKey) {\n        return;\n    }\n\n    // Transform dot notation to bracket notation\n    var key = options.allowDots ? givenKey.replace(/\\.([^.[]+)/g, '[$1]') : givenKey;\n\n    // The regex chunks\n\n    var brackets = /(\\[[^[\\]]*])/;\n    var child = /(\\[[^[\\]]*])/g;\n\n    // Get the parent\n\n    var segment = brackets.exec(key);\n    var parent = segment ? key.slice(0, segment.index) : key;\n\n    // Stash the parent if it exists\n\n    var keys = [];\n    if (parent) {\n        // If we aren't using plain objects, optionally prefix keys\n        // that would overwrite object prototype properties\n        if (!options.plainObjects && has.call(Object.prototype, parent)) {\n            if (!options.allowPrototypes) {\n                return;\n            }\n        }\n\n        keys.push(parent);\n    }\n\n    // Loop through children appending to the array until we hit depth\n\n    var i = 0;\n    while ((segment = child.exec(key)) !== null && i < options.depth) {\n        i += 1;\n        if (!options.plainObjects && has.call(Object.prototype, segment[1].slice(1, -1))) {\n            if (!options.allowPrototypes) {\n                return;\n            }\n        }\n        keys.push(segment[1]);\n    }\n\n    // If there's a remainder, just add whatever is left\n\n    if (segment) {\n        keys.push('[' + key.slice(segment.index) + ']');\n    }\n\n    return parseObject(keys, val, options);\n};\n\nmodule.exports = function (str, opts) {\n    var options = opts || {};\n\n    if (options.decoder !== null && options.decoder !== undefined && typeof options.decoder !== 'function') {\n        throw new TypeError('Decoder has to be a function.');\n    }\n\n    options.delimiter = typeof options.delimiter === 'string' || utils.isRegExp(options.delimiter) ? options.delimiter : defaults.delimiter;\n    options.depth = typeof options.depth === 'number' ? options.depth : defaults.depth;\n    options.arrayLimit = typeof options.arrayLimit === 'number' ? options.arrayLimit : defaults.arrayLimit;\n    options.parseArrays = options.parseArrays !== false;\n    options.decoder = typeof options.decoder === 'function' ? options.decoder : defaults.decoder;\n    options.allowDots = typeof options.allowDots === 'boolean' ? options.allowDots : defaults.allowDots;\n    options.plainObjects = typeof options.plainObjects === 'boolean' ? options.plainObjects : defaults.plainObjects;\n    options.allowPrototypes = typeof options.allowPrototypes === 'boolean' ? options.allowPrototypes : defaults.allowPrototypes;\n    options.parameterLimit = typeof options.parameterLimit === 'number' ? options.parameterLimit : defaults.parameterLimit;\n    options.strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;\n\n    if (str === '' || str === null || typeof str === 'undefined') {\n        return options.plainObjects ? Object.create(null) : {};\n    }\n\n    var tempObj = typeof str === 'string' ? parseValues(str, options) : str;\n    var obj = options.plainObjects ? Object.create(null) : {};\n\n    // Iterate over the keys and setup the new object\n\n    var keys = Object.keys(tempObj);\n    for (var i = 0; i < keys.length; ++i) {\n        var key = keys[i];\n        var newObj = parseKeys(key, tempObj[key], options);\n        obj = utils.merge(obj, newObj, options);\n    }\n\n    return utils.compact(obj);\n};\n\n//# sourceURL=webpack:///./node_modules/qs/lib/parse.js?");
 
 /***/ }),
-/* 4 */
+
+/***/ "./node_modules/qs/lib/stringify.js":
+/*!******************************************!*\
+  !*** ./node_modules/qs/lib/stringify.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Adds a class to an element.
- * @memberOf selector
- * @category selector
- * @param {Object} element Required.
- * @param {string} className Required.
- * @returns {void} Void.
- */
-function addClass(element, className) {
-  var classList = element.className.split(' ');
-  if (classList.indexOf(className) === -1) {
-    classList.push(className);
-  }
-  element.className = classList.join(' ');
-}
-
-/**
- * Removes a class from an element.
- * @memberOf selector
- * @category selector
- * @param {Object} element Required.
- * @param {string} className Required.
- * @returns {void} Void.
- */
-function removeClass(element, className) {
-  var classList = element.className.split(' ');
-  var classIndex = classList.indexOf(className);
-  if (classIndex !== -1) {
-    classList.splice(classIndex, 1);
-  }
-  element.className = classList.join(' ');
-}
-
-/**
- * Selects a single child element from a given element according to some criteria.
- * @memberOf selector
- * @category selector
- * @param {Object} element The parent element from which the child will be selected.
- * @param {string} attributeName Name of the attribute for selection.
- * @param {string} attributeValue Value of the named attribute for selection.
- * @returns {Object} The selected element.
- */
-function selectChildElementByAttribute(element, attributeName, attributeValue) {
-  var childNodes = element.childNodes || [];
-  for (var i = 0, l = childNodes.length; i < l; i++) {
-    if (childNodes[i][attributeName] === attributeValue) {
-      return childNodes[i];
-    }
-  }
-}
-
-/**
- * Selects a single child element from an element tree according to some criteria.
- * @memberOf selector
- * @category selector
- * @param {Object} element The top level of the element tree.
- * @param {Array} attributes Strings describing the selection criteria.
- * @returns {Object} The selected element.
- */
-function selectChildElement(element, attributes) {
-  var currentElement = element;
-  for (var i = 0, l = attributes.length; i < l; i++) {
-    if (!currentElement || !attributes[i].length) {
-      return;
-    } /* short-circuit on failure */
-    var attributeName = attributes[i][0] === '.' ? 'className' : 'id';
-    var attributeValue = attributes[i].slice(1);
-    currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);
-  }
-  return currentElement;
-}
-
-// exports
-module.exports = {
-  addClass: addClass,
-  removeClass: removeClass,
-  selectChildElement: selectChildElement
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/qs/lib/utils.js\");\nvar formats = __webpack_require__(/*! ./formats */ \"./node_modules/qs/lib/formats.js\");\n\nvar arrayPrefixGenerators = {\n    brackets: function brackets(prefix) {\n        // eslint-disable-line func-name-matching\n        return prefix + '[]';\n    },\n    indices: function indices(prefix, key) {\n        // eslint-disable-line func-name-matching\n        return prefix + '[' + key + ']';\n    },\n    repeat: function repeat(prefix) {\n        // eslint-disable-line func-name-matching\n        return prefix;\n    }\n};\n\nvar toISO = Date.prototype.toISOString;\n\nvar defaults = {\n    delimiter: '&',\n    encode: true,\n    encoder: utils.encode,\n    encodeValuesOnly: false,\n    serializeDate: function serializeDate(date) {\n        // eslint-disable-line func-name-matching\n        return toISO.call(date);\n    },\n    skipNulls: false,\n    strictNullHandling: false\n};\n\nvar stringify = function stringify( // eslint-disable-line func-name-matching\nobject, prefix, generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly) {\n    var obj = object;\n    if (typeof filter === 'function') {\n        obj = filter(prefix, obj);\n    } else if (obj instanceof Date) {\n        obj = serializeDate(obj);\n    } else if (obj === null) {\n        if (strictNullHandling) {\n            return encoder && !encodeValuesOnly ? encoder(prefix) : prefix;\n        }\n\n        obj = '';\n    }\n\n    if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean' || utils.isBuffer(obj)) {\n        if (encoder) {\n            var keyValue = encodeValuesOnly ? prefix : encoder(prefix);\n            return [formatter(keyValue) + '=' + formatter(encoder(obj))];\n        }\n        return [formatter(prefix) + '=' + formatter(String(obj))];\n    }\n\n    var values = [];\n\n    if (typeof obj === 'undefined') {\n        return values;\n    }\n\n    var objKeys;\n    if (Array.isArray(filter)) {\n        objKeys = filter;\n    } else {\n        var keys = Object.keys(obj);\n        objKeys = sort ? keys.sort(sort) : keys;\n    }\n\n    for (var i = 0; i < objKeys.length; ++i) {\n        var key = objKeys[i];\n\n        if (skipNulls && obj[key] === null) {\n            continue;\n        }\n\n        if (Array.isArray(obj)) {\n            values = values.concat(stringify(obj[key], generateArrayPrefix(prefix, key), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));\n        } else {\n            values = values.concat(stringify(obj[key], prefix + (allowDots ? '.' + key : '[' + key + ']'), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));\n        }\n    }\n\n    return values;\n};\n\nmodule.exports = function (object, opts) {\n    var obj = object;\n    var options = opts || {};\n\n    if (options.encoder !== null && options.encoder !== undefined && typeof options.encoder !== 'function') {\n        throw new TypeError('Encoder has to be a function.');\n    }\n\n    var delimiter = typeof options.delimiter === 'undefined' ? defaults.delimiter : options.delimiter;\n    var strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;\n    var skipNulls = typeof options.skipNulls === 'boolean' ? options.skipNulls : defaults.skipNulls;\n    var encode = typeof options.encode === 'boolean' ? options.encode : defaults.encode;\n    var encoder = typeof options.encoder === 'function' ? options.encoder : defaults.encoder;\n    var sort = typeof options.sort === 'function' ? options.sort : null;\n    var allowDots = typeof options.allowDots === 'undefined' ? false : options.allowDots;\n    var serializeDate = typeof options.serializeDate === 'function' ? options.serializeDate : defaults.serializeDate;\n    var encodeValuesOnly = typeof options.encodeValuesOnly === 'boolean' ? options.encodeValuesOnly : defaults.encodeValuesOnly;\n    if (typeof options.format === 'undefined') {\n        options.format = formats.default;\n    } else if (!Object.prototype.hasOwnProperty.call(formats.formatters, options.format)) {\n        throw new TypeError('Unknown format option provided.');\n    }\n    var formatter = formats.formatters[options.format];\n    var objKeys;\n    var filter;\n\n    if (typeof options.filter === 'function') {\n        filter = options.filter;\n        obj = filter('', obj);\n    } else if (Array.isArray(options.filter)) {\n        filter = options.filter;\n        objKeys = filter;\n    }\n\n    var keys = [];\n\n    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object' || obj === null) {\n        return '';\n    }\n\n    var arrayFormat;\n    if (options.arrayFormat in arrayPrefixGenerators) {\n        arrayFormat = options.arrayFormat;\n    } else if ('indices' in options) {\n        arrayFormat = options.indices ? 'indices' : 'repeat';\n    } else {\n        arrayFormat = 'indices';\n    }\n\n    var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];\n\n    if (!objKeys) {\n        objKeys = Object.keys(obj);\n    }\n\n    if (sort) {\n        objKeys.sort(sort);\n    }\n\n    for (var i = 0; i < objKeys.length; ++i) {\n        var key = objKeys[i];\n\n        if (skipNulls && obj[key] === null) {\n            continue;\n        }\n\n        keys = keys.concat(stringify(obj[key], key, generateArrayPrefix, strictNullHandling, skipNulls, encode ? encoder : null, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));\n    }\n\n    return keys.join(delimiter);\n};\n\n//# sourceURL=webpack:///./node_modules/qs/lib/stringify.js?");
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			memo[selector] = fn.call(this, selector);
-		}
-
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(15);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 6 */
+/***/ "./node_modules/qs/lib/utils.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/utils.js ***!
+  \**************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// dependencies
-// require('babel-polyfill');
-
-var api = __webpack_require__(3);
-var selector = __webpack_require__(4);
-var serialize = __webpack_require__(18);
-var helpers = __webpack_require__(16);
-var stringify = __webpack_require__(10).stringify;
-
-// styles
-__webpack_require__(13);
-
-/* ========== */
-/* Properties */
-/* ========== */
-
-var etaElement;
-var priceRangeElement;
-var rootElement;
-var themeSize = ''; // possible values include 'small', 'large'
-
-/* ======================== */
-/* DOM Manipulation Methods */
-/* ======================== */
-
-/**
- * Creates elements from a template and stores some useful references.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @returns {Object} Template's root element.
- */
-function createElements() {
-  // create tree from template
-  var template = document.createElement('div');
-  template.innerHTML = __webpack_require__(8);
-  // store references to important elements
-  rootElement = template.childNodes[0];
-  priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);
-  etaElement = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);
-  // return reference to root element
-  return rootElement;
-}
-
-/**
- * Binds events to some elements.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @param {function} onClick Handler for button's onclick event.
- * @returns {void} Void.
- */
-function bindEvents(rootEl, options) {
-  var redirectURI = 'https://lyft.com/ride?id=lyft';
-
-  var clientId = options.clientId,
-      queryParams = options.queryParams,
-      _options$location = options.location,
-      pickup = _options$location.pickup,
-      destination = _options$location.destination;
-
-
-  if (rootEl) {
-    var query = queryParams || {};
-
-    query.partner = clientId;
-
-    if (!helpers.isEmpty(pickup)) {
-      query.pickup = {
-        latitude: pickup.latitude,
-        longitude: pickup.longitude
-      };
-    }
-
-    query.destination = {
-      latitude: destination.latitude,
-      longitude: destination.longitude
-    };
-
-    // if we have any parameters, redirect to the full query string
-    redirectURI = redirectURI + '&' + stringify(query);
-
-    rootEl.onclick = function (e) {
-      e.preventDefault();
-      helpers.logger(decodeURI(redirectURI));
-      window.open(redirectURI);
-    };
-  }
-}
-
-/**
- * Updates the contents of some elements.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @param {string} theme Name of the user's chosen theme.
- * @returns {void} Void.
- */
-function updateContents(theme) {
-  // root element: apply user-specified theme
-  if (rootElement && theme) {
-    selector.addClass(rootElement, theme);
-  }
-}
-
-/* ================ */
-/* Workflow Methods */
-/* ================ */
-
-/**
- * Success callback for getCosts request.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @param {Object} data Response data.
- * @returns {void} Void.
- */
-function onGetCostsSuccess(data) {
-  if (data && data.cost_estimates && data.cost_estimates.length) {
-    for (var i = 0, l = data.cost_estimates.length; i < l; i++) {
-      if (data.cost_estimates[i].ride_type === 'lyft') {
-        var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);
-        var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);
-        if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 && !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {
-          if (priceRangeElement) {
-            priceRangeElement.textContent = '$' + min + (min !== max ? '-' + max : '');
-          }
-        }
-      }
-    }
-  }
-}
-
-/**
- * Success callback for getEtas request.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @param {Object} data Response data.
- * @returns {void} Void.
- */
-function onGetEtasSuccess(data) {
-  if (data && data.eta_estimates && data.eta_estimates.length) {
-    for (var i = 0, l = data.eta_estimates.length; i < l; i++) {
-      if (data.eta_estimates[i].ride_type === 'lyft') {
-        var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);
-        if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {
-          if (etaElement) {
-            etaElement.textContent = (themeSize !== 'small' ? 'Lyft in ' : '') + eta + ' min';
-          }
-        }
-      }
-    }
-  }
-}
-
-function checkRequiredOptions(options) {
-  // check at least one level deep for options
-  // does not validate deeper
-  var required = ['clientId', 'clientToken', 'location', 'location.pickup', 'parentElement', 'scriptSrc'];
-  required.forEach(function (option) {
-    var optionPresent = options[option];
-
-    if (option.indexOf('.') > -1) {
-      var opt = option.split('.');
-      optionPresent = options[opt[0]][opt[1]];
-    }
-
-    if (!optionPresent) {
-      throw new Error('Missing or invalid options; did you provide a value for ' + option + ' in your options?');
-    }
-  });
-}
-
-function getCostsAndEtas(location, options) {
-  // request costs
-  if (themeSize !== 'small') {
-    api.getCosts({
-      start_lat: location.latitude,
-      start_lng: location.longitude,
-      end_lat: options.location.destination.latitude,
-      end_lng: options.location.destination.longitude
-    }, options.objectName + '.onGetCostsSuccess');
-  }
-  // request etas
-  api.getEtas({
-    lat: location.latitude,
-    lng: location.longitude
-  }, options.objectName + '.onGetEtasSuccess');
-}
-
-/**
- * Initialize.
- * @memberOf lyftWebButton
- * @category lyftWebButton
- * @param {Object} options
- * @param {string} options.clientId
- * @param {string} options.clientToken
- * @param {Object} options.location
- * @param {Object} options.location.pickup
- * @param {Object} options.location.destination
- * @param {string} options.namespace
- * @param {string} options.objectName
- * @param {Object} options.parentElement
- * @param {string} options.theme
- * @returns {void} Void.
- */
-function initialize(options) {
-  checkRequiredOptions(options);
-
-  api.setClientId(options.clientId);
-  api.setClientToken(options.clientToken);
-  // assume themeSize is last chunk of options.theme (example: 'someColor someSize')
-  if (options.theme && options.theme.split) {
-    var themeSplit = options.theme.split(' ');
-    themeSize = themeSplit[themeSplit.length - 1];
-  }
-  // create element tree
-  createElements();
-  updateContents(options.theme);
-  // insert element into DOM
-  options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);
-
-  var location = options.location,
-      pickup = options.location.pickup;
-  // get device location
-  // consider moving to Promise
-
-  // bind events regardless; will re-bind on location success
-
-  bindEvents(rootElement, options);
-
-  if (helpers.hasLocationService() && helpers.isEmpty(location.pickup)) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      getCostsAndEtas({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      }, options);
-
-      options.location.pickup = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
-      bindEvents(rootElement, options);
-    }, function (error) {
-      helpers.logger('Error in location promise', error);
-    });
-  } else {
-    getCostsAndEtas({
-      latitude: pickup.latitude,
-      longitude: pickup.longitude
-    }, options);
-  }
-}
-
-/* ===================================== */
-/* Publicly-Exposed Properties & Methods */
-/* ===================================== */
-
-module.exports = {
-  initialize: initialize,
-  onGetCostsSuccess: onGetCostsSuccess,
-  onGetEtasSuccess: onGetEtasSuccess
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar has = Object.prototype.hasOwnProperty;\n\nvar hexTable = function () {\n    var array = [];\n    for (var i = 0; i < 256; ++i) {\n        array.push('%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase());\n    }\n\n    return array;\n}();\n\nexports.arrayToObject = function (source, options) {\n    var obj = options && options.plainObjects ? Object.create(null) : {};\n    for (var i = 0; i < source.length; ++i) {\n        if (typeof source[i] !== 'undefined') {\n            obj[i] = source[i];\n        }\n    }\n\n    return obj;\n};\n\nexports.merge = function (target, source, options) {\n    if (!source) {\n        return target;\n    }\n\n    if ((typeof source === 'undefined' ? 'undefined' : _typeof(source)) !== 'object') {\n        if (Array.isArray(target)) {\n            target.push(source);\n        } else if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) === 'object') {\n            if (options.plainObjects || options.allowPrototypes || !has.call(Object.prototype, source)) {\n                target[source] = true;\n            }\n        } else {\n            return [target, source];\n        }\n\n        return target;\n    }\n\n    if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object') {\n        return [target].concat(source);\n    }\n\n    var mergeTarget = target;\n    if (Array.isArray(target) && !Array.isArray(source)) {\n        mergeTarget = exports.arrayToObject(target, options);\n    }\n\n    if (Array.isArray(target) && Array.isArray(source)) {\n        source.forEach(function (item, i) {\n            if (has.call(target, i)) {\n                if (target[i] && _typeof(target[i]) === 'object') {\n                    target[i] = exports.merge(target[i], item, options);\n                } else {\n                    target.push(item);\n                }\n            } else {\n                target[i] = item;\n            }\n        });\n        return target;\n    }\n\n    return Object.keys(source).reduce(function (acc, key) {\n        var value = source[key];\n\n        if (Object.prototype.hasOwnProperty.call(acc, key)) {\n            acc[key] = exports.merge(acc[key], value, options);\n        } else {\n            acc[key] = value;\n        }\n        return acc;\n    }, mergeTarget);\n};\n\nexports.decode = function (str) {\n    try {\n        return decodeURIComponent(str.replace(/\\+/g, ' '));\n    } catch (e) {\n        return str;\n    }\n};\n\nexports.encode = function (str) {\n    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.\n    // It has been adapted here for stricter adherence to RFC 3986\n    if (str.length === 0) {\n        return str;\n    }\n\n    var string = typeof str === 'string' ? str : String(str);\n\n    var out = '';\n    for (var i = 0; i < string.length; ++i) {\n        var c = string.charCodeAt(i);\n\n        if (c === 0x2D || // -\n        c === 0x2E || // .\n        c === 0x5F || // _\n        c === 0x7E || // ~\n        c >= 0x30 && c <= 0x39 || // 0-9\n        c >= 0x41 && c <= 0x5A || // a-z\n        c >= 0x61 && c <= 0x7A // A-Z\n        ) {\n                out += string.charAt(i);\n                continue;\n            }\n\n        if (c < 0x80) {\n            out = out + hexTable[c];\n            continue;\n        }\n\n        if (c < 0x800) {\n            out = out + (hexTable[0xC0 | c >> 6] + hexTable[0x80 | c & 0x3F]);\n            continue;\n        }\n\n        if (c < 0xD800 || c >= 0xE000) {\n            out = out + (hexTable[0xE0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]);\n            continue;\n        }\n\n        i += 1;\n        c = 0x10000 + ((c & 0x3FF) << 10 | string.charCodeAt(i) & 0x3FF);\n        out += hexTable[0xF0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3F] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]; // eslint-disable-line max-len\n    }\n\n    return out;\n};\n\nexports.compact = function (obj, references) {\n    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object' || obj === null) {\n        return obj;\n    }\n\n    var refs = references || [];\n    var lookup = refs.indexOf(obj);\n    if (lookup !== -1) {\n        return refs[lookup];\n    }\n\n    refs.push(obj);\n\n    if (Array.isArray(obj)) {\n        var compacted = [];\n\n        for (var i = 0; i < obj.length; ++i) {\n            if (obj[i] && _typeof(obj[i]) === 'object') {\n                compacted.push(exports.compact(obj[i], refs));\n            } else if (typeof obj[i] !== 'undefined') {\n                compacted.push(obj[i]);\n            }\n        }\n\n        return compacted;\n    }\n\n    var keys = Object.keys(obj);\n    keys.forEach(function (key) {\n        obj[key] = exports.compact(obj[key], refs);\n    });\n\n    return obj;\n};\n\nexports.isRegExp = function (obj) {\n    return Object.prototype.toString.call(obj) === '[object RegExp]';\n};\n\nexports.isBuffer = function (obj) {\n    if (obj === null || typeof obj === 'undefined') {\n        return false;\n    }\n\n    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));\n};\n\n//# sourceURL=webpack:///./node_modules/qs/lib/utils.js?");
 
 /***/ }),
-/* 7 */
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n\nvar stylesInDom = {};\n\nvar\tmemoize = function (fn) {\n\tvar memo;\n\n\treturn function () {\n\t\tif (typeof memo === \"undefined\") memo = fn.apply(this, arguments);\n\t\treturn memo;\n\t};\n};\n\nvar isOldIE = memoize(function () {\n\t// Test for IE <= 9 as proposed by Browserhacks\n\t// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805\n\t// Tests for existence of standard globals is to allow style-loader\n\t// to operate correctly into non-standard environments\n\t// @see https://github.com/webpack-contrib/style-loader/issues/177\n\treturn window && document && document.all && !window.atob;\n});\n\nvar getElement = (function (fn) {\n\tvar memo = {};\n\n\treturn function(selector) {\n\t\tif (typeof memo[selector] === \"undefined\") {\n\t\t\tmemo[selector] = fn.call(this, selector);\n\t\t}\n\n\t\treturn memo[selector]\n\t};\n})(function (target) {\n\treturn document.querySelector(target)\n});\n\nvar singleton = null;\nvar\tsingletonCounter = 0;\nvar\tstylesInsertedAtTop = [];\n\nvar\tfixUrls = __webpack_require__(/*! ./urls */ \"./node_modules/style-loader/lib/urls.js\");\n\nmodule.exports = function(list, options) {\n\tif (typeof DEBUG !== \"undefined\" && DEBUG) {\n\t\tif (typeof document !== \"object\") throw new Error(\"The style-loader cannot be used in a non-browser environment\");\n\t}\n\n\toptions = options || {};\n\n\toptions.attrs = typeof options.attrs === \"object\" ? options.attrs : {};\n\n\t// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n\t// tags it will allow on a page\n\tif (!options.singleton) options.singleton = isOldIE();\n\n\t// By default, add <style> tags to the <head> element\n\tif (!options.insertInto) options.insertInto = \"head\";\n\n\t// By default, add <style> tags to the bottom of the target\n\tif (!options.insertAt) options.insertAt = \"bottom\";\n\n\tvar styles = listToStyles(list, options);\n\n\taddStylesToDom(styles, options);\n\n\treturn function update (newList) {\n\t\tvar mayRemove = [];\n\n\t\tfor (var i = 0; i < styles.length; i++) {\n\t\t\tvar item = styles[i];\n\t\t\tvar domStyle = stylesInDom[item.id];\n\n\t\t\tdomStyle.refs--;\n\t\t\tmayRemove.push(domStyle);\n\t\t}\n\n\t\tif(newList) {\n\t\t\tvar newStyles = listToStyles(newList, options);\n\t\t\taddStylesToDom(newStyles, options);\n\t\t}\n\n\t\tfor (var i = 0; i < mayRemove.length; i++) {\n\t\t\tvar domStyle = mayRemove[i];\n\n\t\t\tif(domStyle.refs === 0) {\n\t\t\t\tfor (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();\n\n\t\t\t\tdelete stylesInDom[domStyle.id];\n\t\t\t}\n\t\t}\n\t};\n};\n\nfunction addStylesToDom (styles, options) {\n\tfor (var i = 0; i < styles.length; i++) {\n\t\tvar item = styles[i];\n\t\tvar domStyle = stylesInDom[item.id];\n\n\t\tif(domStyle) {\n\t\t\tdomStyle.refs++;\n\n\t\t\tfor(var j = 0; j < domStyle.parts.length; j++) {\n\t\t\t\tdomStyle.parts[j](item.parts[j]);\n\t\t\t}\n\n\t\t\tfor(; j < item.parts.length; j++) {\n\t\t\t\tdomStyle.parts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\t\t} else {\n\t\t\tvar parts = [];\n\n\t\t\tfor(var j = 0; j < item.parts.length; j++) {\n\t\t\t\tparts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\n\t\t\tstylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};\n\t\t}\n\t}\n}\n\nfunction listToStyles (list, options) {\n\tvar styles = [];\n\tvar newStyles = {};\n\n\tfor (var i = 0; i < list.length; i++) {\n\t\tvar item = list[i];\n\t\tvar id = options.base ? item[0] + options.base : item[0];\n\t\tvar css = item[1];\n\t\tvar media = item[2];\n\t\tvar sourceMap = item[3];\n\t\tvar part = {css: css, media: media, sourceMap: sourceMap};\n\n\t\tif(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});\n\t\telse newStyles[id].parts.push(part);\n\t}\n\n\treturn styles;\n}\n\nfunction insertStyleElement (options, style) {\n\tvar target = getElement(options.insertInto)\n\n\tif (!target) {\n\t\tthrow new Error(\"Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.\");\n\t}\n\n\tvar lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];\n\n\tif (options.insertAt === \"top\") {\n\t\tif (!lastStyleElementInsertedAtTop) {\n\t\t\ttarget.insertBefore(style, target.firstChild);\n\t\t} else if (lastStyleElementInsertedAtTop.nextSibling) {\n\t\t\ttarget.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);\n\t\t} else {\n\t\t\ttarget.appendChild(style);\n\t\t}\n\t\tstylesInsertedAtTop.push(style);\n\t} else if (options.insertAt === \"bottom\") {\n\t\ttarget.appendChild(style);\n\t} else {\n\t\tthrow new Error(\"Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.\");\n\t}\n}\n\nfunction removeStyleElement (style) {\n\tif (style.parentNode === null) return false;\n\tstyle.parentNode.removeChild(style);\n\n\tvar idx = stylesInsertedAtTop.indexOf(style);\n\tif(idx >= 0) {\n\t\tstylesInsertedAtTop.splice(idx, 1);\n\t}\n}\n\nfunction createStyleElement (options) {\n\tvar style = document.createElement(\"style\");\n\n\toptions.attrs.type = \"text/css\";\n\n\taddAttrs(style, options.attrs);\n\tinsertStyleElement(options, style);\n\n\treturn style;\n}\n\nfunction createLinkElement (options) {\n\tvar link = document.createElement(\"link\");\n\n\toptions.attrs.type = \"text/css\";\n\toptions.attrs.rel = \"stylesheet\";\n\n\taddAttrs(link, options.attrs);\n\tinsertStyleElement(options, link);\n\n\treturn link;\n}\n\nfunction addAttrs (el, attrs) {\n\tObject.keys(attrs).forEach(function (key) {\n\t\tel.setAttribute(key, attrs[key]);\n\t});\n}\n\nfunction addStyle (obj, options) {\n\tvar style, update, remove, result;\n\n\t// If a transform function was defined, run it on the css\n\tif (options.transform && obj.css) {\n\t    result = options.transform(obj.css);\n\n\t    if (result) {\n\t    \t// If transform returns a value, use that instead of the original css.\n\t    \t// This allows running runtime transformations on the css.\n\t    \tobj.css = result;\n\t    } else {\n\t    \t// If the transform function returns a falsy value, don't add this css.\n\t    \t// This allows conditional loading of css\n\t    \treturn function() {\n\t    \t\t// noop\n\t    \t};\n\t    }\n\t}\n\n\tif (options.singleton) {\n\t\tvar styleIndex = singletonCounter++;\n\n\t\tstyle = singleton || (singleton = createStyleElement(options));\n\n\t\tupdate = applyToSingletonTag.bind(null, style, styleIndex, false);\n\t\tremove = applyToSingletonTag.bind(null, style, styleIndex, true);\n\n\t} else if (\n\t\tobj.sourceMap &&\n\t\ttypeof URL === \"function\" &&\n\t\ttypeof URL.createObjectURL === \"function\" &&\n\t\ttypeof URL.revokeObjectURL === \"function\" &&\n\t\ttypeof Blob === \"function\" &&\n\t\ttypeof btoa === \"function\"\n\t) {\n\t\tstyle = createLinkElement(options);\n\t\tupdate = updateLink.bind(null, style, options);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\n\t\t\tif(style.href) URL.revokeObjectURL(style.href);\n\t\t};\n\t} else {\n\t\tstyle = createStyleElement(options);\n\t\tupdate = applyToTag.bind(null, style);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\t\t};\n\t}\n\n\tupdate(obj);\n\n\treturn function updateStyle (newObj) {\n\t\tif (newObj) {\n\t\t\tif (\n\t\t\t\tnewObj.css === obj.css &&\n\t\t\t\tnewObj.media === obj.media &&\n\t\t\t\tnewObj.sourceMap === obj.sourceMap\n\t\t\t) {\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tupdate(obj = newObj);\n\t\t} else {\n\t\t\tremove();\n\t\t}\n\t};\n}\n\nvar replaceText = (function () {\n\tvar textStore = [];\n\n\treturn function (index, replacement) {\n\t\ttextStore[index] = replacement;\n\n\t\treturn textStore.filter(Boolean).join('\\n');\n\t};\n})();\n\nfunction applyToSingletonTag (style, index, remove, obj) {\n\tvar css = remove ? \"\" : obj.css;\n\n\tif (style.styleSheet) {\n\t\tstyle.styleSheet.cssText = replaceText(index, css);\n\t} else {\n\t\tvar cssNode = document.createTextNode(css);\n\t\tvar childNodes = style.childNodes;\n\n\t\tif (childNodes[index]) style.removeChild(childNodes[index]);\n\n\t\tif (childNodes.length) {\n\t\t\tstyle.insertBefore(cssNode, childNodes[index]);\n\t\t} else {\n\t\t\tstyle.appendChild(cssNode);\n\t\t}\n\t}\n}\n\nfunction applyToTag (style, obj) {\n\tvar css = obj.css;\n\tvar media = obj.media;\n\n\tif(media) {\n\t\tstyle.setAttribute(\"media\", media)\n\t}\n\n\tif(style.styleSheet) {\n\t\tstyle.styleSheet.cssText = css;\n\t} else {\n\t\twhile(style.firstChild) {\n\t\t\tstyle.removeChild(style.firstChild);\n\t\t}\n\n\t\tstyle.appendChild(document.createTextNode(css));\n\t}\n}\n\nfunction updateLink (link, options, obj) {\n\tvar css = obj.css;\n\tvar sourceMap = obj.sourceMap;\n\n\t/*\n\t\tIf convertToAbsoluteUrls isn't defined, but sourcemaps are enabled\n\t\tand there is no publicPath defined then lets turn convertToAbsoluteUrls\n\t\ton by default.  Otherwise default to the convertToAbsoluteUrls option\n\t\tdirectly\n\t*/\n\tvar autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;\n\n\tif (options.convertToAbsoluteUrls || autoFixUrls) {\n\t\tcss = fixUrls(css);\n\t}\n\n\tif (sourceMap) {\n\t\t// http://stackoverflow.com/a/26603875\n\t\tcss += \"\\n/*# sourceMappingURL=data:application/json;base64,\" + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + \" */\";\n\t}\n\n\tvar blob = new Blob([css], { type: \"text/css\" });\n\n\tvar oldSrc = link.href;\n\n\tlink.href = URL.createObjectURL(blob);\n\n\tif(oldSrc) URL.revokeObjectURL(oldSrc);\n}\n\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/addStyles.js?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// dependencies
-var api = __webpack_require__(3);
-var selector = __webpack_require__(4);
-
-// styles
-__webpack_require__(14);
-
-/* ========== */
-/* Properties */
-/* ========== */
-
-var closeElement;
-var frameAfter;
-var frameAfterTextHeaderElement;
-var frameBefore;
-var mapElement;
-var mapLabelDescriptionElement;
-var mapLabelNameElement;
-var messageFormElement;
-var messageFormInputElement;
-var openAppCtaElement;
-var parentElement;
-var rootElement;
-
-/* ======================== */
-/* DOM Manipulation Methods */
-/* ======================== */
-
-/**
- * Creates elements from a template and stores some useful references.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @returns {Object} Template's root element.
- */
-function createElements() {
-  // create tree from template
-  var template = document.createElement('div');
-  template.innerHTML = __webpack_require__(9);
-  // store references to important elements
-  rootElement = template.childNodes[0];
-  closeElement = selector.selectChildElement(rootElement, ['.footer', '.close']);
-  mapElement = selector.selectChildElement(rootElement, ['.content', '.map-container']);
-  mapLabelNameElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);
-  mapLabelDescriptionElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);
-  frameBefore = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);
-  messageFormElement = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);
-  messageFormInputElement = selector.selectChildElement(messageFormElement, ['.message-form-input']);
-  openAppCtaElement = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);
-  frameAfter = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);
-  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);
-  // return reference to root element
-  return rootElement;
-}
-
-/**
- * Binds events to some elements.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @param {Object} location Location of the intended destination.
- * @param {string} location.address
- * @param {string} location.latitude
- * @param {string} location.longitude
- * @param {string} location.name
- * @param {string} objectName This instance's name in the global namespace.
- * @returns {void} Void.
- */
-function bindEvents(location, objectName) {
-  location = location || {};
-  // root element: close modal window on click
-  if (rootElement) {
-    rootElement.onclick = function (event) {
-      if (event && event.target === rootElement) {
-        close();
-        return false;
-      }
-      return true;
-    };
-  }
-  // close element: close modal window on click
-  if (closeElement) {
-    closeElement.onclick = function (event) {
-      if (event && event.target === closeElement) {
-        close();
-        return false;
-      }
-      return true;
-    };
-  }
-  // message form element: request JSONP on submit
-  if (messageFormElement) {
-    messageFormElement.onsubmit = function () {
-      api.postMessages({
-        phone_number: messageFormInputElement.value,
-        end_lat: location.latitude,
-        end_lng: location.longitude
-      }, objectName + '.onPostMessagesSuccess');
-      return false;
-    };
-  }
-}
-
-/**
- * Updates the contents of some elements.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @param {string} googleApiKey API key for Google Static Maps.
- * @param {Object} location Location of the intended destination.
- * @param {string} location.address
- * @param {string} location.latitude
- * @param {string} location.longitude
- * @param {string} location.name
- * @returns {void} Void.
- */
-function updateContents(googleApiKey, location) {
-  location = location || {};
-  // map-container: set background-image
-  if (mapElement) {
-    var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' + '?center=' + location.latitude + ',' + location.longitude + '&maptype=roadmap&size=640x300&zoom=15' + (googleApiKey ? '&key=' + googleApiKey : '');
-    mapElement.style = 'background-image:url(\'' + mapSrc + '\');';
-  }
-  // map-label-name: set text
-  if (mapLabelNameElement) {
-    mapLabelNameElement.textContent = location.name;
-  }
-  // map-label-description: set text
-  if (mapLabelDescriptionElement) {
-    mapLabelDescriptionElement.textContent = location.address;
-  }
-  // open-app-cta: set href
-  if (openAppCtaElement) {
-    openAppCtaElement.href = 'https://lyft.com/ride?id=lyft' + '&destination%5Blatitude%5D=' + location.latitude + '&destination%5Blongitude%5D=' + location.longitude;
-  }
-}
-
-/* ================ */
-/* Workflow Methods */
-/* ================ */
-
-/**
- * Success callback for postMessages request.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @param {Object} data Response data.
- * @returns {void} Void.
- */
-function onPostMessagesSuccess(data) {
-  if (data && data.messages) {
-    frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';
-    selector.removeClass(frameBefore, 'on');
-    selector.addClass(frameAfter, 'on');
-    // remove extra whitespace
-    setTimeout(function () {
-      frameBefore.style = 'display:none;';
-      frameAfter.style = 'position:relative;';
-    }, 400);
-  }
-}
-
-/**
- * Attaches the modal window to the DOM and makes it visible.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @returns {void} Void.
- */
-function open() {
-  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);
-  setTimeout(function () {
-    selector.addClass(rootElement, 'on');
-  }, 10);
-}
-
-/**
- * Makes the modal window invisible and detaches it from the DOM.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @returns {void} Void.
- */
-function close() {
-  selector.removeClass(rootElement, 'on');
-  setTimeout(function () {
-    rootElement.parentElement.removeChild(rootElement);
-  }, 400);
-}
-
-/**
- * Initialize.
- * @memberOf lyftWebModal
- * @category lyftWebModal
- * @param {Object} options
- * @param {string} options.clientId
- * @param {string} options.clientToken
- * @param {string} options.googleApiKey
- * @param {Object} options.location
- * @param {string} options.location.address
- * @param {string} options.location.latitude
- * @param {string} options.location.longitude
- * @param {string} options.location.name
- * @param {string} options.objectName
- * @param {Object} options.parentElement
- * @returns {void} Void.
- */
-function initialize(options) {
-  // parse arguments
-  parentElement = options.parentElement;
-  api.setClientId(options.clientId);
-  api.setClientToken(options.clientToken);
-  // create element tree
-  createElements();
-  bindEvents(options.location, options.objectName);
-  updateContents(options.googleApiKey, options.location);
-}
-
-/* ===================================== */
-/* Publicly-Exposed Properties & Methods */
-/* ===================================== */
-
-module.exports = {
-  close: close,
-  initialize: initialize,
-  onPostMessagesSuccess: onPostMessagesSuccess,
-  open: open
-};
+eval("\n\n/**\n * When source maps are enabled, `style-loader` uses a link element with a data-uri to\n * embed the css on the page. This breaks all relative urls because now they are relative to a\n * bundle instead of the current page.\n *\n * One solution is to only use full urls, but that may be impossible.\n *\n * Instead, this function \"fixes\" the relative urls to be absolute according to the current page location.\n *\n * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.\n *\n */\n\nmodule.exports = function (css) {\n\t// get current location\n\tvar location = typeof window !== \"undefined\" && window.location;\n\n\tif (!location) {\n\t\tthrow new Error(\"fixUrls requires window.location\");\n\t}\n\n\t// blank or null?\n\tif (!css || typeof css !== \"string\") {\n\t\treturn css;\n\t}\n\n\tvar baseUrl = location.protocol + \"//\" + location.host;\n\tvar currentDir = baseUrl + location.pathname.replace(/\\/[^\\/]*$/, \"/\");\n\n\t// convert each url(...)\n\t/*\n This regular expression is just a way to recursively match brackets within\n a string.\n \t /url\\s*\\(  = Match on the word \"url\" with any whitespace after it and then a parens\n    (  = Start a capturing group\n      (?:  = Start a non-capturing group\n          [^)(]  = Match anything that isn't a parentheses\n          |  = OR\n          \\(  = Match a start parentheses\n              (?:  = Start another non-capturing groups\n                  [^)(]+  = Match anything that isn't a parentheses\n                  |  = OR\n                  \\(  = Match a start parentheses\n                      [^)(]*  = Match anything that isn't a parentheses\n                  \\)  = Match a end parentheses\n              )  = End Group\n              *\\) = Match anything and then a close parens\n          )  = Close non-capturing group\n          *  = Match anything\n       )  = Close capturing group\n  \\)  = Match a close parens\n \t /gi  = Get all matches, not the first.  Be case insensitive.\n  */\n\tvar fixedCss = css.replace(/url\\s*\\(((?:[^)(]|\\((?:[^)(]+|\\([^)(]*\\))*\\))*)\\)/gi, function (fullMatch, origUrl) {\n\t\t// strip quotes (if they exist)\n\t\tvar unquotedOrigUrl = origUrl.trim().replace(/^\"(.*)\"$/, function (o, $1) {\n\t\t\treturn $1;\n\t\t}).replace(/^'(.*)'$/, function (o, $1) {\n\t\t\treturn $1;\n\t\t});\n\n\t\t// already a full url? no change\n\t\tif (/^(#|data:|http:\\/\\/|https:\\/\\/|file:\\/\\/\\/)/i.test(unquotedOrigUrl)) {\n\t\t\treturn fullMatch;\n\t\t}\n\n\t\t// convert the url to a full url\n\t\tvar newUrl;\n\n\t\tif (unquotedOrigUrl.indexOf(\"//\") === 0) {\n\t\t\t//TODO: should we add protocol?\n\t\t\tnewUrl = unquotedOrigUrl;\n\t\t} else if (unquotedOrigUrl.indexOf(\"/\") === 0) {\n\t\t\t// path should be relative to the base url\n\t\t\tnewUrl = baseUrl + unquotedOrigUrl; // already starts with '/'\n\t\t} else {\n\t\t\t// path should be relative to current directory\n\t\t\tnewUrl = currentDir + unquotedOrigUrl.replace(/^\\.\\//, \"\"); // Strip leading './'\n\t\t}\n\n\t\t// send back the fixed url(...)\n\t\treturn \"url(\" + JSON.stringify(newUrl) + \")\";\n\t});\n\n\t// send back the fixed css\n\treturn fixedCss;\n};\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/urls.js?");
 
 /***/ }),
-/* 8 */
+
+/***/ "./src/components/lyftWebButton/index.css":
+/*!************************************************!*\
+  !*** ./src/components/lyftWebButton/index.css ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = "<button type=\"button\" class=\"lyft-web-button\" title=\"Lyft web button\">\n  <span class=\"lyft-logo\" title=\"Lyft logo\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 62 45\">\n      <path d=\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\" fill=\"#FF00BF\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <div class=\"cta-eta\">\n    <span class=\"cta\">Get a ride</span>\n    <span class=\"eta\" title=\"estimated time of arrival\"></span>\n  </div>\n  <span class=\"arrow-icon\" title=\"arrow icon\">\n    <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 20 20\">\n      <path d=\"M14,13.7506336 L14,6 L6.24936644,6 L8.93723605,8.68786953 L3,17 L11.3121305,11.062764 L14,13.7506336 Z M0,10 C0,15.5228475 4.4771525,20 10,20 C15.5228475,20 20,15.5228475 20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,1.70234197e-14 1.48029737e-14,4.4771525 0,10 L0,10 Z\" fill=\"#000000\" fill-rule=\"evenodd\"></path>\n    </svg>\n  </span>\n  <span class=\"price-range\" title=\"price range\"></span>\n</button>\n";
+eval("\n\n// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(/*! !../../../node_modules/css-loader!./index.css */ \"./node_modules/css-loader/index.js!./src/components/lyftWebButton/index.css\");\nif (typeof content === 'string') content = [[module.i, content, '']];\n// Prepare cssTransformation\nvar transform;\n\nvar options = {};\noptions.transform = transform;\n// add the styles to the DOM\nvar update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\nif (content.locals) module.exports = content.locals;\n// Hot Module Replacement\nif (false) {}\n\n//# sourceURL=webpack:///./src/components/lyftWebButton/index.css?");
 
 /***/ }),
-/* 9 */
+
+/***/ "./src/components/lyftWebButton/index.html":
+/*!*************************************************!*\
+  !*** ./src/components/lyftWebButton/index.html ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = "<div class=\"lyft-web-modal\" title=\"Lyft web modal\">\n  <div class=\"content\">\n    <div class=\"map-container\" title=\"map\">\n      <div class=\"map-label\">\n        <span class=\"map-label-name\" title=\"location name\"></span>\n        <span class=\"map-label-description\" title=\"location description\"></span>\n      </div>\n      <div class=\"map-marker\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40px\" height=\"64px\" viewBox=\"0 0 76 121\">\n          <defs>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-1\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feComposite in=\"shadowBlurOuter1\" in2=\"SourceAlpha\" operator=\"out\" result=\"shadowBlurOuter1\"></feComposite>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-2\">\n              <feGaussianBlur stdDeviation=\"3\" in=\"SourceGraphic\"></feGaussianBlur>\n            </filter>\n            <filter x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\" filterUnits=\"objectBoundingBox\" id=\"filter-3\">\n              <feOffset dx=\"0\" dy=\"0\" in=\"SourceAlpha\" result=\"shadowOffsetOuter1\"></feOffset>\n              <feGaussianBlur stdDeviation=\"1.5\" in=\"shadowOffsetOuter1\" result=\"shadowBlurOuter1\"></feGaussianBlur>\n              <feColorMatrix values=\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\" type=\"matrix\" in=\"shadowBlurOuter1\"></feColorMatrix>\n            </filter>\n            <linearGradient x1=\"50%\" y1=\"0%\" x2=\"50%\" y2=\"97.7032156%\" id=\"linearGradient-1\">\n              <stop stop-color=\"#000000\" stop-opacity=\"0\" offset=\"0%\"></stop>\n              <stop stop-color=\"#000000\" stop-opacity=\"0.68115942\" offset=\"100%\"></stop>\n            </linearGradient>\n            <mask id=\"mask-1\" maskContentUnits=\"userSpaceOnUse\" maskUnits=\"objectBoundingBox\" x=\"0\" y=\"0\" width=\"70\" height=\"70\" fill=\"#FFFFFF\">\n              <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\"></rect>\n            </mask>\n          </defs>\n          <g fill=\"none\" fill-rule=\"evenodd\" stroke=\"none\" stroke-width=\"1\" transform=\"translate(3.000000, 3.000000)\">\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-1)\"></rect>\n            <rect x=\"0\" y=\"0\" width=\"70\" height=\"70\" rx=\"35\" fill=\"#FF00BF\" fill-rule=\"evenodd\" stroke=\"#FFFFFF\" stroke-width=\"8\" mask=\"url(#mask-1)\"></rect>\n            <g stroke-width=\"1\" fill-rule=\"evenodd\" transform=\"translate(27.000000, 65.000000)\">\n              <polyline fill=\"url(#linearGradient-1)\" opacity=\"0.6\" filter=\"url(#filter-2)\" transform=\"translate(23.618189, 29.706625) rotate(49.000000) translate(-23.618189, -29.706625) \" points=\"21.6181893 4.70662517 21.6181893 54.7066252 25.6181893 54.7066252 25.6181893 4.70662517 21.6181893 4.70662517\"></polyline>\n              <circle fill=\"#000000\" cx=\"8\" cy=\"43\" r=\"5\"></circle>\n              <g transform=\"translate(0.000000, 0.500000)\">\n                <mask id=\"mask-7\" fill=\"#FFFFFF\">\n                  <rect x=\"0\" y=\"0.5\" width=\"16\" height=\"47\"></rect>\n                </mask>\n                <g mask=\"url(#mask-7)\">\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#000000\" fill-opacity=\"1\" filter=\"url(#filter-3)\"></path>\n                  <path d=\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\" fill=\"#FFFFFF\" fill-rule=\"evenodd\"></path>\n                </g>\n              </g>\n            </g>\n            <rect fill=\"#FFFFFF\" fill-rule=\"evenodd\" x=\"27\" y=\"27\" width=\"16\" height=\"16\" rx=\"8\"></rect>\n          </g>\n        </svg>\n      </div>\n    </div>\n    <div class=\"frame-container\">\n      <div class=\"frame-before on\">\n        <div class=\"lyft-logo-tile-container\">\n          <span class=\"lyft-logo-tile\" title=\"Lyft logo tile\">\n            <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"45px\" height=\"32px\" viewBox=\"0 0 62 45\">\n              <path d=\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\" fill=\"#FFFFFF\" fill-rule=\"evenodd\"></path>\n            </svg>\n          </span>\n        </div>\n        <div class=\"text-container\">\n          <h1>Ride with the Lyft mobile app.</h1>\n          <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\n        </div>\n        <div class=\"message-form-container\">\n          <form name=\"lyftMessageForm\" method=\"get\" action=\"#\" class=\"message-form\" onsubmit=\"window.open('http://www.lyft.com/signup/SDKSIGNUP','_blank');return false;\">\n            <input type=\"text\" class=\"message-form-input\" name=\"phoneNumber\" placeholder=\"Phone number\" required title=\"phone number\" />\n            <input type=\"submit\" class=\"message-form-button\" name=\"submitButton\" title=\"text me a link\" value=\"Text me a link\" />\n          </form>\n        </div>\n        <div class=\"open-app-container\">\n          <p class=\"open-app-separator\">&mdash;&nbsp;or&nbsp;&mdash;</p>\n          <a href=\"#\" class=\"open-app-cta\" title=\"Open in Lyft app\">Open in Lyft app</a>\n        </div>\n      </div>\n      <div class=\"frame-after\">\n        <div class=\"circle-check-icon-container\">\n          <span class=\"circle-check-icon\" title=\"circle check icon\">\n            <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"42px\" height=\"42px\" viewBox=\"0 0 20 19\">\n              <path d=\"M7.364,13.789l-4.243,-4.243l-2.121,2.121l6.364,6.364l11.667,-11.667l-2.121,-2.121l-9.546,9.546Z\" fill=\"#FFFFFF\" fill-rule=\"evenodd\"></path>\n            </svg>\n          </span>\n        </div>\n        <div class=\"text-container\">\n          <h1 class=\"text-header\">Ride link sent.</h1>\n          <p>Tap the link to get going.</p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    <a href=\"#\" class=\"close\" title=\"close Lyft web modal\">&#10005;</a>\n  </div>\n</div>\n";
+eval("\n\nmodule.exports = \"<button type=\\\"button\\\" class=\\\"lyft-web-button\\\" title=\\\"Lyft web button\\\">\\n  <span class=\\\"lyft-logo\\\" title=\\\"Lyft logo\\\">\\n    <svg version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"100%\\\" height=\\\"100%\\\" viewBox=\\\"0 0 62 45\\\">\\n      <path d=\\\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\\\" fill=\\\"#FF00BF\\\" fill-rule=\\\"evenodd\\\"></path>\\n    </svg>\\n  </span>\\n  <div class=\\\"cta-eta\\\">\\n    <span class=\\\"cta\\\">Get a ride</span>\\n    <span class=\\\"eta\\\" title=\\\"estimated time of arrival\\\"></span>\\n  </div>\\n  <span class=\\\"arrow-icon\\\" title=\\\"arrow icon\\\">\\n    <svg version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"100%\\\" height=\\\"100%\\\" viewBox=\\\"0 0 20 20\\\">\\n      <path d=\\\"M14,13.7506336 L14,6 L6.24936644,6 L8.93723605,8.68786953 L3,17 L11.3121305,11.062764 L14,13.7506336 Z M0,10 C0,15.5228475 4.4771525,20 10,20 C15.5228475,20 20,15.5228475 20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,1.70234197e-14 1.48029737e-14,4.4771525 0,10 L0,10 Z\\\" fill=\\\"#000000\\\" fill-rule=\\\"evenodd\\\"></path>\\n    </svg>\\n  </span>\\n  <span class=\\\"price-range\\\" title=\\\"price range\\\"></span>\\n</button>\\n\";\n\n//# sourceURL=webpack:///./src/components/lyftWebButton/index.html?");
 
 /***/ }),
-/* 10 */
+
+/***/ "./src/components/lyftWebButton/index.js":
+/*!***********************************************!*\
+  !*** ./src/components/lyftWebButton/index.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var stringify = __webpack_require__(12);
-var parse = __webpack_require__(11);
-var formats = __webpack_require__(1);
-
-module.exports = {
-    formats: formats,
-    parse: parse,
-    stringify: stringify
-};
+eval("\n\n// dependencies\n// require('babel-polyfill');\n\nvar api = __webpack_require__(/*! ../../services/api.js */ \"./src/services/api.js\");\nvar selector = __webpack_require__(/*! ../../services/selector.js */ \"./src/services/selector.js\");\nvar helpers = __webpack_require__(/*! ../../services/helpers.js */ \"./src/services/helpers.js\");\nvar stringify = __webpack_require__(/*! qs */ \"./node_modules/qs/lib/index.js\").stringify;\n\n// styles\n__webpack_require__(/*! ./index.css */ \"./src/components/lyftWebButton/index.css\");\n\n/* ========== */\n/* Properties */\n/* ========== */\n\nvar etaElement;\nvar priceRangeElement;\nvar rootElement;\nvar themeSize = ''; // possible values include 'small', 'large'\n\n/* ======================== */\n/* DOM Manipulation Methods */\n/* ======================== */\n\n/**\n * Creates elements from a template and stores some useful references.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @returns {Object} Template's root element.\n */\nfunction createElements() {\n  // create tree from template\n  var template = document.createElement('div');\n  template.innerHTML = __webpack_require__(/*! ./index.html */ \"./src/components/lyftWebButton/index.html\");\n  // store references to important elements\n  rootElement = template.childNodes[0];\n  priceRangeElement = selector.selectChildElement(rootElement, ['.price-range']);\n  etaElement = selector.selectChildElement(rootElement, ['.cta-eta', '.eta']);\n  // return reference to root element\n  return rootElement;\n}\n\n/**\n * Binds events to some elements.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @param {function} onClick Handler for button's onclick event.\n * @returns {void} Void.\n */\nfunction bindEvents(rootEl, options) {\n  var redirectURI = 'https://lyft.com/ride?id=lyft';\n\n  var clientId = options.clientId,\n      queryParams = options.queryParams,\n      _options$location = options.location,\n      pickup = _options$location.pickup,\n      destination = _options$location.destination;\n\n\n  if (rootEl) {\n    var query = queryParams || {};\n\n    query.partner = clientId;\n\n    if (!helpers.isEmpty(pickup)) {\n      query.pickup = {\n        latitude: pickup.latitude,\n        longitude: pickup.longitude\n      };\n    }\n\n    query.destination = {\n      latitude: destination.latitude,\n      longitude: destination.longitude\n    };\n\n    // if we have any parameters, redirect to the full query string\n    redirectURI = redirectURI + '&' + stringify(query);\n\n    rootEl.onclick = function (e) {\n      e.preventDefault();\n      helpers.logger(decodeURI(redirectURI));\n      window.open(redirectURI);\n    };\n  }\n}\n\n/**\n * Updates the contents of some elements.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @param {string} theme Name of the user's chosen theme.\n * @returns {void} Void.\n */\nfunction updateContents(theme) {\n  // root element: apply user-specified theme\n  if (rootElement && theme) {\n    selector.addClass(rootElement, theme);\n  }\n}\n\n/* ================ */\n/* Workflow Methods */\n/* ================ */\n\n/**\n * Success callback for getCosts request.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @param {Object} data Response data.\n * @returns {void} Void.\n */\nfunction onGetCostsSuccess(data) {\n  if (data && data.cost_estimates && data.cost_estimates.length) {\n    for (var i = 0, l = data.cost_estimates.length; i < l; i++) {\n      if (data.cost_estimates[i].ride_type === 'lyft') {\n        var min = Math.ceil(data.cost_estimates[i].estimated_cost_cents_min / 100);\n        var max = Math.ceil(data.cost_estimates[i].estimated_cost_cents_max / 100);\n        if (!isNaN(parseFloat(min)) && isFinite(min) && min > 0 && !isNaN(parseFloat(max)) && isFinite(max) && max > 0) {\n          if (priceRangeElement) {\n            priceRangeElement.textContent = '$' + min + (min !== max ? '-' + max : '');\n          }\n        }\n      }\n    }\n  }\n}\n\n/**\n * Success callback for getEtas request.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @param {Object} data Response data.\n * @returns {void} Void.\n */\nfunction onGetEtasSuccess(data) {\n  if (data && data.eta_estimates && data.eta_estimates.length) {\n    for (var i = 0, l = data.eta_estimates.length; i < l; i++) {\n      if (data.eta_estimates[i].ride_type === 'lyft') {\n        var eta = Math.ceil(data.eta_estimates[i].eta_seconds / 60);\n        if (!isNaN(parseFloat(eta)) && isFinite(eta) && eta > 0) {\n          if (etaElement) {\n            etaElement.textContent = (themeSize !== 'small' ? 'Lyft in ' : '') + eta + ' min';\n          }\n        }\n      }\n    }\n  }\n}\n\nfunction checkRequiredOptions(options) {\n  // check at least one level deep for options\n  // does not validate deeper\n  var required = ['clientId', 'clientToken', 'location', 'location.pickup', 'parentElement', 'scriptSrc'];\n  required.forEach(function (option) {\n    var optionPresent = options[option];\n\n    if (option.indexOf('.') > -1) {\n      var opt = option.split('.');\n      optionPresent = options[opt[0]][opt[1]];\n    }\n\n    if (!optionPresent) {\n      throw new Error('Missing or invalid options; did you provide a value for ' + option + ' in your options?');\n    }\n  });\n}\n\nfunction getCostsAndEtas(location, options) {\n  // request costs\n  if (themeSize !== 'small') {\n    api.getCosts({\n      start_lat: location.latitude,\n      start_lng: location.longitude,\n      end_lat: options.location.destination.latitude,\n      end_lng: options.location.destination.longitude\n    }, options.objectName + '.onGetCostsSuccess');\n  }\n  // request etas\n  api.getEtas({\n    lat: location.latitude,\n    lng: location.longitude\n  }, options.objectName + '.onGetEtasSuccess');\n}\n\n/**\n * Initialize.\n * @memberOf lyftWebButton\n * @category lyftWebButton\n * @param {Object} options\n * @param {string} options.clientId\n * @param {string} options.clientToken\n * @param {Object} options.location\n * @param {Object} options.location.pickup\n * @param {Object} options.location.destination\n * @param {string} options.namespace\n * @param {string} options.objectName\n * @param {Object} options.parentElement\n * @param {string} options.theme\n * @returns {void} Void.\n */\nfunction initialize(options) {\n  checkRequiredOptions(options);\n\n  api.setClientId(options.clientId);\n  api.setClientToken(options.clientToken);\n  // assume themeSize is last chunk of options.theme (example: 'someColor someSize')\n  if (options.theme && options.theme.split) {\n    var themeSplit = options.theme.split(' ');\n    themeSize = themeSplit[themeSplit.length - 1];\n  }\n  // create element tree\n  createElements();\n  updateContents(options.theme);\n  // insert element into DOM\n  options.parentElement.insertBefore(rootElement, options.parentElement.childNodes[0]);\n\n  var location = options.location,\n      pickup = options.location.pickup;\n  // get device location\n  // consider moving to Promise\n\n  // bind events regardless; will re-bind on location success\n\n  bindEvents(rootElement, options);\n\n  if (helpers.hasLocationService() && helpers.isEmpty(location.pickup)) {\n    navigator.geolocation.getCurrentPosition(function (position) {\n      getCostsAndEtas({\n        latitude: position.coords.latitude,\n        longitude: position.coords.longitude\n      }, options);\n\n      options.location.pickup = {\n        latitude: position.coords.latitude,\n        longitude: position.coords.longitude\n      };\n      bindEvents(rootElement, options);\n    }, function (error) {\n      helpers.logger('Error in location promise', error);\n    });\n  } else {\n    getCostsAndEtas({\n      latitude: pickup.latitude,\n      longitude: pickup.longitude\n    }, options);\n  }\n}\n\n/* ===================================== */\n/* Publicly-Exposed Properties & Methods */\n/* ===================================== */\n\nmodule.exports = {\n  initialize: initialize,\n  onGetCostsSuccess: onGetCostsSuccess,\n  onGetEtasSuccess: onGetEtasSuccess\n};\n\n//# sourceURL=webpack:///./src/components/lyftWebButton/index.js?");
 
 /***/ }),
-/* 11 */
+
+/***/ "./src/components/lyftWebModal/index.css":
+/*!***********************************************!*\
+  !*** ./src/components/lyftWebModal/index.css ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var utils = __webpack_require__(2);
-
-var has = Object.prototype.hasOwnProperty;
-
-var defaults = {
-    allowDots: false,
-    allowPrototypes: false,
-    arrayLimit: 20,
-    decoder: utils.decode,
-    delimiter: '&',
-    depth: 5,
-    parameterLimit: 1000,
-    plainObjects: false,
-    strictNullHandling: false
-};
-
-var parseValues = function parseQueryStringValues(str, options) {
-    var obj = {};
-    var parts = str.split(options.delimiter, options.parameterLimit === Infinity ? undefined : options.parameterLimit);
-
-    for (var i = 0; i < parts.length; ++i) {
-        var part = parts[i];
-        var pos = part.indexOf(']=') === -1 ? part.indexOf('=') : part.indexOf(']=') + 1;
-
-        var key, val;
-        if (pos === -1) {
-            key = options.decoder(part);
-            val = options.strictNullHandling ? null : '';
-        } else {
-            key = options.decoder(part.slice(0, pos));
-            val = options.decoder(part.slice(pos + 1));
-        }
-        if (has.call(obj, key)) {
-            obj[key] = [].concat(obj[key]).concat(val);
-        } else {
-            obj[key] = val;
-        }
-    }
-
-    return obj;
-};
-
-var parseObject = function parseObjectRecursive(chain, val, options) {
-    if (!chain.length) {
-        return val;
-    }
-
-    var root = chain.shift();
-
-    var obj;
-    if (root === '[]') {
-        obj = [];
-        obj = obj.concat(parseObject(chain, val, options));
-    } else {
-        obj = options.plainObjects ? Object.create(null) : {};
-        var cleanRoot = root.charAt(0) === '[' && root.charAt(root.length - 1) === ']' ? root.slice(1, -1) : root;
-        var index = parseInt(cleanRoot, 10);
-        if (!isNaN(index) && root !== cleanRoot && String(index) === cleanRoot && index >= 0 && options.parseArrays && index <= options.arrayLimit) {
-            obj = [];
-            obj[index] = parseObject(chain, val, options);
-        } else {
-            obj[cleanRoot] = parseObject(chain, val, options);
-        }
-    }
-
-    return obj;
-};
-
-var parseKeys = function parseQueryStringKeys(givenKey, val, options) {
-    if (!givenKey) {
-        return;
-    }
-
-    // Transform dot notation to bracket notation
-    var key = options.allowDots ? givenKey.replace(/\.([^.[]+)/g, '[$1]') : givenKey;
-
-    // The regex chunks
-
-    var brackets = /(\[[^[\]]*])/;
-    var child = /(\[[^[\]]*])/g;
-
-    // Get the parent
-
-    var segment = brackets.exec(key);
-    var parent = segment ? key.slice(0, segment.index) : key;
-
-    // Stash the parent if it exists
-
-    var keys = [];
-    if (parent) {
-        // If we aren't using plain objects, optionally prefix keys
-        // that would overwrite object prototype properties
-        if (!options.plainObjects && has.call(Object.prototype, parent)) {
-            if (!options.allowPrototypes) {
-                return;
-            }
-        }
-
-        keys.push(parent);
-    }
-
-    // Loop through children appending to the array until we hit depth
-
-    var i = 0;
-    while ((segment = child.exec(key)) !== null && i < options.depth) {
-        i += 1;
-        if (!options.plainObjects && has.call(Object.prototype, segment[1].slice(1, -1))) {
-            if (!options.allowPrototypes) {
-                return;
-            }
-        }
-        keys.push(segment[1]);
-    }
-
-    // If there's a remainder, just add whatever is left
-
-    if (segment) {
-        keys.push('[' + key.slice(segment.index) + ']');
-    }
-
-    return parseObject(keys, val, options);
-};
-
-module.exports = function (str, opts) {
-    var options = opts || {};
-
-    if (options.decoder !== null && options.decoder !== undefined && typeof options.decoder !== 'function') {
-        throw new TypeError('Decoder has to be a function.');
-    }
-
-    options.delimiter = typeof options.delimiter === 'string' || utils.isRegExp(options.delimiter) ? options.delimiter : defaults.delimiter;
-    options.depth = typeof options.depth === 'number' ? options.depth : defaults.depth;
-    options.arrayLimit = typeof options.arrayLimit === 'number' ? options.arrayLimit : defaults.arrayLimit;
-    options.parseArrays = options.parseArrays !== false;
-    options.decoder = typeof options.decoder === 'function' ? options.decoder : defaults.decoder;
-    options.allowDots = typeof options.allowDots === 'boolean' ? options.allowDots : defaults.allowDots;
-    options.plainObjects = typeof options.plainObjects === 'boolean' ? options.plainObjects : defaults.plainObjects;
-    options.allowPrototypes = typeof options.allowPrototypes === 'boolean' ? options.allowPrototypes : defaults.allowPrototypes;
-    options.parameterLimit = typeof options.parameterLimit === 'number' ? options.parameterLimit : defaults.parameterLimit;
-    options.strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;
-
-    if (str === '' || str === null || typeof str === 'undefined') {
-        return options.plainObjects ? Object.create(null) : {};
-    }
-
-    var tempObj = typeof str === 'string' ? parseValues(str, options) : str;
-    var obj = options.plainObjects ? Object.create(null) : {};
-
-    // Iterate over the keys and setup the new object
-
-    var keys = Object.keys(tempObj);
-    for (var i = 0; i < keys.length; ++i) {
-        var key = keys[i];
-        var newObj = parseKeys(key, tempObj[key], options);
-        obj = utils.merge(obj, newObj, options);
-    }
-
-    return utils.compact(obj);
-};
+eval("\n\n// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(/*! !../../../node_modules/css-loader!./index.css */ \"./node_modules/css-loader/index.js!./src/components/lyftWebModal/index.css\");\nif (typeof content === 'string') content = [[module.i, content, '']];\n// Prepare cssTransformation\nvar transform;\n\nvar options = {};\noptions.transform = transform;\n// add the styles to the DOM\nvar update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\nif (content.locals) module.exports = content.locals;\n// Hot Module Replacement\nif (false) {}\n\n//# sourceURL=webpack:///./src/components/lyftWebModal/index.css?");
 
 /***/ }),
-/* 12 */
+
+/***/ "./src/components/lyftWebModal/index.html":
+/*!************************************************!*\
+  !*** ./src/components/lyftWebModal/index.html ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var utils = __webpack_require__(2);
-var formats = __webpack_require__(1);
-
-var arrayPrefixGenerators = {
-    brackets: function brackets(prefix) {
-        // eslint-disable-line func-name-matching
-        return prefix + '[]';
-    },
-    indices: function indices(prefix, key) {
-        // eslint-disable-line func-name-matching
-        return prefix + '[' + key + ']';
-    },
-    repeat: function repeat(prefix) {
-        // eslint-disable-line func-name-matching
-        return prefix;
-    }
-};
-
-var toISO = Date.prototype.toISOString;
-
-var defaults = {
-    delimiter: '&',
-    encode: true,
-    encoder: utils.encode,
-    encodeValuesOnly: false,
-    serializeDate: function serializeDate(date) {
-        // eslint-disable-line func-name-matching
-        return toISO.call(date);
-    },
-    skipNulls: false,
-    strictNullHandling: false
-};
-
-var stringify = function stringify( // eslint-disable-line func-name-matching
-object, prefix, generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly) {
-    var obj = object;
-    if (typeof filter === 'function') {
-        obj = filter(prefix, obj);
-    } else if (obj instanceof Date) {
-        obj = serializeDate(obj);
-    } else if (obj === null) {
-        if (strictNullHandling) {
-            return encoder && !encodeValuesOnly ? encoder(prefix) : prefix;
-        }
-
-        obj = '';
-    }
-
-    if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean' || utils.isBuffer(obj)) {
-        if (encoder) {
-            var keyValue = encodeValuesOnly ? prefix : encoder(prefix);
-            return [formatter(keyValue) + '=' + formatter(encoder(obj))];
-        }
-        return [formatter(prefix) + '=' + formatter(String(obj))];
-    }
-
-    var values = [];
-
-    if (typeof obj === 'undefined') {
-        return values;
-    }
-
-    var objKeys;
-    if (Array.isArray(filter)) {
-        objKeys = filter;
-    } else {
-        var keys = Object.keys(obj);
-        objKeys = sort ? keys.sort(sort) : keys;
-    }
-
-    for (var i = 0; i < objKeys.length; ++i) {
-        var key = objKeys[i];
-
-        if (skipNulls && obj[key] === null) {
-            continue;
-        }
-
-        if (Array.isArray(obj)) {
-            values = values.concat(stringify(obj[key], generateArrayPrefix(prefix, key), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));
-        } else {
-            values = values.concat(stringify(obj[key], prefix + (allowDots ? '.' + key : '[' + key + ']'), generateArrayPrefix, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));
-        }
-    }
-
-    return values;
-};
-
-module.exports = function (object, opts) {
-    var obj = object;
-    var options = opts || {};
-
-    if (options.encoder !== null && options.encoder !== undefined && typeof options.encoder !== 'function') {
-        throw new TypeError('Encoder has to be a function.');
-    }
-
-    var delimiter = typeof options.delimiter === 'undefined' ? defaults.delimiter : options.delimiter;
-    var strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : defaults.strictNullHandling;
-    var skipNulls = typeof options.skipNulls === 'boolean' ? options.skipNulls : defaults.skipNulls;
-    var encode = typeof options.encode === 'boolean' ? options.encode : defaults.encode;
-    var encoder = typeof options.encoder === 'function' ? options.encoder : defaults.encoder;
-    var sort = typeof options.sort === 'function' ? options.sort : null;
-    var allowDots = typeof options.allowDots === 'undefined' ? false : options.allowDots;
-    var serializeDate = typeof options.serializeDate === 'function' ? options.serializeDate : defaults.serializeDate;
-    var encodeValuesOnly = typeof options.encodeValuesOnly === 'boolean' ? options.encodeValuesOnly : defaults.encodeValuesOnly;
-    if (typeof options.format === 'undefined') {
-        options.format = formats.default;
-    } else if (!Object.prototype.hasOwnProperty.call(formats.formatters, options.format)) {
-        throw new TypeError('Unknown format option provided.');
-    }
-    var formatter = formats.formatters[options.format];
-    var objKeys;
-    var filter;
-
-    if (typeof options.filter === 'function') {
-        filter = options.filter;
-        obj = filter('', obj);
-    } else if (Array.isArray(options.filter)) {
-        filter = options.filter;
-        objKeys = filter;
-    }
-
-    var keys = [];
-
-    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object' || obj === null) {
-        return '';
-    }
-
-    var arrayFormat;
-    if (options.arrayFormat in arrayPrefixGenerators) {
-        arrayFormat = options.arrayFormat;
-    } else if ('indices' in options) {
-        arrayFormat = options.indices ? 'indices' : 'repeat';
-    } else {
-        arrayFormat = 'indices';
-    }
-
-    var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];
-
-    if (!objKeys) {
-        objKeys = Object.keys(obj);
-    }
-
-    if (sort) {
-        objKeys.sort(sort);
-    }
-
-    for (var i = 0; i < objKeys.length; ++i) {
-        var key = objKeys[i];
-
-        if (skipNulls && obj[key] === null) {
-            continue;
-        }
-
-        keys = keys.concat(stringify(obj[key], key, generateArrayPrefix, strictNullHandling, skipNulls, encode ? encoder : null, filter, sort, allowDots, serializeDate, formatter, encodeValuesOnly));
-    }
-
-    return keys.join(delimiter);
-};
+eval("\n\nmodule.exports = \"<div class=\\\"lyft-web-modal\\\" title=\\\"Lyft web modal\\\">\\n  <div class=\\\"content\\\">\\n    <div class=\\\"map-container\\\" title=\\\"map\\\">\\n      <div class=\\\"map-label\\\">\\n        <span class=\\\"map-label-name\\\" title=\\\"location name\\\"></span>\\n        <span class=\\\"map-label-description\\\" title=\\\"location description\\\"></span>\\n      </div>\\n      <div class=\\\"map-marker\\\">\\n        <svg version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"40px\\\" height=\\\"64px\\\" viewBox=\\\"0 0 76 121\\\">\\n          <defs>\\n            <filter x=\\\"-50%\\\" y=\\\"-50%\\\" width=\\\"200%\\\" height=\\\"200%\\\" filterUnits=\\\"objectBoundingBox\\\" id=\\\"filter-1\\\">\\n              <feOffset dx=\\\"0\\\" dy=\\\"0\\\" in=\\\"SourceAlpha\\\" result=\\\"shadowOffsetOuter1\\\"></feOffset>\\n              <feGaussianBlur stdDeviation=\\\"1.5\\\" in=\\\"shadowOffsetOuter1\\\" result=\\\"shadowBlurOuter1\\\"></feGaussianBlur>\\n              <feComposite in=\\\"shadowBlurOuter1\\\" in2=\\\"SourceAlpha\\\" operator=\\\"out\\\" result=\\\"shadowBlurOuter1\\\"></feComposite>\\n              <feColorMatrix values=\\\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\\\" type=\\\"matrix\\\" in=\\\"shadowBlurOuter1\\\"></feColorMatrix>\\n            </filter>\\n            <filter x=\\\"-50%\\\" y=\\\"-50%\\\" width=\\\"200%\\\" height=\\\"200%\\\" filterUnits=\\\"objectBoundingBox\\\" id=\\\"filter-2\\\">\\n              <feGaussianBlur stdDeviation=\\\"3\\\" in=\\\"SourceGraphic\\\"></feGaussianBlur>\\n            </filter>\\n            <filter x=\\\"-50%\\\" y=\\\"-50%\\\" width=\\\"200%\\\" height=\\\"200%\\\" filterUnits=\\\"objectBoundingBox\\\" id=\\\"filter-3\\\">\\n              <feOffset dx=\\\"0\\\" dy=\\\"0\\\" in=\\\"SourceAlpha\\\" result=\\\"shadowOffsetOuter1\\\"></feOffset>\\n              <feGaussianBlur stdDeviation=\\\"1.5\\\" in=\\\"shadowOffsetOuter1\\\" result=\\\"shadowBlurOuter1\\\"></feGaussianBlur>\\n              <feColorMatrix values=\\\"0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0\\\" type=\\\"matrix\\\" in=\\\"shadowBlurOuter1\\\"></feColorMatrix>\\n            </filter>\\n            <linearGradient x1=\\\"50%\\\" y1=\\\"0%\\\" x2=\\\"50%\\\" y2=\\\"97.7032156%\\\" id=\\\"linearGradient-1\\\">\\n              <stop stop-color=\\\"#000000\\\" stop-opacity=\\\"0\\\" offset=\\\"0%\\\"></stop>\\n              <stop stop-color=\\\"#000000\\\" stop-opacity=\\\"0.68115942\\\" offset=\\\"100%\\\"></stop>\\n            </linearGradient>\\n            <mask id=\\\"mask-1\\\" maskContentUnits=\\\"userSpaceOnUse\\\" maskUnits=\\\"objectBoundingBox\\\" x=\\\"0\\\" y=\\\"0\\\" width=\\\"70\\\" height=\\\"70\\\" fill=\\\"#FFFFFF\\\">\\n              <rect x=\\\"0\\\" y=\\\"0\\\" width=\\\"70\\\" height=\\\"70\\\" rx=\\\"35\\\"></rect>\\n            </mask>\\n          </defs>\\n          <g fill=\\\"none\\\" fill-rule=\\\"evenodd\\\" stroke=\\\"none\\\" stroke-width=\\\"1\\\" transform=\\\"translate(3.000000, 3.000000)\\\">\\n            <rect x=\\\"0\\\" y=\\\"0\\\" width=\\\"70\\\" height=\\\"70\\\" rx=\\\"35\\\" fill=\\\"#000000\\\" fill-opacity=\\\"1\\\" filter=\\\"url(#filter-1)\\\"></rect>\\n            <rect x=\\\"0\\\" y=\\\"0\\\" width=\\\"70\\\" height=\\\"70\\\" rx=\\\"35\\\" fill=\\\"#FF00BF\\\" fill-rule=\\\"evenodd\\\" stroke=\\\"#FFFFFF\\\" stroke-width=\\\"8\\\" mask=\\\"url(#mask-1)\\\"></rect>\\n            <g stroke-width=\\\"1\\\" fill-rule=\\\"evenodd\\\" transform=\\\"translate(27.000000, 65.000000)\\\">\\n              <polyline fill=\\\"url(#linearGradient-1)\\\" opacity=\\\"0.6\\\" filter=\\\"url(#filter-2)\\\" transform=\\\"translate(23.618189, 29.706625) rotate(49.000000) translate(-23.618189, -29.706625) \\\" points=\\\"21.6181893 4.70662517 21.6181893 54.7066252 25.6181893 54.7066252 25.6181893 4.70662517 21.6181893 4.70662517\\\"></polyline>\\n              <circle fill=\\\"#000000\\\" cx=\\\"8\\\" cy=\\\"43\\\" r=\\\"5\\\"></circle>\\n              <g transform=\\\"translate(0.000000, 0.500000)\\\">\\n                <mask id=\\\"mask-7\\\" fill=\\\"#FFFFFF\\\">\\n                  <rect x=\\\"0\\\" y=\\\"0.5\\\" width=\\\"16\\\" height=\\\"47\\\"></rect>\\n                </mask>\\n                <g mask=\\\"url(#mask-7)\\\">\\n                  <path d=\\\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\\\" fill=\\\"#000000\\\" fill-opacity=\\\"1\\\" filter=\\\"url(#filter-3)\\\"></path>\\n                  <path d=\\\"M10,13.4999809 L10,42.5 C10,43.6045695 9.1045695,44.5 8,44.5 C6.8954305,44.5 6,43.6045695 6,42.5 L6,13.5 C6,10.5 6,5.1000061 3.63797881e-12,3.54998779 L3.63797881e-12,0.5 L16,0.5 L16,3.54998779 C10.0000127,5.10000282 10,10.4999771 10,13.4999809 Z\\\" fill=\\\"#FFFFFF\\\" fill-rule=\\\"evenodd\\\"></path>\\n                </g>\\n              </g>\\n            </g>\\n            <rect fill=\\\"#FFFFFF\\\" fill-rule=\\\"evenodd\\\" x=\\\"27\\\" y=\\\"27\\\" width=\\\"16\\\" height=\\\"16\\\" rx=\\\"8\\\"></rect>\\n          </g>\\n        </svg>\\n      </div>\\n    </div>\\n    <div class=\\\"frame-container\\\">\\n      <div class=\\\"frame-before on\\\">\\n        <div class=\\\"lyft-logo-tile-container\\\">\\n          <span class=\\\"lyft-logo-tile\\\" title=\\\"Lyft logo tile\\\">\\n            <svg version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"45px\\\" height=\\\"32px\\\" viewBox=\\\"0 0 62 45\\\">\\n              <path d=\\\"M2.88906093,33.1952924 C1.08064111,31.678543 0,29.0557213 0,26.1796707 L0,0.868209803 L8.50060387,0.868209803 L8.50060387,26.2675792 C8.50060387,30.6236413 10.7571142,32.9263187 11.8221878,33.8421413 C10.9646803,34.4076422 9.47150151,34.9285327 7.76427017,34.9285327 C6.48254938,34.9285327 4.59629227,34.6280694 2.88906093,33.1952924 Z M34.8430121,34.2580666 L34.8430121,12.3268685 C34.8430121,5.53036195 39.971356,-7.10542736e-15 46.6913091,-7.10542736e-15 C52.392891,-7.10542736e-15 57.149521,4.08315217 58.3534045,9.709295 L58.4195662,10.1887545 L61.1135896,10.1887545 L61.1135896,18.6881472 L58.6310242,18.6881472 L58.6310242,21.8852758 C58.6310242,23.7510349 60.2032558,25.2914014 62,25.4882114 L62,34.2055839 C55.4551808,33.9982773 50.1946769,28.5518876 50.1946769,21.8852758 L50.1946769,12.3268685 C50.1946769,10.3285906 48.670971,8.70293969 46.6913091,8.70293969 C44.8465653,8.70293969 43.4934119,10.1186599 43.2988186,11.9332484 L43.2663864,12.3268685 L43.2663864,15.3470698 L47.5178452,15.3470698 L47.5178452,23.7615567 L43.2663864,23.7615567 L43.2663864,25.5708717 C43.2663864,28.4456102 41.9322481,31.0684319 40.1238283,32.5851813 C38.7837295,33.7083105 37.1167141,34.3039889 35.3044024,34.3039889 C35.0125126,34.3039889 35.1400911,34.2882441 34.8430121,34.2580666 Z M14.4982482,43.2461032 L14.4982482,35.4782888 C15.6722941,35.9007743 16.8634499,36.2917702 18.3644125,36.2917702 C18.6329511,36.2917702 18.8975979,36.2799616 19.1531637,36.2524082 C21.7801724,35.9781862 23.5120522,34.6753038 23.78578,32.7701827 L23.9466438,31.6536138 L23.1332441,32.4290453 C23.1176766,32.443478 21.4908771,33.9602274 18.6705725,33.9602274 C17.9181453,33.9602274 17.1371778,33.8526379 16.3510211,33.640083 C12.0323485,32.4749676 11.0419098,28.893025 11.0419098,26.0930743 L11.0419098,10.1887545 L19.5262567,10.1887545 L19.5262567,23.6277006 C19.5262567,24.63668 20.6100184,25.459346 21.6270924,25.459346 C22.6441664,25.459346 23.8128596,24.63668 23.8128596,23.6277006 L23.8128596,10.1887545 L32.2972065,10.1887545 L32.2972065,31.7126568 C32.2972065,37.9869607 28.5559089,42.7432031 23.0281637,43.8282825 C21.935847,44.0434614 20.7981252,44.1510509 19.6487278,44.1510509 C17.8039839,44.1510509 16.4117484,43.790611 14.4982482,43.2461032 Z\\\" fill=\\\"#FFFFFF\\\" fill-rule=\\\"evenodd\\\"></path>\\n            </svg>\\n          </span>\\n        </div>\\n        <div class=\\\"text-container\\\">\\n          <h1>Ride with the Lyft mobile app.</h1>\\n          <p>Enter your phone number below. We'll text you a link to request your Lyft ride.</p>\\n        </div>\\n        <div class=\\\"message-form-container\\\">\\n          <form name=\\\"lyftMessageForm\\\" method=\\\"get\\\" action=\\\"#\\\" class=\\\"message-form\\\" onsubmit=\\\"window.open('http://www.lyft.com/signup/SDKSIGNUP','_blank');return false;\\\">\\n            <input type=\\\"text\\\" class=\\\"message-form-input\\\" name=\\\"phoneNumber\\\" placeholder=\\\"Phone number\\\" required title=\\\"phone number\\\" />\\n            <input type=\\\"submit\\\" class=\\\"message-form-button\\\" name=\\\"submitButton\\\" title=\\\"text me a link\\\" value=\\\"Text me a link\\\" />\\n          </form>\\n        </div>\\n        <div class=\\\"open-app-container\\\">\\n          <p class=\\\"open-app-separator\\\">&mdash;&nbsp;or&nbsp;&mdash;</p>\\n          <a href=\\\"#\\\" class=\\\"open-app-cta\\\" title=\\\"Open in Lyft app\\\">Open in Lyft app</a>\\n        </div>\\n      </div>\\n      <div class=\\\"frame-after\\\">\\n        <div class=\\\"circle-check-icon-container\\\">\\n          <span class=\\\"circle-check-icon\\\" title=\\\"circle check icon\\\">\\n            <svg version=\\\"1.1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"42px\\\" height=\\\"42px\\\" viewBox=\\\"0 0 20 19\\\">\\n              <path d=\\\"M7.364,13.789l-4.243,-4.243l-2.121,2.121l6.364,6.364l11.667,-11.667l-2.121,-2.121l-9.546,9.546Z\\\" fill=\\\"#FFFFFF\\\" fill-rule=\\\"evenodd\\\"></path>\\n            </svg>\\n          </span>\\n        </div>\\n        <div class=\\\"text-container\\\">\\n          <h1 class=\\\"text-header\\\">Ride link sent.</h1>\\n          <p>Tap the link to get going.</p>\\n        </div>\\n      </div>\\n    </div>\\n  </div>\\n  <div class=\\\"footer\\\">\\n    <a href=\\\"#\\\" class=\\\"close\\\" title=\\\"close Lyft web modal\\\">&#10005;</a>\\n  </div>\\n</div>\\n\";\n\n//# sourceURL=webpack:///./src/components/lyftWebModal/index.html?");
 
 /***/ }),
-/* 13 */
+
+/***/ "./src/components/lyftWebModal/index.js":
+/*!**********************************************!*\
+  !*** ./src/components/lyftWebModal/index.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(20);
-if (typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {};
-options.transform = transform;
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if (content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if (false) {
-	// When the styles change, update the <style> tags
-	if (!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./index.css", function () {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./index.css");
-			if (typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function () {
-		update();
-	});
-}
+eval("\n\n// dependencies\nvar api = __webpack_require__(/*! ../../services/api.js */ \"./src/services/api.js\");\nvar selector = __webpack_require__(/*! ../../services/selector.js */ \"./src/services/selector.js\");\n\n// styles\n__webpack_require__(/*! ./index.css */ \"./src/components/lyftWebModal/index.css\");\n\n/* ========== */\n/* Properties */\n/* ========== */\n\nvar closeElement;\nvar frameAfter;\nvar frameAfterTextHeaderElement;\nvar frameBefore;\nvar mapElement;\nvar mapLabelDescriptionElement;\nvar mapLabelNameElement;\nvar messageFormElement;\nvar messageFormInputElement;\nvar openAppCtaElement;\nvar parentElement;\nvar rootElement;\n\n/* ======================== */\n/* DOM Manipulation Methods */\n/* ======================== */\n\n/**\n * Creates elements from a template and stores some useful references.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @returns {Object} Template's root element.\n */\nfunction createElements() {\n  // create tree from template\n  var template = document.createElement('div');\n  template.innerHTML = __webpack_require__(/*! ./index.html */ \"./src/components/lyftWebModal/index.html\");\n  // store references to important elements\n  rootElement = template.childNodes[0];\n  closeElement = selector.selectChildElement(rootElement, ['.footer', '.close']);\n  mapElement = selector.selectChildElement(rootElement, ['.content', '.map-container']);\n  mapLabelNameElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-name']);\n  mapLabelDescriptionElement = selector.selectChildElement(mapElement, ['.map-label', '.map-label-description']);\n  frameBefore = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-before on']);\n  messageFormElement = selector.selectChildElement(frameBefore, ['.message-form-container', '.message-form']);\n  messageFormInputElement = selector.selectChildElement(messageFormElement, ['.message-form-input']);\n  openAppCtaElement = selector.selectChildElement(frameBefore, ['.open-app-container', '.open-app-cta']);\n  frameAfter = selector.selectChildElement(rootElement, ['.content', '.frame-container', '.frame-after']);\n  frameAfterTextHeaderElement = selector.selectChildElement(frameAfter, ['.text-container', '.text-header']);\n  // return reference to root element\n  return rootElement;\n}\n\n/**\n * Binds events to some elements.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @param {Object} location Location of the intended destination.\n * @param {string} location.address\n * @param {string} location.latitude\n * @param {string} location.longitude\n * @param {string} location.name\n * @param {string} objectName This instance's name in the global namespace.\n * @returns {void} Void.\n */\nfunction bindEvents(location, objectName) {\n  location = location || {};\n  // root element: close modal window on click\n  if (rootElement) {\n    rootElement.onclick = function (event) {\n      if (event && event.target === rootElement) {\n        close();\n        return false;\n      }\n      return true;\n    };\n  }\n  // close element: close modal window on click\n  if (closeElement) {\n    closeElement.onclick = function (event) {\n      if (event && event.target === closeElement) {\n        close();\n        return false;\n      }\n      return true;\n    };\n  }\n  // message form element: request JSONP on submit\n  if (messageFormElement) {\n    messageFormElement.onsubmit = function () {\n      api.postMessages({\n        phone_number: messageFormInputElement.value,\n        end_lat: location.latitude,\n        end_lng: location.longitude\n      }, objectName + '.onPostMessagesSuccess');\n      return false;\n    };\n  }\n}\n\n/**\n * Updates the contents of some elements.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @param {string} googleApiKey API key for Google Static Maps.\n * @param {Object} location Location of the intended destination.\n * @param {string} location.address\n * @param {string} location.latitude\n * @param {string} location.longitude\n * @param {string} location.name\n * @returns {void} Void.\n */\nfunction updateContents(googleApiKey, location) {\n  location = location || {};\n  // map-container: set background-image\n  if (mapElement) {\n    var mapSrc = 'https://maps.googleapis.com/maps/api/staticmap' + '?center=' + location.latitude + ',' + location.longitude + '&maptype=roadmap&size=640x300&zoom=15' + (googleApiKey ? '&key=' + googleApiKey : '');\n    mapElement.style = 'background-image:url(\\'' + mapSrc + '\\');';\n  }\n  // map-label-name: set text\n  if (mapLabelNameElement) {\n    mapLabelNameElement.textContent = location.name;\n  }\n  // map-label-description: set text\n  if (mapLabelDescriptionElement) {\n    mapLabelDescriptionElement.textContent = location.address;\n  }\n  // open-app-cta: set href\n  if (openAppCtaElement) {\n    openAppCtaElement.href = 'https://lyft.com/ride?id=lyft' + '&destination%5Blatitude%5D=' + location.latitude + '&destination%5Blongitude%5D=' + location.longitude;\n  }\n}\n\n/* ================ */\n/* Workflow Methods */\n/* ================ */\n\n/**\n * Success callback for postMessages request.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @param {Object} data Response data.\n * @returns {void} Void.\n */\nfunction onPostMessagesSuccess(data) {\n  if (data && data.messages) {\n    frameAfterTextHeaderElement.textContent = 'Ride link sent to ' + messageFormInputElement.value + '.';\n    selector.removeClass(frameBefore, 'on');\n    selector.addClass(frameAfter, 'on');\n    // remove extra whitespace\n    setTimeout(function () {\n      frameBefore.style = 'display:none;';\n      frameAfter.style = 'position:relative;';\n    }, 400);\n  }\n}\n\n/**\n * Attaches the modal window to the DOM and makes it visible.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @returns {void} Void.\n */\nfunction open() {\n  parentElement.insertBefore(rootElement, parentElement.childNodes[0]);\n  setTimeout(function () {\n    selector.addClass(rootElement, 'on');\n  }, 10);\n}\n\n/**\n * Makes the modal window invisible and detaches it from the DOM.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @returns {void} Void.\n */\nfunction close() {\n  selector.removeClass(rootElement, 'on');\n  setTimeout(function () {\n    rootElement.parentElement.removeChild(rootElement);\n  }, 400);\n}\n\n/**\n * Initialize.\n * @memberOf lyftWebModal\n * @category lyftWebModal\n * @param {Object} options\n * @param {string} options.clientId\n * @param {string} options.clientToken\n * @param {string} options.googleApiKey\n * @param {Object} options.location\n * @param {string} options.location.address\n * @param {string} options.location.latitude\n * @param {string} options.location.longitude\n * @param {string} options.location.name\n * @param {string} options.objectName\n * @param {Object} options.parentElement\n * @returns {void} Void.\n */\nfunction initialize(options) {\n  // parse arguments\n  parentElement = options.parentElement;\n  api.setClientId(options.clientId);\n  api.setClientToken(options.clientToken);\n  // create element tree\n  createElements();\n  bindEvents(options.location, options.objectName);\n  updateContents(options.googleApiKey, options.location);\n}\n\n/* ===================================== */\n/* Publicly-Exposed Properties & Methods */\n/* ===================================== */\n\nmodule.exports = {\n  close: close,\n  initialize: initialize,\n  onPostMessagesSuccess: onPostMessagesSuccess,\n  open: open\n};\n\n//# sourceURL=webpack:///./src/components/lyftWebModal/index.js?");
 
 /***/ }),
-/* 14 */
+
+/***/ "./src/services/api.js":
+/*!*****************************!*\
+  !*** ./src/services/api.js ***!
+  \*****************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(21);
-if (typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {};
-options.transform = transform;
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if (content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if (false) {
-	// When the styles change, update the <style> tags
-	if (!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./index.css", function () {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./index.css");
-			if (typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function () {
-		update();
-	});
-}
+eval("\n\n// dependencies\nvar jsonp = __webpack_require__(/*! ./jsonp.js */ \"./src/services/jsonp.js\");\n\n// constants\nvar SERVER_URL = 'https://www.lyft.com/api/jsonp';\nvar GET_COSTS_URL = SERVER_URL + '/get_costs';\nvar GET_DRIVERS_URL = SERVER_URL + '/get_drivers';\nvar GET_ETAS_URL = SERVER_URL + '/get_etas';\nvar GET_RIDE_TYPES_URL = SERVER_URL + '/get_ride_types';\nvar POST_MESSAGES_URL = SERVER_URL + '/post_messages';\n\n// configuration\nvar client_id;\nfunction setClientId(value) {\n  client_id = value;\n}\nvar client_token;\nfunction setClientToken(value) {\n  client_token = value;\n}\n\n/**\n * Requests JSONP with injected credentials.\n * @memberOf api\n * @category api\n * @param {string} url Required.\n * @param {Object} data Required.\n * @param {function} callback Optional.\n * @returns {void} Result of jsonp.request().\n */\nfunction requestWithCredentials(url, data, callback) {\n  /* build data payload */\n  data = data || {};\n  data.client_id = client_id;\n  data.client_token = client_token;\n  /* perform request */\n  return jsonp.request({\n    url: url,\n    data: data,\n    callback: callback\n  });\n}\n\n/**\n * Gets `costs`.\n * @memberOf api\n * @category api\n * @param {Object} data Required.\n * @param {string} data.start_lat Required.\n * @param {string} data.start_lng Required.\n * @param {string} data.end_lat Required.\n * @param {string} data.end_lng Required.\n * @param {string} data.ride_type Optional.\n * @param {function} callback Optional.\n * @returns {void} Result of requestWithCredentials().\n */\nfunction getCosts(data, callback) {\n  return requestWithCredentials(GET_COSTS_URL, data, callback);\n}\n\n/**\n * Gets `drivers`.\n * @memberOf api\n * @category api\n * @param {Object} data Required.\n * @param {string} data.lat Required.\n * @param {string} data.lng Required.\n * @param {function} callback Optional.\n * @returns {void} Result of requestWithCredentials().\n */\nfunction getDrivers(data, callback) {\n  return requestWithCredentials(GET_DRIVERS_URL, data, callback);\n}\n\n/**\n * Gets `etas`.\n * @memberOf api\n * @category api\n * @param {Object} data Required.\n * @param {string} data.lat Required.\n * @param {string} data.lng Required.\n * @param {string} data.ride_type Optional.\n * @param {function} callback Optional.\n * @returns {void} Result of requestWithCredentials().\n */\nfunction getEtas(data, callback) {\n  return requestWithCredentials(GET_ETAS_URL, data, callback);\n}\n\n/**\n * Gets `ride_types`.\n * @memberOf api\n * @category api\n * @param {Object} data Required.\n * @param {string} data.lat Required.\n * @param {string} data.lng Required.\n * @param {string} data.ride_type Optional.\n * @param {function} callback Optional.\n * @returns {void} Result of requestWithCredentials().\n */\nfunction getRideTypes(data, callback) {\n  return requestWithCredentials(GET_RIDE_TYPES_URL, data, callback);\n}\n\n/**\n * POSTs `messages`.\n * @memberOf api\n * @category api\n * @param {Object} data Required.\n * @param {string} data.phone_number Required.\n * @param {string} data.end_lat Optional.\n * @param {string} data.end_lng Optional.\n * @param {function} callback Optional.\n * @returns {void} Result of requestWithCredentials().\n */\nfunction postMessages(data, callback) {\n  return requestWithCredentials(POST_MESSAGES_URL, data, callback);\n}\n\n// exports\nmodule.exports = {\n  getCosts: getCosts,\n  getDrivers: getDrivers,\n  getEtas: getEtas,\n  getRideTypes: getRideTypes,\n  postMessages: postMessages,\n  setClientId: setClientId,\n  setClientToken: setClientToken\n};\n\n//# sourceURL=webpack:///./src/services/api.js?");
 
 /***/ }),
-/* 15 */
+
+/***/ "./src/services/helpers.js":
+/*!*********************************!*\
+  !*** ./src/services/helpers.js ***!
+  \*********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-	// get current location
-	var location = typeof window !== "undefined" && window.location;
-
-	if (!location) {
-		throw new Error("fixUrls requires window.location");
-	}
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-		return css;
-	}
-
-	var baseUrl = location.protocol + "//" + location.host;
-	var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
- This regular expression is just a way to recursively match brackets within
- a string.
- 	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-    (  = Start a capturing group
-      (?:  = Start a non-capturing group
-          [^)(]  = Match anything that isn't a parentheses
-          |  = OR
-          \(  = Match a start parentheses
-              (?:  = Start another non-capturing groups
-                  [^)(]+  = Match anything that isn't a parentheses
-                  |  = OR
-                  \(  = Match a start parentheses
-                      [^)(]*  = Match anything that isn't a parentheses
-                  \)  = Match a end parentheses
-              )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-  \)  = Match a close parens
- 	 /gi  = Get all matches, not the first.  Be case insensitive.
-  */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
-			return $1;
-		}).replace(/^'(.*)'$/, function (o, $1) {
-			return $1;
-		});
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-			return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-			//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\n/**\n * Check if an object is empty.\n * @param {Object, string}\n * @returns {bool}\n */\nvar hasOwnProperty = Object.prototype.hasOwnProperty;\n\nfunction isEmpty(obj) {\n  // null and undefined are \"empty\"\n  if (obj === null) return true;\n\n  // Assume if it has a length property with a non-zero value\n  // that that property is correct.\n  if (obj.length > 0) return false;\n  if (obj.length === 0) return true;\n\n  // If it isn't an object at this point\n  // it is empty, but it can't be anything *but* empty\n  // Is it empty?  Depends on your application.\n  if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object') return true;\n\n  // Otherwise, does it have any properties of its own?\n  // Note that this doesn't handle\n  // toString and valueOf enumeration bugs in IE < 9\n  for (var key in obj) {\n    if (hasOwnProperty.call(obj, key)) return false;\n  }\n\n  return true;\n}\n\nfunction isProd() {\n  return \"development\" === 'production';\n}\n\nfunction logger(msg) {\n  if (!isProd()) {\n    console.log(msg);\n  }\n}\n\n/**\n * Check if browser location service is present\n * @param {null}\n * @returns {bool}\n */\nfunction hasLocationService() {\n  return navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition;\n}\n\nmodule.exports = {\n  isEmpty: isEmpty,\n  isProd: isProd,\n  logger: logger,\n  hasLocationService: hasLocationService\n};\n\n//# sourceURL=webpack:///./src/services/helpers.js?");
 
 /***/ }),
-/* 16 */
+
+/***/ "./src/services/jsonp.js":
+/*!*******************************!*\
+  !*** ./src/services/jsonp.js ***!
+  \*******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * Check if an object is empty.
- * @param {Object, string}
- * @returns {bool}
- */
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-function isEmpty(obj) {
-  // null and undefined are "empty"
-  if (obj === null) return true;
-
-  // Assume if it has a length property with a non-zero value
-  // that that property is correct.
-  if (obj.length > 0) return false;
-  if (obj.length === 0) return true;
-
-  // If it isn't an object at this point
-  // it is empty, but it can't be anything *but* empty
-  // Is it empty?  Depends on your application.
-  if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object') return true;
-
-  // Otherwise, does it have any properties of its own?
-  // Note that this doesn't handle
-  // toString and valueOf enumeration bugs in IE < 9
-  for (var key in obj) {
-    if (hasOwnProperty.call(obj, key)) return false;
-  }
-
-  return true;
-}
-
-function isProd() {
-  return "development" === 'production';
-}
-
-function logger(msg) {
-  if (!isProd()) {
-    console.log(msg);
-  }
-}
-
-/**
- * Check if browser location service is present
- * @param {null}
- * @returns {bool}
- */
-function hasLocationService() {
-  return navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition;
-}
-
-module.exports = {
-  isEmpty: isEmpty,
-  isProd: isProd,
-  logger: logger,
-  hasLocationService: hasLocationService
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\n/**\n * Injects a script into the DOM with given options.\n * @memberOf jsonp\n * @category jsonp\n * @param {Object} options Required.\n * @param {string} options.src Required.\n * @param {boolean} options.async Optional.\n * @param {function} options.callback Optional.\n * @param {boolean} options.defer Optional.\n * @returns {void} Void.\n */\nfunction injectScript(options) {\n  if (typeof options === 'undefined' || typeof options.src === 'undefined') {\n    throw new TypeError('injectScript missing one of: options, options.src');\n  }\n\n  var headElement = document.getElementsByTagName('head')[0] || document.documentElement;\n  var scriptElement = document.createElement('script');\n  scriptElement.src = options.src;\n  scriptElement.async = options.async || false;\n  scriptElement.defer = options.defer || false;\n\n  /* polyfill `onload` event for some older browsers */\n  var isDone = false;\n  scriptElement.onload = scriptElement.onreadystatechange = function (event) {\n    /* if script is loaded... */\n    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {\n      isDone = true;\n      /* invoke user callback */\n      var callbackResult = Object.prototype.toString.call(options.callback) === '[object Function]' ? options.callback(event) : undefined;\n      /* unset event handler (avoid memory leak) */\n      scriptElement.onload = scriptElement.onreadystatechange = null;\n      /* remove DOM element */\n      if (headElement && scriptElement.parentNode) {\n        headElement.removeChild(scriptElement);\n      }\n      /* return user callback result */\n      return callbackResult;\n    }\n  };\n  /* insertBefore instead of appendChild for browser compatibility */\n  headElement.insertBefore(scriptElement, headElement.childNodes[0]);\n}\n\n/**\n * Recursively serializes data as a query-parameter string.\n * @memberOf jsonp\n * @category jsonp\n * @param {Object} obj Data to serialize (required).\n * @param {string} pfx Key prefix for data chunk (optional).\n * @returns {string} Query-parameter string.\n */\nfunction serialize(obj, pfx) {\n  var results = [];\n  for (var prop in obj) {\n    if (obj.hasOwnProperty(prop)) {\n      var key = pfx ? pfx + '[' + prop + ']' : prop;\n      var val = obj[prop];\n      results.push((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object' ? serialize(val, key) : encodeURIComponent(key) + '=' + encodeURIComponent(val));\n    }\n  }\n  return results.join('&');\n}\n\n/**\n * Performs a JSONP request.\n * @memberOf jsonp\n * @category jsonp\n * @param {Object} options Required.\n * @param {string} options.url Required.\n * @param {string} options.callback Callback path relative to window context (optional).\n * @param {Object} options.data JSON-compatible data payload (optional).\n * @returns {void} Result of injectScript().\n */\nfunction request(options) {\n  if (typeof options === 'undefined' || typeof options.url === 'undefined') {\n    throw new TypeError('request missing one of: options, options.url');\n  }\n  /* construct the request src */\n  var src = options.url + (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback + '&' + serialize(options.data);\n  /* perform the request */\n  return injectScript({ src: src });\n}\n\n// exports\nmodule.exports = {\n  request: request\n};\n\n//# sourceURL=webpack:///./src/services/jsonp.js?");
 
 /***/ }),
-/* 17 */
+
+/***/ "./src/services/selector.js":
+/*!**********************************!*\
+  !*** ./src/services/selector.js ***!
+  \**********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * Injects a script into the DOM with given options.
- * @memberOf jsonp
- * @category jsonp
- * @param {Object} options Required.
- * @param {string} options.src Required.
- * @param {boolean} options.async Optional.
- * @param {function} options.callback Optional.
- * @param {boolean} options.defer Optional.
- * @returns {void} Void.
- */
-function injectScript(options) {
-  if (typeof options === 'undefined' || typeof options.src === 'undefined') {
-    throw new TypeError('injectScript missing one of: options, options.src');
-  }
-
-  var headElement = document.getElementsByTagName('head')[0] || document.documentElement;
-  var scriptElement = document.createElement('script');
-  scriptElement.src = options.src;
-  scriptElement.async = options.async || false;
-  scriptElement.defer = options.defer || false;
-
-  /* polyfill `onload` event for some older browsers */
-  var isDone = false;
-  scriptElement.onload = scriptElement.onreadystatechange = function (event) {
-    /* if script is loaded... */
-    if (!isDone && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
-      isDone = true;
-      /* invoke user callback */
-      var callbackResult = Object.prototype.toString.call(options.callback) === '[object Function]' ? options.callback(event) : undefined;
-      /* unset event handler (avoid memory leak) */
-      scriptElement.onload = scriptElement.onreadystatechange = null;
-      /* remove DOM element */
-      if (headElement && scriptElement.parentNode) {
-        headElement.removeChild(scriptElement);
-      }
-      /* return user callback result */
-      return callbackResult;
-    }
-  };
-  /* insertBefore instead of appendChild for browser compatibility */
-  headElement.insertBefore(scriptElement, headElement.childNodes[0]);
-}
-
-/**
- * Recursively serializes data as a query-parameter string.
- * @memberOf jsonp
- * @category jsonp
- * @param {Object} obj Data to serialize (required).
- * @param {string} pfx Key prefix for data chunk (optional).
- * @returns {string} Query-parameter string.
- */
-function serialize(obj, pfx) {
-  var results = [];
-  for (var prop in obj) {
-    if (obj.hasOwnProperty(prop)) {
-      var key = pfx ? pfx + '[' + prop + ']' : prop;
-      var val = obj[prop];
-      results.push((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object' ? serialize(val, key) : encodeURIComponent(key) + '=' + encodeURIComponent(val));
-    }
-  }
-  return results.join('&');
-}
-
-/**
- * Performs a JSONP request.
- * @memberOf jsonp
- * @category jsonp
- * @param {Object} options Required.
- * @param {string} options.url Required.
- * @param {string} options.callback Callback path relative to window context (optional).
- * @param {Object} options.data JSON-compatible data payload (optional).
- * @returns {void} Result of injectScript().
- */
-function request(options) {
-  if (typeof options === 'undefined' || typeof options.url === 'undefined') {
-    throw new TypeError('request missing one of: options, options.url');
-  }
-  /* construct the request src */
-  var src = options.url + (options.url.indexOf('?') !== -1 ? '&' : '?') + 'callback=' + options.callback + '&' + serialize(options.data);
-  /* perform the request */
-  return injectScript({ src: src });
-}
-
-// exports
-module.exports = {
-  request: request
-};
+eval("\n\n/**\n * Adds a class to an element.\n * @memberOf selector\n * @category selector\n * @param {Object} element Required.\n * @param {string} className Required.\n * @returns {void} Void.\n */\nfunction addClass(element, className) {\n  var classList = element.className.split(' ');\n  if (classList.indexOf(className) === -1) {\n    classList.push(className);\n  }\n  element.className = classList.join(' ');\n}\n\n/**\n * Removes a class from an element.\n * @memberOf selector\n * @category selector\n * @param {Object} element Required.\n * @param {string} className Required.\n * @returns {void} Void.\n */\nfunction removeClass(element, className) {\n  var classList = element.className.split(' ');\n  var classIndex = classList.indexOf(className);\n  if (classIndex !== -1) {\n    classList.splice(classIndex, 1);\n  }\n  element.className = classList.join(' ');\n}\n\n/**\n * Selects a single child element from a given element according to some criteria.\n * @memberOf selector\n * @category selector\n * @param {Object} element The parent element from which the child will be selected.\n * @param {string} attributeName Name of the attribute for selection.\n * @param {string} attributeValue Value of the named attribute for selection.\n * @returns {Object} The selected element.\n */\nfunction selectChildElementByAttribute(element, attributeName, attributeValue) {\n  var childNodes = element.childNodes || [];\n  for (var i = 0, l = childNodes.length; i < l; i++) {\n    if (childNodes[i][attributeName] === attributeValue) {\n      return childNodes[i];\n    }\n  }\n}\n\n/**\n * Selects a single child element from an element tree according to some criteria.\n * @memberOf selector\n * @category selector\n * @param {Object} element The top level of the element tree.\n * @param {Array} attributes Strings describing the selection criteria.\n * @returns {Object} The selected element.\n */\nfunction selectChildElement(element, attributes) {\n  var currentElement = element;\n  for (var i = 0, l = attributes.length; i < l; i++) {\n    if (!currentElement || !attributes[i].length) {\n      return;\n    } /* short-circuit on failure */\n    var attributeName = attributes[i][0] === '.' ? 'className' : 'id';\n    var attributeValue = attributes[i].slice(1);\n    currentElement = selectChildElementByAttribute(currentElement, attributeName, attributeValue);\n  }\n  return currentElement;\n}\n\n// exports\nmodule.exports = {\n  addClass: addClass,\n  removeClass: removeClass,\n  selectChildElement: selectChildElement\n};\n\n//# sourceURL=webpack:///./src/services/selector.js?");
 
 /***/ }),
-/* 18 */
+
+/***/ "./webpack.entry.lyftWebButton.js":
+/*!****************************************!*\
+  !*** ./webpack.entry.lyftWebButton.js ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Serializes an object to a query string; ensures each key is not null.
- * @memberOf serialize
- * @category serialize
- * @param {Object} obj Required.
- * @returns {String} String.
- */
-module.exports = function (obj) {
-  var str = [];
-  if (!obj) {
-    return '';
-  }
-  for (var p in obj) {
-    if (obj.hasOwnProperty(p) && obj[p] !== null) {
-      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-    }
-  }
-  return str.join('&');
-};
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// webpack begins its journey here
-window['lyftWebModal'] = __webpack_require__(7);
-window['lyftWebButton'] = __webpack_require__(6);
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* medium styles */\n.lyft-web-button {\n  cursor: pointer;\n  padding: 5px 10px;\n  color: #000000; /* white */\n  font-family: sans-serif;\n  background-color: #FFFFFF; /* black */\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n}\n.lyft-web-button:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button > .lyft-logo {\n  display: inline-block;\n  width: 48px;\n  height: 35px;\n  margin-top: 4px;\n  vertical-align: middle;\n}\n.lyft-web-button > .lyft-logo > svg {\n  width: 48px; /* fix svg rendering for IE */\n  height: 35px; /* fix svg rendering for IE */\n}\n.lyft-web-button > .cta-eta {\n  display: inline-block;\n  margin-left: 10px;\n  text-align: left;\n  vertical-align: middle;\n}\n.lyft-web-button > .cta-eta > .cta {\n  display: block;\n  font-size: 24px;\n  font-weight: 300;\n}\n.lyft-web-button > .cta-eta > .eta {\n  display: block;\n  font-size: 14px;\n  font-weight: 300;\n}\n.lyft-web-button > .arrow-icon {\n  display: inline-block;\n  width: 18px;\n  height: 19px; /* add 1px to prevent clipping */\n  margin-left: 10px;\n  vertical-align: middle;\n}\n.lyft-web-button > .arrow-icon > svg {\n  width: 18px; /* fix svg rendering for IE */\n  height: 19px; /* fix svg rendering for IE */\n}\n.lyft-web-button > .price-range {\n  display: inline-block;\n  margin-left: 4px;\n  vertical-align: middle;\n  font-size: 14px;\n  font-weight: 300;\n}\n\n/* small styles */\n.lyft-web-button.small {\n  padding: 4px 8px;\n}\n.lyft-web-button.small > .lyft-logo {\n  width: 32px;\n  height: 23px;\n}\n.lyft-web-button.small > .lyft-logo > svg {\n  width: 32px; /* fix svg rendering for IE */\n  height: 23px; /* fix svg rendering for IE */\n}\n.lyft-web-button.small > .cta-eta {\n  margin-left: 8px;\n}\n.lyft-web-button.small > .cta-eta > .cta {\n  display: none;\n}\n.lyft-web-button.small > .cta-eta > .eta {\n  font-size: 20px;\n}\n.lyft-web-button.small > .arrow-icon {\n  display: none;\n}\n.lyft-web-button.small > .price-range {\n  display: none;\n}\n\n/* large styles */\n.lyft-web-button.large {\n  padding: 18px 20px;\n}\n.lyft-web-button.large > .lyft-logo {\n  width: 55px;\n  height: 40px;\n}\n.lyft-web-button.large > .lyft-logo > svg {\n  width: 55px; /* fix svg rendering for IE */\n  height: 40px; /* fix svg rendering for IE */\n}\n.lyft-web-button.large > .cta-eta {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .cta-eta > .cta {\n  font-size: 30px;\n}\n.lyft-web-button.large > .cta-eta > .eta {\n  font-size: 20px;\n}\n.lyft-web-button.large > .arrow-icon {\n  margin-left: 20px;\n}\n.lyft-web-button.large > .price-range {\n  font-size: 20px;\n}\n\n/* hot-pink */\n.lyft-web-button.hot-pink {\n  color: #FFFFFF; /* white */\n  background-color: #FF00BF; /* pink */\n}\n.lyft-web-button.hot-pink:hover {\n  background-color: #E600AC; /* reduce brightness by 10% */\n}\n.lyft-web-button.hot-pink > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.hot-pink > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-dark */\n.lyft-web-button.mulberry-dark {\n  color: #FFFFFF; /* white */\n  background-color: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-dark:hover {\n  background-color: #2B1C6B; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-dark > .lyft-logo > svg > path {\n  fill: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-dark > .arrow-icon > svg > path {\n  fill: #FFFFFF; /* white */\n}\n\n/* mulberry-light */\n.lyft-web-button.mulberry-light {\n  color: #352384; /* mulberry */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.mulberry-light:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.mulberry-light > .lyft-logo > svg > path {\n  fill: #352384; /* mulberry */\n}\n.lyft-web-button.mulberry-light > .arrow-icon > svg > path {\n  fill: #352384; /* mulberry */\n}\n\n/* multicolor */\n.lyft-web-button.multicolor {\n  color: #000000; /* black */\n  background-color: #FFFFFF; /* white */\n}\n.lyft-web-button.multicolor:hover {\n  background-color: #E6E6E6; /* reduce brightness by 10% */\n}\n.lyft-web-button.multicolor > .lyft-logo > svg > path {\n  fill: #FF00BF; /* pink */\n}\n.lyft-web-button.multicolor > .arrow-icon > svg > path {\n  fill: #000000; /* white */\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* small-to-medium screen styles */\n.lyft-web-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1;\n  display: block;\n  visibility: hidden;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content {\n  position: relative;\n  top: -300px;\n  left: 0;\n  right: 0;\n  opacity: 0;\n  width: 100%;\n  max-width: 320px;\n  margin: 20px auto 0 auto;\n  padding: 0;\n  color: #000000;\n  font-family: sans-serif;\n  text-align: center;\n  background-color: #FFFFFF;\n  border: none;\n  -webkit-border-radius: 8px;\n     -moz-border-radius: 8px;\n          border-radius: 8px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n  -webkit-transition: top 0.4s, opacity 0.4s;\n     -moz-transition: top 0.4s, opacity 0.4s;\n       -o-transition: top 0.4s, opacity 0.4s;\n          transition: top 0.4s, opacity 0.4s;\n}\n.lyft-web-modal.on > .content {\n  top: 0;\n  opacity: 1;\n}\n.lyft-web-modal > .content > .map-container {\n  width: 100%;\n  height: 150px; /* background-image src will be 300px */\n  background-color: #EEEEEE;\n  background-position: center top; /* bump the marker down by 150px */\n  background-repeat: no-repeat;\n  background-size: 167% 167%;\n  -webkit-border-radius: 8px 8px 0 0;\n     -moz-border-radius: 8px 8px 0 0;\n          border-radius: 8px 8px 0 0;\n}\n.lyft-web-modal > .content > .map-container > .map-label {\n  display: inline-block;\n  max-width: 300px;\n  margin: 10px auto 0 auto;\n  padding: 5px;\n  background-color: #FFFFFF;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);\n          box-shadow: 0 0 5px rgba(0,0,0,0.3);\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\n  display: block;\n  font-size: 14px;\n  font-weight: 700;\n}\n.lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\n  display: block;\n  margin-top: 5px;\n  font-size: 10px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content > .map-container > .map-marker {\n  margin-top: 13px;\n}\n.lyft-web-modal > .content > .map-container > .map-marker > svg {\n  display: inline-block;\n  width: 40px;\n  height: 64px;\n}\n.lyft-web-modal > .content > .frame-container {\n  position: relative;\n}\n.lyft-web-modal > .content > .frame-container > .frame-before {\n  position: static;\n  z-index: 1;\n  padding: 10px;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal > .content > .frame-container > .frame-before.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content > .frame-container > .frame-after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 2;\n  padding: 10px;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transition: visibility 0.4s, opacity 0.4s;\n     -moz-transition: visibility 0.4s, opacity 0.4s;\n       -o-transition: visibility 0.4s, opacity 0.4s;\n          transition: visibility 0.4s, opacity 0.4s;\n}\n.lyft-web-modal > .content > .frame-container > .frame-after.on {\n  visibility: visible;\n  opacity: 1;\n}\n.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {\n  display: inline-block;\n  width: 40px;\n  height: 40px;\n  vertical-align: middle;\n  background-color: #FF00BF;\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\n  border: none;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n}\n.lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {\n  display: inline-block;\n  width: 30px;\n  height: 21px;\n  margin: 11px 0 0 0;\n  fill: #FFFFFF;\n}\n.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {\n  display: inline-block;\n  width: 40px;\n  height: 40px;\n  vertical-align: middle;\n  background-color: #FF00BF;\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\n  border: none;\n  -webkit-border-radius: 50%;\n     -moz-border-radius: 50%;\n          border-radius: 50%;\n}\n.lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {\n  display: inline-block;\n  width: 30px;\n  height: 30px;\n  margin: 5px 0 0 0;\n  fill: #FFFFFF;\n}\n.lyft-web-modal > .content .text-container {\n  margin-top: 10px;\n}\n.lyft-web-modal > .content .text-container > h1 {\n  margin: 0 0 0 0;\n  color: #352384;\n  font-size: 20px;\n  font-weight: 500;\n}\n.lyft-web-modal > .content .text-container > p {\n  width: 100%;\n  max-width: 320px;\n  margin: 5px auto 0 auto;\n  color: #000000;\n  font-size: 14px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content .message-form-container {\n  margin-top: 10px;\n}\n.lyft-web-modal > .content .message-form-container > form > .message-form-input {\n  /* lyft style attributes */\n  -webkit-appearance: none;\n  height: 36px;\n  color: #333447;\n  font-size: 16px;\n  font-weight: lighter;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FFFFFF;\n  background-image: none;\n  border: 1px solid #CCCCCC;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 298px; /* manually correct for border */\n  margin: 0 0 0 0;\n  padding: 0 0 0 0;\n}\n.lyft-web-modal > .content .message-form-container > form > .message-form-button {\n  /* lyft style attributes */\n  -webkit-appearance: button;\n  cursor: pointer;\n  height: 40px;\n  color: #FFFFFF;\n  font-size: 16px;\n  font-weight: 500;\n  text-align: center;\n  text-transform: none;\n  line-height: 1.428571429;\n  vertical-align: middle;\n  background-color: #FF00BF;\n  background-image: -webkit-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -moz-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: -o-linear-gradient(top left, #FF00BF, #B80B8C);\n  background-image: linear-gradient(to bottom right, #FF00BF, #B80B8C);\n  border: none;\n  -webkit-border-radius: 5px;\n     -moz-border-radius: 5px;\n          border-radius: 5px;\n  /* element-specific attributes */\n  width: 100%;\n  max-width: 300px;\n  margin: 5px 0 0 0;\n}\n.lyft-web-modal > .content .message-form-container > form > .message-form-button:hover {\n  background-color: #E600AC; /* reduce brightness by 10% */\n  background-image: -webkit-linear-gradient(top left, #E600AC, #9E0978);\n  background-image: -moz-linear-gradient(top left, #E600AC, #9E0978);\n  background-image: -o-linear-gradient(top left, #E600AC, #9E0978);\n  background-image: linear-gradient(to bottom right, #E600AC, #9E0978);\n}\n.lyft-web-modal > .content .open-app-container {\n  margin-top: 10px;\n}\n.lyft-web-modal > .content .open-app-container > .open-app-separator {\n  display: block;\n  margin: 0 0 0 0;\n  color: #000000;\n  font-size: 14px;\n  font-weight: 300;\n}\n.lyft-web-modal > .content .open-app-container > .open-app-cta {\n  display: inline-block;\n  margin-top: 10px;\n  color: #FF00BF;\n  font-size: 14px;\n  text-decoration: none;\n}\n.lyft-web-modal > .footer {\n  text-align: center;\n}\n.lyft-web-modal > .footer > .close {\n  display: inline-block;\n  margin-top: 20px;\n  color: #FFFFFF;\n  font-family: Arial, sans-serif;\n  font-size: 36px;\n  text-decoration: none;\n}\n\n/* large-to-very-large screen styles */\n@media(min-width:768px) {\n  .lyft-web-modal > .content {\n    max-width: 640px;\n    margin: 40px auto 0 auto;\n  }\n  .lyft-web-modal > .content > .map-container {\n    height: 200px;\n    background-size: auto;\n  }\n  .lyft-web-modal > .content > .map-container > .map-label {\n    margin: 20px auto 0 auto;\n    padding: 10px;\n  }\n  .lyft-web-modal > .content > .map-container > .map-label > .map-label-name {\n    font-size: 16px;\n  }\n  .lyft-web-modal > .content > .map-container > .map-label > .map-label-description {\n    font-size: 12px;\n  }\n  .lyft-web-modal > .content > .frame-container > .frame-before {\n    padding: 15px;\n  }\n  .lyft-web-modal > .content > .frame-container > .frame-after {\n    padding: 15px;\n  }\n  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile {\n    width: 64px;\n    height: 64px;\n  }\n  .lyft-web-modal > .content .lyft-logo-tile-container > .lyft-logo-tile > svg {\n    width: 45px;\n    height: 32px;\n    margin: 17px 0 0 0;\n  }\n  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon {\n    width: 64px;\n    height: 64px;\n  }\n  .lyft-web-modal > .content .circle-check-icon-container > .circle-check-icon > svg {\n    width: 42px;\n    height: 42px;\n    margin: 10px 0 0 0;\n  }\n  .lyft-web-modal > .content .text-container {\n    margin-top: 20px;\n  }\n  .lyft-web-modal > .content .text-container > h1 {\n    font-size: 24px;\n  }\n  .lyft-web-modal > .content .text-container > p {\n    margin: 10px auto 0 auto;\n    font-size: 16px;\n  }\n  .lyft-web-modal > .content .message-form-container {\n    margin-top: 20px;\n  }\n  .lyft-web-modal > .content .message-form-container > form > .message-form-input {\n    max-width: 318px; /* manually correct for border */\n  }\n  .lyft-web-modal > .content .message-form-container > form > .message-form-button {\n    max-width: 320px;\n    margin: 10px 0 0 0;\n  }\n  .lyft-web-modal > .content .open-app-container {\n    margin-top: 20px;\n  }\n  .lyft-web-modal > .content .open-app-container > .open-app-separator {\n    font-size: 16px;\n  }\n  .lyft-web-modal > .content .open-app-container > .open-app-cta {\n    margin-top: 20px;\n    font-size: 16px;\n  }\n  .lyft-web-modal > .footer > .close {\n    font-size: 48px;\n  }\n}\n", ""]);
-
-// exports
-
+eval("\n\n// webpack begins its journey here\nwindow['lyftWebModal'] = __webpack_require__(/*! ./src/components/lyftWebModal/index.js */ \"./src/components/lyftWebModal/index.js\");\nwindow['lyftWebButton'] = __webpack_require__(/*! ./src/components/lyftWebButton/index.js */ \"./src/components/lyftWebButton/index.js\");\n\n//# sourceURL=webpack:///./webpack.entry.lyftWebButton.js?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
